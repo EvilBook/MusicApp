@@ -38,6 +38,9 @@ public class LoginController implements Initializable{
         try {
             myapp.UsernameException(userNameTextField.getText());
             myapp.MaximumPasswordLength(PasswordTextField.getText());
+            PasswordTextField.clear();
+            userNameTextField.clear();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
