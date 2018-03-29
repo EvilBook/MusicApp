@@ -35,20 +35,6 @@ public class LoginController implements Initializable{
     @FXML
     public void handleLoginButton(ActionEvent event){
 
-        Exceptions myapp = new Exceptions();
-        try {
-            myapp.UsernameException(userNameTextField.getText());
-            myapp.MaximumPasswordLength(PasswordTextField.getText());
-            PasswordTextField.clear();
-            userNameTextField.clear();
-
-
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
 
@@ -60,12 +46,10 @@ public class LoginController implements Initializable{
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+
     }
 
 }

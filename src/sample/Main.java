@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.ThisIsForConnecting;
 
-public class Main extends Application {
+ public class Main extends Application {
 
     @FXML private Button loginButton;
 
@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.show();
         ThisIsForConnecting connect =new ThisIsForConnecting();
 
-        connect.UpdateTable();
+
 
     }
 
