@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.DatabaseConnection.ThisIsForConnecting;
 
 import javax.imageio.IIOException;
 import java.io.IOException;
@@ -41,10 +40,6 @@ public class LoginController implements Initializable{
             myapp.MaximumPasswordLength(PasswordTextField.getText());
             PasswordTextField.clear();
             userNameTextField.clear();
-
-
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
