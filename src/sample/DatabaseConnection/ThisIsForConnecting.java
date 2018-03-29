@@ -13,7 +13,7 @@ public class ThisIsForConnecting {
     public ThisIsForConnecting() {
 
 
-        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/musicapp";
+        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/MusicApp";
         String username = "evilBook@music-app";
         String password = "Firmwar3";
 

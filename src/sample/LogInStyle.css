@@ -11,7 +11,7 @@
 .button:hover{
     -fx-background-color: #c9fbf9;
 }
-#load{
+#LoginButton{
     -fx-background-color: #ff6b6b; /* Green */
     -fx-border: none;
     -fx-color: white;
@@ -20,7 +20,7 @@
     -fx-display: inline-block;}
 
 
-#load:hover{
+#LoginButton:hover{
     -fx-background-color: #ff898c;
 }
 .label {
