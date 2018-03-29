@@ -9,6 +9,7 @@ public class LoginController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("One");
+        System.out.println("One o one");
     }
+
 }
