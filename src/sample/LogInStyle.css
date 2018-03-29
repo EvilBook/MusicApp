@@ -48,3 +48,6 @@
     -fx-text-fill: white;
 
 }
+#scroll{
+    -fx-background-color:linear-gradient(#2f4858,#2f4858);
+}

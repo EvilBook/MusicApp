@@ -29,6 +29,6 @@
          </effect>
       </Text>
       <Button fx:id="LoginButton" layoutX="256.0" layoutY="272.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="Log in" />
-      <Button fx:id="createButton" layoutX="491.0" layoutY="339.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="Sign up" />
+      <Button fx:id="createButton" layoutX="491.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="34.0" prefWidth="88.0" text="Sign up" />
    </children>
 </AnchorPane>
