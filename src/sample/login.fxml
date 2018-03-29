@@ -25,6 +25,6 @@
          </font>
       </Text>
       <Button fx:id="LoginButton" layoutX="225.0" layoutY="270.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="Log in" />
-      <Button fx:id="createButton" layoutX="371.0" layoutY="339.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="208.0" text="CREATE ACCOUNT" />
+      <Button fx:id="createButton" layoutX="371.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="208.0" text="CREATE ACCOUNT" />
    </children>
 </AnchorPane>
