@@ -1,51 +1,71 @@
+#background {
+    -fx-background-color: #042E3D#33A1FD;
+}
 
-.button{
-    -fx-background-color: #4ecdc4; /* Green */
+#logo {
+    -fx-text-fill: white;
+}
+
+#login {
+    -fx-background-color: #F76425;
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
     -fx-text-decoration: none;
-    -fx-display: inline-block;}
-
-
-.button:hover{
-    -fx-background-color: #c9fbf9;
+    -fx-display: inline-block;
 }
-#LoginButton{
-    -fx-background-color: #ff6b6b; /* Green */
+
+#login:hover {
+    -fx-background-color: #F77238;
+}
+
+#signUp {
+    -fx-background-color: #33A1FD;
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
     -fx-text-decoration: none;
-    -fx-display: inline-block;}
-
-
-#LoginButton:hover{
-    -fx-background-color: #ff898c;
+    -fx-display: inline-block;
 }
+
+#signUp:hover {
+    -fx-background-color: #50AFFC;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 0.6;
 }
-.background {
-    -fx-background-color: rgba(29, 29, 29, 0.73);
+
+#userName {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
 }
-.root{
-    -fx-background-color: rgba(29, 29, 29, 0.73);
+#userName:focused {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #64F9FB;
 }
-.text-field {
+
+#password {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: #4ecdc4;
 }
-.text-field:focused {
+#password:focused {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
-    -fx-border-color: #64f9fb;
+    -fx-border-color: #64F9FB;
 }
-.text-input{
-    -fx-text-fill: white;
 
+
+#userName.text-input {
+    -fx-text-fill: #33A1FD;
+}
+
+#password.text-input {
+    -fx-text-fill: #F76425;
 }
