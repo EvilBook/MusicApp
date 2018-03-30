@@ -31,13 +31,14 @@
     -fx-opacity: 0.6;
 }
 .root {
-    -fx-background-color:linear-gradient(#2f4858,#2f4858);
-
+    -fx-background-color:linear-gradient(#ffffff,#ffffff);
 }
 .text-field {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.69);
+    -fx-stroke-width: 1px;
 }
 .text-field:focused {
     -fx-background-color: none;
@@ -50,4 +51,8 @@
 }
 #scroll{
     -fx-background-color:linear-gradient(#2f4858,#2f4858);
+}
+#one{
+    -fx-background-image: url(Graphics/background.png);
+
 }

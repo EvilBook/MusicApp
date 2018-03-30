@@ -9,9 +9,12 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.ThisIsForConnecting;
 
- public class Main extends Application {
+import javax.swing.text.html.CSS;
+
+public class Main extends Application {
 
     @FXML private Button loginButton;
+
 
 
     @Override
@@ -21,8 +24,7 @@ import sample.DatabaseConnection.ThisIsForConnecting;
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
-        ThisIsForConnecting connect =new ThisIsForConnecting();
-
+        //ThisIsForConnecting connect =new ThisIsForConnecting();
 
 
     }
