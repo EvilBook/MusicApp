@@ -21,17 +21,17 @@ public class ThisIsForConnecting {
         try {
             java.sql.Connection connection = DriverManager.getConnection(url, username, password);
             st = connection.createStatement();
-            System.out.println("Works");
-            searchForQuerry();
+            System.out.println("Connection Established");
+            searchForQuery();
         } catch (SQLException e) {
-            throw new IllegalStateException("Connection failed", e);
+            throw new IllegalStateException("Connection Failed", e);
         }
 
 
     }
 
 
-    public void searchForQuerry() {
+    public void searchForQuery() {
         /*try {
             ResultSet rs = st.executeQuery("select employees.firstName,employees.lastName,offices.city from employees,offices where offices.officeCode like '%1%'");
             while (rs.next()) {
