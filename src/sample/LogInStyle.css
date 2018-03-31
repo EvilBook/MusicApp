@@ -48,19 +48,17 @@
 }
 .text-field {
     -fx-background-color: none;
-    -fx-border-width: 1px;
+    -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: white;
     -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
-    -fx-stroke-width: 1px;
-    -fx-background-color: rgba(0, 0, 0, 0.19);
+    -fx-stroke-width:0px 0px 1px 0px;
 
 }
 .text-field:focused {
     -fx-background-color: none;
-    -fx-border-width: 1px;
     -fx-border-color: #f26419;
+    -fx-border-width: 0px 0px 1px 0px;
     -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
-    -fx-background-color: rgba(242, 140, 51, 0.19);
 }
 .text-input{
     -fx-text-fill: white;
