@@ -1,0 +1,61 @@
+#signupBackground {
+    -fx-background-color: #33A1FD;
+}
+
+#signupTitle {
+    -fx-fill: white;
+}
+
+#firstTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
+}
+
+#lastTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
+}
+
+#emailTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
+}
+
+#confirmeTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
+}
+
+#passwordTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
+}
+
+#confirmpTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
+}
+
+#submitButton {
+    -fx-background-color: #F042E3D;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+
+#returnButton {
+    -fx-background-color: #FDCA40;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}

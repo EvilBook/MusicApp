@@ -7,24 +7,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@LogInStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<AnchorPane id="loginBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@CSS/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
-      <TextField id="userName" fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="167.0" layoutY="137.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
+      <TextField id="userTextField" fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="167.0" layoutY="137.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
          <font>
             <Font size="22.0" />
          </font>
       </TextField>
-      <PasswordField id="password" fx:id="PasswordTextField" layoutX="167.0" layoutY="200.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
+      <PasswordField id="passwordTextField" fx:id="PasswordTextField" layoutX="167.0" layoutY="200.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
          <font>
             <Font size="22.0" />
          </font>
       </PasswordField>
-      <Text id="logo" fill="WHITE" layoutX="175.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MasMusic" textAlignment="CENTER" wrappingWidth="250.13671875">
+      <Text id="loginLogo" fill="WHITE" layoutX="175.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MasMusic" textAlignment="CENTER" wrappingWidth="250.13671875">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </Text>
-      <Button id="login" fx:id="LoginButton" layoutX="256.0" layoutY="274.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="88.0" text="Log in" />
-      <Button id="signUp" fx:id="createButton" layoutX="491.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="40.0" prefWidth="88.0" text="Sign up" />
+      <Button id="loginButton" fx:id="LoginButton" layoutX="256.0" layoutY="274.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="88.0" text="Log in" />
+      <Button id="signUpButton" fx:id="createButton" layoutX="491.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="40.0" prefWidth="88.0" text="Sign up" />
    </children>
 </AnchorPane>

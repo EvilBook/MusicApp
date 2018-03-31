@@ -1,12 +1,12 @@
-#background {
+#loginBackground {
     -fx-background-color: #042E3D#33A1FD;
 }
 
-#logo {
+#loginLogo {
     -fx-text-fill: white;
 }
 
-#login {
+#loginButton {
     -fx-background-color: #F76425;
     -fx-border: none;
     -fx-color: white;
@@ -15,11 +15,11 @@
     -fx-display: inline-block;
 }
 
-#login:hover {
+#loginButton:hover {
     -fx-background-color: #F77238;
 }
 
-#signUp {
+#signUpButton {
     -fx-background-color: #33A1FD;
     -fx-border: none;
     -fx-color: white;
@@ -28,7 +28,7 @@
     -fx-display: inline-block;
 }
 
-#signUp:hover {
+#signUpButton:hover {
     -fx-background-color: #50AFFC;
 }
 
@@ -39,33 +39,33 @@
     -fx-opacity: 0.6;
 }
 
-#userName {
+#userTextField {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: #4EDDC4;
 }
-#userName:focused {
+#userTextField:focused {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: #64F9FB;
 }
 
-#password {
+#passwordTextField {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: #4ecdc4;
 }
-#password:focused {
+#passwordTextField:focused {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: #64F9FB;
 }
 
 
-#userName.text-input {
+#userTextField.text-input {
     -fx-text-fill: #33A1FD;
 }
 
-#password.text-input {
+#passwordTextField.text-input {
     -fx-text-fill: #F76425;
 }
