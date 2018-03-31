@@ -43,12 +43,20 @@
 }
 
 #submitButton {
-    -fx-background-color: #F042E3D;
+    -fx-background-color: #F76425;
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
     -fx-text-decoration: none;
     -fx-display: inline-block;
+}
+
+#submitButton:hover {
+    -fx-background-color: #F77238;
+}
+
+#returnButton:hover {
+    -fx-background-color: #FDCA60;
 }
 
 #returnButton {
@@ -58,4 +66,32 @@
     -fx-text-align: center;
     -fx-text-decoration: none;
     -fx-display: inline-block;
+}
+
+#firstTextField.text-input {
+    -fx-text-fill: white;
+}
+
+#lastTextField.text-input {
+    -fx-text-fill: white;
+}
+
+#emailTextField.text-input {
+    -fx-text-fill: white;
+}
+
+#confirmeTextField.text-input {
+    -fx-text-fill: white;
+}
+
+#passwordTextField.text-input {
+    -fx-text-fill: white;
+}
+
+#confirmpTextField.text-input {
+    -fx-text-fill: white;
+}
+
+#signupCircle {
+    -fx-fill: #042E3D;
 }

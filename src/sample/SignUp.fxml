@@ -4,23 +4,43 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="signupBackground" prefHeight="400.0" prefWidth="600.0" stylesheets="@CSS/signup.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SignUpController">
    <children>
-      <TextField id="firstTextField" fx:id="firstNameTextField" layoutX="426.0" layoutY="49.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
-      <TextField id="lastTextField" fx:id="lastNameTextField" layoutX="426.0" layoutY="101.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
-      <TextField id="emailTextField" fx:id="emailTextField" layoutX="426.0" layoutY="151.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
-      <TextField id="confirmeTextField" fx:id="confirmEmailTextField" layoutX="426.0" layoutY="200.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
-      <PasswordField id="passwordTextField" fx:id="passwordPasswordField" layoutX="426.0" layoutY="248.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
-      <PasswordField id="confirmpTextField" fx:id="confirmPasswordField" layoutX="426.0" layoutY="297.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
-      <Text id="signupTitle" fill="WHITE" layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
+      <TextField id="firstTextField" fx:id="firstNameTextField" alignment="CENTER" layoutX="14.0" layoutY="101.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField id="lastTextField" fx:id="lastNameTextField" alignment="CENTER" layoutX="426.0" layoutY="101.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField id="emailTextField" fx:id="emailTextField" alignment="CENTER" layoutX="14.0" layoutY="160.0" prefHeight="40.0" prefWidth="160.0" promptText="Email">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField id="confirmeTextField" fx:id="confirmEmailTextField" alignment="CENTER" layoutX="426.0" layoutY="160.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <PasswordField id="passwordTextField" fx:id="passwordPasswordField" alignment="CENTER" layoutX="14.0" layoutY="224.0" prefHeight="40.0" prefWidth="160.0" promptText="Password">
+         <font>
+            <Font size="18.0" />
+         </font></PasswordField>
+      <PasswordField id="confirmpTextField" fx:id="confirmPasswordField" layoutX="426.0" layoutY="224.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password">
+         <font>
+            <Font size="18.0" />
+         </font></PasswordField>
+      <Text id="signupTitle" fill="WHITE" layoutX="110.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
       <Button id="submitButton" fx:id="submitButton" layoutX="481.0" layoutY="346.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Submit" />
-      <Button id="returnButton" fx:id="backButton" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Return" />
+      <Button id="returnButton" fx:id="backButton" layoutX="14.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="40.0" prefWidth="105.0" text="&lt;&lt;Return" />
+      <Circle id="signupCircle" fill="DODGERBLUE" layoutX="306.0" layoutY="187.0" radius="87.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>
