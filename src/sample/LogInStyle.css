@@ -1,28 +1,41 @@
 
 .button{
-    -fx-background-color: #4ecdc4; /* Green */
+    -fx-background-color: rgba(78, 205, 196, 0.29); /* Green */
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
     -fx-text-decoration: none;
-    -fx-display: inline-block;}
+    -fx-display: inline-block;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #4ecdc4;
+    -fx-text-fill: white;}
 
 
 .button:hover{
     -fx-background-color: #c9fbf9;
 }
 #LoginButton{
-    -fx-background-color: #f26419; /* Green */
+    -fx-background-color: rgba(255, 202, 87, 0.2); /* Green */
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
+    -fx-stroke-width: 1px;
     -fx-text-decoration: none;
     -fx-display: inline-block;
-    -fx-text-fill: white;}
+    -fx-text-fill: white;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #f26419;}
 
 
 #LoginButton:hover{
-    -fx-background-color: #ff8e45;
+    -fx-background-color: #f26419;
+    -fx-border-width: 1px;
+    -fx-border-color: #f26419;
+
 }
 .label {
     -fx-font-size: 11pt;
@@ -35,15 +48,19 @@
 }
 .text-field {
     -fx-background-color: none;
-    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-width: 1px;
     -fx-border-color: white;
-    -fx-prompt-text-fill: rgba(255, 255, 255, 0.69);
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
     -fx-stroke-width: 1px;
+    -fx-background-color: rgba(0, 0, 0, 0.19);
+
 }
 .text-field:focused {
     -fx-background-color: none;
-    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-width: 1px;
     -fx-border-color: #f26419;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
+    -fx-background-color: rgba(242, 140, 51, 0.19);
 }
 .text-input{
     -fx-text-fill: white;

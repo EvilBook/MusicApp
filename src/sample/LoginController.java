@@ -13,12 +13,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.ThisIsForConnecting;
 
 import javax.imageio.IIOException;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -29,6 +34,7 @@ public class LoginController implements Initializable{
     @FXML private PasswordField PasswordTextField;
     @FXML private AnchorPane base;
     @FXML private ImageView one;
+    @FXML private MediaView loop;
 
 
     @Override
@@ -45,6 +51,14 @@ public class LoginController implements Initializable{
             one.setImage(new Image("/sample/Graphics/oneoneone3.png"));
             break;
         }
+        Media m = new Media(getClass().getResource("Graphics/loop.mp4").toString());
+        MediaPlayer mediaPlayer=new MediaPlayer(m);
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setMute(true);
+        loop.setPreserveRatio(true);
+        loop.fitWidthProperty().bind(base.maxWidthProperty());
+        loop.fitHeightProperty().bind(base.maxHeightProperty());
+        loop.setMediaPlayer(mediaPlayer);
 
 
     }
