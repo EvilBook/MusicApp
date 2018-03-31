@@ -9,7 +9,7 @@
     -fx-border-width: 1px;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    -fx-border-color: #4ecdc4;
+    -fx-border-color: #d82f8f;
     -fx-text-fill: white;}
 
 
@@ -17,7 +17,7 @@
     -fx-background-color: #c9fbf9;
 }
 #LoginButton{
-    -fx-background-color: rgba(255, 202, 87, 0.2); /* Green */
+    -fx-background-color: rgba(216, 47, 143, 0.41);
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
@@ -28,13 +28,13 @@
     -fx-border-width: 1px;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    -fx-border-color: #f26419;}
+    -fx-border-color: #d82f8f;}
 
 
 #LoginButton:hover{
-    -fx-background-color: #f26419;
+    -fx-background-color: #d82f8f;
     -fx-border-width: 1px;
-    -fx-border-color: #f26419;
+    -fx-border-color: #d82f8f;
 
 }
 .label {
@@ -48,17 +48,20 @@
 }
 .text-field {
     -fx-background-color: none;
-    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-width: 1px;
     -fx-border-color: white;
     -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
     -fx-stroke-width:0px 0px 1px 0px;
+    -fx-background-color: rgba(148, 148, 148, 0.76);
 
 }
 .text-field:focused {
     -fx-background-color: none;
-    -fx-border-color: #f26419;
-    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #d82f8f;
+    -fx-border-width: 1px;
     -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
+    -fx-background-color: rgba(148, 148, 148, 0.76);
+
 }
 .text-input{
     -fx-text-fill: white;
