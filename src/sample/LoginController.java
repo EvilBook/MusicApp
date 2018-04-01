@@ -8,24 +8,36 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.DatabaseConnection.ThisIsForConnecting;
+
+import javax.imageio.IIOException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
 
-    @FXML private Button loginButton;
-    @FXML private Button createButton;
+
+    @FXML private TextField userNameTextField;
+    @FXML private PasswordField PasswordTextField;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
     }
 
     @FXML
     public void handleLoginButton(ActionEvent event){
+
+
+
+
 
     }
 
@@ -34,12 +46,10 @@ public class LoginController implements Initializable{
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+
     }
 
 }

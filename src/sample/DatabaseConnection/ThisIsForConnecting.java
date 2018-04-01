@@ -10,6 +10,15 @@ public class ThisIsForConnecting {
 
     Statement st;
 
+
+
+
+
+
+
+
+
+
     public ThisIsForConnecting() {
 
 
@@ -49,7 +58,7 @@ public class ThisIsForConnecting {
 
 
         try {
-            st.executeUpdate("update offices set city='Yo Momma' where city='New Yordk'");
+            st.executeUpdate("insert  into  login" + "VaLUES ('Jjoogam@gmail.com','Mary1234')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,6 +75,27 @@ public class ThisIsForConnecting {
         }
 
 
+    }
+
+    public void AddInTable() {
+
+
+        try {
+            st.executeUpdate("insert  into  login"+"VaLUES ('Jjoogam@gmail.com','Mary1234')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("UPDATE COMPLETE\n");
+     /*   try {
+            ResultSet rs = st.executeQuery("select employees.firstName,employees.lastName,offices.city from employees,offices where offices.officeCode like '%1%'");
+            while (rs.next()) {
+                System.out.println("FirstName: " + rs.getString(1) + " LastName: " + rs.getString(2) + " City Name: " + rs.getString(3));
+            }*/
+
+
+       /* } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
     }
 }
 

@@ -1,0 +1,53 @@
+
+.button{
+    -fx-background-color: #4ecdc4; /* Green */
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;}
+
+
+.button:hover{
+    -fx-background-color: #c9fbf9;
+}
+#LoginButton{
+    -fx-background-color: #f26419; /* Green */
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-text-fill: white;}
+
+
+#LoginButton:hover{
+    -fx-background-color: #ff8e45;
+}
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+}
+.root {
+    -fx-background-color:linear-gradient(#2f4858,#2f4858);
+
+}
+.text-field {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+}
+.text-field:focused {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #f26419;
+}
+.text-input{
+    -fx-text-fill: white;
+
+}
+#scroll{
+    -fx-background-color:linear-gradient(#2f4858,#2f4858);
+}
