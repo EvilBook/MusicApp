@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.DatabaseConnection.UpdateDatabase;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,6 +48,10 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        submitButton.setOnMouseClicked((event -> {
+            UpdateDatabase database=new UpdateDatabase();
+            database.UpdateTableForUserCreation(emailTextField.getText(),passwordPasswordField.getText());
+        }));
 
 
 

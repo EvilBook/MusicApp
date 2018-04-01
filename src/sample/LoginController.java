@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -17,13 +16,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import sample.DatabaseConnection.ThisIsForConnecting;
+import sample.DatabaseConnection.UpdateDatabase;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -65,6 +61,9 @@ public class LoginController implements Initializable{
 
     @FXML
     public void handleLoginButton(ActionEvent event){
+
+        UpdateDatabase updateDatabase=new UpdateDatabase();
+        updateDatabase.CheckLogIn(userNameTextField.getText(),PasswordTextField.getText());
 
 
 
