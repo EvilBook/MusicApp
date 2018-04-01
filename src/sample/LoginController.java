@@ -21,23 +21,13 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable{
 
 
-    @FXML private TextField userNameTextField;
-    @FXML private PasswordField PasswordTextField;
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
 
     }
 
     @FXML
     public void handleLoginButton(ActionEvent event){
-
-
-
-
 
     }
 
@@ -49,7 +39,6 @@ public class LoginController implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
         Parent root = loader.load();
         stage.setScene(new Scene(root));
-
     }
 
 }

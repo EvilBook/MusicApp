@@ -1,17 +1,13 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.ThisIsForConnecting;
 
  public class Main extends Application {
-
-    @FXML private Button loginButton;
 
 
     @Override
@@ -22,18 +18,12 @@ import sample.DatabaseConnection.ThisIsForConnecting;
         primaryStage.setResizable(false);
         primaryStage.show();
         ThisIsForConnecting connect =new ThisIsForConnecting();
-
-
-
     }
 
 
     public static void main(String[] args) {
-
         launch(args);
     }
-
-
 
 }
 
