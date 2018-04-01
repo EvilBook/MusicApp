@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UserController">
+   <children>
+      <Pagination layoutX="22.0" layoutY="142.0" prefHeight="200.0" prefWidth="556.0" style="-fx-background-color: yellow;" />
+      <SplitMenuButton layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Sort by">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Name" />
+          <MenuItem mnemonicParsing="false" text="Date" />
+            <MenuItem mnemonicParsing="false" text="Price" />
+        </items>
+      </SplitMenuButton>
+
+      <Button layoutX="401.0" layoutY="354.0" mnemonicParsing="false" style="-fx-background-color: green;" text="purchase" />
+      <Button layoutX="472.0" layoutY="354.0" mnemonicParsing="false" text="add to wish list" />
+      <Button fx:id="logOutButton" layoutX="22.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleLogOutButton" text="log out" />
+      <SplitMenuButton layoutX="160.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Genres">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Rock" />
+            <MenuItem mnemonicParsing="false" text="Hip Hop" />
+            <MenuItem mnemonicParsing="false" text="Dance" />
+            <MenuItem mnemonicParsing="false" text="Electronic" />
+            <MenuItem mnemonicParsing="false" text="Techno" />
+            <MenuItem mnemonicParsing="false" text="Rap" />
+            <MenuItem mnemonicParsing="false" text="Instrumental" />
+            <MenuItem mnemonicParsing="false" text="Minimal" />
+            <MenuItem mnemonicParsing="false" text="Ambient" />
+            <MenuItem mnemonicParsing="false" text="Pop" />
+            <MenuItem mnemonicParsing="false" text="Post Rock" />
+            <MenuItem mnemonicParsing="false" text="Metal" />
+            <MenuItem mnemonicParsing="false" text="Folk" />
+         </items>
+      </SplitMenuButton>
+      <Button layoutX="516.0" layoutY="50.0" mnemonicParsing="false" text="My Page" />
+   </children>
+</AnchorPane>

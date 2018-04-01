@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,13 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.DatabaseConnection.ThisIsForConnecting;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,8 +23,13 @@ public class LoginController implements Initializable{
     }
 
     @FXML
-    public void handleLoginButton(ActionEvent event){
+    public void handleLoginButton(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("user.fxml"));
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
     }
 
     @FXML
@@ -36,9 +37,14 @@ public class LoginController implements Initializable{
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("signUp.fxml"));
         Parent root = loader.load();
         stage.setScene(new Scene(root));
+    }
+
+    @FXML
+    public void handleExitButton(ActionEvent event) throws IOException {
+        Platform.exit();
     }
 
 }

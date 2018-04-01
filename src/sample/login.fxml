@@ -7,24 +7,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@LogInStyle.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@CSS/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
-      <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="136.0" layoutY="140.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
+      <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="167.0" layoutY="139.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
          <font>
             <Font size="22.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="PasswordTextField" layoutX="136.0" layoutY="200.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
+      <PasswordField fx:id="PasswordTextField" layoutX="167.0" layoutY="200.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
          <font>
             <Font size="22.0" />
          </font>
       </PasswordField>
-      <Text layoutX="209.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="104.13671875">
+      <Text layoutX="209.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MasMusic" wrappingWidth="206.13671875">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="LoginButton" layoutX="225.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="34.0" prefWidth="88.0" text="Log in" />
-      <Button fx:id="createButton" layoutX="371.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="208.0" text="CREATE ACCOUNT" />
+      <Button fx:id="LoginButton" layoutX="165.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="34.0" prefWidth="88.0" text="Sign in" />
+      <Button fx:id="createButton" layoutX="346.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="34.0" prefWidth="88.0" text="Sign up" />
+      <Button fx:id="exitButton" layoutX="498.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="34.0" prefWidth="88.0" text="Exit" />
    </children>
 </AnchorPane>
