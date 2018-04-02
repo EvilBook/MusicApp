@@ -24,25 +24,29 @@
             <ColorAdjust saturation="-1.0" />
          </effect>
       </MediaView>
-      <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="262.0" layoutY="205.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect>
-      </TextField>
-      <PasswordField fx:id="PasswordTextField" layoutX="262.0" layoutY="264.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </PasswordField>
-      <Button fx:id="LoginButton" layoutX="324.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="25.0" prefWidth="120" text="Log in" textAlignment="CENTER" />
-      <Button fx:id="createButton" layoutX="666.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
+      <Button fx:id="LoginButton" layoutX="276.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="25.0" prefWidth="120" text="Log in" textAlignment="CENTER" />
+      <Button fx:id="createButton" layoutX="409.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
       <ImageView fitHeight="139.0" fitWidth="185.0" layoutX="292.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Graphics/logo.png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="logIn" layoutX="241.0" layoutY="191.0" prefHeight="120.0" prefWidth="319.0">
+         <children>
+            <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="19.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </TextField>
+            <PasswordField fx:id="PasswordTextField" layoutX="26.0" layoutY="71.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -1,6 +1,6 @@
 
 .button{
-    -fx-background-color: rgba(78, 205, 196, 0.29); /* Green */
+    -fx-background-color: rgba(78, 205, 196, 0.29);
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
@@ -40,7 +40,7 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 0.6;
 }
 .root {

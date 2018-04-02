@@ -31,6 +31,9 @@ public class LoginController implements Initializable{
     @FXML private AnchorPane base;
     @FXML private ImageView one;
     @FXML private MediaView loop;
+    @FXML private AnchorPane LogIn;
+
+    String userEmail;
 
 
     @Override
@@ -50,6 +53,7 @@ public class LoginController implements Initializable{
         Media m = new Media(getClass().getResource("Graphics/loop.mp4").toString());
         MediaPlayer mediaPlayer=new MediaPlayer(m);
         mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setCycleCount(99);
         mediaPlayer.setMute(true);
         loop.setPreserveRatio(true);
         loop.fitWidthProperty().bind(base.maxWidthProperty());
@@ -57,13 +61,27 @@ public class LoginController implements Initializable{
         loop.setMediaPlayer(mediaPlayer);
 
 
+
     }
 
     @FXML
-    public void handleLoginButton(ActionEvent event){
+    public void handleLoginButton(ActionEvent event) throws IOException {
 
         UpdateDatabase updateDatabase=new UpdateDatabase();
-        updateDatabase.CheckLogIn(userNameTextField.getText(),PasswordTextField.getText());
+        if(updateDatabase.CheckLogIn(userNameTextField.getText(),PasswordTextField.getText())){
+            userEmail=userNameTextField.getText();
+            Node node = (Node)event.getSource();
+            Stage stage = (Stage)node.getScene().getWindow();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUserScreen.fxml"));
+            Parent root;
+            root = loader.load();
+            MainUserScreenController one = loader.getController();
+            one.getName(userEmail);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
 
 
 

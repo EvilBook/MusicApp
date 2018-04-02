@@ -15,6 +15,7 @@ import sample.DatabaseConnection.UpdateDatabase;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
@@ -51,6 +52,12 @@ public class SignUpController implements Initializable {
         submitButton.setOnMouseClicked((event -> {
             UpdateDatabase database=new UpdateDatabase();
             database.UpdateTableForUserCreation(emailTextField.getText(),passwordPasswordField.getText());
+
+            ArrayList<String> userInfo=new ArrayList<String>();
+            userInfo.add(firstNameTextField.getText());
+            userInfo.add(lastNameTextField.getText());
+            userInfo.add(emailTextField.getText());
+            database.AddUserCreationData(userInfo);
         }));
 
 
