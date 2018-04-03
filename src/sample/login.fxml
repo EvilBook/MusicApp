@@ -48,5 +48,6 @@
             </PasswordField>
          </children>
       </AnchorPane>
+      <Button fx:id="exitButton" layoutX="650.0" layoutY="409.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="25.0" prefWidth="120" text="Exit" textAlignment="CENTER" />
    </children>
 </AnchorPane>

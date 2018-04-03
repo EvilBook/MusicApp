@@ -21,28 +21,19 @@ import java.util.ResourceBundle;
 public class SignUpController implements Initializable {
 
 
+    @FXML private TextField firstNameTextField;
 
-    @FXML
-    private TextField firstNameTextField;
-    
+    @FXML private TextField lastNameTextField;
 
-    @FXML
-    private TextField lastNameTextField;
+    @FXML private TextField emailTextField;
 
-    @FXML
-    private TextField emailTextField;
+    @FXML private TextField confirmEmailTextField;
 
-    @FXML
-    private TextField confirmEmailTextField;
+    @FXML private PasswordField passwordPasswordField;
 
-    @FXML
-    private PasswordField passwordPasswordField;
+    @FXML private PasswordField confirmPasswordField;
 
-    @FXML
-    private PasswordField confirmPasswordField;
-
-    @FXML
-    private Button submitButton;
+    @FXML private Button submitButton;
 
 
 
@@ -67,7 +58,6 @@ public class SignUpController implements Initializable {
     }
 
     @FXML public void handleBackButton(ActionEvent event) throws IOException {
-
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 

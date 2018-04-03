@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,10 +84,6 @@ public class LoginController implements Initializable{
             stage.show();
         }
 
-
-
-
-
     }
 
     @FXML
@@ -97,7 +94,11 @@ public class LoginController implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
         Parent root = loader.load();
         stage.setScene(new Scene(root));
+    }
 
+    @FXML
+    public void handleExitButton(ActionEvent event) {
+        Platform.exit();
     }
 
 }

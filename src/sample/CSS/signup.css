@@ -1,8 +1,8 @@
-#signupBackground {
-    -fx-background-color: #33A1FD;
+#signUpBackground {
+    -fx-background-color: #2F4858;
 }
 
-#signupTitle {
+#signUpTitle {
     -fx-fill: white;
 }
 
@@ -24,7 +24,7 @@
     -fx-border-color: #4EDDC4;
 }
 
-#confirmeTextField {
+#confirmEmailTextField {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: #4EDDC4;
@@ -36,7 +36,7 @@
     -fx-border-color: #4EDDC4;
 }
 
-#confirmpTextField {
+#confirmPasswordTextField {
     -fx-background-color: none;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: #4EDDC4;
@@ -80,7 +80,7 @@
     -fx-text-fill: white;
 }
 
-#confirmeTextField.text-input {
+#confirmEmailTextField.text-input {
     -fx-text-fill: white;
 }
 
@@ -88,10 +88,6 @@
     -fx-text-fill: white;
 }
 
-#confirmpTextField.text-input {
+#confirmPasswordTextField.text-input {
     -fx-text-fill: white;
-}
-
-#signupCircle {
-    -fx-fill: #042E3D;
 }
