@@ -1,0 +1,71 @@
+#loginBackground {
+    -fx-background-color: #042E3D;
+}
+
+#loginLogo {
+    -fx-text-fill: white;
+}
+
+#loginButton {
+    -fx-background-color: #F76425;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+
+#loginButton:hover {
+    -fx-background-color: #F77238;
+}
+
+#signUpButton {
+    -fx-background-color: #33A1FD;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+
+#signUpButton:hover {
+    -fx-background-color: #50AFFC;
+}
+
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+}
+
+#userTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4EDDC4;
+}
+#userTextField:focused {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #64F9FB;
+}
+
+#passwordTextField {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #4ecdc4;
+}
+#passwordTextField:focused {
+    -fx-background-color: none;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #64F9FB;
+}
+
+
+#userTextField.text-input {
+    -fx-text-fill: #33A1FD;
+}
+
+#passwordTextField.text-input {
+    -fx-text-fill: #F76425;
+}

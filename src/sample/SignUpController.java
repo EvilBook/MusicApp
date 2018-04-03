@@ -24,6 +24,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     private TextField firstNameTextField;
+    
 
     @FXML
     private TextField lastNameTextField;
