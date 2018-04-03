@@ -1,3 +1,4 @@
+/*
 #loginBackground {
     -fx-background-color: #042E3D;
 }
@@ -68,4 +69,80 @@
 
 #passwordTextField.text-input {
     -fx-text-fill: #F76425;
+}*/
+
+.button{
+    -fx-background-color: rgba(78, 205, 196, 0.29);
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #d82f8f;
+    -fx-text-fill: white;}
+
+
+.button:hover{
+    -fx-background-color: #c9fbf9;
+}
+#LoginButton{
+    -fx-background-color: rgba(216, 47, 143, 0.41);
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-stroke-width: 1px;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-text-fill: white;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #d82f8f;}
+
+
+#LoginButton:hover{
+    -fx-background-color: #d82f8f;
+    -fx-border-width: 1px;
+    -fx-border-color: #d82f8f;
+
+}
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.6;
+}
+.root {
+    -fx-background-color:linear-gradient(#ffffff,#ffffff);
+}
+.text-field {
+    -fx-background-color: none;
+    -fx-border-width: 1px;
+    -fx-border-color: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
+    -fx-stroke-width:0px 0px 1px 0px;
+    -fx-background-color: rgba(148, 148, 148, 0.76);
+
+}
+.text-field:focused {
+    -fx-background-color: none;
+    -fx-border-color: #d82f8f;
+    -fx-border-width: 1px;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
+    -fx-background-color: rgba(148, 148, 148, 0.76);
+
+}
+.text-input{
+    -fx-text-fill: white;
+
+}
+#scroll{
+    -fx-background-color:linear-gradient(#2f4858,#2f4858);
+}
+#one{
+    -fx-background-image: url(../Graphics/background.png);
+
 }
