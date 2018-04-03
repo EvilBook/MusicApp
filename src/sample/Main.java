@@ -11,7 +11,7 @@ import sample.DatabaseConnection.ThisIsForConnecting;
 
 import javax.swing.text.html.CSS;
 
-public class Main extends Application {
+public class  Main extends Application {
 
     @FXML private Button loginButton;
 
