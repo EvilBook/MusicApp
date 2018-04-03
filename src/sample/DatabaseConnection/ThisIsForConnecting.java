@@ -1,14 +1,12 @@
 package sample.DatabaseConnection;
 
 import javax.management.Query;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ThisIsForConnecting {
 
     Statement st;
+    public Connection connection;
 
 
 
@@ -28,10 +26,13 @@ public class ThisIsForConnecting {
 
 
         try {
-            java.sql.Connection connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url, username, password);
             st = connection.createStatement();
+            System.out.println("Works");
+            new UpdateDatabase().connection=connection;
+
             System.out.println("Connection Established");
-            searchForQuery();
+            searchForQuery(
         } catch (SQLException e) {
             throw new IllegalStateException("Connection Failed", e);
         }
@@ -52,50 +53,6 @@ public class ThisIsForConnecting {
         }*/
 
 
-    }
-
-    public void UpdateTable() {
-
-
-        try {
-            st.executeUpdate("insert  into  login" + "VaLUES ('Jjoogam@gmail.com','Mary1234')");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("UPDATE COMPLETE\n");
-        try {
-            ResultSet rs = st.executeQuery("select employees.firstName,employees.lastName,offices.city from employees,offices where offices.officeCode like '%1%'");
-            while (rs.next()) {
-                System.out.println("FirstName: " + rs.getString(1) + " LastName: " + rs.getString(2) + " City Name: " + rs.getString(3));
-            }
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    public void AddInTable() {
-
-
-        try {
-            st.executeUpdate("insert  into  login"+"VaLUES ('Jjoogam@gmail.com','Mary1234')");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("UPDATE COMPLETE\n");
-     /*   try {
-            ResultSet rs = st.executeQuery("select employees.firstName,employees.lastName,offices.city from employees,offices where offices.officeCode like '%1%'");
-            while (rs.next()) {
-                System.out.println("FirstName: " + rs.getString(1) + " LastName: " + rs.getString(2) + " City Name: " + rs.getString(3));
-            }*/
-
-
-       /* } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 }
 
