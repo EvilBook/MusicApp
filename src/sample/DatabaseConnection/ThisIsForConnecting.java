@@ -32,7 +32,7 @@ public class ThisIsForConnecting {
             new UpdateDatabase().connection=connection;
 
             System.out.println("Connection Established");
-            
+
         } catch (SQLException e) {
             throw new IllegalStateException("Connection Failed", e);
         }

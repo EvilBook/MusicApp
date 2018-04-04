@@ -32,24 +32,16 @@ public class LoginController implements Initializable{
     @FXML private ImageView one;
     @FXML private MediaView loop;
     @FXML private AnchorPane LogIn;
+    @FXML private AnchorPane signUp;
 
     String userEmail;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int i= ThreadLocalRandom.current().nextInt(1,4);
-        switch(i) {
-            case 1:
-            one.setImage(new Image("/sample/Graphics/oneoneone.png"));
-            break;
-            case 2:
-            one.setImage(new Image("/sample/Graphics/oneoneone2.png"));
-            break;
-            case 3:
-            one.setImage(new Image("/sample/Graphics/oneoneone3.png"));
-            break;
-        }
+
+
+
         Media m = new Media(getClass().getResource("Graphics/loop.mp4").toString());
         MediaPlayer mediaPlayer=new MediaPlayer(m);
         mediaPlayer.setAutoPlay(true);
