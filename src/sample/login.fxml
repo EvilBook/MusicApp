@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -26,49 +27,53 @@
             <ColorAdjust saturation="-1.0" />
          </effect>
       </MediaView>
-      <Button fx:id="LoginButton" layoutX="430.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="25.0" prefWidth="120" text="Log in" textAlignment="CENTER" />
-      <Button fx:id="createButton" layoutX="563.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
-      <ImageView fitHeight="139.0" fitWidth="185.0" layoutX="469.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Graphics/logo.png" />
-         </image>
-      </ImageView>
-      <AnchorPane fx:id="logIn" layoutX="400.0" layoutY="250.0" prefHeight="120.0" prefWidth="319.0">
+      <AnchorPane fx:id="logInPane" layoutX="400.0" layoutY="14.0">
          <children>
-            <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="19.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <effect>
-                  <Glow />
-               </effect>
-            </TextField>
-            <PasswordField fx:id="PasswordTextField" layoutX="26.0" layoutY="71.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </PasswordField>
+            <Button fx:id="LoginButton" layoutX="30.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="25.0" prefWidth="120" text="Log in" textAlignment="CENTER" />
+            <Button fx:id="createButton" layoutX="163.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
+            <ImageView fitHeight="139.0" fitWidth="185.0" layoutX="69.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Graphics/logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane fx:id="logIn" layoutY="236.0" prefHeight="120.0" prefWidth="319.0">
+               <children>
+                  <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="19.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </TextField>
+                  <PasswordField fx:id="PasswordTextField" layoutX="26.0" layoutY="71.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane id="signUpScreen" fx:id="signUp" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
+      <AnchorPane fx:id="signUp" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
          <children>
-            <ScrollPane id="scroll" prefHeight="600.0" prefWidth="1066.62">
+            <ScrollPane fx:id="scrollPane" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
                <content>
-                  <AnchorPane id="scroll" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
+                  <AnchorPane fx:id="signUp2" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
                      <children>
-                        <TextField layoutX="203.0" layoutY="78.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
-                        <TextField layoutX="203.0" layoutY="143.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
-                        <TextField layoutX="203.0" layoutY="279.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
-                        <TextField layoutX="203.0" layoutY="209.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
-                        <PasswordField layoutX="203.0" layoutY="430.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
-                        <PasswordField layoutX="203.0" layoutY="340.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
-                        <Text fill="WHITE" layoutX="51.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
+                        <TextField layoutX="498.0" layoutY="117.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
+                        <TextField layoutX="499.0" layoutY="191.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
+                        <TextField layoutX="499.0" layoutY="330.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
+                        <TextField layoutX="499.0" layoutY="260.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
+                        <PasswordField layoutX="498.0" layoutY="469.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
+                        <PasswordField layoutX="499.0" layoutY="401.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
+                        <Text fill="WHITE" layoutX="389.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
                            <font>
                               <Font size="40.0" />
                            </font>
                         </Text>
-                        <Button layoutX="241.0" layoutY="479.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Submit" />
-                        <Button layoutX="466.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Back" />
+                        <Button layoutX="526.0" layoutY="534.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Submit" />
+                        <Button layoutX="932.0" layoutY="25.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Back" />
                      </children>
                   </AnchorPane>
                </content>
@@ -76,4 +81,7 @@
          </children>
       </AnchorPane>
    </children>
+   <effect>
+      <DropShadow blurType="GAUSSIAN" color="RED" height="255.0" radius="127.0" spread="0.6" width="255.0" />
+   </effect>
 </AnchorPane>

@@ -74,6 +74,6 @@
     -fx-background-image: url(Graphics/background.png);
 
 }
-#signUpScreen, #scroll{
-    -fx-background-color: rgba(0, 0, 0, 0);
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
 }

@@ -1,5 +1,9 @@
 package sample;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +21,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import sample.DatabaseConnection.UpdateDatabase;
 
 import java.io.IOException;
@@ -33,12 +39,22 @@ public class LoginController implements Initializable{
     @FXML private MediaView loop;
     @FXML private AnchorPane LogIn;
     @FXML private AnchorPane signUp;
+    @FXML private AnchorPane signUp2;
+    @FXML private ScrollPane scrollPane;
+    @FXML private AnchorPane logInPane;
 
     String userEmail;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        base.setBackground(Background.EMPTY);
+
+        signUp.setTranslateY(base.getMaxHeight()*2);
+        signUp.setOpacity(0);
+
+
+
 
 
 
@@ -51,6 +67,8 @@ public class LoginController implements Initializable{
         loop.fitWidthProperty().bind(base.maxWidthProperty());
         loop.fitHeightProperty().bind(base.maxHeightProperty());
         loop.setMediaPlayer(mediaPlayer);
+
+
 
 
 
@@ -83,12 +101,57 @@ public class LoginController implements Initializable{
 
     @FXML
     public void handleCreateButton(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
+        signUp.setBackground(Background.EMPTY);
+        signUp2.setBackground(Background.EMPTY);
+        scrollPane.setBackground(Background.EMPTY);
+        Timeline time=new Timeline();
+        KeyValue kv = new KeyValue(signUp.translateYProperty(), 0, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        time.getKeyFrames().add(kf);
+        time.setOnFinished(t->{
+            // remove pane and restore scene 1
+            //root1.getChildren().setAll(rectangle1);
+            // set scene 2
+            //primaryStage.setScene(scene2);
+        });
+        time.play();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
-        Parent root = loader.load();
-        stage.setScene(new Scene(root));
+        Timeline time2=new Timeline();
+        KeyValue kv2 = new KeyValue(signUp.opacityProperty(), 1, Interpolator.EASE_BOTH);
+        KeyFrame kf2 = new KeyFrame(Duration.seconds(1), kv2);
+        time2.getKeyFrames().add(kf2);
+        time2.setOnFinished(t->{
+            // remove pane and restore scene 1
+            //root1.getChildren().setAll(rectangle1);
+            // set scene 2
+            //primaryStage.setScene(scene2);
+        });
+        time2.play();
+
+        Timeline time3=new Timeline();
+        KeyValue kv3 = new KeyValue(logInPane.translateYProperty(), base.getMaxHeight()*2, Interpolator.EASE_BOTH);
+        KeyFrame kf3 = new KeyFrame(Duration.seconds(1), kv3);
+        time3.getKeyFrames().add(kf3);
+        time3.setOnFinished(t->{
+            // remove pane and restore scene 1
+            //root1.getChildren().setAll(rectangle1);
+            // set scene 2
+            //primaryStage.setScene(scene2);
+        });
+        time3.play();
+
+
+            System.out.println("bitch");
+            signUp.setTranslateY(signUp.getTranslateY()+1);
+            System.out.println("bitch");
+
+
+//        Node node = (Node)event.getSource();
+//        Stage stage = (Stage)node.getScene().getWindow();
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+//        Parent root = loader.load();
+//        stage.setScene(new Scene(root));
 
     }
 
