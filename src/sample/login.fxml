@@ -73,7 +73,7 @@
                            </font>
                         </Text>
                         <Button layoutX="526.0" layoutY="534.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Submit" />
-                        <Button layoutX="932.0" layoutY="25.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Back" />
+                        <Button layoutX="932.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Back" />
                      </children>
                   </AnchorPane>
                </content>

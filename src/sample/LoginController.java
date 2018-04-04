@@ -154,5 +154,32 @@ public class LoginController implements Initializable{
 //        stage.setScene(new Scene(root));
 
     }
+    public void handleBackButton(ActionEvent event) throws IOException {
+        Timeline time=new Timeline();
+        KeyValue kv = new KeyValue(signUp.translateYProperty(), base.getMaxHeight()*2, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        time.getKeyFrames().add(kf);
+        time.setOnFinished(t->{
+            // remove pane and restore scene 1
+            //root1.getChildren().setAll(rectangle1);
+            // set scene 2
+            //primaryStage.setScene(scene2);
+        });
+        time.play();
+
+        Timeline time3=new Timeline();
+        KeyValue kv3 = new KeyValue(logInPane.translateYProperty(), 0, Interpolator.EASE_BOTH);
+        KeyFrame kf3 = new KeyFrame(Duration.seconds(1), kv3);
+        time3.getKeyFrames().add(kf3);
+        time3.setOnFinished(t->{
+            // remove pane and restore scene 1
+            //root1.getChildren().setAll(rectangle1);
+            // set scene 2
+            //primaryStage.setScene(scene2);
+        });
+        time3.play();
+
+
+    }
 
 }
