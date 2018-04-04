@@ -23,6 +23,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static javax.print.attribute.standard.MediaSizeName.A;
 
 public class LoginController implements Initializable{
 
@@ -33,6 +37,7 @@ public class LoginController implements Initializable{
     @FXML private ImageView one;
     @FXML private MediaView loop;
     @FXML private AnchorPane LogIn;
+    private static Pattern mailPat;
 
     String userEmail;
 
@@ -58,7 +63,7 @@ public class LoginController implements Initializable{
         mediaPlayer.setMute(true);
         loop.setPreserveRatio(true);
         loop.fitWidthProperty().bind(base.maxWidthProperty());
-        loop.fitHeightProperty().bind(base.maxHeightProperty());
+        loop.fitHeightProperty().bind(base.maxHeightProperty()); //1066.62x600
         loop.setMediaPlayer(mediaPlayer);
 
 
@@ -68,22 +73,49 @@ public class LoginController implements Initializable{
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
 
-        UpdateDatabase updateDatabase=new UpdateDatabase();
-        if(updateDatabase.CheckLogIn(userNameTextField.getText(),PasswordTextField.getText())){
-            userEmail=userNameTextField.getText();
-            Node node = (Node)event.getSource();
-            Stage stage = (Stage)node.getScene().getWindow();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUserScreen.fxml"));
-            Parent root;
-            root = loader.load();
-            MainUserScreenController one = loader.getController();
-            one.getName(userEmail);
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+        Pattern p = Pattern.compile("@masm");
+        Matcher m = p.matcher(userNameTextField.getText());
+
+
+        if(!m.find()) {
+            System.out.println(m.find() + userNameTextField.getText());
+
+            UpdateDatabase updateDatabase = new UpdateDatabase();
+            if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+                userEmail = userNameTextField.getText();
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUserScreen.fxml"));
+                Parent root;
+                root = loader.load();
+                MainUserScreenController one = loader.getController();
+                one.getName(userEmail);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        }else {
+            UpdateDatabase updateDatabase = new UpdateDatabase();
+            if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+                userEmail = userNameTextField.getText();
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeScreen.fxml"));
+                Parent root;
+                root = loader.load();
+                EmployeeScreenController emp = loader.getController();
+                emp.getName(userEmail);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+
         }
 
+        }
     }
 
     @FXML

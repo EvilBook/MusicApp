@@ -7,13 +7,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EmployeeScreenController implements Initializable {
+
+    @FXML Label nameLabel;
 
 
     @Override
@@ -32,6 +36,11 @@ public class EmployeeScreenController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void getName(String userEmail) {
+        RetrieveInfoFromDatabase newRetrieve = new RetrieveInfoFromDatabase();
+        nameLabel.setText(newRetrieve.getName(userEmail));
     }
 
 

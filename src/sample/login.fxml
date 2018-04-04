@@ -19,7 +19,7 @@
             <GaussianBlur radius="2" />
          </effect>
       </ImageView>
-      <MediaView fx:id="loop" fitHeight="450.0" fitWidth="800.0">
+      <MediaView fx:id="loop" fitHeight="600.0" fitWidth="1066.22">
          <effect>
             <ColorAdjust saturation="-1.0" />
          </effect>
