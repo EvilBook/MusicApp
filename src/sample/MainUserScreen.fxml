@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainUserScreenController">
    <children>
-      <Label fx:id="name" layoutX="437.0" layoutY="42.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="name" layoutX="442.0" layoutY="25.0" prefHeight="26.0" prefWidth="56.0" textAlignment="CENTER">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="518.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="538.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Graphics/ic_face_3x.png" />
          </image>

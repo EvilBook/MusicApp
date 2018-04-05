@@ -74,12 +74,12 @@ public class LoginController implements Initializable{
     public void handleLoginButton(ActionEvent event) throws IOException {
 
 
-        Pattern p = Pattern.compile("@masm");
-        Matcher m = p.matcher(userNameTextField.getText());
+        Pattern pattern = Pattern.compile("@masm");
+        Matcher matcher = pattern.matcher(userNameTextField.getText());
 
 
-        if(!m.find()) {
-            System.out.println(m.find() + userNameTextField.getText());
+        if(!matcher.find()) {
+            System.out.println(matcher.find() + userNameTextField.getText());
 
             UpdateDatabase updateDatabase = new UpdateDatabase();
             if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
@@ -92,7 +92,7 @@ public class LoginController implements Initializable{
                 root = loader.load();
                 MainUserScreenController one = loader.getController();
                 one.getName(userEmail);
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root,1066.22, 600);
                 stage.setScene(scene);
                 stage.show();
             }
@@ -108,7 +108,7 @@ public class LoginController implements Initializable{
                 root = loader.load();
                 EmployeeScreenController emp = loader.getController();
                 emp.getName(userEmail);
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root,1066.22, 600);
                 stage.setScene(scene);
                 stage.show();
 
@@ -125,7 +125,7 @@ public class LoginController implements Initializable{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
         Parent root = loader.load();
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root,1066.22, 600));
     }
 
     @FXML
