@@ -27,7 +27,7 @@
             <ColorAdjust saturation="-1.0" />
          </effect>
       </MediaView>
-      <AnchorPane fx:id="logInPane" layoutX="400.0" layoutY="14.0">
+      <AnchorPane fx:id="logInPane" layoutX="400.0" layoutY="14.0" translateX="-30.0">
          <children>
             <Button fx:id="LoginButton" layoutX="30.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="25.0" prefWidth="120" text="Log in" textAlignment="CENTER" />
             <Button fx:id="createButton" layoutX="163.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
@@ -59,20 +59,20 @@
          <children>
             <ScrollPane fx:id="scrollPane" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
                <content>
-                  <AnchorPane fx:id="signUp2" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
+                  <AnchorPane fx:id="signUp2" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css" translateX="-50.0">
                      <children>
-                        <TextField layoutX="498.0" layoutY="117.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
-                        <TextField layoutX="499.0" layoutY="191.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
-                        <TextField layoutX="499.0" layoutY="330.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
-                        <TextField layoutX="499.0" layoutY="260.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
-                        <PasswordField layoutX="498.0" layoutY="469.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
-                        <PasswordField layoutX="499.0" layoutY="401.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
+                        <TextField fx:id="firstNameTextField" layoutX="498.0" layoutY="117.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
+                        <TextField fx:id="lastNameTextField" layoutX="499.0" layoutY="191.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
+                        <TextField fx:id="emailTextField" layoutX="499.0" layoutY="330.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
+                        <TextField fx:id="confirmEmailTextField" layoutX="499.0" layoutY="260.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
+                        <PasswordField fx:id="passwordPasswordField" layoutX="498.0" layoutY="469.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
+                        <PasswordField fx:id="confirmPasswordField" layoutX="499.0" layoutY="401.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
                         <Text fill="WHITE" layoutX="389.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
                            <font>
                               <Font size="40.0" />
                            </font>
                         </Text>
-                        <Button layoutX="526.0" layoutY="534.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="105.0" text="Submit" />
+                        <Button layoutX="526.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="40.0" prefWidth="105.0" text="Submit" />
                         <Button layoutX="932.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Back" />
                      </children>
                   </AnchorPane>

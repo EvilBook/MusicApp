@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -26,6 +27,7 @@ import sample.DatabaseConnection.UpdateDatabase;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -42,6 +44,28 @@ public class LoginController implements Initializable{
     @FXML private AnchorPane signUp2;
     @FXML private ScrollPane scrollPane;
     @FXML private AnchorPane logInPane;
+
+    @FXML
+    private TextField firstNameTextField;
+
+
+    @FXML
+    private TextField lastNameTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField confirmEmailTextField;
+
+    @FXML
+    private PasswordField passwordPasswordField;
+
+    @FXML
+    private PasswordField confirmPasswordField;
+
+    @FXML
+    private Button submitButton;
 
     String userEmail;
 
@@ -155,6 +179,12 @@ public class LoginController implements Initializable{
 
     }
     public void handleBackButton(ActionEvent event) throws IOException {
+        ReturnAnimation();
+
+
+    }
+
+    private void ReturnAnimation() {
         Timeline time=new Timeline();
         KeyValue kv = new KeyValue(signUp.translateYProperty(), base.getMaxHeight()*2, Interpolator.EASE_BOTH);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
@@ -178,8 +208,20 @@ public class LoginController implements Initializable{
             //primaryStage.setScene(scene2);
         });
         time3.play();
-
-
     }
+
+    @FXML public void handleSubmitButton(ActionEvent event) throws IOException {
+        UpdateDatabase database=new UpdateDatabase();
+        database.UpdateTableForUserCreation(emailTextField.getText(),passwordPasswordField.getText());
+
+        ArrayList<String> userInfo=new ArrayList<String>();
+        userInfo.add(firstNameTextField.getText());
+        userInfo.add(lastNameTextField.getText());
+        userInfo.add(emailTextField.getText());
+        database.AddUserCreationData(userInfo);
+
+        ReturnAnimation();
+    }
+
 
 }
