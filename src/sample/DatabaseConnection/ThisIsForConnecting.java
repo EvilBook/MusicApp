@@ -34,7 +34,9 @@ public class ThisIsForConnecting {
             System.out.println("Connection Established");
 
         } catch (SQLException e) {
-            throw new IllegalStateException("Connection Failed", e);
+            System.out.println("No internet");
+        } catch (Exception e){
+            System.out.println("No internet");
         }
 
 

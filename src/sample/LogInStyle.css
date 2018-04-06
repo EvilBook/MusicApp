@@ -77,3 +77,28 @@
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
+#confirmEmailError, #confirmPasswordError, #firstNameError, #lastNameError, #passwordError, #emailError{
+    -fx-text-fill: #ff0c09;
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-border-width:1px;
+    -fx-border-color: #ff0c09;
+}
+#albumPane{
+    -fx-background-color: rgba(200, 200, 200, 0.23);
+}
+#addToCartButton{
+    -fx-background-color: rgba(255, 178, 76, 0.99);
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #d82f8f;
+    -fx-text-fill: white;
+
+}

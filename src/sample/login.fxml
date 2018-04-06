@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -62,18 +63,48 @@
                   <AnchorPane fx:id="signUp2" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css" translateX="-50.0">
                      <children>
                         <TextField fx:id="firstNameTextField" layoutX="498.0" layoutY="117.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
-                        <TextField fx:id="lastNameTextField" layoutX="499.0" layoutY="191.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
-                        <TextField fx:id="emailTextField" layoutX="499.0" layoutY="330.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
-                        <TextField fx:id="confirmEmailTextField" layoutX="499.0" layoutY="260.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
-                        <PasswordField fx:id="passwordPasswordField" layoutX="498.0" layoutY="469.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
-                        <PasswordField fx:id="confirmPasswordField" layoutX="499.0" layoutY="401.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
+                        <TextField fx:id="lastNameTextField" layoutX="499.0" layoutY="195.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
+                        <TextField fx:id="emailTextField" layoutX="500.0" layoutY="344.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
+                        <TextField fx:id="confirmEmailTextField" layoutX="500.0" layoutY="270.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
+                        <PasswordField fx:id="passwordPasswordField" layoutX="499.0" layoutY="495.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
+                        <PasswordField fx:id="confirmPasswordField" layoutX="500.0" layoutY="421.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
                         <Text fill="WHITE" layoutX="389.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
                            <font>
                               <Font size="40.0" />
                            </font>
                         </Text>
-                        <Button layoutX="526.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="40.0" prefWidth="105.0" text="Submit" />
+                        <Button layoutX="528.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="40.0" prefWidth="105.0" text="Submit" />
                         <Button layoutX="932.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Back" />
+                        <Label fx:id="firstNameError" alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="157.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lastNameError" alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="235.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="confirmEmailError" alignment="CENTER" contentDisplay="CENTER" layoutX="543.0" layoutY="310.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="emailError" alignment="CENTER" contentDisplay="CENTER" layoutX="543.0" layoutY="384.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="confirmPasswordError" alignment="CENTER" contentDisplay="CENTER" layoutX="543.0" layoutY="461.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="passwordError" alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="535.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>

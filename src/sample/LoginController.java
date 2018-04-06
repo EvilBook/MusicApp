@@ -11,11 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
@@ -29,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.Pattern;
 
 public class LoginController implements Initializable{
 
@@ -67,7 +63,29 @@ public class LoginController implements Initializable{
     @FXML
     private Button submitButton;
 
+    @FXML
+    private Label firstNameError;
+
+    @FXML
+    private Label lastNameError;
+
+    @FXML
+    private Label emailError;
+
+    @FXML
+    private Label passwordError;
+
+    @FXML
+    private Label confirmEmailError;
+
+    @FXML
+    private Label confirmPasswordError;
+
     String userEmail;
+
+    private static Pattern emailPat;
+    private static Pattern passPat;
+    private static Pattern namePat;
 
 
     @Override
@@ -112,6 +130,7 @@ public class LoginController implements Initializable{
             root = loader.load();
             MainUserScreenController one = loader.getController();
             one.getName(userEmail);
+            one.SetStage(stage);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -165,9 +184,13 @@ public class LoginController implements Initializable{
         time3.play();
 
 
-            System.out.println("bitch");
             signUp.setTranslateY(signUp.getTranslateY()+1);
-            System.out.println("bitch");
+        firstNameError.setOpacity(0f);
+        lastNameError.setOpacity(0f);
+        emailError.setOpacity(0f);
+        passwordError.setOpacity(0f);
+        confirmEmailError.setOpacity(0f);
+        confirmPasswordError.setOpacity(0f);
 
 
 //        Node node = (Node)event.getSource();
@@ -211,16 +234,61 @@ public class LoginController implements Initializable{
     }
 
     @FXML public void handleSubmitButton(ActionEvent event) throws IOException {
-        UpdateDatabase database=new UpdateDatabase();
-        database.UpdateTableForUserCreation(emailTextField.getText(),passwordPasswordField.getText());
+        ExceptionClass exceptions=new ExceptionClass();
+        emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        passPat  = Pattern.compile("[a-z0-9_-]{3,15}");
+        namePat  = Pattern.compile("[a-zA-Z\\s]+");
 
-        ArrayList<String> userInfo=new ArrayList<String>();
-        userInfo.add(firstNameTextField.getText());
-        userInfo.add(lastNameTextField.getText());
-        userInfo.add(emailTextField.getText());
-        database.AddUserCreationData(userInfo);
 
-        ReturnAnimation();
+
+
+
+
+
+
+        if (!emailPat.matcher(emailTextField.getText()).matches()) {
+            System.out.println("one");
+            exceptions.EmailException(emailTextField.getText(),emailError);
+        }
+
+        if (!emailTextField.getText().equals(confirmEmailTextField.getText())) {
+            exceptions.EmailComfirmationException(confirmEmailTextField.getText(),confirmEmailError,emailTextField.getText());
+        }
+
+        if (!passPat.matcher(passwordPasswordField.getText()).matches()) {
+            exceptions.PassException(passwordPasswordField.getText(),passwordError);
+        }
+
+        if (!passwordPasswordField.getText().equals(confirmPasswordField.getText())) {
+            exceptions.PasswordComfirmation(confirmPasswordField.getText(),passwordPasswordField.getText(),passwordError);
+        }
+
+        if     (!namePat.matcher(firstNameTextField.getText()).matches()) {
+            exceptions.firstNameException(firstNameTextField.getText(),firstNameError);
+        }
+        if     (!namePat.matcher(lastNameTextField.getText()).matches()) {
+            exceptions.lastNameException(lastNameTextField.getText(),lastNameError);
+        }
+
+
+        else {
+
+            UpdateDatabase database = new UpdateDatabase();
+            database.UpdateTableForUserCreation(emailTextField.getText(), passwordPasswordField.getText());
+
+            ArrayList<String> userInfo = new ArrayList<String>();
+            userInfo.add(firstNameTextField.getText());
+            userInfo.add(lastNameTextField.getText());
+            userInfo.add(emailTextField.getText());
+            database.AddUserCreationData(userInfo);
+
+            ReturnAnimation();
+
+
+
+
+        }
+
     }
 
 
