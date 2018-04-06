@@ -18,7 +18,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.UpdateDatabase;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,24 +25,19 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static javax.print.attribute.standard.MediaSizeName.A;
-
 public class LoginController implements Initializable{
 
-
+    //Variables
     @FXML private TextField userNameTextField;
     @FXML private PasswordField PasswordTextField;
     @FXML private AnchorPane base;
     @FXML private ImageView one;
     @FXML private MediaView loop;
-    @FXML private AnchorPane LogIn;
-    private static Pattern mailPat;
-
-    String userEmail;
-
+    public String userEmail;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         int i= ThreadLocalRandom.current().nextInt(1,4);
         switch(i) {
             case 1:
@@ -56,23 +50,21 @@ public class LoginController implements Initializable{
             one.setImage(new Image("/sample/Graphics/oneoneone3.png"));
             break;
         }
+
         Media m = new Media(getClass().getResource("Graphics/loop.mp4").toString());
         MediaPlayer mediaPlayer=new MediaPlayer(m);
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setCycleCount(99);
         mediaPlayer.setMute(true);
+
         loop.setPreserveRatio(true);
         loop.fitWidthProperty().bind(base.maxWidthProperty());
         loop.fitHeightProperty().bind(base.maxHeightProperty()); //1066.62x600
         loop.setMediaPlayer(mediaPlayer);
-
-
-
     }
 
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
-
 
         Pattern pattern = Pattern.compile("@masm");
         Matcher matcher = pattern.matcher(userNameTextField.getText());
@@ -111,11 +103,10 @@ public class LoginController implements Initializable{
                 Scene scene = new Scene(root,1066.22, 600);
                 stage.setScene(scene);
                 stage.show();
-
-
-        }
+            }
 
         }
+
     }
 
     @FXML
