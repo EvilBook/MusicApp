@@ -38,9 +38,9 @@ public class SignUpController implements Initializable {
 
     @FXML public void handleSubmitButton(ActionEvent event) {
 
-        emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$");
-        passPat  = Pattern.compile("^[A-Z0-9]$");
-        namePat  = Pattern.compile("^\\p{Alpha}$");
+        emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        passPat  = Pattern.compile("^[a-z0-9_-]{3,15}");
+        namePat  = Pattern.compile("^[a-zA-Z\\\\s]+");
 
 
         if     (firstNameTextField.getText().isEmpty() || lastNameTextField.getText().isEmpty() ||
@@ -93,7 +93,6 @@ public class SignUpController implements Initializable {
             dialog2.setContentText("Make sure the first and last name are made of characters");    //Content
             dialog2.show();
         }
-
 
            else {
 
