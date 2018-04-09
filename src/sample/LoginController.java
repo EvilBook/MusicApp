@@ -226,6 +226,16 @@ public class LoginController implements Initializable{
             userInfo.add(emailTextField.getText());
             database.AddUserCreationData(userInfo);
 
+
+            //to clear screen for new entry
+
+            firstNameTextField.clear();
+            lastNameTextField.clear();
+            emailTextField.clear();
+            confirmEmailTextField.clear();
+            passwordPasswordField.clear();
+            confirmPasswordField.clear();
+
             ReturnAnimation();
 
 
