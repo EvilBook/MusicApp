@@ -6,7 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
+
 
 <AnchorPane maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainUserScreenController">
    <children>
@@ -28,6 +30,17 @@
             <Image url="@Graphics/ic_face_3x.png" />
          </image>
       </ImageView>
+      <HBox fx:id="horizontalMenu" maxHeight="800.0" maxWidth="1000.0" minHeight="602.0" minWidth="1000.0" prefHeight="603.0" prefWidth="1000.0" />
+      <Button fx:id="moveRight" layoutX="955.0" layoutY="124.0" mnemonicParsing="false" prefHeight="476.0" prefWidth="112.0" text="&gt;&gt;&gt;&gt;&gt;&gt;&gt;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="moveLeft" mnemonicParsing="false" prefHeight="476.0" prefWidth="112.0" text="&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;" translateY="123.5">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
       <AnchorPane fx:id="albumPane" layoutX="452.0" layoutY="162.0" prefHeight="355.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

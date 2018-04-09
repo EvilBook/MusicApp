@@ -12,6 +12,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -37,26 +38,40 @@
                   <Image url="@Graphics/logo.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="logIn" layoutY="236.0" prefHeight="120.0" prefWidth="319.0">
+            <StackPane layoutY="236.0" translateX="-19.0">
                <children>
-                  <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="19.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </TextField>
-                  <PasswordField fx:id="PasswordTextField" layoutX="26.0" layoutY="71.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </PasswordField>
+                  <AnchorPane fx:id="logIn" prefHeight="120.0" prefWidth="319.0">
+                     <children>
+                        <TextField fx:id="userNameTextField" layoutX="54.0" layoutY="19.0" prefHeight="32.0" prefWidth="239.0" promptText="User name">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </TextField>
+                        <PasswordField fx:id="PasswordTextField" layoutX="53.0" layoutY="71.0" prefHeight="32.0" prefWidth="240.0" promptText="Password">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                  </AnchorPane>
+                  <ImageView fx:id="loginIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-125.0" translateY="-25.0">
+                     <image>
+                        <Image url="@Graphics/ic_account_circle_3x.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="loginIcon1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-125.0" translateY="27.0">
+                     <image>
+                        <Image url="@Graphics/ic_vpn_key_3x.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </AnchorPane>
+            </StackPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="signUp" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
+      <AnchorPane fx:id="signUp" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" opacity="0.0" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
          <children>
             <ScrollPane fx:id="scrollPane" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
                <content>
