@@ -23,4 +23,19 @@ public class SwitchScene {
         stage.show();
     }
 
+    //Method to go back to the User Main Screen
+    public void userBack(ActionEvent event) {
+
+    }
+
+    //Method to go back to the Employee Main Screen
+    public void empBack(ActionEvent event) {
+
+    }
+
+    //Method to go back to the Admin Main Screen
+    public void adminBack(ActionEvent event) {
+
+    }
+
 }

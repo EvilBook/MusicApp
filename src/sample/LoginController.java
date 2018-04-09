@@ -13,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
@@ -22,11 +21,13 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.UpdateDatabase;
+import sample.Employee.MainEmployeeScreenController;
+import sample.User.MainUserScreenController;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -101,7 +102,7 @@ public class LoginController implements Initializable{
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUserScreen.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("User/MainUserScreen.fxml"));
                 Parent root;
                 root = loader.load();
                 MainUserScreenController one = loader.getController();
@@ -117,10 +118,10 @@ public class LoginController implements Initializable{
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeScreen.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Employee/employeeScreen.fxml"));
                 Parent root;
                 root = loader.load();
-                EmployeeScreenController emp = loader.getController();
+                MainEmployeeScreenController emp = loader.getController();
                 emp.getName(userEmail);
                 Scene scene = new Scene(root,1066.22, 600);
                 stage.setScene(scene);

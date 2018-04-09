@@ -1,76 +1,3 @@
-/*
-#loginBackground {
-    -fx-background-color: #042E3D;
-}
-
-#loginLogo {
-    -fx-text-fill: white;
-}
-
-#loginButton {
-    -fx-background-color: #F76425;
-    -fx-border: none;
-    -fx-color: white;
-    -fx-text-align: center;
-    -fx-text-decoration: none;
-    -fx-display: inline-block;
-}
-
-#loginButton:hover {
-    -fx-background-color: #F77238;
-}
-
-#signUpButton {
-    -fx-background-color: #33A1FD;
-    -fx-border: none;
-    -fx-color: white;
-    -fx-text-align: center;
-    -fx-text-decoration: none;
-    -fx-display: inline-block;
-}
-
-#signUpButton:hover {
-    -fx-background-color: #50AFFC;
-}
-
-.label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 0.6;
-}
-
-#userTextField {
-    -fx-background-color: none;
-    -fx-border-width: 0px 0px 1px 0px;
-    -fx-border-color: #4EDDC4;
-}
-#userTextField:focused {
-    -fx-background-color: none;
-    -fx-border-width: 0px 0px 1px 0px;
-    -fx-border-color: #64F9FB;
-}
-
-#passwordTextField {
-    -fx-background-color: none;
-    -fx-border-width: 0px 0px 1px 0px;
-    -fx-border-color: #4ecdc4;
-}
-#passwordTextField:focused {
-    -fx-background-color: none;
-    -fx-border-width: 0px 0px 1px 0px;
-    -fx-border-color: #64F9FB;
-}
-
-
-#userTextField.text-input {
-    -fx-text-fill: #33A1FD;
-}
-
-#passwordTextField.text-input {
-    -fx-text-fill: #F76425;
-}*/
-
 .button{
     -fx-background-color: rgba(78, 205, 196, 0.29);
     -fx-border: none;
@@ -144,5 +71,33 @@
 }
 #one{
     -fx-background-image: url(../Graphics/background.png);
+
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+#confirmEmailError, #confirmPasswordError, #firstNameError, #lastNameError, #passwordError, #emailError{
+    -fx-text-fill: #ff0c09;
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-border-width:1px;
+    -fx-border-color: #ff0c09;
+}
+#albumPane{
+    -fx-background-color: rgba(200, 200, 200, 0.23);
+}
+#addToCartButton{
+    -fx-background-color: rgba(255, 178, 76, 0.99);
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #d82f8f;
+    -fx-text-fill: white;
 
 }

@@ -1,4 +1,4 @@
-package sample;
+package sample.Employee;
 
 public class Employee {
 }

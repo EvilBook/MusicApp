@@ -1,4 +1,4 @@
-package sample;
+package sample.Employee;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,11 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
+import sample.SwitchScene;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmployeeScreenController implements Initializable {
+public class MainEmployeeScreenController implements Initializable {
 
     //Variables
     @FXML Label nameLabel;

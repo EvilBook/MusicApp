@@ -1,10 +1,12 @@
-package sample;
+package sample.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
+import sample.SwitchScene;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
