@@ -113,9 +113,12 @@
     -fx-border-width: 0px 18px 18px 0px;
     -fx-rotate: 135px;
 }
-#moveRight{
-      -fx-background-color: rgba(255, 255, 255, 0);
-      -fx-border-radius: 0px;
-      -fx-border-width: 0px 18px 18px 0px;
-      -fx-rotate: -45px;
-  }
+#moveRight {
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-border-radius: 0px;
+    -fx-border-width: 0px 18px 18px 0px;
+    -fx-rotate: -45px;
+}
+#profilePane{
+    -fx-background-color: rgba(255, 55, 211, 0.58);
+}
