@@ -65,6 +65,16 @@ public class LoginController implements Initializable{
     }
 
     @FXML
+    public void handleSubmitButton(){
+
+    }
+
+    @FXML
+    private void handleBackButton(){
+
+    }
+
+    @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
 
         UpdateDatabase updateDatabase=new UpdateDatabase();
