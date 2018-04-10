@@ -1,6 +1,6 @@
 
 .button{
-    -fx-background-color: rgba(78, 205, 196, 0.29);
+    -fx-background-color: #71c7e0;
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
@@ -9,7 +9,7 @@
     -fx-border-width: 1px;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    -fx-border-color: #d82f8f;
+    -fx-border-color: #e5777a;
     -fx-text-fill: white;}
 
 
@@ -32,7 +32,7 @@
 
 
 #LoginButton:hover{
-    -fx-background-color: #d82f8f;
+    -fx-background-color: #e5777a;
     -fx-border-width: 1px;
     -fx-border-color: #d82f8f;
 
@@ -120,5 +120,19 @@
     -fx-rotate: -45px;
 }
 #profilePane{
-    -fx-background-color: rgba(255, 55, 211, 0.58);
+    -fx-background-color: rgba(113, 199, 224, 0.29);
+}
+#selectedCover{
+    -fx-border-width: 3px;
+    -fx-border-color: white;
+}
+
+#search{
+    -fx-background-color: none;
+    -fx-border-width: 1px;
+    -fx-border-color: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
+    -fx-stroke-width:0px 0px 1px 0px;
+    -fx-background-color: rgba(148, 148, 148, 0.2);
+
 }
