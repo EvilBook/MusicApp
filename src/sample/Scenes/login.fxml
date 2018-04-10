@@ -12,14 +12,14 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="base" maxHeight="450.0" maxWidth="800.0" minHeight="450.0" minWidth="800.0" prefHeight="450.0" prefWidth="800.0" stylesheets="@CSS/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<AnchorPane fx:id="base" maxHeight="450.0" maxWidth="800.0" minHeight="450.0" minWidth="800.0" prefHeight="450.0" prefWidth="800.0" stylesheets="@../CSS/login.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
       <ImageView fx:id="one" fitHeight="450.0" fitWidth="450.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true">
          <effect>
             <GaussianBlur radius="2" />
          </effect>
       </ImageView>
-      <MediaView fx:id="loop" fitHeight="450.0" fitWidth="800.0">
+      <MediaView fx:id="loop" fitHeight="450.0" fitWidth="800.0" styleClass="CSS/login.css">
          <effect>
             <ColorAdjust saturation="-1.0" />
          </effect>

@@ -73,7 +73,7 @@ public class LoginController implements Initializable{
             Node node = (Node)event.getSource();
             Stage stage = (Stage)node.getScene().getWindow();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUserScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Scenes/MainUserScreen.fxml"));
             Parent root;
             root = loader.load();
             MainUserScreenController one = loader.getController();
@@ -94,7 +94,7 @@ public class LoginController implements Initializable{
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Scenes/SignUp.fxml"));
         Parent root = loader.load();
         stage.setScene(new Scene(root));
 
