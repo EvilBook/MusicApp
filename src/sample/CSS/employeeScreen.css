@@ -1,0 +1,57 @@
+#employeeBackground {
+    -fx-background-color: #2F4858;
+}
+
+#myPageButton {
+    -fx-background-color: #F76425;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+
+#myPageButton:hover {
+    -fx-background-color: #F77238;
+}
+
+#logOutButton:hover {
+    -fx-background-color: #FDCA60;
+}
+
+#logOutButton {
+    -fx-background-color: #FDCA40;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+
+#addButton {
+    -fx-background-color: #86BBD8;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+
+#deleteButton {
+    -fx-background-color: #86BBD8;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+
+#viewButton {
+    -fx-background-color: #86BBD8;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+}
+

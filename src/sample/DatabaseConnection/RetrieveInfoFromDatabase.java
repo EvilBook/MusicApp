@@ -3,6 +3,8 @@ package sample.DatabaseConnection;
 import java.sql.*;
 
 public class RetrieveInfoFromDatabase {
+
+    //Variables
     Statement st;
     Connection connection;
 
@@ -10,7 +12,6 @@ public class RetrieveInfoFromDatabase {
         String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
         String username = "evilBook@music-app";
         String password = "Firmwar3";
-
 
         try {
             connection = DriverManager.getConnection(url, username, password);
@@ -35,7 +36,6 @@ public class RetrieveInfoFromDatabase {
             e.printStackTrace();
         }
         return name;
-
     }
 
 }
