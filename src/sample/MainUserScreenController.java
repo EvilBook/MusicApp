@@ -4,6 +4,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +63,10 @@ public class MainUserScreenController implements Initializable {
 
     ArrayList<String> names=new ArrayList<>();
 
+    String[] s=new String[]{"Moderat","by: ","Release Date: 12-12-1999","Genre: HARD","Price: 5$"};
+
+
+
 
 
 
@@ -75,7 +80,7 @@ public class MainUserScreenController implements Initializable {
         for(int i=0;i<names.size();i++) {
             StackPane stackPane=new StackPane();
             ImageView imageView=new ImageView();
-            Pane pane=new Pane();
+            AnchorPane pane=new AnchorPane();
             Image image=new Image(getClass().getResource("Graphics/Records/"+names.get(i)).toString());
 
             imageView.setImage(image);
@@ -95,9 +100,12 @@ public class MainUserScreenController implements Initializable {
             imageView2.setPreserveRatio(true);
             imageView2.setVisible(false);
             imageView2.setId("informationPane");
-            Label title=new Label();
-            title.setText("FUUUUUUUUUUUUUUCK");
-            stackPane.getChildren().addAll(imageView,imageView2);
+            VBox albumInfo=new VBox();
+            pane.setStyle("-fx-background-color: #ffffff");
+            stackPane.getChildren().addAll(imageView,imageView2,CreateLabels(albumInfo,imageView2));
+            stackPane.setStyle("-fx-background-color: #ffffff");
+            stackPane.setMaxWidth(250);
+            stackPane.setMaxHeight(250);
             horizontalMenu.getChildren().add(stackPane);
 
             stackPane.setOnMouseEntered(event -> {
@@ -170,13 +178,15 @@ public class MainUserScreenController implements Initializable {
 
     }
     public void AnimationOne(StackPane s){
-        ArrayList<ImageView> q=new ArrayList<>();
+
+        ArrayList<Node> q=new ArrayList<>();
         for(Node i : s.getChildren()){
-            q.add((ImageView)i);
+            q.add(i);
         }
-        for(ImageView ii : q){
-                Timeline time=new Timeline();
-                KeyValue kv = new KeyValue(ii.fitWidthProperty(), 350, Interpolator.EASE_BOTH);
+        for(int ii=0;ii<2;ii++){
+            ImageView newOne=(ImageView)q.get(ii);
+            Timeline time=new Timeline();
+                KeyValue kv = new KeyValue(newOne.fitWidthProperty(), 350, Interpolator.EASE_BOTH);
                 KeyFrame kf = new KeyFrame(Duration.seconds(0.15), kv);
                 time.getKeyFrames().add(kf);
                 time.setOnFinished(t->{
@@ -186,12 +196,12 @@ public class MainUserScreenController implements Initializable {
                     //primaryStage.setScene(scene2);
                 });
                 time.play();
-                if(ii.getId()=="informationPane"){
-                    ii.setVisible(true);
-                    ii.setOpacity(0);
+                if(newOne.getId()=="informationPane"){
+                    newOne.setVisible(true);
+                    newOne.setOpacity(0);
                     Timeline time1=new Timeline();
-                    KeyValue kv1 = new KeyValue(ii.opacityProperty(), 100, Interpolator.EASE_BOTH);
-                    KeyFrame kf1 = new KeyFrame(Duration.seconds(35), kv1);
+                    KeyValue kv1 = new KeyValue(newOne.opacityProperty(), 100, Interpolator.EASE_BOTH);
+                    KeyFrame kf1 = new KeyFrame(Duration.seconds(4), kv1);
                     time1.getKeyFrames().add(kf1);
                     time1.setOnFinished(t->{
                         // remove pane and restore scene 1
@@ -204,15 +214,14 @@ public class MainUserScreenController implements Initializable {
         }
     }
     public void AnimationTwo(StackPane s){
-        ArrayList<ImageView> q=new ArrayList<>();
+        ArrayList<Node> q=new ArrayList<>();
         for(Node i : s.getChildren()){
-            System.out.println(i.getClass());
-            if(i.getId().equals("cover") || i.getId().equals("informationPane")){
-            q.add((ImageView)i);}
+            q.add(i);
         }
-        for(ImageView ii : q){
+        for(int ii=0;ii<2;ii++){
             Timeline time=new Timeline();
-            KeyValue kv = new KeyValue(ii.fitWidthProperty(), 250, Interpolator.EASE_BOTH);
+            ImageView newOne=(ImageView)q.get(ii);
+            KeyValue kv = new KeyValue(newOne.fitWidthProperty(), 250, Interpolator.EASE_BOTH);
             KeyFrame kf = new KeyFrame(Duration.seconds(0.15), kv);
             time.getKeyFrames().add(kf);
             time.setOnFinished(t->{
@@ -222,9 +231,35 @@ public class MainUserScreenController implements Initializable {
                 //primaryStage.setScene(scene2);
             });
             time.play();
-            if(ii.getId()=="informationPane"){
-                ii.setVisible(false);
+            if(newOne.getId()=="informationPane"){
+                newOne.setVisible(false);
             }
         }
+    }
+    public VBox SetText(VBox h){
+        ArrayList<Label> n=new ArrayList<>();
+        for(Node l : h.getChildren()){
+            n.add((Label)l);
+
+        }
+        for(int i=0;i<n.size();i++){
+            n.get(i).setText(s[i]);
+        }
+        return h;
+    }
+    public VBox CreateLabels(VBox h,ImageView iv){
+        for(String i : s){
+            Label newLabel=new Label();
+            newLabel.setStyle("-fx-text-fill: #ffffff");
+            newLabel.opacityProperty().bind(h.opacityProperty());
+            newLabel.visibleProperty().bind(h.visibleProperty());
+            newLabel.setAlignment(Pos.CENTER);
+            h.getChildren().add(newLabel);
+        }
+        h.setAlignment(Pos.CENTER);
+        h.setOpacity(0);
+        h.opacityProperty().bind(iv.opacityProperty());
+        h.visibleProperty().bind(iv.visibleProperty());
+        return SetText(h);
     }
 }
