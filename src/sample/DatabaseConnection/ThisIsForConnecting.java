@@ -8,6 +8,8 @@ public class ThisIsForConnecting {
     Statement st;
     public Connection connection;
 
+
+
     public ThisIsForConnecting() {
 
         String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";

@@ -99,6 +99,17 @@ public class EmployeeAddMusicController implements Initializable {
             alert.setHeaderText("ERROR");
             alert.showAndWait();
         }
+
+        albumArtistField.clear();
+        albumGenreField.clear();
+        albumNameField.clear();
+        albumDateField.clear();
+        songNameField.clear();
+        songArtistField.clear();
+        songPlaytimeField.clear();
+        albumPriceField.clear();
+        albumDateField.clear();
+        albumLabelField.clear();
     }
 
     //Save the Album in the database
