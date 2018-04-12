@@ -23,6 +23,7 @@ public class  Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         ThisIsForConnecting connect =new ThisIsForConnecting();
+        
     }
 
 
