@@ -26,6 +26,8 @@ public class EmployeeAddMusicController implements Initializable {
     @FXML private TextField songArtistField;
     @FXML private TextField albumDateField;
     @FXML private TextField songPlaytimeField;
+    @FXML private TextField albumLabelField;
+    @FXML private TextField albumVynlField;
     @FXML private TextArea albumTextArea;
     @FXML private TextArea songTextArea;
     @FXML private Button addAlbumArtistButton;
@@ -40,18 +42,7 @@ public class EmployeeAddMusicController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        AddAlbumToDatabase albumDatabase = new AddAlbumToDatabase();
 
-        //Contains: albumName, date, albumPrice, label, vynlNumber
-        albumDatabase.addAlbum("testname", "testdate", "testprice", "testlabel", "testvynlnum");
-        //Contains: albumArtist
-        albumDatabase.addAlbumArtist("testalbumartist");
-        //Contains: genre
-        albumDatabase.addGenre("testGenre");
-        //Contains: songName, playTime
-        albumDatabase.addSong("testSongName", "testPlaytime");
-        //Contains: songArtist
-        albumDatabase.addSongArtist("testsongArtist");
     }
 
     //Set the text from album textFields to the textArea
@@ -59,11 +50,14 @@ public class EmployeeAddMusicController implements Initializable {
     void handleAddAlbum()
     {
         if(!(albumNameField.getText().isEmpty()) && !(albumArtistField.getText().isEmpty()) &&
-                !(albumGenreField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()))
+                !(albumGenreField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()) &&
+                !(albumLabelField.getText().isEmpty())&& !(albumVynlField.getText().isEmpty()))
         {
             //Set text to album textArea
             albumTextArea.setText("Album\n---------------\nName: " + albumNameField.getText() + "\nArtist: " +
-                    albumArtistField.getText() + "\nGenre: " + albumGenreField.getText() + "\nRelease Date: " + albumDateField.getText());
+                    albumArtistField.getText() + "\nGenre: " + albumGenreField.getText() + "\nRelease Date: " +
+                    albumDateField.getText() + "\nLabel: " + albumLabelField.getText() + "\nVynl Number: " +
+                    albumVynlField.getText());
         }
         else
         {
@@ -112,9 +106,16 @@ public class EmployeeAddMusicController implements Initializable {
     {
         AddAlbumToDatabase albumDatabase = new AddAlbumToDatabase();
 
-        //Contains: albumName, releaseDate, price, albumArtists, albumGenres,
-
-        //Contains: songName, songArtists, songDuration
+        //Contains: albumName, date, albumPrice, label, vynlNumber
+        albumDatabase.addAlbum(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(), albumLabelField.getText(), albumVynlField.getText());
+        //Contains: albumArtist
+        albumDatabase.addAlbumArtist(albumArtistField.getText());
+        //Contains: genre
+        albumDatabase.addGenre(albumGenreField.getText());
+        //Contains: songName, playTime
+        albumDatabase.addSong(songNameField.getText(), songPlaytimeField.getText());
+        //Contains: songArtist
+        albumDatabase.addSongArtist(songArtistField.getText());
 
     }
 
