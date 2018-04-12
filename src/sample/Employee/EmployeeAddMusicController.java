@@ -18,25 +18,19 @@ import java.util.ResourceBundle;
 public class EmployeeAddMusicController implements Initializable {
 
     //Variables
-    @FXML private TextField albumGenreField;
-    @FXML private TextField albumArtistField;
-    @FXML private TextField albumNameField;
-    @FXML private TextField albumPriceField;
-    @FXML private TextField songNameField;
-    @FXML private TextField songArtistField;
-    @FXML private TextField albumDateField;
-    @FXML private TextField songPlaytimeField;
-    @FXML private TextField albumLabelField;
-    @FXML private TextField albumVynlField;
-    @FXML private TextArea albumTextArea;
-    @FXML private TextArea songTextArea;
-    @FXML private Button addAlbumArtistButton;
-    @FXML private Button addSongArtistButton;
-    @FXML private Button addSong;
-    @FXML private Button addAlbum;
-    @FXML private Button addAlbumGenreButton;
-    @FXML private Button returnButton;
-    @FXML private Button submitAlbumButton;
+    @FXML private TextArea albumTextArea,songTextArea;
+    @FXML private Button returnButton, submitAlbumButton;
+
+    @FXML private TextField albumNameField, albumPriceField, albumDateField, albumLabelField, albumVynlField;
+    @FXML private TextField albumGenreField1, albumGenreField2, albumGenreField3;
+    @FXML private TextField albumArtistField1, albumArtistField2, albumArtistField3;
+
+    @FXML private TextField songNameField1, songNameField2, songNameField3, songNameField4, songNameField5,
+            songNameField6, songNameField7, songNameField8;
+    @FXML private TextField songArtistField1, songArtistField2, songArtistField3, songArtistField4, songArtistField5,
+            songArtistField6, songArtistField7, songArtistField8;
+    @FXML private TextField songPlaytimeField1, songPlaytimeField2, songPlaytimeField3, songPlaytimeField4,
+            songPlaytimeField5, songPlaytimeField6, songPlaytimeField7, songPlaytimeField8;
 
 
     @Override
@@ -49,13 +43,13 @@ public class EmployeeAddMusicController implements Initializable {
     @FXML
     void handleAddAlbum()
     {
-        if(!(albumNameField.getText().isEmpty()) && !(albumArtistField.getText().isEmpty()) &&
-                !(albumGenreField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()) &&
+        if(!(albumNameField.getText().isEmpty()) && !(albumArtistField1.getText().isEmpty()) &&
+                !(albumGenreField1.getText().isEmpty()) && !(albumDateField.getText().isEmpty()) &&
                 !(albumLabelField.getText().isEmpty())&& !(albumVynlField.getText().isEmpty()))
         {
             //Set text to album textArea
             albumTextArea.setText("Album\n---------------\nName: " + albumNameField.getText() + "\nArtist: " +
-                    albumArtistField.getText() + "\nGenre: " + albumGenreField.getText() + "\nRelease Date: " +
+                    albumArtistField1.getText() + "\nGenre: " + albumGenreField1.getText() + "\nRelease Date: " +
                     albumDateField.getText() + "\nLabel: " + albumLabelField.getText() + "\nVynl Number: " +
                     albumVynlField.getText());
         }
@@ -71,11 +65,11 @@ public class EmployeeAddMusicController implements Initializable {
     @FXML
     void handleAddSong()
     {
-        if(!(songNameField.getText().isEmpty()) && !(songArtistField.getText().isEmpty()) && !(songPlaytimeField.getText().isEmpty()))
+        if(!(songNameField1.getText().isEmpty()) && !(songArtistField1.getText().isEmpty()) && !(songPlaytimeField1.getText().isEmpty()))
         {
             //Set text to song textArea
-            songTextArea.setText("Song\n---------------\nName: " + songNameField.getText() + "\nArtist: " +
-                    songArtistField.getText() + "\nPlaytime: " + songPlaytimeField.getText());
+            songTextArea.setText("Song\n---------------\nName: " + songNameField1.getText() + "\nArtist: " +
+                    songArtistField1.getText() + "\nPlaytime: " + songPlaytimeField1.getText());
         }
         else
         {
@@ -88,7 +82,7 @@ public class EmployeeAddMusicController implements Initializable {
     //Handle Submit Album Button
     @FXML
     private void handleSubmitAlbum(){
-        if(!(albumGenreField.getText().isEmpty()) && !(albumArtistField.getText().isEmpty()) &&
+        if(!(albumGenreField1.getText().isEmpty()) && !(albumArtistField1.getText().isEmpty()) &&
                 !(albumNameField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()))
         {
             saveAlbum();
@@ -109,14 +103,14 @@ public class EmployeeAddMusicController implements Initializable {
         //Contains: albumName, date, albumPrice, label, vynlNumber
         albumDatabase.addAlbum(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(), albumLabelField.getText(), albumVynlField.getText());
         //Contains: albumArtist
-        albumDatabase.addAlbumArtist(albumArtistField.getText());
+        albumDatabase.addAlbumArtist(albumArtistField1.getText());
         //Contains: genre
-        albumDatabase.addGenre(albumGenreField.getText());
+        albumDatabase.addGenre(albumGenreField1.getText());
         //Contains: songName, playTime
-        albumDatabase.addSong(songNameField.getText(), songPlaytimeField.getText());
+        albumDatabase.addSong(songNameField1.getText(), songPlaytimeField1.getText());
         //Contains: songArtist
-        albumDatabase.addSongArtist(songArtistField.getText());
-        
+        albumDatabase.addSongArtist(songArtistField1.getText());
+
     }
 
 
