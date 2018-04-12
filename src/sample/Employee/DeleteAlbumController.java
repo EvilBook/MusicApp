@@ -19,7 +19,23 @@ import java.util.ResourceBundle;
 public class DeleteAlbumController implements Initializable {
     @FXML
 
-    private javafx.scene.control.TextArea TextArea;
+    @FXML
+    private TableColumn<?, ?> idalbumColumn;
+
+    @FXML
+    private TableColumn<?, ?> AlbumNameColumn;
+
+    @FXML
+    private TableColumn<?, ?> ReleaseDateColumn;
+
+    @FXML
+    private TableColumn<?, ?> PriceColumn;
+
+    @FXML
+    private TableColumn<?, ?> RecordLabelColumn;
+
+    @FXML
+    private TableColumn<?, ?> VynlNumberColumn;
 
 
 
@@ -35,7 +51,7 @@ public class DeleteAlbumController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         RetrieveInfoFromDatabase myapp = new RetrieveInfoFromDatabase();
-        myapp.getAlbumTable();
+
 
 
 
