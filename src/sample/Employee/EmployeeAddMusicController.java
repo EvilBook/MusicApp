@@ -130,7 +130,6 @@ public class EmployeeAddMusicController implements Initializable {
         
     }
 
-
     //Switch Scenes
     @FXML
     private void handleSwitchScenes(ActionEvent event) throws IOException
