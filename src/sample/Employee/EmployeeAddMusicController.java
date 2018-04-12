@@ -116,7 +116,7 @@ public class EmployeeAddMusicController implements Initializable {
         albumDatabase.addSong(songNameField.getText(), songPlaytimeField.getText());
         //Contains: songArtist
         albumDatabase.addSongArtist(songArtistField.getText());
-
+        
     }
 
 
