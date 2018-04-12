@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.SwitchScene;
+import sample.User.MainUserScreenController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +40,23 @@ public class MainEmployeeScreenController implements Initializable {
     public void getName(String userEmail) {
         RetrieveInfoFromDatabase newRetrieve = new RetrieveInfoFromDatabase();
         nameLabel.setText(newRetrieve.getName(userEmail));
+    }
+
+
+
+    @FXML
+    public void handleAddAlbumButton(ActionEvent event) throws IOException{
+
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeeAddMusic.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 
 
