@@ -30,13 +30,7 @@ public class EmployeeAddMusicController implements Initializable {
     @FXML private TextField albumVynlField;
     @FXML private TextArea albumTextArea;
     @FXML private TextArea songTextArea;
-    @FXML private Button addAlbumArtistButton;
-    @FXML private Button addSongArtistButton;
-    @FXML private Button addSong;
-    @FXML private Button addAlbum;
-    @FXML private Button addAlbumGenreButton;
-    @FXML private Button returnButton;
-    @FXML private Button submitAlbumButton;
+
 
 
     @Override
