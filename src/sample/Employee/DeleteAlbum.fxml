@@ -8,14 +8,15 @@
 <AnchorPane prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.DeleteAlbumController">
    <children>
       <Button layoutX="977.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleLogoutButton" text="LOGOUT" />
-      <TableView fx:id="AlbumTable" layoutX="217.0" layoutY="101.0" prefHeight="333.0" prefWidth="503.0">
+      <TableView fx:id="AlbumTable" layoutX="271.0" layoutY="121.0" prefHeight="335.0" prefWidth="574.0">
         <columns>
-          <TableColumn fx:id="AlbumNameColumn" prefWidth="128.0" text="AlbumName" />
-            <TableColumn fx:id="ReleaseDateColumn" minWidth="0.0" prefWidth="140.0" text="ReleaseDate" />
-            <TableColumn fx:id="PriceColumn" prefWidth="103.0" text="Price" />
-            <TableColumn fx:id="RecordLabelColumn" minWidth="0.0" prefWidth="129.0" text="Record label" />
+          <TableColumn fx:id="AlbumIdColumn" prefWidth="123.0" text="AlbumId" />
+            <TableColumn fx:id="AlbumNameColumn" prefWidth="112.0" text="AlbumName" />
+            <TableColumn fx:id="ReleaseDateColumn" prefWidth="107.0" text="ReleaseDate" />
+            <TableColumn fx:id="PriceColumn" minWidth="0.0" prefWidth="140.0" text="Price" />
+            <TableColumn fx:id="RecordLabelColumn" prefWidth="90.0" text="RecordLabel" />
         </columns>
       </TableView>
-      <Button layoutX="217.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleLoadButton" text="LOAD DETAILS" />
+      <Button layoutX="217.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleLoadButton" text="LOAD DETAILS" />
    </children>
 </AnchorPane>

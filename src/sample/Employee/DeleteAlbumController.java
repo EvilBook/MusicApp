@@ -27,7 +27,8 @@ public class DeleteAlbumController implements Initializable {
     @FXML
     private TableView<Album> AlbumTable;
 
-
+    @FXML
+    private TableColumn<Album, String> AlbumIdColumn;
 
     @FXML
     private TableColumn<Album, String> AlbumNameColumn;
@@ -40,6 +41,10 @@ public class DeleteAlbumController implements Initializable {
 
     @FXML
     private TableColumn<Album, String> RecordLabelColumn;
+
+
+
+
 
 
 
@@ -95,7 +100,7 @@ public class DeleteAlbumController implements Initializable {
 
             ResultSet rs = connection.createStatement().executeQuery("SELECT  *FROM album");
             while (rs.next()){
-                data.add(new Album(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
+                data.add(new Album(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
 
                        ));
             }
@@ -107,10 +112,13 @@ public class DeleteAlbumController implements Initializable {
 
         // set cell value factory to tableView
 
+        AlbumIdColumn.setCellValueFactory(new PropertyValueFactory<>("albumid"));
+
        AlbumNameColumn.setCellValueFactory(new PropertyValueFactory<>("albumName"));
         ReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         PriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         RecordLabelColumn.setCellValueFactory(new PropertyValueFactory<>("label"));
+
 
 
         AlbumTable.setItems(null);
