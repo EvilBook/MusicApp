@@ -15,6 +15,7 @@ import sample.SwitchScene;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -79,6 +80,16 @@ public class DeleteAlbumController implements Initializable {
         }
 
 
+        @FXML
+        private void handleDeleteAlbumButton(ActionEvent event) throws IOException{
+        delete(7);
+
+
+
+
+        }
+
+
     @FXML
     public void handleLogoutButton(ActionEvent event) throws IOException {
         SwitchScene myapp = new SwitchScene();
@@ -129,7 +140,26 @@ public class DeleteAlbumController implements Initializable {
 
 
 
+    public  void  delete(int selectedInDEX){
+         Connection connection  = dc.connect();
+
+         String sql = " delete from album where idalbum = ?";
+
+         try (
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                 preparedStatement.setInt(1,selectedInDEX);
+
+                 preparedStatement.executeUpdate();
+             } catch (SQLException e1) {
+             e1.printStackTrace();
+         }
+    }
+         }
 
 
 
-}
+
+
+
+
+

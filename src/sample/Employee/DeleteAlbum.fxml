@@ -18,5 +18,6 @@
         </columns>
       </TableView>
       <Button layoutX="217.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleLoadButton" text="LOAD DETAILS" />
+      <Button fx:id="DeleteButton" layoutX="558.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleDeleteAlbumButton" text="Delete" />
    </children>
 </AnchorPane>
