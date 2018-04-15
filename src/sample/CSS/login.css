@@ -76,7 +76,7 @@
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
-#confirmEmailError, #confirmPasswordError, #firstNameError, #lastNameError, #passwordError, #emailError{
+#confirmEmailLabel, #confirmPasswordLabel, #firstNameLabel, #lastNameLabel, #passwordLabel, #emailLabel {
     -fx-text-fill: #ff0c09;
     -fx-font-size: 12px;
     -fx-text-alignment: center;

@@ -1,66 +1,21 @@
 package sample;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.MediaView;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class ExceptionClass {
 
-    public void firstNameException(String firstNameTextfield, Label label1) throws IOException {
-
-
-        label1.setText("Invalid input");
-        label1.setOpacity(1);
-
-
-    }
-
-    public void lastNameException(String lastNameTextfield, Label label1) throws IOException {
-
-
-        label1.setText("Invalid input");
-        label1.setOpacity(1);
-
-
-    }
-
-    public void EmailException(String EmailTextfield, Label label) {
-
-        label.setText("Please enter a valid email");
-        label.setOpacity(1);
-
-
-
-    }
-
-    public void EmailComfirmationException(String emailConfirmationTextfield, Label label, String EmailTextfield) {
-
-        label.setText("email doesnt match");
-        label.setOpacity(1);
-
-
-    }
-
-    public void PassException(String passwordTextfield, Label label) {
-
-        label.setText("Password too long");
-        label.setOpacity(1);
 
 
 
 
-    }
-
-
-    public void PasswordComfirmation(String passwordComfirmationField, String passwordTextfield, Label label) {
-
-
-        label.setText("Password dont match try again");
-        label.setOpacity(1);
-
-
-
-
-    }
 
 }
