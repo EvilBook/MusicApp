@@ -136,3 +136,6 @@
     -fx-background-color: rgba(148, 148, 148, 0.2);
 
 }
+#close:hover{
+    -fx-background-color: red;
+}

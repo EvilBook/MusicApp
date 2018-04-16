@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainUserScreenController">
+<AnchorPane fx:id="base" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainUserScreenController">
    <children>
       <ImageView fitHeight="803.0" fitWidth="1200.0" layoutX="-78.0" layoutY="-176.0" pickOnBounds="true" preserveRatio="true">
          <image>

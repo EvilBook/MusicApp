@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -109,6 +111,36 @@ public class LoginController implements Initializable{
         loop.fitWidthProperty().bind(base.maxWidthProperty());
         loop.fitHeightProperty().bind(base.maxHeightProperty());
         loop.setMediaPlayer(mediaPlayer);
+
+
+        System.out.println(base.getScene());
+
+
+      base.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            if(key.getCode()== KeyCode.ENTER) {
+                UpdateDatabase updateDatabase=new UpdateDatabase();
+                if(updateDatabase.CheckLogIn(userNameTextField.getText(),PasswordTextField.getText())){
+                    try {
+                        userEmail = userNameTextField.getText();
+                        Stage stage = (Stage) base.getScene().getWindow();
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUserScreen.fxml"));
+                        Parent root;
+                        root = loader.load();
+                        MainUserScreenController one = loader.getController();
+                        one.getName(userEmail);
+                        one.SetStage(stage);
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+
 
 
 
