@@ -29,22 +29,19 @@ public class RemoveAlbumDatabase {
         }
     }
 
-    public void removeAlbum(String albumId){
+    public void removeAlbum(int id) {
 
-        try
-        {
-            String queryDelete = "DELETE FROM album WHERE album_idAlbum = " + albumId + ";";
+        String query = "DELETE FROM album WHERE idalbum = ?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, id);
 
-            st = connection.createStatement();
-            ResultSet rs = st.executeQuery(queryDelete);
-
-            System.out.println("REMOVED FROM DATABASE\n");
-        }
-        catch (SQLException e)
-        {
+            ps.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong trying to save the data in the Database", ButtonType.OK);
             alert.showAndWait();
         }
     }
+
+
 }
