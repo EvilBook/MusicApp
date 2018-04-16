@@ -15,7 +15,6 @@
       </Text>
       <Button layoutX="910.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="64.0" prefWidth="119.0" text="Add" />
       <Button layoutX="40.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="64.0" prefWidth="119.0" text="Back" />
-      <TextField fx:id="idTextField" layoutX="100.0" layoutY="139.0" prefHeight="41.0" prefWidth="159.0" promptText="*Employee ID" />
       <TextField fx:id="firstTextField" layoutX="100.0" layoutY="203.0" prefHeight="41.0" prefWidth="159.0" promptText="*First Name" />
       <TextField fx:id="lastTextField" layoutX="100.0" layoutY="265.0" prefHeight="41.0" prefWidth="159.0" promptText="*Last Name" />
       <TextField fx:id="emailTextField" layoutX="100.0" layoutY="331.0" prefHeight="41.0" prefWidth="159.0" promptText="*Email" />

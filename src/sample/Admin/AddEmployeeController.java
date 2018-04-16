@@ -21,7 +21,6 @@ import java.util.regex.Pattern;
 public class AddEmployeeController implements Initializable {
 
     //Variables
-    @FXML private TextField idTextField;
     @FXML private TextField firstTextField;
     @FXML private TextField lastTextField;
     @FXML private TextField dateTextField;
@@ -56,10 +55,6 @@ public class AddEmployeeController implements Initializable {
 
 
         //Here it's gonna check for empty fields before all
-        if (idTextField.getText().isEmpty()) {
-
-        }
-
         if (firstTextField.getText().isEmpty()) {
 
         }
@@ -102,7 +97,6 @@ public class AddEmployeeController implements Initializable {
 
                 ArrayList<String> userInfo = new ArrayList<String>();
 
-                userInfo.add(idTextField.getText());
                 userInfo.add(firstTextField.getText());
                 userInfo.add(lastTextField.getText());
                 userInfo.add(dateTextField.getText());

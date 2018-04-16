@@ -101,21 +101,27 @@ public class UpdateDatabase {
             connection = DriverManager.getConnection(url, username, password);
             st = connection.createStatement();
             System.out.println("Add User Connection Established");
-            new UpdateDatabase().connection=connection;
+            new UpdateDatabase().connection = connection;
         } catch (SQLException e) {
             throw new IllegalStateException("Add User Connection failed", e);
         }
 
 
         try {
-            String FirstName = userData.get(0);
-            String LastName = userData.get(1);
-            String UserEmail = userData.get(2);
-            String three = "INSERT INTO person(FirstName, LastName, Login_Email) " +
-                           "VALUES ('" + FirstName + "','" + LastName + "','" + UserEmail + "')";
-            st = connection.createStatement();
+            String firstName = userData.get(0);
+            String lastName = userData.get(1);
+            String birth = userData.get(2);
+            String phone = userData.get(3);
+            String userEmail = userData.get(4);
+            String address = userData.get(5);
+            System.out.println(firstName + lastName + birth + phone + userEmail + address);
+            String three = "INSERT INTO login(Email, password)" + "VALUES ('" + userEmail + "','"+ password + "')";
+            String four = "INSERT INTO person(FirstName, LastName, DoB, PhoneNumber, Address, Login_Email)" + "VALUES " +
+                    "('" + firstName + "','" + lastName + "','" + birth + "','" + phone + "','" + address + "','" + userEmail +"')";
             st.executeUpdate(three);
+            st.executeUpdate(four);
         } catch (SQLException e) {
+            System.out.println(" u dumb");
             e.printStackTrace();
         }
         System.out.println("UPDATE COMPLETE\n");
