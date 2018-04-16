@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class SwitchScene {
 
-    //Method to go back to the login screen
+    //General method to go back to the login screen
     public void logOut(ActionEvent event) throws IOException {
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
@@ -28,7 +28,7 @@ public class SwitchScene {
 
     }
 
-    //Method to go back to the Employee Main Screen
+    //Admin folder
     public void empBack(ActionEvent event) throws IOException {
         System.out.println(event);
         Node node = (Node)event.getSource();
@@ -42,12 +42,25 @@ public class SwitchScene {
         stage.show();
     }
 
-    //Method to go back to the Admin Main Screen
+    //Admin folder
     public void adminBack(ActionEvent event) throws IOException {
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/mainAdminScreen.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    //Employee folder
+    public void backToEmp(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Employee/employeeScreen.fxml"));
         Parent root;
         root = loader.load();
         Scene scene = new Scene(root);

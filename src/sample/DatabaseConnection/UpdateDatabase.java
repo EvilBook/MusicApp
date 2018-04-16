@@ -31,7 +31,7 @@ public class UpdateDatabase {
             String one = t.toString();
             String two = a.toString();
             String three = "insert into login "+" VALUES ('" + one + "','" + two + "')";
-            //System.out.println(one + two);
+
             st = connection.createStatement();
             st.executeUpdate(three);
         } catch (SQLException e) {
@@ -78,8 +78,6 @@ public class UpdateDatabase {
                     return true;
                 } else {
                     System.out.println("Incorrect Password");
-                    //System.out.println(t+""+a);
-                    //System.out.println(userMail+""+userPassword);
                     return false;
                 }
             }
