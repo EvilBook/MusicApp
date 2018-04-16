@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DatabaseConnection.DbconnectionMusic;
 import sample.SwitchScene;
@@ -42,6 +43,9 @@ public class DeleteAlbumController implements Initializable {
 
     @FXML
     private TableColumn<Album, String> RecordLabelColumn;
+
+    @FXML
+    private TextField DeleteTextField;
 
 
 
@@ -82,7 +86,9 @@ public class DeleteAlbumController implements Initializable {
 
         @FXML
         private void handleDeleteAlbumButton(ActionEvent event) throws IOException{
-        delete(7);
+        int index2delete = Integer.parseInt(DeleteTextField.getText());
+        delete(index2delete);
+        DeleteTextField.clear();
 
 
 
