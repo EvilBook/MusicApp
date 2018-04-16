@@ -20,10 +20,13 @@
 #albumBody, #songBody{
     -fx-border-color: white;
     -fx-border-width: 2px;
+    -fx-border-radius: 10px;
     -fx-background-color: rgba(250, 250, 250, 0.5);
+    -fx-background-radius: 10px;
     -fx-font-family: Arial;
     -fx-font-style: thin;
     -fx-font-size: 14px;
+
 
 
 }
