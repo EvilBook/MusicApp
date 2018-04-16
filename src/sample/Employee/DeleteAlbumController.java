@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -46,6 +47,9 @@ public class DeleteAlbumController implements Initializable {
 
     @FXML
     private TextField DeleteTextField;
+
+    @FXML
+    private Button DeleteButton;
 
 
 
@@ -93,6 +97,8 @@ public class DeleteAlbumController implements Initializable {
 
 
 
+
+
         }
 
 
@@ -129,9 +135,9 @@ public class DeleteAlbumController implements Initializable {
 
         // set cell value factory to tableView
 
-        AlbumIdColumn.setCellValueFactory(new PropertyValueFactory<>("albumid"));
+        AlbumIdColumn.setCellValueFactory(new PropertyValueFactory<>("albumId"));
 
-       AlbumNameColumn.setCellValueFactory(new PropertyValueFactory<>("albumName"));
+        AlbumNameColumn.setCellValueFactory(new PropertyValueFactory<>("albumName"));
         ReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         PriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         RecordLabelColumn.setCellValueFactory(new PropertyValueFactory<>("label"));
