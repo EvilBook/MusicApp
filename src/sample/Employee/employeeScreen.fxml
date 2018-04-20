@@ -11,20 +11,20 @@
 <AnchorPane id="employeeBackground" prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/employeeScreen.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.MainEmployeeScreenController">
    <children>
       <Label id="nameLabel" fx:id="nameLabel" layoutX="293.0" layoutY="26.0" prefHeight="50.0" prefWidth="208.0" stylesheets="@../CSS/employeeScreen.css" />
-      <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="954.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="963.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Graphics/ic_face_3x.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="43.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="249.13671875">
+      <Text fill="WHITE" layoutX="43.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are here it means you are an Employee, my condolances." wrappingWidth="249.13671875">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Button id="myPageButton" layoutX="940.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="My page" />
-      <Button id="logOutButton" layoutX="940.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="41.0" prefWidth="88.0" text="Log Out" />
-      <Button id="addButton" layoutX="144.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleAddAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Add" />
-      <Button id="deleteButton" layoutX="444.0" layoutY="207.0" mnemonicParsing="false" onAction="#handledeleteAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Delete" />
-      <Button id="viewButton" layoutX="719.0" layoutY="207.0" mnemonicParsing="false" prefHeight="127.0" prefWidth="127.0" text="View" />
+      <Button id="myPageButton" layoutX="949.0" layoutY="94.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="My page" />
+      <Button id="logOutButton" layoutX="43.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="41.0" prefWidth="88.0" text="Log Out" />
+      <Button id="addButton" layoutX="214.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleAddAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Add" />
+      <Button id="deleteButton" layoutX="512.0" layoutY="182.0" mnemonicParsing="false" onAction="#handledeleteAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Delete" />
+      <Button id="viewButton" layoutX="789.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleViewSongsButton" prefHeight="127.0" prefWidth="127.0" text="View" />
    </children>
 </AnchorPane>

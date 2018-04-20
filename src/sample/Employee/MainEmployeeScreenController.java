@@ -20,11 +20,11 @@ import java.util.ResourceBundle;
 public class MainEmployeeScreenController implements Initializable {
 
     //Variables
-    @FXML Label nameLabel;
+    @FXML
+    Label nameLabel;
 
     //Objects
     SwitchScene sw = new SwitchScene();
-
 
 
     @Override
@@ -33,7 +33,7 @@ public class MainEmployeeScreenController implements Initializable {
     }
 
     @FXML
-    public void handleLogOutButton (ActionEvent event) throws IOException {
+    public void handleLogOutButton(ActionEvent event) throws IOException {
         sw.logOut(event);
     }
 
@@ -43,12 +43,11 @@ public class MainEmployeeScreenController implements Initializable {
     }
 
 
-
     @FXML
-    public void handleAddAlbumButton(ActionEvent event) throws IOException{
+    public void handleAddAlbumButton(ActionEvent event) throws IOException {
 
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeeAddMusic.fxml"));
         Parent root;
         root = loader.load();
@@ -60,10 +59,10 @@ public class MainEmployeeScreenController implements Initializable {
     }
 
     @FXML
-    public void handledeleteAlbumButton(ActionEvent event) throws IOException{
+    public void handledeleteAlbumButton(ActionEvent event) throws IOException {
 
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DeleteAlbum.fxml"));
         Parent root;
         root = loader.load();
@@ -74,7 +73,18 @@ public class MainEmployeeScreenController implements Initializable {
 
     }
 
+    @FXML
+    public void handleViewSongsButton(ActionEvent event) throws IOException {
+
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewSongs.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
 
-
+    }
 }
