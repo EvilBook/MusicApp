@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import sample.DatabaseConnection.AddAlbumToDatabase;
 import sample.SwitchScene;
 import java.io.IOException;
 import java.net.URL;
@@ -25,20 +26,40 @@ public class EmployeeAddMusicController implements Initializable {
 
     //Objects
     SwitchScene sw = new SwitchScene();
+    AddAlbumToDatabase albumDatabase = new AddAlbumToDatabase();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void handleSubmitAlbum(ActionEvent event) {
 
+
+
+    //Set the text from album textFields to the textArea
+    @FXML
+    void handleAddAlbum()
+    {
+        if(!(albumNameField.getText().isEmpty()) && !(albumArtistField1.getText().isEmpty()) &&
+                !(albumGenreField1.getText().isEmpty()) && !(albumDateField.getText().isEmpty()) &&
+                !(albumLabelField.getText().isEmpty())&& !(albumVynlField.getText().isEmpty()))
+        {
+            //Set text to album textArea
+            albumTextArea.setText("Album\n---------------\nName: " + albumNameField.getText() + "\nArtist: " +
+                    albumArtistField1.getText() + "\nGenre: " + albumGenreField1.getText() + "\nRelease Date: " +
+                    albumDateField.getText() + "\nLabel: " + albumLabelField.getText() + "\nVynl Number: " +
+                    albumVynlField.getText());
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
+        }
     }
 
-    public void handleReturnButton(ActionEvent event) throws IOException {
-        sw.backToEmp(event);
-    }
-
+    //Set the text from album textFields to the textArea
     @FXML
     void handleAddSong () {
         if(!(songNameField1.getText().isEmpty()) && !(songArtistField1.getText().isEmpty()) && !(songPlaytimeField1.getText().isEmpty()))
@@ -53,6 +74,39 @@ public class EmployeeAddMusicController implements Initializable {
             alert.setHeaderText("ERROR");
             alert.showAndWait();
         }
+    }
+
+    //Submit Album Button
+    public void handleSubmitAlbum(ActionEvent event) {
+        if(!(albumGenreField1.getText().isEmpty()) && !(albumArtistField1.getText().isEmpty()) &&
+                !(albumNameField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()))
+        {
+            saveAlbum();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
+        }
+    }
+
+    public void handleReturnButton(ActionEvent event) throws IOException {
+        sw.backToEmp(event);
+    }
+
+    //Save the Album in the database
+    public void saveAlbum () {
+        //Contains: albumName, date, albumPrice, label, vinylNumber
+        albumDatabase.addAlbum(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(), albumLabelField.getText(), albumVynlField.getText());
+        //Contains: albumArtist
+        albumDatabase.addAlbumArtist(albumArtistField1.getText());
+        //Contains: genre
+        albumDatabase.addGenre(albumGenreField1.getText());
+        //Contains: songName, playTime
+        albumDatabase.addSong(songNameField1.getText(), songPlaytimeField1.getText());
+        //Contains: songArtist
+        albumDatabase.addSongArtist(songArtistField1.getText());
     }
 
 

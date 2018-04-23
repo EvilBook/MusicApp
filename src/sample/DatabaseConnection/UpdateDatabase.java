@@ -88,6 +88,7 @@ public class UpdateDatabase {
         }
         return false;
     }
+
     public <T> void AddUserCreationData(T t) {
         String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
         String username = "evilBook@music-app";
