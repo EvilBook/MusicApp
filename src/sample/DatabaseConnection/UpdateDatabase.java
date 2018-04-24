@@ -67,7 +67,6 @@ public class UpdateDatabase {
         }
 
 
-        String selectSQL = "SELECT USER_ID, USERNAME FROM DBUSER WHERE USER_ID = " + t;
         try {
             ResultSet rs = st.executeQuery("select email, password from login where email= '" + t.toString()+"'");
             while (rs.next()) {
@@ -109,16 +108,11 @@ public class UpdateDatabase {
         try {
             String firstName = userData.get(0);
             String lastName = userData.get(1);
-            String birth = userData.get(2);
-            String phone = userData.get(3);
-            String userEmail = userData.get(4);
-            String address = userData.get(5);
-            System.out.println(firstName + lastName + birth + phone + userEmail + address);
-            String three = "INSERT INTO login(Email, password)" + "VALUES ('" + userEmail + "','"+ password + "')";
-            String four = "INSERT INTO person(FirstName, LastName, DoB, PhoneNumber, Address, Login_Email)" + "VALUES " +
-                    "('" + firstName + "','" + lastName + "','" + birth + "','" + phone + "','" + address + "','" + userEmail +"')";
+            String userEmail = userData.get(2);
+            String three = "INSERT INTO person(FirstName, LastName, Login_Email)" +
+                           "VALUES " + "('" + firstName + "','" + lastName + "','" + userEmail +"')";
             st.executeUpdate(three);
-            st.executeUpdate(four);
+
         } catch (SQLException e) {
             System.out.println(" u dumb");
             e.printStackTrace();

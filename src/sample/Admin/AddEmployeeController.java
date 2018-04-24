@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.DatabaseConnection.AddEmployeeToDatabase;
 import sample.DatabaseConnection.UpdateDatabase;
 import sample.SwitchScene;
 
@@ -23,7 +24,7 @@ public class AddEmployeeController implements Initializable {
     //Variables
     @FXML private TextField firstTextField;
     @FXML private TextField lastTextField;
-    @FXML private TextField dateTextField;
+    @FXML private TextField birthTextField;
     @FXML private TextField emailTextField;
     @FXML private TextField phoneTextField;
     @FXML private TextField addressTextField;
@@ -43,12 +44,8 @@ public class AddEmployeeController implements Initializable {
     }
 
     @FXML
-    public void handleBackButton(ActionEvent event) throws IOException {
-        sw.empBack(event);
-    }
+    public void handleAddButton(ActionEvent event) throws InterruptedException {
 
-    @FXML
-    public void handleAddButton(ActionEvent event) {
         emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         passPat = Pattern.compile("[a-z0-9_-]{3,15}");
         namePat = Pattern.compile("[a-zA-Z\\s]+");
@@ -57,17 +54,24 @@ public class AddEmployeeController implements Initializable {
         //Here it's gonna check for empty fields before all
         if (firstTextField.getText().isEmpty()) {
 
+            firstTextField.setText("First name required");
+            wait();
+
         }
 
         if (lastTextField.getText().isEmpty()) {
-
+            lastTextField.setText("Last name required");
+            wait();
         }
 
         if (emailTextField.getText().isEmpty()) {
-
+            emailTextField.setText("Email required");
+            wait();
         }
 
         if (passwordTextField.getText().isEmpty()) {
+            passwordTextField.setText("Password required");
+            wait();
 
         }
 
@@ -75,47 +79,47 @@ public class AddEmployeeController implements Initializable {
         else {
 
             if (!namePat.matcher(firstTextField.getText()).matches()) {
-
+                firstTextField.setText("First name contains digits");
+                wait();
             }
 
             if (!namePat.matcher(lastTextField.getText()).matches()) {
-
+                lastTextField.setText("Last name contains digits");
+                wait();
             }
 
             if (!emailPat.matcher(emailTextField.getText()).matches()) {
-
+                emailTextField.setText("Incorrect email format");
+                wait();
             }
 
             if (!passPat.matcher(passwordTextField.getText()).matches()) {
-
+                passwordTextField.setText("Incorrect password format");
+                wait();
             }
+
             else {
 
 
-                UpdateDatabase database = new UpdateDatabase();
-                database.UpdateTableForUserCreation(emailTextField.getText(), passwordTextField.getText());
+                AddEmployeeToDatabase empDatabase = new AddEmployeeToDatabase();
+                empDatabase.UpdateTableForEmpCreation(emailTextField.getText(), passwordTextField.getText());
 
-                ArrayList<String> userInfo = new ArrayList<String>();
-
-                userInfo.add(firstTextField.getText());
-                userInfo.add(lastTextField.getText());
-                userInfo.add(dateTextField.getText());
-                userInfo.add(emailTextField.getText());
-                userInfo.add(phoneTextField.getText());
-                userInfo.add(addressTextField.getText());
-                userInfo.add(passwordTextField.getText());
-                database.AddUserCreationData(userInfo);
-
-                //Clear the fields after the signing up
-                /*firstNameTextField.clear();
-                lastNameTextField.clear();
-                emailTextField.clear();
-                confirmEmailTextField.clear();
-                passwordPasswordField.clear();
-                confirmPasswordField.clear();*/
-
+                ArrayList<String> empInfo = new ArrayList<String>();
+                empInfo.add(firstTextField.getText());
+                empInfo.add(lastTextField.getText());
+                empInfo.add(emailTextField.getText());
+                empInfo.add(passwordTextField.getText());
+                empInfo.add(birthTextField.getText());
+                empInfo.add(addressTextField.getText());
+                empInfo.add(phoneTextField.getText());
+                empDatabase.addEmployee(empInfo);
             }
-        }
+    }
+    }
+
+    @FXML
+    public void handleBackButton(ActionEvent event) throws IOException {
+        sw.adminBack(event);
     }
 
 }

@@ -65,7 +65,7 @@ public class EmployeeRemoveMusicController implements Initializable {
 
         try {
 
-            ResultSet rs = connection.createStatement().executeQuery("SELECT  *FROM album");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT  * FROM album");
             while (rs.next()){
                 data.add(new Album(rs.getString(1), rs.getString(2),
                                    rs.getString(3),rs.getString(4),
