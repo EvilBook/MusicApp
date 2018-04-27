@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MusicApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MusicApp_jar</output-path>
+    <root id="archive" name="MusicApp.jar">
+      <element id="module-output" name="MusicApp" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../mysql-connector-java-5.1.28/mysql-connector-java-5.1.28/mysql-connector-java-5.1.28-bin.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jfoenix.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

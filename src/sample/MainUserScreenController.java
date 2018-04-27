@@ -1,34 +1,23 @@
 package sample;
 
 import javafx.animation.*;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
-import sample.DatabaseConnection.UpdateDatabase;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -62,14 +51,53 @@ public class MainUserScreenController implements Initializable {
 
 
     ArrayList<String> names=new ArrayList<>();
+    ArrayList<String> nameMusic =new ArrayList<>();
 
     String[] s=new String[]{"Moderat","by: ","Release Date: 12-12-1999","Genre: HARD","Price: 5$"};
+    String[] sSongs=new String[]{"song1:","song2","song3","song4","song5","song8"};
     String[] sFull=new String[]{"Moderat","by: ","Release Date: 12-12-1999","Genre(s): HARD","Label: Random","Featuring: More people","Disks: 1","Price: 5$"};
 
 
     AnchorPane moreAp;
 
     ImageView plate;
+
+
+    ArrayList<Label> moreInfoArray=new ArrayList<>();
+
+
+    MediaPlayer m4;
+
+
+    MediaPlayer currentSong;
+    Float currentSongTime;
+
+
+    Timeline currentAnimation;
+
+
+    AnchorPane musicAp;
+
+
+    Slider sliderPlayer;
+
+    Button sliderButton;
+
+    MediaPlayer mediaPlayerMusic;
+
+    MediaPlayer mediaPlayer;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -82,6 +110,7 @@ public class MainUserScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ReadNames();
+        ReadNamesMusic();
 
         horizontalMenu.setSpacing(14);
         horizontalMenu.setMinWidth(400*names.size());
@@ -138,10 +167,6 @@ public class MainUserScreenController implements Initializable {
             KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
             time.getKeyFrames().add(kf);
             time.setOnFinished(t->{
-                // remove pane and restore scene 1
-                //root1.getChildren().setAll(rectangle1);
-                // set scene 2
-                //primaryStage.setScene(scene2);
             });
             time.play();
         });
@@ -151,10 +176,6 @@ public class MainUserScreenController implements Initializable {
             KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
             time.getKeyFrames().add(kf);
             time.setOnFinished(t->{
-                // remove pane and restore scene 1
-                //root1.getChildren().setAll(rectangle1);
-                // set scene 2
-                //primaryStage.setScene(scene2);
             });
             time.play();
         });
@@ -190,6 +211,22 @@ public class MainUserScreenController implements Initializable {
         return names;
 
     }
+    public ArrayList<String> ReadNamesMusic() {
+        File folder = new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music");
+        File[] listOfFiles = folder.listFiles();
+        System.out.println(folder.listFiles());
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                System.out.println("File " + listOfFiles[i].getName());
+                nameMusic.add(listOfFiles[i].getName());
+            } else if (listOfFiles[i].isDirectory()) {
+                System.out.println("Directory " + listOfFiles[i].getName());
+            }
+        }
+        return nameMusic;
+
+    }
     public void AnimationOne(StackPane s){
 
         ArrayList<Node> q=new ArrayList<>();
@@ -203,10 +240,6 @@ public class MainUserScreenController implements Initializable {
                 KeyFrame kf = new KeyFrame(Duration.seconds(0.15), kv);
                 time.getKeyFrames().add(kf);
                 time.setOnFinished(t->{
-                    // remove pane and restore scene 1
-                    //root1.getChildren().setAll(rectangle1);
-                    // set scene 2
-                    //primaryStage.setScene(scene2);
                 });
                 time.play();
                 if(newOne.getId()=="informationPane"){
@@ -217,10 +250,6 @@ public class MainUserScreenController implements Initializable {
                     KeyFrame kf1 = new KeyFrame(Duration.seconds(4), kv1);
                     time1.getKeyFrames().add(kf1);
                     time1.setOnFinished(t->{
-                        // remove pane and restore scene 1
-                        //root1.getChildren().setAll(rectangle1);
-                        // set scene 2
-                        //primaryStage.setScene(scene2);
                     });
                     time1.play();
                 }
@@ -238,10 +267,6 @@ public class MainUserScreenController implements Initializable {
             KeyFrame kf = new KeyFrame(Duration.seconds(0.15), kv);
             time.getKeyFrames().add(kf);
             time.setOnFinished(t->{
-                // remove pane and restore scene 1
-                //root1.getChildren().setAll(rectangle1);
-                // set scene 2
-                //primaryStage.setScene(scene2);
             });
             time.play();
             if(newOne.getId()=="informationPane"){
@@ -274,9 +299,9 @@ public class MainUserScreenController implements Initializable {
         newButton1.visibleProperty().bind(h.visibleProperty());
         newButton1.setOnMouseClicked(event -> {
             String toastMsg = "added to basket";
-            int toastMsgTime = 1500; //3.5 seconds
-            int fadeInTime = 500; //0.5 seconds
-            int fadeOutTime= 500; //0.5 seconds
+            int toastMsgTime = 1500;
+            int fadeInTime = 500;
+            int fadeOutTime= 500;
             Toast.makeText(this.stage, toastMsg, toastMsgTime, fadeInTime, fadeOutTime);
         });
         m.getChildren().addAll(newButton,newButton1);
@@ -301,6 +326,7 @@ public class MainUserScreenController implements Initializable {
         return SetText(h,cover.getImage());
     }
     public void CreateMore(Image image){
+        ShowMusic();
         if(moreAp!=null){
             showMoreAnimationTwo(moreAp);
         }
@@ -309,6 +335,7 @@ public class MainUserScreenController implements Initializable {
         VBox v=new VBox();
         HBox h=new HBox();
         HBox h1=new HBox();
+        HBox h2=new HBox();
 
         ImageView iv=new ImageView();
 
@@ -335,8 +362,6 @@ public class MainUserScreenController implements Initializable {
         imageView3.setImage(image2);
         imageView3.setFitWidth(250);
         imageView3.setPreserveRatio(true);
-        imageView3.setVisible(false);
-        imageView3.setId("informationPane");
         imageView3.setStyle("-fx-background-color: #ffffff");
         plate=imageView3;
 
@@ -364,6 +389,10 @@ public class MainUserScreenController implements Initializable {
         });
         close.setOnMouseClicked(event -> {
             showMoreAnimationTwo(moreAp);
+            showSongsAnimationTwo(musicAp);
+            if(mediaPlayer.getStatus()== MediaPlayer.Status.PLAYING){
+
+            }
         });
 
         h1.getChildren().addAll(stackPane,close);
@@ -372,21 +401,103 @@ public class MainUserScreenController implements Initializable {
 
         v.getChildren().add(h1);
 
+        VBox v3=new VBox();
+
+
         for(String i : sFull){
             Label newLabel=new Label();
             newLabel.setStyle("-fx-text-fill: #ffffff");
             newLabel.setText(i);
             newLabel.opacityProperty().bind(h.opacityProperty());
             newLabel.visibleProperty().bind(h.visibleProperty());
-            newLabel.setAlignment(Pos.CENTER);
-            v.getChildren().add(newLabel);
+            v3.getChildren().add(newLabel);
+            moreInfoArray.add(newLabel);
         }
-        moreAp.getChildren().add(v);
+        VBox v2=new VBox();
 
-        h.setStyle("-fx-background-color: rgba(255,58,71,0.17)");
+
+        for(String i : sSongs){
+            Label newLabel=new Label();
+            newLabel.setStyle("-fx-text-fill: #ffffff");
+            newLabel.setText(i);
+            newLabel.opacityProperty().bind(h.opacityProperty());
+            newLabel.visibleProperty().bind(h.visibleProperty());
+            v2.getChildren().add(newLabel);
+        }
+
+        Button music=new Button();
+
+        music.setStyle("-fx-background-color: rgba(255, 255, 255, 0);" +
+                "    -fx-border-radius: 0px;\n" +
+                "    -fx-border-width: 0px 18px 18px 0px;\n" +
+                "    -fx-rotate: -45px;");
+
+
+        music.setOnMouseClicked(event -> {
+            showSongsAnimation(musicAp);
+
+        });
+
+
+
+
+
+        h2.getChildren().addAll(v3,music);
+        v.getChildren().add(h2);
+
+        h.setStyle("-fx-background-color: rgb(255,58,71)");
         h.setMinHeight(100);
 
+
         v.getChildren().add(h);
+
+
+        Media media=new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\musicOne.mp3").toURI().toString());
+        MediaPlayer mediaPlayer=new MediaPlayer(media);
+        MediaView mediaView=new MediaView(mediaPlayer);
+
+        Slider slider=new Slider();
+        slider.setMinSize(250,50);
+
+        Button play=new Button();
+
+        HBox h4=new HBox();
+
+        h4.getChildren().addAll(play,slider);
+
+        m4=mediaPlayer;
+
+
+        play.setOnMouseClicked(event -> {
+            m4.play();
+            System.out.println(m4.getStatus());
+            m4.setVolume(100);
+        });
+
+
+
+
+
+
+        v.getChildren().addAll(mediaView,h4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        moreAp.getChildren().addAll(v);
+
 
 
 
@@ -398,7 +509,7 @@ public class MainUserScreenController implements Initializable {
         System.out.println("still dont");
         ap.setStyle("-background-color: #000000");
         ap.setMinHeight(600);
-        ap.setMinWidth(350);
+        ap.setMinWidth(390);
 
         ap.setTranslateX(-400);
         System.out.println(ap.getChildren().size());
@@ -418,23 +529,16 @@ public class MainUserScreenController implements Initializable {
         KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t->{
-            // remove pane and restore scene 1
-            //root1.getChildren().setAll(rectangle1);
-            // set scene 2
-            //primaryStage.setScene(scene2);
         });
         time.play();
 
 
         Timeline time1=new Timeline();
-        KeyValue kv1 = new KeyValue(plate.translateXProperty(), 300, Interpolator.EASE_BOTH);
-        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.4), kv1);
+        KeyValue kv1 = new KeyValue(plate.translateXProperty(), 180, Interpolator.EASE_BOTH);
+        KeyValue kv2 = new KeyValue(plate.rotateProperty(), 300, Interpolator.EASE_BOTH);
+        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.2), kv1,kv2);
         time1.getKeyFrames().add(kf1);
         time1.setOnFinished(t->{
-            // remove pane and restore scene 1
-            //root1.getChildren().setAll(rectangle1);
-            // set scene 2
-            //primaryStage.setScene(scene2);
         });
         time1.play();
 
@@ -446,23 +550,16 @@ public class MainUserScreenController implements Initializable {
         KeyFrame kf = new KeyFrame(Duration.seconds(0.31), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t->{
-            // remove pane and restore scene 1
-            //root1.getChildren().setAll(rectangle1);
-            // set scene 2
-            //primaryStage.setScene(scene2);
         });
         time.play();
 
 
         Timeline time1=new Timeline();
         KeyValue kv1 = new KeyValue(plate.translateXProperty(), 0, Interpolator.EASE_BOTH);
-        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.4), kv1);
+        KeyValue kv2 = new KeyValue(plate.rotateProperty(), 0, Interpolator.EASE_BOTH);
+        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.4), kv1,kv2);
         time1.getKeyFrames().add(kf1);
         time1.setOnFinished(t->{
-            // remove pane and restore scene 1
-            //root1.getChildren().setAll(rectangle1);
-            // set scene 2
-            //primaryStage.setScene(scene2);
         });
         time1.play();
 
@@ -472,4 +569,202 @@ public class MainUserScreenController implements Initializable {
 
 
     }
+    public void ShowMusic(){
+        AnchorPane apMusic=new AnchorPane();
+        VBox v=new VBox();
+        HBox h=new HBox();
+
+
+        apMusic.setStyle("-background-color: #000000");
+        apMusic.setMinHeight(600);
+        apMusic.setMinWidth(390);
+
+        apMusic.setTranslateX(-400);
+
+        apMusic.getChildren().add(v);
+
+        apMusic.setTranslateY(50);
+
+
+
+        base.getChildren().add(apMusic);
+
+
+
+        CreateSongs(apMusic,v);
+
+
+        showPlayer();
+
+
+
+    }
+
+    public void CreateSongs(AnchorPane ap,VBox vOne){
+
+
+        for(int i = 0; i< nameMusic.size(); i++) {
+
+                VBox v = new VBox();
+                Label label = new Label();
+
+
+                label.setText(nameMusic.get(i));
+                label.setStyle("-fx-text-fill: #ffffff");
+
+
+                Media media = new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music\\"+(nameMusic.get(i)).toString()).toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                MediaView mediaView = new MediaView(mediaPlayer);
+
+                Button play = new Button();
+                play.setOnMouseClicked(event -> {
+                    if (mediaPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
+                        mediaPlayer.play();
+                        System.out.println(mediaPlayer.getStatus());
+                        mediaPlayer.setVolume(40);
+                        System.out.println(mediaPlayer.getTotalDuration().toSeconds());
+                    } else {
+                        mediaPlayer.stop();
+                    }
+
+
+                });
+
+
+                ap.setStyle("-fx-background-color: rgba(255,140,155,0.67)");
+                label.setStyle("-fx-text-fill: #ffffff");
+
+
+
+            Slider slider = new Slider();
+            slider.setMinSize(250, 50);
+                mediaPlayer.setOnPlaying(new Runnable() {
+                    @Override
+                    public void run() {
+                        Timeline currentAnimation = new Timeline();
+                        KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
+                        Timeline currentAnimation2=new Timeline();
+                        currentAnimation2.setCycleCount(Animation.INDEFINITE);
+                        KeyValue kv2 = new KeyValue(plate.rotateProperty(), plate.rotateProperty().intValue()+360, Interpolator.EASE_BOTH);
+                        KeyFrame kf2=new KeyFrame(Duration.seconds(4),kv2);
+                        currentAnimation2.getKeyFrames().add(kf2);
+                        currentAnimation2.play();
+                        KeyFrame kf1 = new KeyFrame(mediaPlayer.getTotalDuration(), kv1);
+                        currentAnimation.getKeyFrames().add(kf1);
+                        currentAnimation.setOnFinished(t -> {
+                            // remove pane and restore scene 1
+                            //root1.getChildren().setAll(rectangle1);
+                            // set scene 2
+                            //primaryStage.setScene(scene2);
+                        });
+                        currentAnimation.play();
+                        System.out.println(mediaPlayer.getStatus());
+                        System.out.println(currentAnimation.getStatus());
+                        System.out.println(slider.getValue());
+                    }
+                });
+
+
+                System.out.println(slider.maxProperty());
+
+
+                HBox h4 = new HBox();
+
+                h4.getChildren().addAll(play, slider);
+
+                v.getChildren().addAll(label, mediaView, h4);
+
+                vOne.getChildren().add(v);
+
+
+
+        }
+        musicAp=ap;
+
+    }
+
+    public void showSongsAnimation(AnchorPane ap) {
+
+
+
+        Timeline time = new Timeline();
+        KeyValue kv = new KeyValue(ap.translateXProperty(), 500, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.2), kv);
+        time.getKeyFrames().add(kf);
+        time.setOnFinished(t -> {
+        });
+        time.play();
+
+
+    }
+    public void showSongsAnimationTwo(AnchorPane ap){
+
+        Timeline time = new Timeline();
+        KeyValue kv = new KeyValue(ap.translateXProperty(), -400, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.06), kv);
+        time.getKeyFrames().add(kf);
+        time.setOnFinished(t -> {
+        });
+        time.play();
+
+
+
+    }
+
+
+    public void showPlayer(){
+        AnchorPane ap=new AnchorPane();
+        HBox h=new HBox();
+        VBox v=new VBox();
+
+        Button play=new Button();
+
+        Slider slider=new Slider();
+
+        slider.setMinSize(150,400);
+
+
+        slider.setMinSize(400,15);
+
+
+
+
+
+
+        Label label=new Label();
+        v.getChildren().addAll(label,slider);
+
+        h.getChildren().addAll(play,v);
+
+        h.setMinHeight(30);
+        h.setMinWidth(600);
+
+        h.setAlignment(Pos.BOTTOM_CENTER);
+
+
+        ap.getChildren().add(h);
+
+
+        ap.setStyle("-fx-background-color: rgba(255,68,85,0.68); -fx-border-radius: 90px; -fx-background-radius: 90px");
+        h.setStyle("-fx-border-radius: 90px; -fx-background-radius: 90px");
+        ap.setTranslateY(555);
+        ap.setTranslateX(200);
+        DropShadow dropShadow=new DropShadow();
+        dropShadow.radiusProperty().setValue(15);
+        ap.setEffect(dropShadow);
+
+        base.getChildren().add(ap);
+
+
+
+
+    }
+
+
+
+
+
+
+
 }
