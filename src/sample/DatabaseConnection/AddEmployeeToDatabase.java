@@ -10,8 +10,8 @@ public class AddEmployeeToDatabase {
     //Variables
     private Statement st;
     private Connection connection;
-    private String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
-    private String username = "evilBook@music-app";
+    private String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+    private String username = "mass@mass-music";
     private String password = "Firmwar3";
 
     //Objects
@@ -61,12 +61,13 @@ public class AddEmployeeToDatabase {
             String phone = empData.get(3);
             String userEmail = empData.get(4);
             String address = empData.get(5);
+            String password = empData.get(6);
             System.out.println(firstName + lastName + birth + phone + userEmail + address);
             String three = "INSERT INTO login(Email, password)" +
-                           "VALUES ('" + userEmail + "','"+ password + "')";
+                    "VALUES ('" + userEmail + "','" + password + "')";
             String four =  "INSERT INTO person(FirstName, LastName, DoB, PhoneNumber, Address, Login_Email)" +
-                           "VALUES " + "('" + firstName + "','" + lastName + "','" + birth + "','" + phone +
-                           "','" + address + "','" + userEmail +"')";
+                    "VALUES " + "('" + firstName + "','" + lastName + "','" + birth + "','" + phone +
+                    "','" + address + "','" + userEmail +"')";
             st.executeUpdate(three);
             st.executeUpdate(four);
         } catch (SQLException e) {

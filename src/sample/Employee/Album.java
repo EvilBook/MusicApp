@@ -2,7 +2,7 @@ package sample.Employee;
 
 public class Album {
 
-
+    //Variables
     private String albumId;
     private String albumName;
     private String date;

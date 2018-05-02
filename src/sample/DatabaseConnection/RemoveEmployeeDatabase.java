@@ -5,18 +5,17 @@ import javafx.scene.control.ButtonType;
 
 import java.sql.*;
 
-public class RemoveAlbumDatabase {
+public class RemoveEmployeeDatabase {
 
     //Variables
     private Statement st;
     private Connection connection;
-    private String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/musicdb2";
-    private String username = "mass@mass-music";
-    private String password = "Firmwar3";
-    private String albumKey;
-    private String songKey;
+    String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+    String username = "mass@mass-music";
+    String password = "Firmwar3";
 
-    public RemoveAlbumDatabase(){
+
+    public RemoveEmployeeDatabase(){
         try {
             connection = DriverManager.getConnection(url, username, password);
             st = connection.createStatement();
@@ -28,19 +27,26 @@ public class RemoveAlbumDatabase {
         }
     }
 
-    public void removeAlbum(int id) {
-
-        String query = "DELETE FROM album WHERE idalbum = ?";
+    public void removeEmployee(String email) {
+        String query = "DELETE FROM person WHERE Login_Email = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setInt(1, id);
+            ps.setString(1, email);
 
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
             alert.showAndWait();
+        }catch(Exception i) {
+            i.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "second ex", ButtonType.OK);
+            alert.showAndWait();
+            System.out.println(connection);
+            System.out.println(email);
+            System.out.println(query);
         }
+
     }
 
 

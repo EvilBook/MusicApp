@@ -30,8 +30,16 @@ public class ViewEmployeeController implements Initializable {
         sw.adminBack(event);
     }
 
-    public void handleDeleteButton(ActionEvent event) {
+    public void handleDeleteButton(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("removeEmployee.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void handleUpdateButton(ActionEvent event) {

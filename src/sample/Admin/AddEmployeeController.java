@@ -100,21 +100,22 @@ public class AddEmployeeController implements Initializable {
 
             else {
 
-
+                System.out.println("else works");
                 AddEmployeeToDatabase empDatabase = new AddEmployeeToDatabase();
-                empDatabase.UpdateTableForEmpCreation(emailTextField.getText(), passwordTextField.getText());
 
                 ArrayList<String> empInfo = new ArrayList<String>();
-                empInfo.add(firstTextField.getText());
-                empInfo.add(lastTextField.getText());
-                empInfo.add(emailTextField.getText());
-                empInfo.add(passwordTextField.getText());
-                empInfo.add(birthTextField.getText());
-                empInfo.add(addressTextField.getText());
-                empInfo.add(phoneTextField.getText());
+                empInfo.add(firstTextField.getText());      //first
+                empInfo.add(lastTextField.getText());       //last
+                empInfo.add(birthTextField.getText());      //email
+                empInfo.add(phoneTextField.getText());      //pass
+                empInfo.add(emailTextField.getText());      //birth
+                empInfo.add(addressTextField.getText());    //add
+                empInfo.add(passwordTextField.getText());   //phone
                 empDatabase.addEmployee(empInfo);
+
             }
-    }
+            System.out.println("works");
+        }
     }
 
     @FXML
