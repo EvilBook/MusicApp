@@ -3,29 +3,32 @@ package sample.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.DbconnectionMusic;
 import sample.DatabaseConnection.RemoveAlbumDatabase;
-import sample.DatabaseConnection.ThisIsForConnecting;
-import sample.DatabaseConnection.UpdateDatabase;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class EmployeeRemoveMusicController implements Initializable
+public class EmployeeViewMusicController implements Initializable
 {
     @FXML private TextField selectionField;
     @FXML private TableColumn<Album, String> idColumn;
@@ -42,28 +45,14 @@ public class EmployeeRemoveMusicController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
-    }
-
-
-    public void removeData(int id){
-        System.out.println("removing");
-        RemoveAlbumDatabase rmvDatabase = new RemoveAlbumDatabase();
-        rmvDatabase.removeAlbum(id);
-    }
-
-    @FXML
-    private void handleRemove(){
-
-        if(!selectionField.getText().isEmpty())
-        {
-            int id = Integer.parseInt(selectionField.getText());
-            removeData(id);
-            selectionField.setText("");
+        try {
+            handleLoadButton();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-
     }
+
 
 
     @FXML
@@ -102,6 +91,30 @@ public class EmployeeRemoveMusicController implements Initializable
 
     }
 
+
+    @FXML
+    public void tableClick(MouseEvent event) throws IOException {
+
+        if(event.getClickCount() == 2) {
+
+            Album row = table.getSelectionModel().getSelectedItem();
+            String idAlbum = row.getAlbumId();
+            System.out.println(idAlbum);
+
+            int id = Integer.parseInt(idAlbum);
+
+            EmployeeDataStorage.getInstance().setMessage(id);
+
+            //When button is clicked pop up the second stage
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("EmployeeViewMusicPopUp.fxml"));
+            stage.setTitle("Album Information");
+            EmployeeViewMusicPopUpController popC = new EmployeeViewMusicPopUpController();
+            stage.setScene(new Scene(root, 698, 500));
+            stage.show();
+
+        }
+    }
 
     //Switch Scenes
     @FXML

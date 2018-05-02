@@ -5,22 +5,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeRemoveMusicController">
+<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeViewMusicController">
    <children>
       <Pane id="albumBody" layoutX="41.0" layoutY="59.0" prefHeight="501.0" prefWidth="984.0">
          <children>
             <Pane id="albumHeader" layoutY="448.0" prefHeight="53.0" prefWidth="984.0">
                <children>
-                  <TextField fx:id="selectionField" layoutX="209.0" layoutY="11.0" prefHeight="31.0" prefWidth="291.0" />
-                  <Button layoutX="512.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleRemove" text="Remove" />
                   <Button layoutX="45.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Load" />
                </children>
             </Pane>
-            <TableView id="table" fx:id="table" layoutX="43.0" layoutY="27.0" prefHeight="392.0" prefWidth="899.0">
+            <TableView id="table" fx:id="table" layoutX="43.0" layoutY="27.0" onMouseClicked="#tableClick" prefHeight="392.0" prefWidth="899.0">
               <columns>
                 <TableColumn id="tableColumn" fx:id="idColumn" prefWidth="124.0" text="AlbumId" />
                 <TableColumn id="tableColumn" fx:id="nameColumn" prefWidth="263.0" text="AlbumName" />
@@ -35,7 +32,8 @@
          </children>
       </Pane>
       <Button layoutX="954.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return" />
-      <Label id="title" layoutX="59.0" layoutY="20.0" text="Remove Albums" />
+      <Label id="title" layoutX="59.0" layoutY="20.0" text="View Albums" />
+      <Label layoutX="198.0" layoutY="25.0" text="// Double click on an Album from the table to view more information" />
    </children>
    <stylesheets>
       <URL value="@../CSS/employeeAddAlbum.css" />

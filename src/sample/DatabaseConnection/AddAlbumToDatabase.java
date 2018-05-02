@@ -19,7 +19,8 @@ public class AddAlbumToDatabase {
     private String albumKey;
     private String songKey;
 
-    public AddAlbumToDatabase(){
+    public AddAlbumToDatabase()
+    {
         try
         {
             connection = DriverManager.getConnection(url, username, password);
@@ -33,7 +34,8 @@ public class AddAlbumToDatabase {
         }
     }
 
-    public void getAlbumID(){
+    public void getAlbumID()
+    {
         try
         {
             String query="SELECT idAlbum FROM album ORDER BY idAlbum DESC LIMIT 1;";

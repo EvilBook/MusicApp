@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="sceneBody" prefHeight="500.0" prefWidth="698.0" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeViewMusicPopUpController">
+   <children>
+      <Pane id="albumBody" layoutX="14.0" layoutY="14.0" prefHeight="473.0" prefWidth="670.0">
+         <children>
+            <TableView id="table" fx:id="table" layoutX="17.0" layoutY="202.0" prefHeight="249.0" prefWidth="636.0">
+              <columns>
+                <TableColumn id="tableColumn" fx:id="songidColumn" prefWidth="44.0" text="Id" />
+                <TableColumn id="tableColumn" fx:id="songnameColumn" prefWidth="292.0" text="Song Name" />
+                  <TableColumn id="tableColumn" fx:id="songartistColumn" prefWidth="223.0" text="Artist" />
+                  <TableColumn id="tableColumn" fx:id="songtimeColumn" prefWidth="75.0" text="Time" />
+              </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff84" height="154.0" layoutX="17.0" layoutY="19.0" stroke="#7070706e" strokeType="INSIDE" width="160.0" />
+            <Label id="albumNameLabel" fx:id="albumLabel" layoutX="186.0" layoutY="19.0" prefHeight="16.0" prefWidth="132.0" text="Sample Name" />
+            <Label id="albumArtistName" fx:id="artistLabel" layoutX="189.0" layoutY="55.0" text="Sample Artist" />
+            <Label fx:id="genreLabel" layoutX="189.0" layoutY="79.0" text="Sample Genre" />
+            <Line layoutX="418.0" layoutY="21.0" startY="150.0" />
+            <Label fx:id="vynlLabel" layoutX="430.0" layoutY="55.0" text="Vynl Number" />
+            <Label fx:id="labelLabel" layoutX="430.0" layoutY="79.0" text="Label" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
