@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.AddAlbumToDatabase;
+import sample.ExceptionClass;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,36 @@ public class EmployeeAddMusicController implements Initializable {
     @FXML private TextField albumVynlField;
     @FXML private TextArea albumTextArea;
     @FXML private TextArea songTextArea;
+
+    @FXML
+    private Label AlbumNameLabelErrorMessage;
+
+    @FXML
+    private Label ReleaseDateErrorMessage;
+
+    @FXML
+    private Label VynlNumberErrorMessage;
+
+    @FXML
+    private Label LabelNameErrorMessage;
+
+    @FXML
+    private Label PriceErrorMessage;
+
+    @FXML
+    private Label AlbumArtistErrorMessage;
+
+    @FXML
+    private Label GenreErrorMessage;
+
+    @FXML
+    private Label SongNameErrorMessage;
+
+    @FXML
+    private Label ArtistNameErrorMessage;
+
+    @FXML
+    private Label PlayTimeErrorMessage;
 
 
 
@@ -55,9 +86,13 @@ public class EmployeeAddMusicController implements Initializable {
         }
         else
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
+
+
+
+
+           /* Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
             alert.setHeaderText("ERROR");
-            alert.showAndWait();
+            alert.showAndWait();*/
         }
     }
 
@@ -73,15 +108,22 @@ public class EmployeeAddMusicController implements Initializable {
         }
         else
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
+           /* Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
             alert.setHeaderText("ERROR");
-            alert.showAndWait();
+            alert.showAndWait();*/
+
+
+
         }
     }
 
     //Handle Submit Album Button
     @FXML
     private void handleSubmitAlbum(){
+
+        ExceptionClass myapp = new ExceptionClass();
+
+
         if(!(albumGenreField.getText().isEmpty()) && !(albumArtistField.getText().isEmpty()) &&
                 !(albumNameField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()))
         {
@@ -89,9 +131,14 @@ public class EmployeeAddMusicController implements Initializable {
         }
         else
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
+            /*Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
             alert.setHeaderText("ERROR");
-            alert.showAndWait();
+            alert.showAndWait();*/
+
+
+
+
+
         }
 
         albumArtistField.clear();
