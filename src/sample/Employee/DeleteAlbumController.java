@@ -5,12 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import sample.DatabaseConnection.DbconnectionMusic;
 import sample.SwitchScene;
 
@@ -24,7 +29,6 @@ import java.util.ResourceBundle;
 
 
 public class DeleteAlbumController implements Initializable {
-
 
 
     @FXML
@@ -52,28 +56,8 @@ public class DeleteAlbumController implements Initializable {
     private Button DeleteButton;
 
 
-
-
-
-
-
-    private ObservableList<Album> data ;
+    private ObservableList<Album> data;
     private DbconnectionMusic dc;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -81,25 +65,17 @@ public class DeleteAlbumController implements Initializable {
         dc = new DbconnectionMusic();
 
 
+    }
 
 
-
-
-        }
-
-
-        @FXML
-        private void handleDeleteAlbumButton(ActionEvent event) throws IOException{
+    @FXML
+    private void handleDeleteAlbumButton(ActionEvent event) throws IOException {
         int index2delete = Integer.parseInt(DeleteTextField.getText());
         delete(index2delete);
         DeleteTextField.clear();
 
 
-
-
-
-
-        }
+    }
 
 
     @FXML
@@ -108,11 +84,10 @@ public class DeleteAlbumController implements Initializable {
         myapp.logOut(event);
 
 
-
     }
 
     @FXML
-    public void handleLoadButton(ActionEvent event) throws IOException{
+    public void handleLoadButton(ActionEvent event) throws IOException {
         Connection connection = dc.connect();
 
         data = FXCollections.observableArrayList();
@@ -122,10 +97,10 @@ public class DeleteAlbumController implements Initializable {
         try {
 
             ResultSet rs = connection.createStatement().executeQuery("SELECT  *FROM album");
-            while (rs.next()){
-                data.add(new Album(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
+            while (rs.next()) {
+                data.add(new Album(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)
 
-                       ));
+                ));
             }
 
         } catch (SQLException e) {
@@ -143,7 +118,6 @@ public class DeleteAlbumController implements Initializable {
         RecordLabelColumn.setCellValueFactory(new PropertyValueFactory<>("label"));
 
 
-
         AlbumTable.setItems(null);
         AlbumTable.setItems(data);
 
@@ -151,22 +125,46 @@ public class DeleteAlbumController implements Initializable {
     }
 
 
+    public void delete(int selectedInDEX) {
+        Connection connection = dc.connect();
 
-    public  void  delete(int selectedInDEX){
-         Connection connection  = dc.connect();
+        String sql = " delete from album where idalbum = ?";
 
-         String sql = " delete from album where idalbum = ?";
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, selectedInDEX);
 
-         try (
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-                 preparedStatement.setInt(1,selectedInDEX);
-
-                 preparedStatement.executeUpdate();
-             } catch (SQLException e1) {
-             e1.printStackTrace();
-         }
+            preparedStatement.executeUpdate();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
     }
-         }
+
+
+    @FXML
+    public void tableClick(MouseEvent event) throws IOException {
+
+        if (event.getClickCount() == 2) {
+
+            Album row = AlbumTable.getSelectionModel().getSelectedItem();
+            String idAlbum = row.getAlbumId();
+            System.out.println(idAlbum);
+
+            int id = Integer.parseInt(idAlbum);
+
+            //EmployeeDataStorage.getInstance().setMessage(id);
+
+            //When button is clicked pop up the second stage
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("EmployeeViewMusicPopUp.fxml"));
+            stage.setTitle("Album Information");
+            EmployeeViewMusicPopUPController popC = new EmployeeViewMusicPopUPController();
+            stage.setScene(new Scene(root, 698, 500));
+            stage.show();
+
+        }
+    }
+}
 
 
 
