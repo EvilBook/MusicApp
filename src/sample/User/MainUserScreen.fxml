@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="803.0" fitWidth="1200.0" layoutX="-78.0" layoutY="-176.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Graphics/one.png" />
+            <Image url="@Graphics/oneoneone.png" />
          </image>
       </ImageView>
       <StackPane fx:id="profilePane" prefHeight="80.0" prefWidth="1066.0">
