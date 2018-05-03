@@ -152,7 +152,7 @@ public class DeleteAlbumController implements Initializable {
 
             int id = Integer.parseInt(idAlbum);
 
-            //EmployeeDataStorage.getInstance().setMessage(id);
+            EmployeeDataStorage.getInstance().setMessage(id);
 
             //When button is clicked pop up the second stage
             Stage stage = new Stage();
