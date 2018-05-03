@@ -119,9 +119,11 @@ public class EmployeeAddMusicController implements Initializable {
 
     //Handle Submit Album Button
     @FXML
-    private void handleSubmitAlbum(){
+    private void handleSubmitAlbum() throws IOException {
 
         ExceptionClass myapp = new ExceptionClass();
+
+
 
 
         if(!(albumGenreField.getText().isEmpty()) && !(albumArtistField.getText().isEmpty()) &&
@@ -131,9 +133,13 @@ public class EmployeeAddMusicController implements Initializable {
         }
         else
         {
-            /*Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
+
+
+
+
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
             alert.setHeaderText("ERROR");
-            alert.showAndWait();*/
+            alert.showAndWait();
 
 
 

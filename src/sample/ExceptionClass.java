@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class ExceptionClass {
 
@@ -65,84 +68,103 @@ public class ExceptionClass {
 
 
     }
-  public void AlbumNameError(String AlbumName,Label label){
-        if (AlbumName.matches(".*\\d+.*")){
-            label.setText("Invalid Input");
-            }
+  public boolean AlbumNameError(String AlbumName,Label label)throws IOException{
+      if (AlbumName.matches(".*\\d+.*")){
+          label.setText("Invalid Input");
+          return false;
+
+
+
+      }else return true;
+
+
 
 
 
 
     }
-    public void ReleaseDateError(String ReleaseDateTextfield,Label errorMessage){
+    public boolean ReleaseDateError(String ReleaseDateTextfield,Label errorMessage)throws IOException{
         DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
         format.setLenient(false);
 
         try {
             format.parse(ReleaseDateTextfield);
+            return true;
 
         }catch (ParseException e){
             errorMessage.setText("invalid Input");
+            return false;
 
         }
     }
 
-      public void vynlNumberError(String VynlNumberTextfield,Label errorMessage){
+      public boolean vynlNumberError(String VynlNumberTextfield,Label errorMessage)throws IOException{
         if (!VynlNumberTextfield.equals(1) && !VynlNumberTextfield.equals(2)){
             errorMessage.setText("Invalid Input");
+            return false;
+
+        }return true;
 
         }
 
-        }
-
-        public void LabelNameErrorMessage(String LabelTextField,Label errorMessage){
+        public boolean LabelNameErrorMessage(String LabelTextField,Label errorMessage)throws IOException{
             if (LabelTextField.matches(".*\\d+.*")){
                 errorMessage.setText("Invalid Input");
-            }
+                return false;
+            }else return true;
 
 
         }
 
 
-        public void PriceerrorMessage(String priceTextfield,Label errorMessage){
-        if (priceTextfield.equals(300)){
-            errorMessage.setText("Invalid input");
+        public boolean PriceerrorMessage(String priceTextfield,Label errorMessage)throws IOException{
+       try {
+           Integer.parseInt(priceTextfield);
+           return true;
+
+       }catch (NumberFormatException e){
+           errorMessage.setText("Invalid input");
+
+           return false;
+       }
 
         }
-
-        }
-        public void GenreErrorMessage(String GenreNameTextfield,Label errorMessage){
+        public boolean GenreErrorMessage(String GenreNameTextfield,Label errorMessage)throws IOException{
             if (GenreNameTextfield.matches(".*\\d+.*")){
                 errorMessage.setText("Invalid Input");
-            }
+                return false;
+            }else return true;
         }
 
-        public void SongNameErrorMessage(String songNameTextfield,Label errorMessage) {
+        public boolean SongNameErrorMessage(String songNameTextfield,Label errorMessage)throws IOException {
             if (songNameTextfield.contains(",.!?@")) {
                 errorMessage.setText("invalid Input");
-            }
+                return false;
+
+            }else return true;
 
         }
-        public void ArtistNameerrorMessage(String ArtistNameTextfield,Label errorMessage){
+        public boolean ArtistNameerrorMessage(String ArtistNameTextfield,Label errorMessage)throws IOException{
         if (ArtistNameTextfield.matches(".*\\d+.*")){
             errorMessage.setText("Invalid Input");
-        }
+            return false;
+        }else return true;
 
 
 
         }
 
-        public void PlayTimeErrorMessage(String PlayTimeTextField,Label errorMessage){
-            SimpleDateFormat format = new SimpleDateFormat("mm:ss");
-            format.setLenient(false);
+     public boolean playTimeErrorMessage(String playTimeTextfield,Label errorMessage)throws IOException{
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("00:00");
+            LocalTime.parse(playTimeTextfield);
 
-            try {
-                format.parse(PlayTimeTextField);
+            return true;
+        }catch (DateTimeParseException e){
+            errorMessage.setText("Invalid input");
 
-            }catch (ParseException e){
-                errorMessage.setText("invalid Input");
-
-            }
+            return true;
+        }
 
         }
 
