@@ -5,13 +5,13 @@ public class Songs {
     private String idsong;
     private String songName;
     private String playtime;
-    private String album_idalbum;
+    private String SongArtist;
 
-    public Songs(String idsong, String songName, String playtime, String album_idalbum) {
+    public Songs(String idsong, String songName, String playtime, String songArtist) {
         this.idsong = idsong;
         this.songName = songName;
         this.playtime = playtime;
-        this.album_idalbum = album_idalbum;
+        SongArtist = songArtist;
     }
 
     public String getIdsong() {
@@ -26,7 +26,7 @@ public class Songs {
         return playtime;
     }
 
-    public String getAlbum_idalbum() {
-        return album_idalbum;
+    public String getSongArtist() {
+        return SongArtist;
     }
 }

@@ -63,12 +63,12 @@ public class EmployeeViewMusicPopUPController implements Initializable
                             "(album_idAlbum =" + idAlbum +"&& idAlbum = "+idAlbum+");");
 
             while (rs.next()){
-                data.add(new Songs(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                data.add(new Songs(rs.getString(1), rs.getString(2), rs.getString(4),rs.getString(3)));
 
                 // set cell value factory to tableView
-                songidColumn.setCellValueFactory(new PropertyValueFactory<>("idSong"));
+                songidColumn.setCellValueFactory(new PropertyValueFactory<>("idsong"));
                 songnameColumn.setCellValueFactory(new PropertyValueFactory<>("songName"));
-                songartistColumn.setCellValueFactory(new PropertyValueFactory<>("songArtist"));
+                songartistColumn.setCellValueFactory(new PropertyValueFactory<>("SongArtist"));
                 songtimeColumn.setCellValueFactory(new PropertyValueFactory<>("playtime"));
 
                 table.setItems(null);

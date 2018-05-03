@@ -24,6 +24,6 @@
       <Button id="logOutButton" layoutX="43.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="41.0" prefWidth="88.0" text="Log Out" />
       <Button id="addButton" layoutX="186.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleAddAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Add" />
       <Button id="deleteButton" layoutX="470.0" layoutY="197.0" mnemonicParsing="false" onAction="#handledeleteAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Delete" />
-      <Button id="viewButton" layoutX="760.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleViewSongsButton" prefHeight="127.0" prefWidth="127.0" text="View" />
+      <Button id="viewButton" layoutX="760.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleViewAlbum" prefHeight="127.0" prefWidth="127.0" text="View" />
    </children>
 </AnchorPane>
