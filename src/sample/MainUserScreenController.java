@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.animation.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -44,6 +46,8 @@ public class MainUserScreenController implements Initializable {
     AnchorPane base;
 
     Stage stage;
+    private MusicPlayer musicPlayer=MusicPlayer.getInstance();
+
     public void SetStage(Stage stage){
         this.stage=stage;
 
@@ -79,7 +83,7 @@ public class MainUserScreenController implements Initializable {
     AnchorPane musicAp;
 
 
-    Slider sliderPlayer;
+    Slider sliderPlayer=new Slider();
 
     Button sliderButton;
 
@@ -390,9 +394,8 @@ public class MainUserScreenController implements Initializable {
         close.setOnMouseClicked(event -> {
             showMoreAnimationTwo(moreAp);
             showSongsAnimationTwo(musicAp);
-            if(mediaPlayer.getStatus()== MediaPlayer.Status.PLAYING){
-
-            }
+            musicPlayer.slider.setValue(sliderPlayer.getValue());
+            showPlayer();
         });
 
         h1.getChildren().addAll(stackPane,close);
@@ -594,10 +597,6 @@ public class MainUserScreenController implements Initializable {
         CreateSongs(apMusic,v);
 
 
-        showPlayer();
-
-
-
     }
 
     public void CreateSongs(AnchorPane ap,VBox vOne){
@@ -616,62 +615,86 @@ public class MainUserScreenController implements Initializable {
                 Media media = new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music\\"+(nameMusic.get(i)).toString()).toURI().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
                 MediaView mediaView = new MediaView(mediaPlayer);
+                mediaPlayerMusic=mediaPlayer;
+                Label l=new Label();
+                Label l2=new Label();
 
                 Button play = new Button();
                 play.setOnMouseClicked(event -> {
-                    if (mediaPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
-                        mediaPlayer.play();
-                        System.out.println(mediaPlayer.getStatus());
-                        mediaPlayer.setVolume(40);
-                        System.out.println(mediaPlayer.getTotalDuration().toSeconds());
-                    } else {
-                        mediaPlayer.stop();
-                    }
+                    musicPlayer.Play((Button)event.getSource());
+
 
 
                 });
 
+                musicPlayer.setPlaylist(media, play);
 
-                ap.setStyle("-fx-background-color: rgba(255,140,155,0.67)");
+
+
+
+            ap.setStyle("-fx-background-color: rgba(255,140,155,0.67)");
                 label.setStyle("-fx-text-fill: #ffffff");
 
 
 
             Slider slider = new Slider();
             slider.setMinSize(250, 50);
-                mediaPlayer.setOnPlaying(new Runnable() {
-                    @Override
-                    public void run() {
-                        Timeline currentAnimation = new Timeline();
-                        KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
-                        Timeline currentAnimation2=new Timeline();
-                        currentAnimation2.setCycleCount(Animation.INDEFINITE);
-                        KeyValue kv2 = new KeyValue(plate.rotateProperty(), plate.rotateProperty().intValue()+360, Interpolator.EASE_BOTH);
-                        KeyFrame kf2=new KeyFrame(Duration.seconds(4),kv2);
-                        currentAnimation2.getKeyFrames().add(kf2);
-                        currentAnimation2.play();
-                        KeyFrame kf1 = new KeyFrame(mediaPlayer.getTotalDuration(), kv1);
-                        currentAnimation.getKeyFrames().add(kf1);
-                        currentAnimation.setOnFinished(t -> {
-                            // remove pane and restore scene 1
-                            //root1.getChildren().setAll(rectangle1);
-                            // set scene 2
-                            //primaryStage.setScene(scene2);
-                        });
-                        currentAnimation.play();
-                        System.out.println(mediaPlayer.getStatus());
-                        System.out.println(currentAnimation.getStatus());
-                        System.out.println(slider.getValue());
-                    }
+            musicPlayer.i=i;
+            Label lTwo=new Label();
+            lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(play).getCurrentTime(),musicPlayer.playlist.get(play).getMedia().getDuration()));
+            musicPlayer.playlist.get(play).setOnPlaying(() -> {
+                    Timeline currentAnimation = new Timeline();
+                    KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
+                    Timeline currentAnimation2=new Timeline();
+                    currentAnimation2.setCycleCount(Animation.INDEFINITE);
+                    KeyValue kv2 = new KeyValue(plate.rotateProperty(), plate.rotateProperty().intValue()+360, Interpolator.EASE_BOTH);
+                    KeyFrame kf2=new KeyFrame(Duration.seconds(4),kv2);
+                    currentAnimation2.getKeyFrames().add(kf2);
+                    currentAnimation2.play();
+                    KeyFrame kf1 = new KeyFrame(new Duration(musicPlayer.playlist.get(play).getTotalDuration().toMillis()), kv1);
+                    currentAnimation.getKeyFrames().add(kf1);
+                currentAnimation.setOnFinished(t -> {
+                        // remove pane and restore scene 1
+                        //root1.getChildren().setAll(rectangle1);
+                        // set scene 2
+                        //primaryStage.setScene(scene2);
+                    });
+                    currentAnimation.play();
+                    System.out.println(mediaPlayer.getStatus());
+                    System.out.println(currentAnimation.getStatus());
+                    System.out.println(slider.getValue());
+                    System.out.println(musicPlayer.playlist.get(play).getTotalDuration().toSeconds());
                 });
-
 
                 System.out.println(slider.maxProperty());
 
 
-                HBox h4 = new HBox();
+            slider.valueProperty().addListener(observable -> {
+                lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(play).getCurrentTime(),musicPlayer.playlist.get(play).getMedia().getDuration()));
+                if(slider.isValueChanging()){
+                    musicPlayer.playlist.get(musicPlayer.currentlyPlaying).seek(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration().multiply(slider.getValue()/100));
 
-                h4.getChildren().addAll(play, slider);
+                }
+                musicPlayer.slider.setValue(slider.getValue());
+            });
+
+
+
+
+
+
+
+                Label lOne=new Label();
+
+
+
+
+
+
+
+            HBox h4 = new HBox();
+
+                h4.getChildren().addAll(play, slider, lOne, lTwo);
 
                 v.getChildren().addAll(label, mediaView, h4);
 
@@ -718,43 +741,69 @@ public class MainUserScreenController implements Initializable {
         HBox h=new HBox();
         VBox v=new VBox();
 
-        Button play=new Button();
-
-        Slider slider=new Slider();
-
-        slider.setMinSize(150,400);
+        if(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getStatus()!= MediaPlayer.Status.STOPPED) {
 
 
-        slider.setMinSize(400,15);
+            Label lTwo=new Label();
+            lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime(),musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration()));
 
 
 
 
+            Slider slider = new Slider();
+            slider.setMinSize(600, 20);
+            slider.setValue((Double) (musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration().multiply(slider.getValue()/100)).toMillis());
+            System.out.println(slider.getValue());
+            musicPlayer.playlist.get(musicPlayer.currentlyPlaying).setOnPlaying(() -> {
+                Timeline currentAnimation = new Timeline();
+                KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
+                KeyFrame kf1 = new KeyFrame(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration(), kv1);
+                currentAnimation.getKeyFrames().add(kf1);
+                currentAnimation.setOnFinished(t -> {
+                    // remove pane and restore scene 1
+                    //root1.getChildren().setAll(rectangle1);
+                    // set scene 2
+                    //primaryStage.setScene(scene2);
+                });
+                currentAnimation.play();
+                System.out.println(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getStatus());
+                System.out.println(currentAnimation.getStatus());
+                System.out.println(slider.getValue());
+            });
+            slider.valueProperty().addListener(observable -> {
+                lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime(),musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration()));
+                if(slider.isValueChanging()){
+                    musicPlayer.playlist.get(musicPlayer.currentlyPlaying).seek(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration().multiply(slider.getValue()/100));
+
+                }
+            });
+
+            Label label = new Label();
+            v.getChildren().addAll(label, slider);
+
+            h.getChildren().addAll(musicPlayer.currentlyPlaying, v, lTwo);
+
+            h.setMinHeight(30);
+
+            h.setAlignment(Pos.BOTTOM_CENTER);
 
 
-        Label label=new Label();
-        v.getChildren().addAll(label,slider);
-
-        h.getChildren().addAll(play,v);
-
-        h.setMinHeight(30);
-        h.setMinWidth(600);
-
-        h.setAlignment(Pos.BOTTOM_CENTER);
+            ap.getChildren().add(h);
 
 
-        ap.getChildren().add(h);
+            ap.setStyle("-fx-background-color: rgba(255,68,85,0.68); -fx-border-radius: 90px; -fx-background-radius: 90px");
+            h.setStyle("-fx-border-radius: 90px; -fx-background-radius: 90px");
+            ap.setTranslateY(555);
+            ap.setTranslateX(200);
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.radiusProperty().setValue(15);
+            ap.setEffect(dropShadow);
+
+            base.getChildren().add(ap);
 
 
-        ap.setStyle("-fx-background-color: rgba(255,68,85,0.68); -fx-border-radius: 90px; -fx-background-radius: 90px");
-        h.setStyle("-fx-border-radius: 90px; -fx-background-radius: 90px");
-        ap.setTranslateY(555);
-        ap.setTranslateX(200);
-        DropShadow dropShadow=new DropShadow();
-        dropShadow.radiusProperty().setValue(15);
-        ap.setEffect(dropShadow);
+        }
 
-        base.getChildren().add(ap);
 
 
 
