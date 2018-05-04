@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.SwitchScene;
+import sample.MainStorage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +17,8 @@ import java.util.ResourceBundle;
 public class ViewEmployeeController implements Initializable {
 
     //Objects
-    SwitchScene sw = new SwitchScene();
+    AdminStorage access = new AdminStorage();
+    MainStorage backTo = new MainStorage();
 
 
     @Override
@@ -25,38 +26,18 @@ public class ViewEmployeeController implements Initializable {
 
     }
 
-
     public void handleBackButton(ActionEvent event) throws IOException {
-        sw.adminBack(event);
+        //access.mainAdminScene(event);
+        backTo.mainAdminScreen(event);
     }
 
     public void handleDeleteButton(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("removeEmployee.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void handleUpdateButton(ActionEvent event) {
-
+        access.removeEmployeeScene(event);
     }
 
     @FXML
     public void handleAddButton(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddEmployee.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        access.addEmployeeScene(event);
     }
 
 }

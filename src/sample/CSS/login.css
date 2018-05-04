@@ -40,7 +40,6 @@
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: black;
-    -fx-opacity: 0.6;
 }
 .root {
     -fx-background-color:linear-gradient(#ffffff,#ffffff);

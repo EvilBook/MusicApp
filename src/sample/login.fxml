@@ -31,7 +31,7 @@
       <AnchorPane fx:id="logInPane" layoutX="400.0" layoutY="14.0" translateX="-30.0">
          <children>
             <Button fx:id="LoginButton" layoutX="30.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="25.0" prefWidth="120" text="Log in" textAlignment="CENTER" />
-            <Button fx:id="createButton" layoutX="163.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
+            <Button layoutX="163.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
             <ImageView fitHeight="139.0" fitWidth="185.0" layoutX="69.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Graphics/logo.png" />

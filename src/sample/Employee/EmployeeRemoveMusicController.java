@@ -9,9 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import sample.DatabaseConnection.DbconnectionMusic;
+import sample.DatabaseConnection.MusicDBConnection;
 import sample.DatabaseConnection.RemoveAlbumDatabase;
-import sample.SwitchScene;
+import sample.MainStorage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,8 +33,8 @@ public class EmployeeRemoveMusicController implements Initializable {
     private ObservableList <Album> data;
 
     //Objects
-    SwitchScene sw = new SwitchScene();
-    DbconnectionMusic dbc = new DbconnectionMusic();
+    EmployeeStorage access = new EmployeeStorage();
+    MusicDBConnection dbc = new MusicDBConnection();
     Connection connection = dbc.connection;
     RemoveAlbumDatabase rmvDatabase = new RemoveAlbumDatabase();
 
@@ -89,7 +89,7 @@ public class EmployeeRemoveMusicController implements Initializable {
     }
 
     public void handleReturnButton(ActionEvent event) throws IOException {
-        sw.backToEmp(event);
+        access.employeeScreen(event);
     }
 
 }

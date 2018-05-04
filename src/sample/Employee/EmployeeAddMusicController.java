@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import sample.DatabaseConnection.AddAlbumToDatabase;
-import sample.SwitchScene;
+import sample.MainStorage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class EmployeeAddMusicController implements Initializable {
                             songPlaytimeField5, songPlaytimeField6, songPlaytimeField7, songPlaytimeField8;
 
     //Objects
-    SwitchScene sw = new SwitchScene();
+    EmployeeStorage access = new EmployeeStorage();
     AddAlbumToDatabase albumDatabase = new AddAlbumToDatabase();
 
 
@@ -91,10 +91,6 @@ public class EmployeeAddMusicController implements Initializable {
         }
     }
 
-    public void handleReturnButton(ActionEvent event) throws IOException {
-        sw.backToEmp(event);
-    }
-
     //Save the Album in the database
     public void saveAlbum () {
         //Contains: albumName, date, albumPrice, label, vinylNumber
@@ -109,6 +105,8 @@ public class EmployeeAddMusicController implements Initializable {
         albumDatabase.addSongArtist(songArtistField1.getText());
     }
 
-
+    public void handleReturnButton(ActionEvent event) throws IOException {
+        access.employeeScreen(event);
+    }
 
 }

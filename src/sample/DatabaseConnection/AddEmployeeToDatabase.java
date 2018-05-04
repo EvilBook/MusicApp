@@ -1,6 +1,6 @@
 package sample.DatabaseConnection;
 
-import sample.SwitchScene;
+import sample.MainStorage;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class AddEmployeeToDatabase {
     private String password = "Firmwar3";
 
     //Objects
-    SwitchScene sw = new SwitchScene();
+    MainStorage sw = new MainStorage();
 
     public AddEmployeeToDatabase() {
         try {

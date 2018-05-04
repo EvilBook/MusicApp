@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
-import sample.SwitchScene;
+import sample.MainStorage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +22,8 @@ public class MainEmployeeScreenController implements Initializable {
     @FXML Label nameLabel;
 
     //Objects
-    SwitchScene sw = new SwitchScene();
+    EmployeeStorage access = new EmployeeStorage();
+    MainStorage proceed = new MainStorage();
 
 
 
@@ -31,39 +32,21 @@ public class MainEmployeeScreenController implements Initializable {
 
     }
 
-    @FXML
-    public void handleLogOutButton (ActionEvent event) throws IOException {
-        sw.logOut(event);
-    }
-
     public void getName(String userEmail) {
         RetrieveInfoFromDatabase newRetrieve = new RetrieveInfoFromDatabase();
         nameLabel.setText(newRetrieve.getName(userEmail));
     }
 
-
     public void handleAddButton(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/employeeAddMusic.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        access.employeeAddMusic(event);
     }
 
     public void handleDeleteButton(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
+        access.employeeRemoveMusic(event);
+    }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/employeeRemoveMusic.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
+    @FXML
+    public void handleLogOutButton (ActionEvent event) throws IOException {
+        proceed.logOut(event);
     }
 }

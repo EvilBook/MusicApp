@@ -13,14 +13,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import sample.Admin.AdminController;
 import sample.DatabaseConnection.UpdateDatabase;
 import sample.Employee.MainEmployeeScreenController;
 import sample.User.MainUserScreenController;
@@ -65,6 +63,7 @@ public class LoginController implements Initializable{
 
     //Objects
     ExceptionClass exceptions = new ExceptionClass();
+    MainStorage access = new MainStorage();
 
 
     @Override
@@ -92,52 +91,48 @@ public class LoginController implements Initializable{
         Matcher matcher = pattern.matcher(userNameTextField.getText());
 
 
-        if (userNameTextField.getText().equals("admin") && PasswordTextField.getText().equals("password")) {
+        if(userNameTextField.getText().equals("admin") && PasswordTextField.getText().equals("password")) {
+            access.mainAdminScreen(event);          //Goes to the admin screen.
 
-                Node node = (Node) event.getSource();
-                Stage stage = (Stage) node.getScene().getWindow();
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/mainAdminScreen.fxml"));
-                Parent root;
-                root = loader.load();
-
-                Scene scene = new Scene(root, 1066.62, 600);
-                stage.setScene(scene);
-                stage.show();
-                System.out.println("admin");
-            }else{
+            } else {
 
         if(!matcher.find()) {
             UpdateDatabase updateDatabase = new UpdateDatabase();
-            if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+
+            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
                 userEmail = userNameTextField.getText();
+
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("User/MainUserScreen.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("User/mainUserScreen.fxml"));
                 Parent root;
                 root = loader.load();
+
                 MainUserScreenController one = loader.getController();
                 one.getName(userEmail);
+
                 Scene scene = new Scene(root,1066.62, 600);
                 stage.setScene(scene);
                 stage.show();
-                System.out.println("employee");
             }
 
-
-        }else {
+        } else {
             UpdateDatabase updateDatabase = new UpdateDatabase();
-            if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+
+            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
                 userEmail = userNameTextField.getText();
+
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Employee/employeeScreen.fxml"));
                 Parent root;
                 root = loader.load();
+
                 MainEmployeeScreenController emp = loader.getController();
                 emp.getName(userEmail);
+
                 Scene scene = new Scene(root,1066.62, 600);
                 stage.setScene(scene);
                 stage.show();
@@ -147,10 +142,12 @@ public class LoginController implements Initializable{
     }
 
     @FXML
-    public void handleCreateButton(ActionEvent event) throws IOException {
+    public void handleSignUpButton(ActionEvent event) {
+
         signUp.setBackground(Background.EMPTY);
         signUp2.setBackground(Background.EMPTY);
         scrollPane.setBackground(Background.EMPTY);
+
         Timeline time = new Timeline();
         KeyValue kv = new KeyValue(signUp.translateYProperty(), 0, Interpolator.EASE_BOTH);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
@@ -198,21 +195,19 @@ public class LoginController implements Initializable{
     }
 
     @FXML public void handleSubmitButton(ActionEvent event) throws InterruptedException {
-
         emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         passPat = Pattern.compile("[a-z0-9_-]{3,15}");
         namePat = Pattern.compile("[a-zA-Z\\s]+");
 
-
         //Here it's gonna check for empty fields before all
-        if (firstNameTextField.getText().isEmpty()) {
+        if(firstNameTextField.getText().isEmpty()) {
             firstNameLabel.setText("First name required");
             firstNameLabel.setOpacity(1);
             wait();
 
         }
 
-        if (lastNameTextField.getText().isEmpty()) {
+        if(lastNameTextField.getText().isEmpty()) {
             lastNameLabel.setText("Last name required");
             lastNameLabel.setOpacity(1);
             wait();
@@ -276,7 +271,6 @@ public class LoginController implements Initializable{
             }
             else {
 
-
                 UpdateDatabase database = new UpdateDatabase();
                 database.UpdateTableForUserCreation(emailTextField.getText(), passwordPasswordField.getText());
 
@@ -298,12 +292,10 @@ public class LoginController implements Initializable{
 
             }
         }
-
     }
 
     @FXML
     public void handleExitButton(ActionEvent event) {
         Platform.exit();
     }
-
 }

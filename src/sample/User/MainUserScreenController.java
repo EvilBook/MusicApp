@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
-import sample.SwitchScene;
+import sample.MainStorage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +17,7 @@ public class MainUserScreenController implements Initializable {
     @FXML Label name;
 
     //Object
-    SwitchScene sw = new SwitchScene();
+    MainStorage sw = new MainStorage();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
