@@ -1,20 +1,24 @@
 package sample;
 
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
@@ -281,7 +285,9 @@ public class MainUserScreenController implements Initializable {
     public VBox SetText(VBox h,Image image){
         ArrayList<Label> n=new ArrayList<>();
         for(Node l : h.getChildren()){
-            n.add((Label)l);
+            if(l instanceof Label) {
+                n.add((Label) l);
+            }
 
         }
         for(int i=0;i<n.size();i++){
@@ -314,6 +320,22 @@ public class MainUserScreenController implements Initializable {
         return h;
     }
     public VBox CreateLabels(VBox h,ImageView iv,ImageView cover){
+        ImageView imageView=new ImageView();
+        Image image1=new Image(getClass().getResource("Graphics/ic_album_3x.png").toString());
+
+        imageView.setImage(image1);
+        imageView.setFitWidth(80);
+        ColorAdjust colorAdjust=new ColorAdjust();
+        colorAdjust.setBrightness(100);
+        DropShadow dropShadow=new DropShadow();
+        dropShadow.setColor(new Color(1,1,1,1));
+        dropShadow.setRadius(0);
+        colorAdjust.setInput(dropShadow);
+        imageView.setEffect(colorAdjust);
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+        imageView.setCache(true);
+        h.getChildren().add(imageView);
         for(String i : s){
             Label newLabel=new Label();
             newLabel.setText(i);
@@ -330,7 +352,10 @@ public class MainUserScreenController implements Initializable {
         return SetText(h,cover.getImage());
     }
     public void CreateMore(Image image){
-        ShowMusic();
+
+
+
+
         if(moreAp!=null){
             showMoreAnimationTwo(moreAp);
         }
@@ -340,6 +365,12 @@ public class MainUserScreenController implements Initializable {
         HBox h=new HBox();
         HBox h1=new HBox();
         HBox h2=new HBox();
+
+
+
+
+
+
 
         ImageView iv=new ImageView();
 
@@ -364,7 +395,7 @@ public class MainUserScreenController implements Initializable {
         ImageView imageView3=new ImageView();
         Image image2=new Image(getClass().getResource("Graphics/cover.png").toString());
         imageView3.setImage(image2);
-        imageView3.setFitWidth(250);
+        imageView3.setFitWidth(230);
         imageView3.setPreserveRatio(true);
         imageView3.setStyle("-fx-background-color: #ffffff");
         plate=imageView3;
@@ -374,7 +405,10 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        h.getChildren().add(buy);
+
+
+
+
         v.visibleProperty().bind(moreAp.visibleProperty());
         h.visibleProperty().bind(moreAp.visibleProperty());
         v.minHeightProperty().bind(moreAp.minHeightProperty());
@@ -413,7 +447,9 @@ public class MainUserScreenController implements Initializable {
             newLabel.setText(i);
             newLabel.opacityProperty().bind(h.opacityProperty());
             newLabel.visibleProperty().bind(h.visibleProperty());
+            newLabel.setAlignment(Pos.CENTER);
             v3.getChildren().add(newLabel);
+            v3.setAlignment(Pos.BOTTOM_CENTER);
             moreInfoArray.add(newLabel);
         }
         VBox v2=new VBox();
@@ -437,6 +473,7 @@ public class MainUserScreenController implements Initializable {
 
 
         music.setOnMouseClicked(event -> {
+            ShowMusic();
             showSongsAnimation(musicAp);
 
         });
@@ -445,45 +482,19 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        h2.getChildren().addAll(v3,music);
-        v.getChildren().add(h2);
-
-        h.setStyle("-fx-background-color: rgb(255,58,71)");
-        h.setMinHeight(100);
+        h2.getChildren().addAll(music);
+        v.getChildren().addAll(h2, v3);
 
 
-        v.getChildren().add(h);
+
+
+
+
 
 
         Media media=new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\musicOne.mp3").toURI().toString());
         MediaPlayer mediaPlayer=new MediaPlayer(media);
         MediaView mediaView=new MediaView(mediaPlayer);
-
-        Slider slider=new Slider();
-        slider.setMinSize(250,50);
-
-        Button play=new Button();
-
-        HBox h4=new HBox();
-
-        h4.getChildren().addAll(play,slider);
-
-        m4=mediaPlayer;
-
-
-        play.setOnMouseClicked(event -> {
-            m4.play();
-            System.out.println(m4.getStatus());
-            m4.setVolume(100);
-        });
-
-
-
-
-
-
-        v.getChildren().addAll(mediaView,h4);
-
 
 
 
@@ -537,7 +548,7 @@ public class MainUserScreenController implements Initializable {
 
 
         Timeline time1=new Timeline();
-        KeyValue kv1 = new KeyValue(plate.translateXProperty(), 180, Interpolator.EASE_BOTH);
+        KeyValue kv1 = new KeyValue(plate.translateXProperty(), 150, Interpolator.EASE_BOTH);
         KeyValue kv2 = new KeyValue(plate.rotateProperty(), 300, Interpolator.EASE_BOTH);
         KeyFrame kf1 = new KeyFrame(Duration.seconds(0.2), kv1,kv2);
         time1.getKeyFrames().add(kf1);
@@ -620,6 +631,17 @@ public class MainUserScreenController implements Initializable {
                 Label l2=new Label();
 
                 Button play = new Button();
+
+
+            Image image1=new Image(getClass().getResource("Graphics/playerIcons/ic_play_circle_outline_3x.png").toString());
+            ImageView imageView2=new ImageView(image1);
+            imageView2.setFitWidth(30);
+            imageView2.setFitHeight(30);
+            ColorAdjust colorAdjust=new ColorAdjust();
+            colorAdjust.brightnessProperty().setValue(100);
+            play.setEffect(colorAdjust);
+            play.setGraphic(imageView2);
+
                 play.setOnMouseClicked(event -> {
                     musicPlayer.Play((Button)event.getSource());
 
@@ -627,18 +649,25 @@ public class MainUserScreenController implements Initializable {
 
                 });
 
+                play.setStyle("-fx-background-color: rgba(255,248,249,0); -fx-border-color: rgba(255,255,255,0);");
+                play.setMinHeight(4);
+                play.setMinWidth(4);
+
                 musicPlayer.setPlaylist(media, play);
 
 
 
 
-            ap.setStyle("-fx-background-color: rgba(255,140,155,0.67)");
+            ap.setStyle("-fx-background-color: rgba(15,15,15,0.80)");
                 label.setStyle("-fx-text-fill: #ffffff");
 
 
 
             Slider slider = new Slider();
             slider.setMinSize(250, 50);
+            ProgressBar progressBar=new ProgressBar(0);
+            progressBar.setMinWidth(250);
+            StackPane stackPane=new StackPane();
             musicPlayer.i=i;
             Label lTwo=new Label();
             lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(play).getCurrentTime(),musicPlayer.playlist.get(play).getMedia().getDuration()));
@@ -676,7 +705,13 @@ public class MainUserScreenController implements Initializable {
 
                 }
                 musicPlayer.slider.setValue(slider.getValue());
+                progressBar.setProgress(slider.getValue()*0.01);
             });
+
+
+
+
+
 
 
 
@@ -694,7 +729,12 @@ public class MainUserScreenController implements Initializable {
 
             HBox h4 = new HBox();
 
-                h4.getChildren().addAll(play, slider, lOne, lTwo);
+
+            stackPane.getChildren().addAll(progressBar, slider);
+
+
+
+            h4.getChildren().addAll(play, stackPane, lOne, lTwo);
 
                 v.getChildren().addAll(label, mediaView, h4);
 
@@ -712,7 +752,7 @@ public class MainUserScreenController implements Initializable {
 
 
         Timeline time = new Timeline();
-        KeyValue kv = new KeyValue(ap.translateXProperty(), 500, Interpolator.EASE_BOTH);
+        KeyValue kv = new KeyValue(ap.translateXProperty(), 389, Interpolator.EASE_BOTH);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.2), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t -> {
@@ -724,7 +764,7 @@ public class MainUserScreenController implements Initializable {
     public void showSongsAnimationTwo(AnchorPane ap){
 
         Timeline time = new Timeline();
-        KeyValue kv = new KeyValue(ap.translateXProperty(), -400, Interpolator.EASE_BOTH);
+        KeyValue kv = new KeyValue(ap.translateXProperty(), -800, Interpolator.EASE_BOTH);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.06), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t -> {
@@ -752,34 +792,45 @@ public class MainUserScreenController implements Initializable {
 
             Slider slider = new Slider();
             slider.setMinSize(600, 20);
-            slider.setValue((Double) (musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration().multiply(slider.getValue()/100)).toMillis());
+            slider.setValue((musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime().divide(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration().divide(100))).toMillis());
+            ProgressBar progressBar=new ProgressBar(0);
+            progressBar.setMinWidth(600);
+            StackPane stackPane=new StackPane();
             System.out.println(slider.getValue());
-            musicPlayer.playlist.get(musicPlayer.currentlyPlaying).setOnPlaying(() -> {
-                Timeline currentAnimation = new Timeline();
-                KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
-                KeyFrame kf1 = new KeyFrame(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration(), kv1);
-                currentAnimation.getKeyFrames().add(kf1);
-                currentAnimation.setOnFinished(t -> {
-                    // remove pane and restore scene 1
-                    //root1.getChildren().setAll(rectangle1);
-                    // set scene 2
-                    //primaryStage.setScene(scene2);
-                });
-                currentAnimation.play();
-                System.out.println(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getStatus());
-                System.out.println(currentAnimation.getStatus());
-                System.out.println(slider.getValue());
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Timeline currentAnimation = new Timeline();
+                    KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
+                    KeyFrame kf1 = new KeyFrame(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration(), kv1);
+                    currentAnimation.getKeyFrames().add(kf1);
+                    currentAnimation.setOnFinished(t -> {
+                        // remove pane and restore scene 1
+                        //root1.getChildren().setAll(rectangle1);
+                        // set scene 2
+                        //primaryStage.setScene(scene2);
+                    });
+                    currentAnimation.play();
+
+                }
             });
+
             slider.valueProperty().addListener(observable -> {
                 lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime(),musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration()));
                 if(slider.isValueChanging()){
                     musicPlayer.playlist.get(musicPlayer.currentlyPlaying).seek(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration().multiply(slider.getValue()/100));
 
                 }
+                musicPlayer.slider.setValue(slider.getValue());
+                progressBar.setProgress(slider.getValue()*0.01);
             });
 
+
+            stackPane.getChildren().addAll(progressBar, slider);
+
+
             Label label = new Label();
-            v.getChildren().addAll(label, slider);
+            v.getChildren().addAll(label, stackPane);
 
             h.getChildren().addAll(musicPlayer.currentlyPlaying, v, lTwo);
 
@@ -791,7 +842,7 @@ public class MainUserScreenController implements Initializable {
             ap.getChildren().add(h);
 
 
-            ap.setStyle("-fx-background-color: rgba(255,68,85,0.68); -fx-border-radius: 90px; -fx-background-radius: 90px");
+            ap.setStyle("-fx-background-color: rgba(67,61,61,0.68); -fx-border-radius: 90px; -fx-background-radius: 90px");
             h.setStyle("-fx-border-radius: 90px; -fx-background-radius: 90px");
             ap.setTranslateY(555);
             ap.setTranslateX(200);

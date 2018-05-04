@@ -139,3 +139,28 @@
 #close:hover{
     -fx-background-color: red;
 }
+.slider .track {
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
+.thumb{
+    -fx-background-color: #fb6964;
+}
+
+
+
+.progress-bar{
+    -fx-background-color: rgb(132, 86, 78);
+    -fx-accent: #fb6964;
+    -fx-pref-height: 1px;
+}
+.progress-bar > .track{
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-pref-height: 1px;
+}
+.progress-bar > .bar{
+    -fx-background-insets: 0 -4 0 0;
+    -fx-padding: 0.23em;
+
+
+}
+

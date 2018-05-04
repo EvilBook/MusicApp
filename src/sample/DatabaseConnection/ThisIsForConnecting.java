@@ -20,8 +20,8 @@ public class ThisIsForConnecting {
     public ThisIsForConnecting() {
 
 
-        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
-        String username = "evilBook@music-app";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+        String username = "mass@mass-music";
         String password = "Firmwar3";
 
 

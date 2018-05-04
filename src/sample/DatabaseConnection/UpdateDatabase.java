@@ -9,8 +9,8 @@ public class UpdateDatabase {
     Connection connection;
 
     public <T, A> void UpdateTableForUserCreation(T t, A a) {
-        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
-        String username = "evilBook@music-app";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+        String username = "mass@mass-music";
         String password = "Firmwar3";
 
 
@@ -20,7 +20,7 @@ public class UpdateDatabase {
             System.out.println("Works");
             new UpdateDatabase().connection=connection;
         } catch (SQLException e) {
-            throw new IllegalStateException("Connection failed", e);
+            throw new  IllegalStateException(e);
         }
 
 
@@ -51,8 +51,8 @@ public class UpdateDatabase {
 
     public <T, A> boolean CheckLogIn(T t, A a) {
 
-        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
-        String username = "evilBook@music-app";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+        String username = "mass@mass-music";
         String password = "Firmwar3";
 
 
@@ -62,7 +62,7 @@ public class UpdateDatabase {
             System.out.println("Works");
             new UpdateDatabase().connection=connection;
         } catch (SQLException e) {
-            throw new IllegalStateException("Connection failed", e);
+
         }
 
 
@@ -104,8 +104,8 @@ public class UpdateDatabase {
         return false;
     }
     public <T> void AddUserCreationData(T t) {
-        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
-        String username = "evilBook@music-app";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+        String username = "mass@mass-music";
         String password = "Firmwar3";
         ArrayList<String> userData= (ArrayList<String>) t;
 
@@ -116,7 +116,7 @@ public class UpdateDatabase {
             System.out.println("Works");
             new UpdateDatabase().connection=connection;
         } catch (SQLException e) {
-            throw new IllegalStateException("Connection failed", e);
+
         }
 
 

@@ -4,6 +4,9 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -83,8 +86,10 @@ public class MusicPlayer {
             playlist.get(currentlyPlaying).stop();
 
 
+
             if(playlist.containsKey(button)){
                 playlist.get(button).play();
+                playlist.get(button).setVolume(20);
                 currentlyPlaying=button;
             }
 
@@ -92,12 +97,28 @@ public class MusicPlayer {
         }
         else if(playlist.get(button).getStatus()== MediaPlayer.Status.PLAYING) {
             playlist.get(button).pause();
+            Image image2=new Image(getClass().getResource("Graphics/playerIcons/ic_play_circle_outline_3x.png").toString());
+            ImageView imageView3=new ImageView(image2);
+            imageView3.setFitWidth(30);
+            imageView3.setFitHeight(30);
+            ColorAdjust colorAdjust1=new ColorAdjust();
+            colorAdjust1.brightnessProperty().setValue(100);
+            currentlyPlaying.setEffect(colorAdjust1);
+            currentlyPlaying.setGraphic(imageView3);
         }else{
                 System.out.println(playlist.containsKey(button));
                 Arrays.asList(playlist);
                 if(playlist.containsKey(button)){
                     playlist.get(button).play();
                     currentlyPlaying=button;
+                    Image image2=new Image(getClass().getResource("Graphics/playerIcons/ic_pause_circle_outline_3x.png").toString());
+                    ImageView imageView3=new ImageView(image2);
+                    imageView3.setFitWidth(30);
+                    imageView3.setFitHeight(30);
+                    ColorAdjust colorAdjust1=new ColorAdjust();
+                    colorAdjust1.brightnessProperty().setValue(100);
+                    currentlyPlaying.setEffect(colorAdjust1);
+                    currentlyPlaying.setGraphic(imageView3);
                 }
         }
 
