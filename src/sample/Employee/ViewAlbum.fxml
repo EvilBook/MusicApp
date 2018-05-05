@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1066.22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.ViewAlbumController">
+<AnchorPane id="sceneBody" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.ViewAlbumController">
     <children>
-        <TableView fx:id="AlbumTable" layoutX="213.0" layoutY="141.0" onMouseClicked="#tableClick" prefHeight="263.0" prefWidth="704.0">
+        <TableView id="table" fx:id="AlbumTable" layoutX="213.0" layoutY="141.0" onMouseClicked="#tableClick" prefHeight="263.0" prefWidth="704.0" stylesheets="@../CSS/employeeAddAlbum.css">
             <columns>
                 <TableColumn fx:id="AlbumIdColumn" prefWidth="62.0" text="AlbumId" />
                 <TableColumn fx:id="AlbumNameColumn" prefWidth="131.0" text="AlbumName" />
