@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Pattern;
 
 public class ExceptionClass {
 
@@ -68,9 +71,10 @@ public class ExceptionClass {
 
 
     }
-  public boolean AlbumNameError(String AlbumName,Label label)throws IOException{
+  public boolean AlbumNameError(String AlbumName)throws IOException{
       if (AlbumName.matches(".*\\d+.*")){
-          label.setText("Invalid Input");
+          Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!AlbumName",ButtonType.OK);
+          dialog.show();
           return false;
 
 
@@ -83,7 +87,7 @@ public class ExceptionClass {
 
 
     }
-    public boolean ReleaseDateError(String ReleaseDateTextfield,Label errorMessage)throws IOException{
+    public boolean ReleaseDateError(String ReleaseDateTextfield)throws IOException{
         DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
         format.setLenient(false);
 
@@ -92,24 +96,29 @@ public class ExceptionClass {
             return true;
 
         }catch (ParseException e){
-            errorMessage.setText("invalid Input");
+            Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!ReleaseDate",ButtonType.OK);
+            dialog.show();
+
             return false;
 
         }
     }
 
-      public boolean vynlNumberError(String VynlNumberTextfield,Label errorMessage)throws IOException{
-        if (!VynlNumberTextfield.equals(1) && !VynlNumberTextfield.equals(2)){
-            errorMessage.setText("Invalid Input");
+      public boolean vynlNumberError(String VynlNumberTextfield)throws IOException{
+        int foo = Integer.parseInt(VynlNumberTextfield);
+        if (foo > 2){
+            Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!VynlNumber",ButtonType.OK);
+            dialog.show();
             return false;
 
         }return true;
 
         }
 
-        public boolean LabelNameErrorMessage(String LabelTextField,Label errorMessage)throws IOException{
+        public boolean LabelNameErrorMessage(String LabelTextField)throws IOException{
             if (LabelTextField.matches(".*\\d+.*")){
-                errorMessage.setText("Invalid Input");
+                Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!LabelName",ButtonType.OK);
+                dialog.show();
                 return false;
             }else return true;
 
@@ -117,36 +126,42 @@ public class ExceptionClass {
         }
 
 
-        public boolean PriceerrorMessage(String priceTextfield,Label errorMessage)throws IOException{
+        public boolean PriceerrorMessage(String priceTextfield)throws IOException{
        try {
            Integer.parseInt(priceTextfield);
+
            return true;
 
        }catch (NumberFormatException e){
-           errorMessage.setText("Invalid input");
+           Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input! Price",ButtonType.OK);
+           dialog.show();
 
            return false;
        }
 
         }
-        public boolean GenreErrorMessage(String GenreNameTextfield,Label errorMessage)throws IOException{
+        public boolean GenreErrorMessage(String GenreNameTextfield)throws IOException{
             if (GenreNameTextfield.matches(".*\\d+.*")){
-                errorMessage.setText("Invalid Input");
+                Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!GenreName",ButtonType.OK);
+                dialog.show();
                 return false;
             }else return true;
         }
 
-        public boolean SongNameErrorMessage(String songNameTextfield,Label errorMessage)throws IOException {
-            if (songNameTextfield.contains(",.!?@")) {
-                errorMessage.setText("invalid Input");
+        public boolean SongNameErrorMessage(String songNameTextfield)throws IOException {
+            Pattern namePat  = Pattern.compile("[a-zA-Z\\s]+");
+            if (songNameTextfield.matches(String.valueOf(namePat))) {
+                Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!AlbumName",ButtonType.OK);
+                dialog.show();
                 return false;
 
             }else return true;
 
         }
-        public boolean ArtistNameerrorMessage(String ArtistNameTextfield,Label errorMessage)throws IOException{
+        public boolean ArtistNameerrorMessage(String ArtistNameTextfield)throws IOException{
         if (ArtistNameTextfield.matches(".*\\d+.*")){
-            errorMessage.setText("Invalid Input");
+            Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!ArtistName",ButtonType.OK);
+            dialog.show();;
             return false;
         }else return true;
 
@@ -154,16 +169,18 @@ public class ExceptionClass {
 
         }
 
-     public boolean playTimeErrorMessage(String playTimeTextfield,Label errorMessage)throws IOException{
+     public boolean playTimeErrorMessage(String playTimeTextfield)throws IOException{
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("00:00");
             LocalTime.parse(playTimeTextfield);
 
-            return true;
-        }catch (DateTimeParseException e){
-            errorMessage.setText("Invalid input");
 
             return true;
+        }catch (DateTimeParseException e){
+            Alert dialog = new Alert(Alert.AlertType.ERROR,"Invalid Input!PlayTime",ButtonType.OK);
+            dialog.show();
+
+            return false;
         }
 
         }

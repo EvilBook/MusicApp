@@ -123,6 +123,14 @@ public class EmployeeAddMusicController implements Initializable {
 
         ExceptionClass myapp = new ExceptionClass();
 
+        if (myapp.GenreErrorMessage(albumGenreField.getText())==true && myapp.playTimeErrorMessage(songPlaytimeField.getText())==true
+                && myapp.ArtistNameerrorMessage(albumArtistField.getText())==true && myapp.vynlNumberError(albumVynlField.getText())&&
+                myapp.SongNameErrorMessage(songNameField.getText())==true && myapp.LabelNameErrorMessage(albumLabelField.getText())==true
+                && myapp.ReleaseDateError(albumDateField.getText())==true && myapp.PriceerrorMessage(albumPriceField.getText())==true &&
+                myapp.ArtistNameerrorMessage(songArtistField.getText())==true && myapp.AlbumNameError(albumNameField.getText())==true
+                )
+
+
 
 
 
@@ -133,9 +141,6 @@ public class EmployeeAddMusicController implements Initializable {
         }
         else
         {
-
-
-
 
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
             alert.setHeaderText("ERROR");
@@ -157,6 +162,7 @@ public class EmployeeAddMusicController implements Initializable {
         albumPriceField.clear();
         albumDateField.clear();
         albumLabelField.clear();
+        albumVynlField.clear();
     }
 
     //Save the Album in the database

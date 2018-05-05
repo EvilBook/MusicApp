@@ -33,10 +33,10 @@
                         <TextField fx:id="albumVynlField" alignment="CENTER" layoutX="186.0" layoutY="176.0" prefHeight="27.0" prefWidth="219.0" promptText="xx" />
                         <TextField fx:id="albumLabelField" alignment="CENTER" layoutX="186.0" layoutY="231.0" prefHeight="27.0" prefWidth="219.0" promptText="label" />
                         <TextField fx:id="albumPriceField" alignment="CENTER" layoutX="186.0" layoutY="288.0" prefHeight="27.0" prefWidth="219.0" promptText="eur" />
-                        <TextField fx:id="albumArtistField1" alignment="CENTER" layoutX="40.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="name" />
+                        <TextField fx:id="albumArtistField" alignment="CENTER" layoutX="40.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="name" />
                         <TextField fx:id="albumArtistField2" layoutX="40.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
                         <TextField fx:id="albumArtistField3" layoutX="40.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
-                        <TextField fx:id="albumGenreField1" alignment="CENTER" layoutX="248.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="genre" />
+                        <TextField fx:id="albumGenreField" alignment="CENTER" layoutX="248.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="genre" />
                         <TextField fx:id="albumGenreField2" layoutX="248.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
                         <TextField fx:id="albumGenreField3" layoutX="248.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
                         <Label fx:id="AlbumNameLabelErrorMessage" layoutX="186.0" layoutY="82.0" prefHeight="23.0" prefWidth="219.0" textAlignment="CENTER" textFill="#fc0202" />
@@ -63,9 +63,9 @@
                         <Label layoutX="14.0" layoutY="59.0" text="Song Name:" />
                         <Label layoutX="188.0" layoutY="59.0" text="Artist:" />
                         <Label layoutX="361.0" layoutY="59.0" text="Playtime:" />
-                        <TextField fx:id="songNameField1" alignment="CENTER" layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="name" />
-                        <TextField fx:id="songArtistField1" alignment="CENTER" layoutX="188.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="artist" />
-                        <TextField fx:id="songPlaytimeField1" alignment="CENTER" layoutX="361.0" layoutY="100.0" prefHeight="27.0" prefWidth="82.0" promptText="00:00" />
+                        <TextField fx:id="songNameField" alignment="CENTER" layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="name" />
+                        <TextField fx:id="songArtistField" alignment="CENTER" layoutX="188.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="artist" />
+                        <TextField fx:id="songPlaytimeField" alignment="CENTER" layoutX="361.0" layoutY="100.0" prefHeight="27.0" prefWidth="82.0" promptText="00:00" />
                         <TextField fx:id="songNameField2" layoutX="14.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
                         <TextField fx:id="songArtistField2" layoutX="188.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
                         <TextField fx:id="songPlaytimeField2" layoutX="361.0" layoutY="135.0" prefHeight="27.0" prefWidth="82.0" />
