@@ -27,12 +27,9 @@ import java.util.ResourceBundle;
 
 public class EmployeeRemoveMusicController implements Initializable
 {
+    //Variables
     @FXML private TextField selectionField;
-    @FXML private TableColumn<Album, String> idColumn;
-    @FXML private TableColumn<Album, String> nameColumn;
-    @FXML private TableColumn<Album, String > dateColumn;
-    @FXML private TableColumn<Album, String> priceColumn;
-    @FXML private TableColumn<Album, String> labelColumn;
+    @FXML private TableColumn<Album, String> idColumn,nameColumn,dateColumn,priceColumn,labelColumn;
     @FXML private TableView<Album> table;
 
     DbconnectionMusic dbc = new DbconnectionMusic();
@@ -42,19 +39,27 @@ public class EmployeeRemoveMusicController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        //Run a method to load the data in the table
+        try {
+            handleLoadButton();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
+    //Refer to another class that removes the album from the database
     public void removeData(int id){
         System.out.println("removing");
         RemoveAlbumDatabase rmvDatabase = new RemoveAlbumDatabase();
         rmvDatabase.removeAlbum(id);
     }
 
+    //Button press to remove
     @FXML
     private void handleRemove(){
 
+        //Check if the number is given correctly
         if(!selectionField.getText().isEmpty())
         {
             int id = Integer.parseInt(selectionField.getText());
@@ -65,7 +70,7 @@ public class EmployeeRemoveMusicController implements Initializable
 
     }
 
-
+    //Loads the data into the table
     @FXML
     public void handleLoadButton() throws IOException{
 
@@ -73,18 +78,17 @@ public class EmployeeRemoveMusicController implements Initializable
         data = FXCollections.observableArrayList();
 
         //Execute Query and store result in a rs
-
         try {
 
             ResultSet rs = connection.createStatement().executeQuery("SELECT  *FROM album");
-            while (rs.next()){
+
+            while (rs.next())
+            {
                 data.add(new Album(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
                 ));
 
                 // set cell value factory to tableView
-
                 idColumn.setCellValueFactory(new PropertyValueFactory<>("albumId"));
-
                 nameColumn.setCellValueFactory(new PropertyValueFactory<>("albumName"));
                 dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
                 priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));

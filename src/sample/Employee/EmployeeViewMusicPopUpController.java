@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.DbconnectionMusic;
@@ -28,16 +25,10 @@ import java.util.ResourceBundle;
 
 public class EmployeeViewMusicPopUpController implements Initializable
 {
-    @FXML private TableColumn<Song, String> songidColumn;
-    @FXML private TableColumn<Song, String> songnameColumn;
-    @FXML private TableColumn<Song, String> songtimeColumn;
-    @FXML private TableColumn<Song, String> songartistColumn;
-    @FXML private Label albumLabel;
-    @FXML private Label artistLabel;
-    @FXML private Label genreLabel;
-    @FXML private Label vynlLabel;
-    @FXML private Label labelLabel;
 
+    //Variables
+    @FXML private TableColumn<Song, String> songidColumn, songnameColumn, songtimeColumn, songartistColumn;
+    @FXML private Label albumLabel, artistLabel, genreLabel, vynlLabel, labelLabel, priceLabel, dateLabel;
     private int idAlbum;
 
     @FXML private TableView<Song> table;
@@ -48,24 +39,29 @@ public class EmployeeViewMusicPopUpController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        //Get the id of the album through the EmployeeDataStorage class
         idAlbum = EmployeeDataStorage.getInstance().getMessage();
         loadData(idAlbum);
     }
 
-    public void loadData(int idAlbum){
+    //Load the data
+    public void loadData(int idAlbum)
+    {
 
         Connection connection = dbc.connection;
         data = FXCollections.observableArrayList();
 
-        //Execute Query and store result in a rs
 
-        try {
+        try
+        {
 
+            //Execute query to display song information in the table
             ResultSet rs = connection.createStatement().executeQuery(
                     "SELECT idSong, songName, songArtist, playtime FROM song, album,songartist WHERE (idSong = song_idSong) && " +
                             "(album_idAlbum =" + idAlbum +"&& idAlbum = "+idAlbum+");");
 
-            while (rs.next()){
+            while (rs.next())
+            {
                 data.add(new Song(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
 
                 // set cell value factory to tableView
@@ -79,26 +75,36 @@ public class EmployeeViewMusicPopUpController implements Initializable
             }
 
 
+            //Execute query to display album information in the labels
             ResultSet rs2 = connection.createStatement().executeQuery(
                     "select distinct idalbum, albumname, date, price, label, vynlNumber, albumartist from album,albumartist where " +
                             "idAlbum = "+idAlbum+" && album_idAlbum = "+idAlbum+" ;");
             ResultSet rs3 = connection.createStatement().executeQuery(
                     "select distinct genre from album,genre where idAlbum = "+idAlbum+" && album_idAlbum = "+idAlbum+" ;");
 
-
-            while(rs2.next()){
+            //Set the data to the correct labels
+            while(rs2.next())
+            {
                 albumLabel.setText(rs2.getString(2));
-                artistLabel.setText(rs2.getString(7));
-                vynlLabel.setText(rs2.getString(6));
+                dateLabel.setText(rs2.getString(3));
+                priceLabel.setText(rs2.getString(4));
                 labelLabel.setText(rs2.getString(5));
+                vynlLabel.setText(rs2.getString(6));
+                artistLabel.setText(rs2.getString(7));
+
             }
-            while (rs3.next()){
+            while (rs3.next())
+            {
                 genreLabel.setText(rs3.getString(1));
             }
 
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong while trying to load the data to the table", ButtonType.OK);
+
         }
 
 

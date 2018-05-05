@@ -20,13 +20,15 @@
                   <TableColumn id="tableColumn" fx:id="songtimeColumn" prefWidth="75.0" text="Time" />
               </columns>
             </TableView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff84" height="154.0" layoutX="17.0" layoutY="19.0" stroke="#7070706e" strokeType="INSIDE" width="160.0" />
+            <Rectangle fx:id="albumImage" arcHeight="5.0" arcWidth="5.0" fill="#ffffff84" height="154.0" layoutX="17.0" layoutY="19.0" stroke="#7070706e" strokeType="INSIDE" width="160.0" />
             <Label id="albumNameLabel" fx:id="albumLabel" layoutX="186.0" layoutY="19.0" prefHeight="16.0" prefWidth="132.0" text="Sample Name" />
-            <Label id="albumArtistName" fx:id="artistLabel" layoutX="189.0" layoutY="55.0" text="Sample Artist" />
-            <Label fx:id="genreLabel" layoutX="189.0" layoutY="79.0" text="Sample Genre" />
-            <Line layoutX="418.0" layoutY="21.0" startY="150.0" />
-            <Label fx:id="vynlLabel" layoutX="430.0" layoutY="55.0" text="Vynl Number" />
-            <Label fx:id="labelLabel" layoutX="430.0" layoutY="79.0" text="Label" />
+            <Label id="albumArtistName" fx:id="artistLabel" layoutX="210.0" layoutY="60.0" text="Sample Artist" />
+            <Label fx:id="genreLabel" layoutX="446.0" layoutY="100.0" text="Sample Genre" />
+            <Line layoutX="418.0" layoutY="45.0" startY="130.0" />
+            <Label fx:id="vynlLabel" layoutX="209.0" layoutY="100.0" text="Sample Vynl Number" />
+            <Label fx:id="labelLabel" layoutX="209.0" layoutY="139.0" text="Sample Label" />
+            <Label fx:id="dateLabel" layoutX="446.0" layoutY="60.0" text="Sample Date" />
+            <Label fx:id="priceLabel" layoutX="445.0" layoutY="147.0" text="Sample Price" />
          </children>
       </Pane>
    </children>

@@ -30,12 +30,9 @@ import java.util.ResourceBundle;
 
 public class EmployeeViewMusicController implements Initializable
 {
+    //Variables
     @FXML private TextField selectionField;
-    @FXML private TableColumn<Album, String> idColumn;
-    @FXML private TableColumn<Album, String> nameColumn;
-    @FXML private TableColumn<Album, String > dateColumn;
-    @FXML private TableColumn<Album, String> priceColumn;
-    @FXML private TableColumn<Album, String> labelColumn;
+    @FXML private TableColumn<Album, String> idColumn, nameColumn, dateColumn, priceColumn, labelColumn;
     @FXML private TableView<Album> table;
 
     DbconnectionMusic dbc = new DbconnectionMusic();
@@ -45,9 +42,12 @@ public class EmployeeViewMusicController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        try {
+        try
+        {
             handleLoadButton();
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
 
@@ -55,25 +55,25 @@ public class EmployeeViewMusicController implements Initializable
 
 
 
+    //Load the data
     @FXML
-    public void handleLoadButton() throws IOException{
-
+    public void handleLoadButton() throws IOException
+    {
         Connection connection = dbc.connection;
         data = FXCollections.observableArrayList();
 
-        //Execute Query and store result in a rs
 
+        //Execute Query and store result in a rs
         try {
 
-            ResultSet rs = connection.createStatement().executeQuery("SELECT  *FROM album");
-            while (rs.next()){
+            ResultSet rs = connection.createStatement().executeQuery("SELECT  * FROM album");
+            while (rs.next())
+            {
                 data.add(new Album(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
                 ));
 
                 // set cell value factory to tableView
-
                 idColumn.setCellValueFactory(new PropertyValueFactory<>("albumId"));
-
                 nameColumn.setCellValueFactory(new PropertyValueFactory<>("albumName"));
                 dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
                 priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -82,8 +82,9 @@ public class EmployeeViewMusicController implements Initializable
                 table.setItems(null);
                 table.setItems(data);
             }
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
 
@@ -92,18 +93,23 @@ public class EmployeeViewMusicController implements Initializable
     }
 
 
+    //Handles clicking on a table row
     @FXML
-    public void tableClick(MouseEvent event) throws IOException {
+    public void tableClick(MouseEvent event) throws IOException
+    {
 
-        if(event.getClickCount() == 2) {
+        //If double click
+        if(event.getClickCount() == 2)
+        {
 
+            //Get the album id and save it in the singleton class
             Album row = table.getSelectionModel().getSelectedItem();
             String idAlbum = row.getAlbumId();
             System.out.println(idAlbum);
 
             int id = Integer.parseInt(idAlbum);
-
             EmployeeDataStorage.getInstance().setMessage(id);
+
 
             //When button is clicked pop up the second stage
             Stage stage = new Stage();

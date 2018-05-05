@@ -1,5 +1,5 @@
 package sample.DatabaseConnection;
-
+//Tables in musicdb: album, albumrtist, song, songartist, genre
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -8,8 +8,9 @@ import java.sql.*;
 
 
 
-//Tables in musicdb: album, albumrtist, song, songartist, genre
-public class AddAlbumToDatabase {
+//Class to add an album to the db
+public class AddAlbumToDatabase
+{
     //Variables
     private Statement st;
     private Connection connection;
@@ -19,6 +20,7 @@ public class AddAlbumToDatabase {
     private String albumKey;
     private String songKey;
 
+    //Constructor that connects to music2db
     public AddAlbumToDatabase()
     {
         try
@@ -34,6 +36,7 @@ public class AddAlbumToDatabase {
         }
     }
 
+    //Method that requests the last album id from the db
     public void getAlbumID()
     {
         try
@@ -44,6 +47,7 @@ public class AddAlbumToDatabase {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
+                //Set the album id to albumKey
                 albumKey = rs.getString(1);
                 System.out.println(albumKey);
             }
@@ -57,6 +61,7 @@ public class AddAlbumToDatabase {
         }
     }
 
+    //Method that requests the last song id from the db
     public void getSongID()
     {
         try
@@ -65,6 +70,7 @@ public class AddAlbumToDatabase {
             st=connection.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
+                //Give songKey the id
                 songKey = rs.getString(1);
                 System.out.println(songKey);
             }
@@ -83,10 +89,12 @@ public class AddAlbumToDatabase {
     public <T> void addAlbum(T albumName, T albumDate, T albumPrice, T label, T vynlNumber)
     {
 
+        //Request album id
         getAlbumID();
         System.out.println("addalbum------");
 
 
+        //Add the data for album to the database
         try
         {
             String query="insert into album(albumName, date, price, label, vynlNumber) "+" VALUES ('"+albumName+"','"+albumDate+"','"+albumPrice+"','"+label+"','"+vynlNumber+"')";
@@ -108,9 +116,11 @@ public class AddAlbumToDatabase {
     //Contains: albumArtist
     public <T> void addAlbumArtist(T albumArtist)
     {
+        //Request the album id
         getAlbumID();
         System.out.println("addalbumartist------");
 
+        //Add the data for albumartist to the database
         try
         {
             String query="insert into albumartist(albumArtist, album_idAlbum) "+" VALUES ('"+ albumArtist+"','"+albumKey+"')";
@@ -132,9 +142,11 @@ public class AddAlbumToDatabase {
     //Contains: genre
     public <T> void addGenre(T genre)
     {
+        //Request album id
         getAlbumID();
         System.out.println("addgenre------");
 
+        //Add the genre to the database
         try
         {
             String query="insert into genre(genre, album_idAlbum) "+" VALUES ('"+genre+"','"+albumKey+"')";
@@ -156,9 +168,11 @@ public class AddAlbumToDatabase {
     //Contains: songName, playTime
     public <T> void addSong(T songName, T playTime)
     {
+        //Request the album id
         getAlbumID();
         System.out.println("addsong------");
 
+        //Add the song data to the databse
         try
         {
             String query="insert into song(songName, playtime, album_idAlbum) "+" VALUES ('"+songName+"','"+playTime+"','"+albumKey+"')";
@@ -180,9 +194,11 @@ public class AddAlbumToDatabase {
     //Contains: songArtist
     public <T> void addSongArtist(T songArtist)
     {
+        //Request song id
         getSongID();
         System.out.println("addartist------");
 
+        //Add the songartist to the databse
         try
         {
             String query="insert into songartist(songArtist,song_idSong) "+" VALUES ('"+songArtist+"','"+songKey+"')";

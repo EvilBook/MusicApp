@@ -29,7 +29,7 @@
 #albumBody, #songBody{
     -fx-border-color: white;
     -fx-border-width: 2px;
-    -fx-border-radius: 10px;
+    -fx-border-radius: 12px;
     -fx-background-color: rgba(250, 250, 250, 0.5);
     -fx-background-radius: 10px;
     -fx-font-family: Arial;
@@ -71,7 +71,7 @@
 
 /* BUTTONS */
 .button{
-    -fx-background-color: rgba(78, 205, 196, 0.29);
+    -fx-background-color: rgba(120, 120, 120, 0.4);
     -fx-border: none;
     -fx-color: white;
     -fx-text-align: center;
@@ -85,7 +85,7 @@
 }
 
 .button:hover{
-    -fx-background-color: #c9fbf9;
+    -fx-background-color: rgba(120, 120, 120, 0.2);
 }
 
 
@@ -101,7 +101,7 @@
 }
 .text-field:focused {
     -fx-background-color: none;
-    -fx-border-color: #d82f8f;
+    -fx-border-color: rgba(74, 212, 216, 0.5);
     -fx-border-width: 1px;
     -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
     -fx-background-color: rgba(120, 120, 120, 0.1);

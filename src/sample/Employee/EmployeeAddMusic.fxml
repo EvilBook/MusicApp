@@ -29,10 +29,10 @@
                            </children>
                         </Pane>
                         <TextField fx:id="albumNameField" alignment="CENTER" layoutX="186.0" layoutY="54.0" prefHeight="27.0" prefWidth="219.0" promptText="name" />
-                        <TextField fx:id="albumDateField" alignment="CENTER" layoutX="186.0" layoutY="115.0" prefHeight="27.0" prefWidth="219.0" promptText="dd mm yy" />
+                        <TextField fx:id="albumDateField" alignment="CENTER" layoutX="186.0" layoutY="115.0" prefHeight="27.0" prefWidth="219.0" promptText="dd-mm-yyyy" />
                         <TextField fx:id="albumVynlField" alignment="CENTER" layoutX="186.0" layoutY="176.0" prefHeight="27.0" prefWidth="219.0" promptText="xx" />
                         <TextField fx:id="albumLabelField" alignment="CENTER" layoutX="186.0" layoutY="231.0" prefHeight="27.0" prefWidth="219.0" promptText="label" />
-                        <TextField fx:id="albumPriceField" alignment="CENTER" layoutX="186.0" layoutY="288.0" prefHeight="27.0" prefWidth="219.0" promptText="eur" />
+                        <TextField fx:id="albumPriceField" alignment="CENTER" layoutX="186.0" layoutY="288.0" prefHeight="27.0" prefWidth="219.0" promptText="euro" />
                         <TextField fx:id="albumArtistField1" alignment="CENTER" layoutX="40.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="name" />
                         <TextField fx:id="albumArtistField2" layoutX="40.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
                         <TextField fx:id="albumArtistField3" layoutX="40.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
@@ -80,8 +80,9 @@
                         <TextField fx:id="songNameField8" layoutX="14.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
                         <TextField fx:id="songArtistField8" layoutX="188.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
                         <TextField fx:id="songPlaytimeField8" layoutX="361.0" layoutY="345.0" prefHeight="27.0" prefWidth="82.0" />
-                        <Button fx:id="submitAlbumButton" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSubmitAlbum" text="Submit Album" />
-                        <Button fx:id="returnButton" layoutX="279.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homepage" />
+                        <Button fx:id="submitAlbumButton" layoutX="23.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSubmitAlbum" text="Submit Album" />
+                        <Button fx:id="returnButton" layoutX="153.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homepage" />
+                        <Button layoutX="325.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleClear" text="Clear all fields" />
                      </children>
                   </Pane>
                </children>

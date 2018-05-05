@@ -2,12 +2,14 @@ package sample.Employee;
 
 public class Song {
 
+    //Variables
     private String idSong;
     private String songName;
     private String playtime;
     private String songArtist;
 
 
+    //Constructor
     public Song(String idSong, String songName,String songArtist,String playtime) {
         this.idSong = idSong;
         this.songName = songName;
@@ -15,6 +17,7 @@ public class Song {
         this.songArtist = songArtist;
     }
 
+    //Getters
     public String getPlaytime() {
         return playtime;
     }

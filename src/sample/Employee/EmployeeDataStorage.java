@@ -1,5 +1,6 @@
 package sample.Employee;
 
+//Singleton class
 public class EmployeeDataStorage {
 
     private static EmployeeDataStorage ourInstance = new EmployeeDataStorage();

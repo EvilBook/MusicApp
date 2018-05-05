@@ -5,6 +5,7 @@ import javafx.scene.control.ButtonType;
 
 import java.sql.*;
 
+//Class that removes an album from the db
 public class RemoveAlbumDatabase {
 
     private Statement st;
@@ -15,6 +16,7 @@ public class RemoveAlbumDatabase {
     private String albumKey;
     private String songKey;
 
+    //Constructor that connects to the db
     public RemoveAlbumDatabase(){
         try
         {
@@ -29,6 +31,7 @@ public class RemoveAlbumDatabase {
         }
     }
 
+    //Method to remove the album with the given id
     public void removeAlbum(int id) {
 
         String query = "DELETE FROM album WHERE idalbum = ?";

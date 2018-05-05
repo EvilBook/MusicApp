@@ -11,8 +11,10 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.AddAlbumToDatabase;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmployeeAddMusicController implements Initializable {
@@ -39,80 +41,198 @@ public class EmployeeAddMusicController implements Initializable {
 
     }
 
+
     //Set the text from album textFields to the textArea
     @FXML
     void handleAddAlbum()
     {
-        if(!(albumNameField.getText().isEmpty()) && !(albumArtistField1.getText().isEmpty()) &&
-                !(albumGenreField1.getText().isEmpty()) && !(albumDateField.getText().isEmpty()) &&
-                !(albumLabelField.getText().isEmpty())&& !(albumVynlField.getText().isEmpty()))
-        {
             //Set text to album textArea
             albumTextArea.setText("Album\n---------------\nName: " + albumNameField.getText() + "\nArtist: " +
                     albumArtistField1.getText() + "\nGenre: " + albumGenreField1.getText() + "\nRelease Date: " +
                     albumDateField.getText() + "\nLabel: " + albumLabelField.getText() + "\nVynl Number: " +
                     albumVynlField.getText());
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
-            alert.setHeaderText("ERROR");
-            alert.showAndWait();
-        }
     }
 
     //Set the text from song textFields to the textArea
     @FXML
     void handleAddSong()
     {
-        if(!(songNameField1.getText().isEmpty()) && !(songArtistField1.getText().isEmpty()) && !(songPlaytimeField1.getText().isEmpty()))
-        {
             //Set text to song textArea
             songTextArea.setText("Song\n---------------\nName: " + songNameField1.getText() + "\nArtist: " +
                     songArtistField1.getText() + "\nPlaytime: " + songPlaytimeField1.getText());
+    }
+
+
+    //Handle Submit Album Button
+    @FXML
+    private void handleSubmitAlbum()
+    {
+        checkFormat();
+    }
+
+
+    //Check if text fields are filled in correctly
+    public void checkFormat()
+    {
+        //Check if album textfields are filled in
+        if(!(albumNameField.getText().isEmpty())&& !(albumArtistField1.getText().isEmpty()) &&
+                !(albumGenreField1.getText().isEmpty()) &&
+                !(albumLabelField.getText().isEmpty()) &&!(albumVynlField.getText().isEmpty()) &&
+                !(songNameField1.getText().isEmpty())  && !(songArtistField1.getText().isEmpty()) &&
+                !(songPlaytimeField1.getText().isEmpty()))
+        {
+
+            //Check if format is correctly filled in
+            if((albumDateField.getText().matches("\\d{2}-\\d{2}-\\d{4}")) &&
+                    (songPlaytimeField1.getText().matches("\\d{2}:\\d{2}:\\d{2}") ||
+                            songPlaytimeField1.getText().matches("\\d{2}:\\d{2}")) &&
+                    (albumVynlField.getText().matches("\\d{2}")))
+            {
+
+                //Ask for confirmation
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to submit the album?", ButtonType.APPLY, ButtonType.CANCEL);
+                alert.setTitle("CONFIRM");
+                Optional<ButtonType> result = alert.showAndWait();
+                if(result.get() == ButtonType.APPLY)
+                {
+                    //Save the data
+                    saveAlbum();
+                }
+
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields with the correct format.", ButtonType.OK);
+                alert.setHeaderText("ERROR");
+                alert.showAndWait();
+            }
         }
         else
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields.", ButtonType.OK);
             alert.setHeaderText("ERROR");
             alert.showAndWait();
         }
     }
 
-    //Handle Submit Album Button
-    @FXML
-    private void handleSubmitAlbum(){
-        if(!(albumGenreField1.getText().isEmpty()) && !(albumArtistField1.getText().isEmpty()) &&
-                !(albumNameField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()))
-        {
-            saveAlbum();
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all fields", ButtonType.OK);
-            alert.setHeaderText("ERROR");
-            alert.showAndWait();
-        }
-    }
 
     //Save the Album in the database
     public void saveAlbum()
     {
         AddAlbumToDatabase albumDatabase = new AddAlbumToDatabase();
 
-        //Contains: albumName, date, albumPrice, label, vynlNumber
-        albumDatabase.addAlbum(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(), albumLabelField.getText(), albumVynlField.getText());
+        //Contains: albumName, date, albumPrice, label, VynlNumber
+        albumDatabase.addAlbum(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(),
+                albumLabelField.getText(), albumVynlField.getText());
+
+
         //Contains: albumArtist
         albumDatabase.addAlbumArtist(albumArtistField1.getText());
+
+        if(!albumArtistField2.getText().isEmpty()){
+            albumDatabase.addAlbumArtist(albumArtistField2.getText());
+        }
+        if(!albumArtistField3.getText().isEmpty()){
+            albumDatabase.addAlbumArtist(albumArtistField3.getText());
+        }
+
+
         //Contains: genre
         albumDatabase.addGenre(albumGenreField1.getText());
-        //Contains: songName, playTime
+
+        if(!albumGenreField2.getText().isEmpty())
+        {
+            albumDatabase.addGenre(albumGenreField2.getText());
+        }
+        if(!albumGenreField3.getText().isEmpty())
+        {
+            albumDatabase.addGenre(albumGenreField3.getText());
+        }
+
+
+        //Contains: songName, playTime, songArtist
         albumDatabase.addSong(songNameField1.getText(), songPlaytimeField1.getText());
-        //Contains: songArtist
         albumDatabase.addSongArtist(songArtistField1.getText());
 
+        if(!songNameField2.getText().isEmpty() && !songArtistField2.getText().isEmpty() && !songArtistField2.getText().isEmpty() &&
+                !songPlaytimeField2.getText().isEmpty() && songPlaytimeField2.getText().matches("\\d{2}:\\d{2}"))
+        {
+            albumDatabase.addSong(songNameField2.getText(), songPlaytimeField2.getText());
+            albumDatabase.addSongArtist(songArtistField2.getText());
+        }
+
+        if(!songNameField3.getText().isEmpty() && !songArtistField3.getText().isEmpty() && !songArtistField3.getText().isEmpty() &&
+                !songPlaytimeField3.getText().isEmpty() && songPlaytimeField3.getText().matches("\\d{2}:\\d{2}"))
+        {
+            albumDatabase.addSong(songNameField3.getText(), songPlaytimeField3.getText());
+            albumDatabase.addSongArtist(songArtistField3.getText());
+        }
+
+        if(!songNameField4.getText().isEmpty() && !songArtistField4.getText().isEmpty() && !songArtistField4.getText().isEmpty() &&
+                !songPlaytimeField4.getText().isEmpty() && songPlaytimeField4.getText().matches("\\d{2}:\\d{2}"))
+        {
+            albumDatabase.addSong(songNameField4.getText(), songPlaytimeField4.getText());
+            albumDatabase.addSongArtist(songArtistField4.getText());
+        }
+
+        if(!songNameField5.getText().isEmpty() && !songArtistField5.getText().isEmpty() && !songArtistField5.getText().isEmpty() &&
+                !songPlaytimeField5.getText().isEmpty() && songPlaytimeField5.getText().matches("\\d{2}:\\d{2}"))
+        {
+            albumDatabase.addSong(songNameField5.getText(), songPlaytimeField5.getText());
+            albumDatabase.addSongArtist(songArtistField5.getText());
+        }
+
+        if(!songNameField6.getText().isEmpty() && !songArtistField6.getText().isEmpty() && !songArtistField6.getText().isEmpty() &&
+                !songPlaytimeField6.getText().isEmpty() && songPlaytimeField6.getText().matches("\\d{2}:\\d{2}"))
+        {
+            albumDatabase.addSong(songNameField6.getText(), songPlaytimeField6.getText());
+            albumDatabase.addSongArtist(songArtistField6.getText());
+        }
+
+        if(!songNameField7.getText().isEmpty() && !songArtistField7.getText().isEmpty() && !songArtistField7.getText().isEmpty() &&
+                !songPlaytimeField7.getText().isEmpty() && songPlaytimeField7.getText().matches("\\d{2}:\\d{2}"))
+        {
+            albumDatabase.addSong(songNameField7.getText(), songPlaytimeField7.getText());
+            albumDatabase.addSongArtist(songArtistField7.getText());
+        }
+
+        if(!songNameField8.getText().isEmpty() && !songArtistField8.getText().isEmpty() && !songArtistField8.getText().isEmpty() &&
+                !songPlaytimeField8.getText().isEmpty() && songPlaytimeField8.getText().matches("\\d{2}:\\d{2}"))
+        {
+            albumDatabase.addSong(songNameField8.getText(), songPlaytimeField8.getText());
+            albumDatabase.addSongArtist(songArtistField8.getText());
+        }
+
+
+        //Reset the text fields and show message
+        resetTextFields();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Album added to the database!", ButtonType.OK);
+        alert.setHeaderText("COMPLETE");
+        alert.showAndWait();
     }
 
+
+    //Handle button press Clear
+    @FXML
+    public void handleClear()
+    {
+        resetTextFields();
+    }
+
+
+    //Reset all the text fields
+    public void resetTextFields()
+    {
+        albumNameField.setText(""); albumLabelField.setText(""); albumDateField.setText(""); albumVynlField.setText("");albumPriceField.setText("");
+        albumArtistField1.setText(""); albumArtistField2.setText(""); albumArtistField3.setText("");
+        albumGenreField1.setText(""); albumGenreField2.setText(""); albumGenreField3.setText("");
+        songNameField1.setText(""); songNameField2.setText(""); songNameField3.setText(""); songNameField4.setText("");
+        songNameField5.setText(""); songNameField6.setText(""); songNameField7.setText(""); songNameField8.setText("");
+        songArtistField1.setText(""); songArtistField2.setText(""); songArtistField3.setText(""); songArtistField4.setText("");
+        songArtistField5.setText(""); songArtistField6.setText(""); songArtistField7.setText(""); songArtistField8.setText("");
+        songPlaytimeField1.setText(""); songPlaytimeField2.setText(""); songPlaytimeField3.setText(""); songPlaytimeField4.setText("");
+        songPlaytimeField5.setText(""); songPlaytimeField6.setText(""); songPlaytimeField7.setText(""); songPlaytimeField8.setText("");
+    }
 
     //Switch Scenes
     @FXML
@@ -127,5 +247,4 @@ public class EmployeeAddMusicController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 }

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//Class to connect to the musicdb2
 public class DbconnectionMusic {
 
     //Variables
