@@ -8,8 +8,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;
@@ -19,6 +22,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
@@ -51,6 +55,7 @@ public class MainUserScreenController implements Initializable {
 
     Stage stage;
     private MusicPlayer musicPlayer=MusicPlayer.getInstance();
+    private boolean musicState;
 
     public void SetStage(Stage stage){
         this.stage=stage;
@@ -117,6 +122,7 @@ public class MainUserScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        MainMenu();
         ReadNames();
         ReadNamesMusic();
 
@@ -191,6 +197,25 @@ public class MainUserScreenController implements Initializable {
 
 
 
+
+
+
+
+
+
+    }
+
+    public void MainMenu() {
+        AnchorPane mainMenu=new AnchorPane();
+        mainMenu.setPrefSize(base.getPrefWidth(), base.getPrefHeight());
+        mainMenu.setStyle("-fx-background: null");
+
+
+        //mainMenu.setEffect(new GaussianBlur());
+
+
+
+        //base.getChildren().add(mainMenu);
 
 
 
@@ -464,25 +489,9 @@ public class MainUserScreenController implements Initializable {
             v2.getChildren().add(newLabel);
         }
 
-        Button music=new Button();
-
-        music.setStyle("-fx-background-color: rgba(255, 255, 255, 0);" +
-                "    -fx-border-radius: 0px;\n" +
-                "    -fx-border-width: 0px 18px 18px 0px;\n" +
-                "    -fx-rotate: -45px;");
-
-
-        music.setOnMouseClicked(event -> {
-            ShowMusic();
-            showSongsAnimation(musicAp);
-
-        });
 
 
 
-
-
-        h2.getChildren().addAll(music);
         v.getChildren().addAll(h2, v3);
 
 
@@ -516,6 +525,7 @@ public class MainUserScreenController implements Initializable {
 
 
         ShowMore(moreAp);
+        ShowMusic();
 
 
     }
@@ -586,36 +596,121 @@ public class MainUserScreenController implements Initializable {
     public void ShowMusic(){
         AnchorPane apMusic=new AnchorPane();
         VBox v=new VBox();
-        HBox h=new HBox();
 
 
-        apMusic.setStyle("-background-color: #000000");
-        apMusic.setMinHeight(600);
-        apMusic.setMinWidth(390);
-
-        apMusic.setTranslateX(-400);
+        apMusic.setTranslateX(0);
 
         apMusic.getChildren().add(v);
 
-        apMusic.setTranslateY(50);
+        apMusic.setTranslateY(520);
 
 
 
         base.getChildren().add(apMusic);
 
 
+        ScrollPane scrollPane=new ScrollPane();
 
-        CreateSongs(apMusic,v);
+
+        apMusic.getChildren().add(scrollPane);
+
+
+        scrollPane.setTranslateY(80);
+
+
+
+
+        apMusic.setOnMouseClicked(event -> {
+            System.out.println("BITCH");
+        });
+
+
+
+
+
+
+        CreateSongs(apMusic,v,scrollPane);
 
 
     }
 
-    public void CreateSongs(AnchorPane ap,VBox vOne){
+    public void CreateSongs(AnchorPane ap,VBox vOne, ScrollPane scrollPane){
+
+
+        VBox v = new VBox();
+
+
+        Label newLabel=new Label();
+
+
+        newLabel.setText("Album Songs");
+
+
+        newLabel.setAlignment(Pos.CENTER);
+
+
+        newLabel.setStyle("-fx-text-fill: #ffffff;");
+
+
+
+        Button newButton=new Button();
+
+
+        newButton.setStyle("-fx-background-color: rgba(255, 255, 255, 0); -fx-border-radius: 0px; -fx-border-width: 0px 4px 4px 0px; -fx-rotate: 45px;");
+
+
+        newButton.setAlignment(Pos.CENTER);
+
+
+        newButton.setOnMouseClicked(event -> {
+
+
+            showSongsAnimationTwo(musicAp);
+
+        });
+
+
+
+        v.getChildren().addAll(newLabel, showSongsAnimationButton());
+
+
+        v.setAlignment(Pos.TOP_CENTER);
+
+
+        v.setMaxSize(389,40);
+        v.setMinSize(389,80);
+
+
+        newLabel.setAlignment(Pos.CENTER);
+
+
+        v.setSpacing(8);
+
+
+
+
+
+
+
+
+
+
+        ap.getChildren().add(v);
+
+
+
+
+
+
+
+
+
+
 
 
         for(int i = 0; i< nameMusic.size(); i++) {
 
-                VBox v = new VBox();
+
                 Label label = new Label();
 
 
@@ -658,8 +753,10 @@ public class MainUserScreenController implements Initializable {
 
 
 
-            ap.setStyle("-fx-background-color: rgba(15,15,15,0.80)");
-                label.setStyle("-fx-text-fill: #ffffff");
+            ap.setStyle("-fx-background-color: linear-gradient(rgb(21,13,18) 0%, rgba(17,17,17,0.65) 30%)");
+
+
+
 
 
 
@@ -733,16 +830,39 @@ public class MainUserScreenController implements Initializable {
             stackPane.getChildren().addAll(progressBar, slider);
 
 
+            h4.setTranslateX(8);
 
-            h4.getChildren().addAll(play, stackPane, lOne, lTwo);
 
-                v.getChildren().addAll(label, mediaView, h4);
 
-                vOne.getChildren().add(v);
+
+            h4.getChildren().addAll(musicButtonAnimation(), stackPane, lOne, lTwo);
+
+
+
+
+                vOne.getChildren().addAll(label, mediaView, h4);
+
+            vOne.setPadding(new Insets(14,0,0,8));
+
+
+
+
+
+
+
+
+
 
 
 
         }
+        scrollPane.setContent(vOne);
+        scrollPane.setStyle("-fx-background-color: null; -fx-border-width: 2px 0px 0px 0px; -fx-border-color: #ffffff;");
+        scrollPane.setMaxSize(389,368);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setFitToWidth(true);
+        DropShadow dropShadow=new DropShadow();
+        scrollPane.setEffect(dropShadow);
         musicAp=ap;
 
     }
@@ -750,9 +870,13 @@ public class MainUserScreenController implements Initializable {
     public void showSongsAnimation(AnchorPane ap) {
 
 
+        musicState=true;
+
+
+
 
         Timeline time = new Timeline();
-        KeyValue kv = new KeyValue(ap.translateXProperty(), 389, Interpolator.EASE_BOTH);
+        KeyValue kv = new KeyValue(ap.translateYProperty(), 250, Interpolator.EASE_BOTH);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.2), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t -> {
@@ -763,9 +887,13 @@ public class MainUserScreenController implements Initializable {
     }
     public void showSongsAnimationTwo(AnchorPane ap){
 
+
+        musicState=false;
+
+
         Timeline time = new Timeline();
-        KeyValue kv = new KeyValue(ap.translateXProperty(), -800, Interpolator.EASE_BOTH);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.06), kv);
+        KeyValue kv = new KeyValue(ap.translateYProperty(), 520, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.3), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t -> {
         });
@@ -860,6 +988,366 @@ public class MainUserScreenController implements Initializable {
 
 
     }
+
+
+    public Pane musicButtonAnimation(){
+
+
+        Pane pane=new Pane();
+
+
+        pane.setId("1");
+
+
+
+        pane.setMaxSize(15,15);
+        pane.setMinSize(15,15);
+
+
+
+        Line line=new Line();
+        line.setStartX(0);
+        line.setStartY(0);
+        line.setEndX(pane.getMaxWidth());
+        line.setEndY(pane.getMaxHeight()/2);
+
+
+        Line line1=new Line();
+        line1.setStartX(0);
+        line1.setStartY(pane.getMaxHeight());
+        line1.setEndX(pane.getMaxWidth());
+        line1.setEndY(pane.getMaxHeight()/2);
+
+
+        Line line2=new Line();
+        line2.setStartX(0);
+        line2.setStartY(pane.getMaxHeight()*2/4);
+        line2.setEndX(0);
+        line2.setEndY(pane.getMaxHeight()*2/4);
+
+
+
+        pane.setOnMouseClicked(event -> {
+
+
+            if(pane.getId()=="1") {
+
+
+                Timeline time = new Timeline();
+                KeyValue kv = new KeyValue(line.startXProperty(), pane.getMaxWidth() * 3 / 4, Interpolator.EASE_BOTH);
+                KeyValue kv1 = new KeyValue(line1.startXProperty(), pane.getMaxWidth() * 1 / 4, Interpolator.EASE_BOTH);
+                KeyValue kv2 = new KeyValue(line.endXProperty(), pane.getMaxWidth() * 3 / 4, Interpolator.EASE_BOTH);
+                KeyValue kv3 = new KeyValue(line1.endXProperty(), pane.getMaxWidth() * 1 / 4, Interpolator.EASE_BOTH);
+                KeyValue kv4 = new KeyValue(line.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv5 = new KeyValue(line1.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv6 = new KeyValue(line.endYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv7 = new KeyValue(line1.endYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kvFinal = new KeyValue(line2.startXProperty(), pane.getMaxWidth() * 3 / 4, Interpolator.EASE_BOTH);
+                KeyValue kvFinal1 = new KeyValue(line2.endXProperty(), pane.getMaxWidth() * 3 / 4, Interpolator.EASE_BOTH);
+                KeyValue kvFinal2 = new KeyValue(line2.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kvFinal3 = new KeyValue(line2.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyFrame kf = new KeyFrame(Duration.seconds(0.8), kv, kv1, kv2, kv3, kv4, kv5, kv6, kv7, kvFinal, kvFinal1, kvFinal2, kvFinal3);
+                time.getKeyFrames().add(kf);
+                time.setOnFinished(t -> {
+                });
+                time.play();
+                pane.setId("2");
+            }else{
+
+
+                Timeline time = new Timeline();
+                KeyValue kv = new KeyValue(line.startXProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv1 = new KeyValue(line1.startXProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv2 = new KeyValue(line.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                KeyValue kv3 = new KeyValue(line1.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                KeyValue kv4 = new KeyValue(line.startYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv5 = new KeyValue(line1.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv6 = new KeyValue(line.endYProperty(), pane.getMaxHeight()/2, Interpolator.EASE_BOTH);
+                KeyValue kv7 = new KeyValue(line1.endYProperty(), pane.getMaxHeight()/2, Interpolator.EASE_BOTH);
+                KeyValue kvFinal = new KeyValue(line2.startXProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kvFinal1 = new KeyValue(line2.endXProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kvFinal2 = new KeyValue(line2.startYProperty(), pane.getMaxHeight()*2/4, Interpolator.EASE_BOTH);
+                KeyValue kvFinal3 = new KeyValue(line2.startYProperty(), pane.getMaxHeight()*2/4, Interpolator.EASE_BOTH);
+                KeyFrame kf = new KeyFrame(Duration.seconds(0.8), kv, kv1, kv2, kv3, kv4, kv5, kv6, kv7, kvFinal, kvFinal1, kvFinal2, kvFinal3);
+                time.getKeyFrames().add(kf);
+                time.setOnFinished(t -> {
+                });
+                time.play();
+
+
+                pane.setId("1");
+
+
+
+            }
+
+
+        });
+
+
+        line.setFill(new Color(1,1,1,1));
+        line1.setFill(line.getFill());
+        line.setStroke(line.getFill());
+        line1.setStroke(line.getFill());
+        line.setStrokeWidth(4);
+        line1.setStrokeWidth(4);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+        line2.setFill(line.getFill());
+        line2.setStroke(line.getFill());
+        line2.setStrokeWidth(4);
+        line2.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        pane.getChildren().addAll(line, line1, line2);
+
+
+        pane.setStyle("-fx-background-color: null;");
+
+
+        return pane;
+
+
+    }
+
+
+    public Pane showSongsAnimationButton(){
+
+
+        Pane pane=new Pane();
+
+
+        pane.setId("1");
+
+
+
+        pane.setMaxSize(40,40);
+        pane.setMinSize(40,40);
+
+
+
+        Line line=new Line();
+        line.setStartX(0-15);
+        line.setStartY(0);
+        line.setEndX(pane.getMaxWidth()/2);
+        line.setEndY(pane.getMaxHeight());
+
+
+        Line line1=new Line();
+        line1.setStartX(pane.getMaxWidth()+15);
+        line1.setStartY(0);
+        line1.setEndX(pane.getMaxWidth()/2);
+        line1.setEndY(pane.getMaxHeight());
+
+
+        Arc arc=new Arc();
+
+
+
+        arc.setStrokeWidth(4);
+
+
+        arc.setCenterX(pane.getMaxWidth()/2);
+        arc.setCenterY(pane.getMaxHeight()/2);
+        arc.setRadiusX(pane.getMaxWidth());
+        arc.setRadiusY(pane.getMaxHeight());
+
+
+        arc.setStartAngle(0);
+
+
+        arc.setLength(0);
+
+
+
+
+
+
+
+        arc.setType(ArcType.OPEN);
+
+
+
+
+
+
+
+        pane.setOnMouseClicked(event -> {
+
+
+            if(pane.getId()=="1") {
+
+
+                Timeline time = new Timeline();
+                KeyValue kv = new KeyValue(line.startXProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv1 = new KeyValue(line1.startXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                KeyValue kv2 = new KeyValue(line.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                KeyValue kv3 = new KeyValue(line1.endXProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv4 = new KeyValue(line.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv5 = new KeyValue(line1.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv6 = new KeyValue(line.endYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv7 = new KeyValue(line1.endYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv8 = new KeyValue(arc.lengthProperty(), 360, Interpolator.EASE_BOTH);
+                KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv, kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8);
+                time.getKeyFrames().add(kf);
+                time.setOnFinished(t -> {
+                });
+                time.play();
+                pane.setId("2");
+
+                showSongsAnimation(musicAp);
+
+
+            }else{
+
+
+                Timeline time = new Timeline();
+                KeyValue kv = new KeyValue(line.startXProperty(), 0-15, Interpolator.EASE_BOTH);
+                KeyValue kv1 = new KeyValue(line1.startXProperty(), pane.getMaxWidth()+15, Interpolator.EASE_BOTH);
+                KeyValue kv2 = new KeyValue(line.endXProperty(), pane.getMaxWidth()/2, Interpolator.EASE_BOTH);
+                KeyValue kv3 = new KeyValue(line1.endXProperty(), pane.getMaxWidth()/2, Interpolator.EASE_BOTH);
+                KeyValue kv4 = new KeyValue(line.startYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv5 = new KeyValue(line1.startYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv6 = new KeyValue(line.endYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv7 = new KeyValue(line1.endYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv8 = new KeyValue(arc.lengthProperty(), 0, Interpolator.EASE_BOTH);
+                KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv, kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8);
+                time.getKeyFrames().add(kf);
+                time.setOnFinished(t -> {
+                });
+                time.play();
+
+
+                pane.setId("1");
+
+
+                showSongsAnimationTwo(musicAp);
+
+
+
+
+            }
+
+
+        });
+
+
+        line.setFill(new Color(0.8,0.4,0.6,1));
+        line1.setFill(line.getFill());
+        line.setStroke(line.getFill());
+        line1.setStroke(line.getFill());
+        line.setStrokeWidth(8);
+        line1.setStrokeWidth(8);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        arc.setFill(new Color(0,0,0,0));
+        arc.setStroke(line.getFill());
+
+
+        arc.setOnMouseEntered(event -> {
+
+
+            arc.setFill(new Color(1,0.4,0.4,0.3));
+
+
+        });
+
+
+        arc.setOnMouseExited(event -> {
+
+
+            arc.setFill(new Color(1,0.4,0.4,0));
+
+
+        });
+
+
+        pane.setOnMouseEntered(event -> {
+            DropShadow dropShadow=new DropShadow();
+
+
+            dropShadow.setColor(new Color(1,1,1,1));
+
+
+            line.setEffect(dropShadow);
+            line1.setEffect(dropShadow);
+
+
+        });
+
+
+        pane.setOnMouseExited(event -> {
+
+
+
+            line.setEffect(null);
+            line1.setEffect(null);
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        pane.getChildren().addAll(line, line1, arc);
+
+
+        pane.setStyle("-fx-background-color: null;");
+
+
+        return pane;
+
+
+    }
+
+
 
 
 
