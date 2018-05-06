@@ -7,6 +7,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -36,7 +37,7 @@ public class MusicPlayer {
     int i;
 
 
-    Button currentlyPlaying;
+    Pane currentlyPlaying;
 
 
 
@@ -45,7 +46,7 @@ public class MusicPlayer {
     Slider slider;
 
 
-    HashMap<Button, MediaPlayer> playlist =new HashMap<Button, MediaPlayer>();
+    HashMap<Pane, MediaPlayer> playlist =new HashMap<Pane, MediaPlayer>();
 
 
 
@@ -64,12 +65,12 @@ public class MusicPlayer {
     }
 
 
-    public void setPlaylist(Media name, Button button){
+    public void setPlaylist(Media name, Pane pane){
 
         try{
             Media media = name;
             mediaPlayer=new MediaPlayer(name);
-            playlist.put(button,mediaPlayer);
+            playlist.put(pane,mediaPlayer);
             mediaPlayers.add(mediaPlayer);
             duration=mediaPlayer.getMedia().getDuration();
 
@@ -81,45 +82,25 @@ public class MusicPlayer {
 
 
     }
-    public void Play(Button button){
-        if(currentlyPlaying!=button && currentlyPlaying!=null){
+    public void Play(Pane pane){
+        if(currentlyPlaying!=pane && currentlyPlaying!=null){
             playlist.get(currentlyPlaying).stop();
 
 
 
-            if(playlist.containsKey(button)){
-                playlist.get(button).play();
-                playlist.get(button).setVolume(20);
-                currentlyPlaying=button;
+            if(playlist.containsKey(pane)){
+                playlist.get(pane).play();
+                playlist.get(pane).setVolume(20);
+                currentlyPlaying=pane;
             }
 
 
         }
-        else if(playlist.get(button).getStatus()== MediaPlayer.Status.PLAYING) {
-            playlist.get(button).pause();
-            Image image2=new Image(getClass().getResource("Graphics/playerIcons/ic_play_circle_outline_3x.png").toString());
-            ImageView imageView3=new ImageView(image2);
-            imageView3.setFitWidth(30);
-            imageView3.setFitHeight(30);
-            ColorAdjust colorAdjust1=new ColorAdjust();
-            colorAdjust1.brightnessProperty().setValue(100);
-            currentlyPlaying.setEffect(colorAdjust1);
-            currentlyPlaying.setGraphic(imageView3);
+        else if(playlist.get(pane).getStatus()== MediaPlayer.Status.PLAYING) {
+            playlist.get(pane).pause();
+
         }else{
-                System.out.println(playlist.containsKey(button));
-                Arrays.asList(playlist);
-                if(playlist.containsKey(button)){
-                    playlist.get(button).play();
-                    currentlyPlaying=button;
-                    Image image2=new Image(getClass().getResource("Graphics/playerIcons/ic_pause_circle_outline_3x.png").toString());
-                    ImageView imageView3=new ImageView(image2);
-                    imageView3.setFitWidth(30);
-                    imageView3.setFitHeight(30);
-                    ColorAdjust colorAdjust1=new ColorAdjust();
-                    colorAdjust1.brightnessProperty().setValue(100);
-                    currentlyPlaying.setEffect(colorAdjust1);
-                    currentlyPlaying.setGraphic(imageView3);
-                }
+            playlist.get(pane).play();
         }
 
     }

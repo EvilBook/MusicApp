@@ -143,14 +143,14 @@
     -fx-background-color: rgba(255, 255, 255, 0);
 }
 .thumb{
-    -fx-background-color: #f5b2fb;
+    -fx-background-color: #87b9e5;
 }
 
 
 
 .progress-bar{
-    -fx-background-color: rgb(91, 57, 74);
-    -fx-accent: #f5b2fb;
+    -fx-background-color: #283a51;
+    -fx-accent: #87b9e5;
     -fx-pref-height: 1px;
 }
 .progress-bar > .track{

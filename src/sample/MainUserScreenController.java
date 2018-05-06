@@ -52,6 +52,8 @@ public class MainUserScreenController implements Initializable {
 
     @FXML
     AnchorPane base;
+    @FXML
+    AnchorPane base1;
 
     Stage stage;
     private MusicPlayer musicPlayer=MusicPlayer.getInstance();
@@ -99,6 +101,10 @@ public class MainUserScreenController implements Initializable {
     MediaPlayer mediaPlayerMusic;
 
     MediaPlayer mediaPlayer;
+
+
+    StackPane stackPane1=new StackPane();
+
 
 
 
@@ -384,12 +390,17 @@ public class MainUserScreenController implements Initializable {
         if(moreAp!=null){
             showMoreAnimationTwo(moreAp);
         }
+
+
+
+
         System.out.println("Doesnt Work");
         moreAp=new AnchorPane();
         VBox v=new VBox();
         HBox h=new HBox();
         HBox h1=new HBox();
         HBox h2=new HBox();
+
 
 
 
@@ -530,8 +541,34 @@ public class MainUserScreenController implements Initializable {
 
     }
     public void ShowMore(AnchorPane ap){
+
+
+
+        StackPane rootPane = new StackPane();
+
+        // circle container
+        Pane container = new Pane();
+
+        // circle container is a child of the root pane
+        //rootPane.getChildren().addAll(container, moreAp);
+
+        // background style for the container
+        container.setStyle("-fx-background-color: rgba(25,40,80,0)");
+
+        // create the milk glass pane
+        MilkGlassPane milkGlassPane = new MilkGlassPane(base);
+        milkGlassPane.setMaxSize(390, 600);
+
+
+        milkGlassPane.translateXProperty().bind(moreAp.translateXProperty());
+
+
+        rootPane.getChildren().addAll(milkGlassPane, moreAp);
+
+
+        base1.getChildren().add(rootPane);
+
         System.out.println("still dont");
-        ap.setStyle("-background-color: #000000");
         ap.setMinHeight(600);
         ap.setMinWidth(390);
 
@@ -539,10 +576,9 @@ public class MainUserScreenController implements Initializable {
         System.out.println(ap.getChildren().size());
         for(Node n : ap.getChildren()){
             n.setOpacity(100);
-            n.setStyle("-fx-background-color: rgba(0,0,0,0.8)");
+            n.setStyle("-fx-background-color: rgba(0,0,0,0.16)");
             System.out.println(n.getOpacity()+"WHAT");
         }
-        base.getChildren().add(ap);
 
         showMoreAnimationOne(ap);
     }
@@ -602,7 +638,7 @@ public class MainUserScreenController implements Initializable {
 
         apMusic.getChildren().add(v);
 
-        apMusic.setTranslateY(520);
+        apMusic.setTranslateY(534);
 
 
 
@@ -615,7 +651,7 @@ public class MainUserScreenController implements Initializable {
         apMusic.getChildren().add(scrollPane);
 
 
-        scrollPane.setTranslateY(80);
+        scrollPane.setTranslateY(70);
 
 
 
@@ -671,7 +707,7 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        v.getChildren().addAll(newLabel, showSongsAnimationButton());
+        v.getChildren().addAll(showSongsAnimationButton(), newLabel);
 
 
         v.setAlignment(Pos.TOP_CENTER);
@@ -684,7 +720,11 @@ public class MainUserScreenController implements Initializable {
         newLabel.setAlignment(Pos.CENTER);
 
 
-        v.setSpacing(8);
+        v.setSpacing(0);
+
+
+        newLabel.setTranslateY(14);
+
 
 
 
@@ -725,35 +765,20 @@ public class MainUserScreenController implements Initializable {
                 Label l=new Label();
                 Label l2=new Label();
 
-                Button play = new Button();
-
-
-            Image image1=new Image(getClass().getResource("Graphics/playerIcons/ic_play_circle_outline_3x.png").toString());
-            ImageView imageView2=new ImageView(image1);
-            imageView2.setFitWidth(30);
-            imageView2.setFitHeight(30);
-            ColorAdjust colorAdjust=new ColorAdjust();
-            colorAdjust.brightnessProperty().setValue(100);
-            play.setEffect(colorAdjust);
-            play.setGraphic(imageView2);
-
-                play.setOnMouseClicked(event -> {
-                    musicPlayer.Play((Button)event.getSource());
-
-
-
-                });
-
-                play.setStyle("-fx-background-color: rgba(255,248,249,0); -fx-border-color: rgba(255,255,255,0);");
-                play.setMinHeight(4);
-                play.setMinWidth(4);
-
-                musicPlayer.setPlaylist(media, play);
+                Pane play = musicButtonAnimation(media);
 
 
 
 
-            ap.setStyle("-fx-background-color: linear-gradient(rgb(21,13,18) 0%, rgba(17,17,17,0.65) 30%)");
+            ap.setStyle("-fx-background-color: linear-gradient(#587d9d, #2e4052); -fx-background-radius: 24px;");
+
+
+            ap.setEffect(new DropShadow());
+
+
+            musicPlayer.setPlaylist(media, play);
+
+
 
 
 
@@ -835,14 +860,22 @@ public class MainUserScreenController implements Initializable {
 
 
 
-            h4.getChildren().addAll(musicButtonAnimation(), stackPane, lOne, lTwo);
+            h4.getChildren().addAll(play, stackPane, lTwo);
+
+
+            h4.setAlignment(Pos.CENTER);
+
+
+            h4.setSpacing(6.8);
+
+
 
 
 
 
                 vOne.getChildren().addAll(label, mediaView, h4);
 
-            vOne.setPadding(new Insets(14,0,0,8));
+            vOne.setPadding(new Insets(0,0,0,8));
 
 
 
@@ -862,8 +895,12 @@ public class MainUserScreenController implements Initializable {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setFitToWidth(true);
         DropShadow dropShadow=new DropShadow();
-        scrollPane.setEffect(dropShadow);
         musicAp=ap;
+
+
+
+        moreAp.getChildren().add(ap);
+
 
     }
 
@@ -892,7 +929,7 @@ public class MainUserScreenController implements Initializable {
 
 
         Timeline time = new Timeline();
-        KeyValue kv = new KeyValue(ap.translateYProperty(), 520, Interpolator.EASE_BOTH);
+        KeyValue kv = new KeyValue(ap.translateYProperty(), 534, Interpolator.EASE_BOTH);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.3), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t -> {
@@ -990,7 +1027,7 @@ public class MainUserScreenController implements Initializable {
     }
 
 
-    public Pane musicButtonAnimation(){
+    public Pane musicButtonAnimation(Media media){
 
 
         Pane pane=new Pane();
@@ -1028,6 +1065,10 @@ public class MainUserScreenController implements Initializable {
 
 
         pane.setOnMouseClicked(event -> {
+
+
+            musicPlayer.Play((Pane)event.getSource());
+
 
 
             if(pane.getId()=="1") {
@@ -1140,8 +1181,8 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        pane.setMaxSize(40,40);
-        pane.setMinSize(40,40);
+        pane.setMaxSize(28,28);
+        pane.setMinSize(28,28);
 
 
 
