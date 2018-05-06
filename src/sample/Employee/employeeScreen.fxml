@@ -25,5 +25,6 @@
       <Button id="addButton" layoutX="186.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleAddAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Add" />
       <Button id="deleteButton" layoutX="470.0" layoutY="197.0" mnemonicParsing="false" onAction="#handledeleteAlbumButton" prefHeight="127.0" prefWidth="127.0" text="Delete" />
       <Button id="viewButton" layoutX="760.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleViewAlbum" prefHeight="127.0" prefWidth="127.0" text="View" />
+      <Label fx:id="AccountNameLabel" layoutX="950.0" layoutY="80.0" />
    </children>
 </AnchorPane>

@@ -28,5 +28,6 @@
       <Button fx:id="DeleteButton" layoutX="680.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleDeleteAlbumButton" text="Delete" />
       <TextField fx:id="DeleteTextField" layoutX="550.0" layoutY="545.0" prefHeight="25.0" prefWidth="80.0" stylesheets="@../CSS/employeeAddAlbum.css" />
       <Label layoutX="405.0" layoutY="549.0" text="EnterAlbumIdToDelete:" />
+      <Button layoutX="968.0" layoutY="42.0" mnemonicParsing="false" onAction="#ReturnButton" text="RETURN" />
    </children>
 </AnchorPane>

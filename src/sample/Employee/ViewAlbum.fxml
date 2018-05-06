@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="sceneBody" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.ViewAlbumController">
     <children>
-        <TableView id="table" fx:id="AlbumTable" layoutX="213.0" layoutY="141.0" onMouseClicked="#tableClick" prefHeight="263.0" prefWidth="704.0" stylesheets="@../CSS/employeeAddAlbum.css">
+        <TableView id="table" fx:id="AlbumTable" layoutX="294.0" layoutY="140.0" onMouseClicked="#tableClick" prefHeight="270.0" prefWidth="704.0" stylesheets="@../CSS/employeeAddAlbum.css">
             <columns>
                 <TableColumn fx:id="AlbumIdColumn" prefWidth="62.0" text="AlbumId" />
                 <TableColumn fx:id="AlbumNameColumn" prefWidth="131.0" text="AlbumName" />
@@ -18,6 +20,18 @@
         </TableView>
       <Button layoutX="213.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleLoadButton" text="LOAD SONGS" />
       <Button layoutX="965.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleLogoutButton" text="LOGOUT" />
-      <Button layoutX="945.0" layoutY="28.0" mnemonicParsing="false" text="RETURN" />
+      <Button layoutX="945.0" layoutY="28.0" mnemonicParsing="false" onAction="#ReturnButton" text="RETURN" />
+      <ToolBar layoutX="20.0" layoutY="140.0" prefHeight="40.0" prefWidth="274.0">
+        <items>
+          <Button mnemonicParsing="false" onAction="#SearchAlbumButton" text="SEARCH" />
+            <TextField fx:id="searchTextfield" prefHeight="27.0" prefWidth="170.0" promptText="Search Album" />
+        </items>
+      </ToolBar>
+      <TableView id="table" fx:id="AlbumTable1" layoutX="20.0" layoutY="180.0" onMouseClicked="#tableClick1" prefHeight="229.0" prefWidth="274.0" stylesheets="@../CSS/employeeAddAlbum.css">
+        <columns>
+          <TableColumn fx:id="AlbumColumnView" prefWidth="273.0" text="AlbumList" />
+        </columns>
+      </TableView>
     </children>
+    
 </AnchorPane>

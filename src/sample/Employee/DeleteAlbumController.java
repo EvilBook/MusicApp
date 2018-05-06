@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -137,6 +138,19 @@ public class DeleteAlbumController implements Initializable {
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
+    }
+    @FXML
+
+    public void ReturnButton(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeScreen.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 
