@@ -16,7 +16,7 @@ public class AdminStorage {
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("viewEmployee.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeManagement.fxml"));
         Parent root;
         root = loader.load();
         Scene scene = new Scene(root);
@@ -29,7 +29,7 @@ public class AdminStorage {
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainAdminScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminScreen.fxml"));
         Parent root;
         root = loader.load();
         Scene scene = new Scene(root);
@@ -37,11 +37,23 @@ public class AdminStorage {
         stage.show();
     }*/
 
+    public void manageStore(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("musicManagement.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void viewUserScene(ActionEvent event) throws IOException {
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("viewUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("userManagement.fxml"));
         Parent root;
         root = loader.load();
         Scene scene = new Scene(root);
@@ -72,5 +84,7 @@ public class AdminStorage {
         stage.setScene(scene);
         stage.show();
     }
+
+
 
 }

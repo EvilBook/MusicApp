@@ -1,6 +1,6 @@
 package sample;
 
-public abstract class person {
+public abstract class Person {
     private String email;
 
     public void saveToDatabase(){

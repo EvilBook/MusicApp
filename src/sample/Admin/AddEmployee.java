@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-public class AddEmployeeController implements Initializable {
+public class AddEmployee implements Initializable {
 
     //Variables
     @FXML private TextField firstTextField;

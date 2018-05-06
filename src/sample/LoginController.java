@@ -7,21 +7,14 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.UpdateDatabase;
-import sample.Employee.MainEmployeeScreenController;
-import sample.User.MainUserScreenController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -92,54 +85,27 @@ public class LoginController implements Initializable{
 
 
         if(userNameTextField.getText().equals("admin") && PasswordTextField.getText().equals("password")) {
-            access.mainAdminScreen(event);          //Goes to the admin screen.
+            access.mainAdminScreen(event);                          //Goes to the Admin screen.
+               } else {
 
-            } else {
+                    if(!matcher.find()) {
+                        UpdateDatabase updateDatabase = new UpdateDatabase();
 
-        if(!matcher.find()) {
-            UpdateDatabase updateDatabase = new UpdateDatabase();
+                        if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+                            userEmail = userNameTextField.getText();
+                            access.mainUserScreen(event, userEmail);            //Goes to the User screen.
+                               }
+                    } else {
+                            UpdateDatabase updateDatabase = new UpdateDatabase();
 
-            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
-                userEmail = userNameTextField.getText();
-
-                Node node = (Node) event.getSource();
-                Stage stage = (Stage) node.getScene().getWindow();
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("User/mainUserScreen.fxml"));
-                Parent root;
-                root = loader.load();
-
-                MainUserScreenController one = loader.getController();
-                one.getName(userEmail);
-
-                Scene scene = new Scene(root,1066.62, 600);
-                stage.setScene(scene);
-                stage.show();
-            }
-
-        } else {
-            UpdateDatabase updateDatabase = new UpdateDatabase();
-
-            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
-                userEmail = userNameTextField.getText();
-
-                Node node = (Node) event.getSource();
-                Stage stage = (Stage) node.getScene().getWindow();
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Employee/employeeScreen.fxml"));
-                Parent root;
-                root = loader.load();
-
-                MainEmployeeScreenController emp = loader.getController();
-                emp.getName(userEmail);
-
-                Scene scene = new Scene(root,1066.62, 600);
-                stage.setScene(scene);
-                stage.show();
-            }
-          }
+                            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+                                userEmail = userNameTextField.getText();
+                                access.employeeScreen(event, userEmail);       //Goes to the Employee Screen
+                            }
+                    }
         }
     }
+
 
     @FXML
     public void handleSignUpButton(ActionEvent event) {
@@ -281,12 +247,12 @@ public class LoginController implements Initializable{
                 database.AddUserCreationData(userInfo);
 
                 //Clear the fields after the signing up
-                /*firstNameTextField.clear();
+                firstNameTextField.clear();
                 lastNameTextField.clear();
                 emailTextField.clear();
                 confirmEmailTextField.clear();
                 passwordPasswordField.clear();
-                confirmPasswordField.clear();*/
+                confirmPasswordField.clear();
 
                 ReturnAnimation();
 

@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import sample.Employee.EmployeeStorage;
 import sample.MainStorage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
+public class AdminScreen implements Initializable {
 
     //Variables
     @FXML private Label adminLabel;
@@ -19,7 +20,7 @@ public class AdminController implements Initializable {
     //Objects
     AdminStorage access = new AdminStorage();
     MainStorage ms = new MainStorage();
-
+    EmployeeStorage goTo = new EmployeeStorage();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,8 +33,8 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void handleStoreButton(ActionEvent event) {
-
+    public void handleStoreButton(ActionEvent event) throws IOException {
+        access.manageStore(event);
     }
 
     @FXML

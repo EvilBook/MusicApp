@@ -6,7 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.User.MainUserScreenController;
+import sample.Employee.EmployeeScreen;
+import sample.User.UserScreen;
 
 import java.io.IOException;
 
@@ -17,7 +18,7 @@ public class MainStorage {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/mainAdminScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/adminScreen.fxml"));
         Parent root;
         root = loader.load();
 
@@ -27,13 +28,37 @@ public class MainStorage {
     }
 
     //Employee Screen
-    public void employeeScreen(ActionEvent event) throws IOException {
+    public void employeeScreen(ActionEvent event, String userEmail) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Employee/employeeScreen.fxml"));
+        Parent root;
+        root = loader.load();
+
+        EmployeeScreen emp = loader.getController();
+        emp.getName(userEmail);
+
+        Scene scene = new Scene(root,1066.62, 600);
+        stage.setScene(scene);
+        stage.show();
     }
 
     //User Screen
-    public void mainUserScreen(ActionEvent event) throws IOException {
+    public void mainUserScreen(ActionEvent event, String userEmail) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("User/userScreen.fxml"));
+        Parent root;
+        root = loader.load();
+
+        UserScreen one = loader.getController();
+        one.getName(userEmail);
+
+        Scene scene = new Scene(root,1066.62, 600);
+        stage.setScene(scene);
+        stage.show();
     }
 
     //Login screen

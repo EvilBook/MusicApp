@@ -1,8 +1,8 @@
 package sample.User;
 
-import sample.person;
+import sample.Person;
 
-public class user extends person {
+public class User extends Person {
     private String email;
 
     public void saveToDatabase(){

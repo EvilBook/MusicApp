@@ -2,50 +2,39 @@ package sample.Employee;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class EmployeeStorage {
 
 
-    public void employeeAddMusic(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/employeeAddMusic.fxml"));
+    public void employeeAddMusic(ActionEvent event, Button addButton) throws IOException {
+        Stage stage;
         Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+        stage = new Stage();
+        root = FXMLLoader.load(getClass().getResource("addMusic.fxml"));
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(addButton.getScene().getWindow());
+        stage.setResizable(false);
+        stage.showAndWait();
     }
 
-    public void employeeRemoveMusic(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/employeeRemoveMusic.fxml"));
+    public void employeeRemoveMusic(ActionEvent event, Button removeButton) throws IOException {
+        Stage stage;
         Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+        stage = new Stage();
+        root = FXMLLoader.load(getClass().getResource("removeMusic.fxml"));
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(removeButton.getScene().getWindow());
+        stage.setResizable(false);
+        stage.showAndWait();
     }
-
-    public void employeeScreen(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/employeeScreen.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 }
