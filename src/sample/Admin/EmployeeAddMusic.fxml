@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeAddMusicController">
+   <children>
+      <Pane id="sceneBodyMiddle" layoutX="18.0" layoutY="22.0" prefHeight="561.0" prefWidth="1030.0">
+         <children>
+            <Pane prefHeight="561.0" prefWidth="515.0" styleClass="CSS/EmployeeAddAlbum.css">
+               <children>
+                  <Line endY="480.0" layoutX="515.0" layoutY="30.0" />
+                  <Pane id="albumBody" layoutX="29.0" layoutY="24.0" prefHeight="513.0" prefWidth="458.0">
+                     <children>
+                        <Label layoutX="42.0" layoutY="59.0" text="Album Name:" />
+                        <Label layoutX="41.0" layoutY="120.0" text="Release Date:" />
+                        <Label layoutX="41.0" layoutY="181.0" text="Vynl Number:" />
+                        <Label layoutX="37.0" layoutY="236.0" text="Label:" />
+                        <Label layoutX="39.0" layoutY="293.0" text="Price:" />
+                        <Label layoutX="40.0" layoutY="353.0" text="Album Artists:" />
+                        <Label layoutX="248.0" layoutY="353.0" text="Genres:" />
+                        <Pane id="albumHeader" prefHeight="37.0" prefWidth="458.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="10.0" text="ALBUM:" />
+                           </children>
+                        </Pane>
+                        <TextField fx:id="albumNameField" alignment="CENTER" layoutX="186.0" layoutY="54.0" prefHeight="27.0" prefWidth="219.0" promptText="name" />
+                        <TextField fx:id="albumDateField" alignment="CENTER" layoutX="186.0" layoutY="115.0" prefHeight="27.0" prefWidth="219.0" promptText="dd mm yy" />
+                        <TextField fx:id="albumVynlField" alignment="CENTER" layoutX="186.0" layoutY="176.0" prefHeight="27.0" prefWidth="219.0" promptText="xx" />
+                        <TextField fx:id="albumLabelField" alignment="CENTER" layoutX="186.0" layoutY="231.0" prefHeight="27.0" prefWidth="219.0" promptText="label" />
+                        <TextField fx:id="albumPriceField" alignment="CENTER" layoutX="186.0" layoutY="288.0" prefHeight="27.0" prefWidth="219.0" promptText="eur" />
+                        <TextField fx:id="albumArtistField" alignment="CENTER" layoutX="40.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="name" />
+                        <TextField fx:id="albumArtistField2" layoutX="40.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
+                        <TextField fx:id="albumArtistField3" layoutX="40.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
+                        <TextField fx:id="albumGenreField" alignment="CENTER" layoutX="248.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="genre" />
+                        <TextField fx:id="albumGenreField2" layoutX="248.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
+                        <TextField fx:id="albumGenreField3" layoutX="248.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
+                        <Label fx:id="AlbumNameLabelErrorMessage" layoutX="186.0" layoutY="82.0" prefHeight="23.0" prefWidth="219.0" textAlignment="CENTER" textFill="#fc0202" />
+                        <Label fx:id="ReleaseDateErrorMessage" layoutX="186.0" layoutY="143.0" prefHeight="23.0" prefWidth="219.0" textFill="RED" />
+                        <Label fx:id="VynlNumberErrorMessage" layoutX="186.0" layoutY="204.0" prefHeight="23.0" prefWidth="219.0" textFill="#ff0101" />
+                        <Label fx:id="LabelNameErrorMessage" layoutX="186.0" layoutY="259.0" prefHeight="23.0" prefWidth="219.0" textFill="#ff0101" />
+                        <Label fx:id="PriceErrorMessage" layoutX="186.0" layoutY="316.0" prefHeight="19.0" prefWidth="219.0" textFill="#f20404" />
+                        <Label fx:id="AlbumArtistErrorMessage" layoutX="38.0" layoutY="479.0" prefHeight="28.0" prefWidth="183.0" textFill="#fc0202" />
+                        <Label fx:id="GenreErrorMessage" layoutX="248.0" layoutY="483.0" prefHeight="23.0" prefWidth="183.0" textFill="#f20202" />
+                     </children>
+                  </Pane>
+                  <Label id="title" layoutX="72.0" layoutY="-8.0" text="Add Music to the Database" />
+               </children>
+            </Pane>
+            <Pane layoutX="515.0" prefHeight="561.0" prefWidth="515.0">
+               <children>
+                  <Pane id="songBody" layoutX="29.0" layoutY="24.0" prefHeight="513.0" prefWidth="458.0">
+                     <children>
+                        <Pane id="songHeader" prefHeight="37.0" prefWidth="458.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="10.0" text="SONGS:" />
+                           </children>
+                        </Pane>
+                        <Label layoutX="14.0" layoutY="59.0" text="Song Name:" />
+                        <Label layoutX="188.0" layoutY="59.0" text="Artist:" />
+                        <Label layoutX="361.0" layoutY="59.0" text="Playtime:" />
+                        <TextField fx:id="songNameField" alignment="CENTER" layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="name" />
+                        <TextField fx:id="songArtistField" alignment="CENTER" layoutX="188.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="artist" />
+                        <TextField fx:id="songPlaytimeField" alignment="CENTER" layoutX="361.0" layoutY="100.0" prefHeight="27.0" prefWidth="82.0" promptText="00:00" />
+                        <TextField fx:id="songNameField2" layoutX="14.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField2" layoutX="188.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField2" layoutX="361.0" layoutY="135.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField3" layoutX="14.0" layoutY="170.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField3" layoutX="188.0" layoutY="170.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField3" layoutX="361.0" layoutY="170.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField4" layoutX="14.0" layoutY="205.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField4" layoutX="188.0" layoutY="205.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField4" layoutX="361.0" layoutY="205.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField5" layoutX="14.0" layoutY="240.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField5" layoutX="188.0" layoutY="240.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField5" layoutX="361.0" layoutY="240.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField6" layoutX="14.0" layoutY="275.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField6" layoutX="188.0" layoutY="275.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField6" layoutX="361.0" layoutY="275.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField7" layoutX="14.0" layoutY="310.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField7" layoutX="188.0" layoutY="310.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField7" layoutX="361.0" layoutY="310.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField8" layoutX="14.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField8" layoutX="188.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField8" layoutX="361.0" layoutY="345.0" prefHeight="27.0" prefWidth="82.0" />
+                        <Button fx:id="submitAlbumButton" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSubmitAlbum" text="Submit Album" />
+                        <Button fx:id="returnButton" layoutX="279.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homepage" />
+                        <Label fx:id="SongNameErrorMessage" layoutX="14.0" layoutY="380.0" prefHeight="28.0" prefWidth="165.0" textFill="#fc0202" />
+                        <Label fx:id="ArtistNameErrorMessage" layoutX="188.0" layoutY="380.0" prefHeight="16.0" prefWidth="165.0" textFill="#fc0606" />
+                        <Label fx:id="PlayTimeErrorMessage" layoutX="361.0" layoutY="372.0" prefHeight="28.0" prefWidth="78.0" textFill="#f20404" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

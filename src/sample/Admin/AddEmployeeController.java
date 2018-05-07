@@ -26,7 +26,7 @@ public class AddEmployeeController implements Initializable {
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainAdminScreen"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminScreen.fxml"));
         Parent root;
         root = loader.load();
         Scene scene = new Scene(root);
@@ -36,6 +36,7 @@ public class AddEmployeeController implements Initializable {
 
     @FXML
     public void handleAddButton(ActionEvent event) {
+
 
     }
 

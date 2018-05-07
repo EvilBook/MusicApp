@@ -175,8 +175,7 @@ public class ViewAlbumController implements Initializable {
 
         }
         catch(Exception e){
-            Alert dialog = new Alert(Alert.AlertType.ERROR,"No results",ButtonType.OK);
-            dialog.show();
+           e.printStackTrace();
             }
 
 
@@ -197,7 +196,8 @@ public class ViewAlbumController implements Initializable {
 
 
 
-            EmployeeDataStorage.getInstance().toString();
+            EmployeeDataStorage.getInstance().setMessage1(AlbumName);
+
 
             //When button is clicked pop up the second stage
             Stage stage = new Stage();

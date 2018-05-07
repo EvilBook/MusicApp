@@ -37,6 +37,7 @@ public class EmployeeViewMusicPopUPController implements Initializable
     @FXML private Label labelLabel;
 
     private int idAlbum;
+    private String AlbumName;
 
     @FXML private TableView<Songs> table;
 
@@ -46,11 +47,64 @@ public class EmployeeViewMusicPopUPController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-       idAlbum = EmployeeDataStorage.getInstance().getMessage();
+        idAlbum = EmployeeDataStorage.getInstance().getMessage();
         loadData(idAlbum);
+
+
+
     }
 
     public void loadData(int idAlbum){
+        Connection connection = dbc.connect();
+        data = FXCollections.observableArrayList();
+
+        //Execute Query and store result in a rs
+
+        try {
+
+            ResultSet rs = connection.createStatement().executeQuery(
+                    "SELECT idSong, songName, songArtist, playtime FROM song, album,songartist WHERE (idSong = song_idSong) && " +
+                            "(album_idAlbum =" + idAlbum +"&& idAlbum = "+idAlbum+");");
+
+            while (rs.next()){
+                data.add(new Songs(rs.getString(1), rs.getString(2), rs.getString(4),rs.getString(3)));
+
+                // set cell value factory to tableView
+                songidColumn.setCellValueFactory(new PropertyValueFactory<>("idsong"));
+                songnameColumn.setCellValueFactory(new PropertyValueFactory<>("songName"));
+                songartistColumn.setCellValueFactory(new PropertyValueFactory<>("SongArtist"));
+                songtimeColumn.setCellValueFactory(new PropertyValueFactory<>("playtime"));
+
+                table.setItems(null);
+                table.setItems(data);
+            }
+
+
+            ResultSet rs2 = connection.createStatement().executeQuery(
+                    "select distinct idalbum, albumname, date, price, label, vynlNumber, albumartist from album,albumartist where " +
+                            "idAlbum = "+idAlbum+" && album_idAlbum = "+idAlbum+" ;");
+            ResultSet rs3 = connection.createStatement().executeQuery(
+                    "select distinct genre from album,genre where idAlbum = "+idAlbum+" && album_idAlbum = "+idAlbum+" ;");
+
+
+            while(rs2.next()){
+                albumLabel.setText(rs2.getString(2));
+                artistLabel.setText(rs2.getString(7));
+                vynlLabel.setText(rs2.getString(6));
+                labelLabel.setText(rs2.getString(5));
+            }
+            while (rs3.next()){
+                genreLabel.setText(rs3.getString(1));
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void loadData2(String AlbumName){
         Connection connection = dbc.connect();
         data = FXCollections.observableArrayList();
 
