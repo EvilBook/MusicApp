@@ -22,6 +22,7 @@ public class MusicPlayer {
 
 
     Duration duration;
+    public String title;
 
 
     public static MusicPlayer getInstance() {
@@ -101,6 +102,10 @@ public class MusicPlayer {
 
         }else{
             playlist.get(pane).play();
+
+
+            currentlyPlaying=pane;
+
         }
 
     }
@@ -148,5 +153,13 @@ public class MusicPlayer {
     }
 
 
+    public String getTitle() {
 
+
+
+
+
+        return "Song Name";
+
+    }
 }

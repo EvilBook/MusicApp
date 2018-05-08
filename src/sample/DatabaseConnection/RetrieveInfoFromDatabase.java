@@ -18,7 +18,7 @@ public class RetrieveInfoFromDatabase {
             System.out.println("Works");
             new UpdateDatabase().connection=connection;
         } catch (SQLException e) {
-            throw new IllegalStateException("Connection failed", e);
+
         }
     }
 
@@ -33,6 +33,8 @@ public class RetrieveInfoFromDatabase {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }catch (Exception e){
+
         }
         return name;
 

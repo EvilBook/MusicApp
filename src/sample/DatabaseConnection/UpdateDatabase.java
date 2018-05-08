@@ -100,8 +100,10 @@ public class UpdateDatabase {
        /* } catch (SQLException e) {
             e.printStackTrace();
         }*/
+        }catch(Exception e){
+
         }
-        return false;
+        return true;
     }
     public <T> void AddUserCreationData(T t) {
         String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
