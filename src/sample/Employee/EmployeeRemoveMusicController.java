@@ -9,11 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.DbconnectionMusic;
 import sample.DatabaseConnection.RemoveAlbumDatabase;
@@ -47,40 +45,17 @@ public class EmployeeRemoveMusicController implements Initializable
         }
     }
 
-
-    //Refer to another class that removes the album from the database
-    public void removeData(int id){
-        System.out.println("removing");
-        RemoveAlbumDatabase rmvDatabase = new RemoveAlbumDatabase();
-        rmvDatabase.removeAlbum(id);
-    }
-
-    //Button press to remove
-    @FXML
-    private void handleRemove(){
-
-        //Check if the number is given correctly
-        if(!selectionField.getText().isEmpty())
-        {
-            int id = Integer.parseInt(selectionField.getText());
-            removeData(id);
-            selectionField.setText("");
-        }
-
-
-    }
-
     //Loads the data into the table
     @FXML
-    public void handleLoadButton() throws IOException{
-
+    public void handleLoadButton() throws IOException
+    {
         Connection connection = dbc.connection;
         data = FXCollections.observableArrayList();
 
         //Execute Query and store result in a rs
         try {
 
-            ResultSet rs = connection.createStatement().executeQuery("SELECT  *FROM album");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM album");
 
             while (rs.next())
             {
@@ -97,14 +72,64 @@ public class EmployeeRemoveMusicController implements Initializable
                 table.setItems(null);
                 table.setItems(data);
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+        catch (SQLException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong while trying to load the data", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
+        }
+    }
 
 
+    //Detect double click on the table row
+    @FXML
+    public void tableClick(MouseEvent event) throws IOException
+    {
+        //If double click
+        if(event.getClickCount() == 2) {
+
+            //Get the album id and put it in the text field
+            Album row = table.getSelectionModel().getSelectedItem();
+            String idAlbum = row.getAlbumId();
+            System.out.println(idAlbum);
+            selectionField.setText(idAlbum);
+        }
+    }
+
+    //Handle button press to remove
+    @FXML
+    private void handleRemove() throws IOException
+    {
+        //Check if the number is given correctly
+        if(!selectionField.getText().isEmpty())
+        {
+            int id = Integer.parseInt(selectionField.getText());
+            removeData(id);
+            selectionField.setText("");
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in an album id to remove.", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
+        }
+    }
+
+
+    //Refer to another class that removes the album from the database
+    public void removeData(int id) throws IOException
+    {
+        System.out.println("removing");
+        RemoveAlbumDatabase rmvDatabase = new RemoveAlbumDatabase();
+        rmvDatabase.removeAlbum(id);
+
+        //Clear textField and refresh
+        handleLoadButton();
+        selectionField.setText("");
 
     }
+
 
 
     //Switch Scenes

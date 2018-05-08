@@ -17,8 +17,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EmployeeAddMusicController implements Initializable {
-
+public class EmployeeAddMusicController implements Initializable
+{
     //Variables
     @FXML private TextArea albumTextArea,songTextArea;
     @FXML private Button returnButton, submitAlbumButton;
@@ -40,28 +40,6 @@ public class EmployeeAddMusicController implements Initializable {
     {
 
     }
-
-
-    //Set the text from album textFields to the textArea
-    @FXML
-    void handleAddAlbum()
-    {
-            //Set text to album textArea
-            albumTextArea.setText("Album\n---------------\nName: " + albumNameField.getText() + "\nArtist: " +
-                    albumArtistField1.getText() + "\nGenre: " + albumGenreField1.getText() + "\nRelease Date: " +
-                    albumDateField.getText() + "\nLabel: " + albumLabelField.getText() + "\nVynl Number: " +
-                    albumVynlField.getText());
-    }
-
-    //Set the text from song textFields to the textArea
-    @FXML
-    void handleAddSong()
-    {
-            //Set text to song textArea
-            songTextArea.setText("Song\n---------------\nName: " + songNameField1.getText() + "\nArtist: " +
-                    songArtistField1.getText() + "\nPlaytime: " + songPlaytimeField1.getText());
-    }
-
 
     //Handle Submit Album Button
     @FXML

@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -42,31 +39,28 @@ public class EmployeeViewMusicController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        try
-        {
+        try {
             handleLoadButton();
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
 
-
-    //Load the data
+    //Load the data in the table
     @FXML
     public void handleLoadButton() throws IOException
     {
         Connection connection = dbc.connection;
         data = FXCollections.observableArrayList();
 
-
         //Execute Query and store result in a rs
-        try {
-
+        try
+        {
             ResultSet rs = connection.createStatement().executeQuery("SELECT  * FROM album");
+
             while (rs.next())
             {
                 data.add(new Album(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)
@@ -85,10 +79,10 @@ public class EmployeeViewMusicController implements Initializable
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong while trying to load the data into the table", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
         }
-
-
 
     }
 
@@ -97,11 +91,9 @@ public class EmployeeViewMusicController implements Initializable
     @FXML
     public void tableClick(MouseEvent event) throws IOException
     {
-
         //If double click
         if(event.getClickCount() == 2)
         {
-
             //Get the album id and save it in the singleton class
             Album row = table.getSelectionModel().getSelectedItem();
             String idAlbum = row.getAlbumId();
@@ -118,7 +110,6 @@ public class EmployeeViewMusicController implements Initializable
             EmployeeViewMusicPopUpController popC = new EmployeeViewMusicPopUpController();
             stage.setScene(new Scene(root, 698, 500));
             stage.show();
-
         }
     }
 

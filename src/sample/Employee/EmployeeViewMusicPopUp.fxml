@@ -12,23 +12,29 @@
    <children>
       <Pane id="albumBody" layoutX="14.0" layoutY="14.0" prefHeight="473.0" prefWidth="670.0">
          <children>
-            <TableView id="table" fx:id="table" layoutX="17.0" layoutY="202.0" prefHeight="249.0" prefWidth="636.0">
+            <TableView id="table" fx:id="table" layoutX="17.0" layoutY="209.0" prefHeight="252.0" prefWidth="636.0">
               <columns>
-                <TableColumn id="tableColumn" fx:id="songidColumn" prefWidth="44.0" text="Id" />
-                <TableColumn id="tableColumn" fx:id="songnameColumn" prefWidth="292.0" text="Song Name" />
-                  <TableColumn id="tableColumn" fx:id="songartistColumn" prefWidth="223.0" text="Artist" />
-                  <TableColumn id="tableColumn" fx:id="songtimeColumn" prefWidth="75.0" text="Time" />
+                <TableColumn id="tableColumn" fx:id="songidColumn" prefWidth="71.0" text="Song Id" />
+                <TableColumn id="tableColumn" fx:id="songnameColumn" prefWidth="265.0" text="Song Name" />
+                  <TableColumn id="tableColumn" fx:id="songartistColumn" prefWidth="224.0" text="Artist" />
+                  <TableColumn id="tableColumn" fx:id="songtimeColumn" prefWidth="71.0" text="Time" />
               </columns>
             </TableView>
             <Rectangle fx:id="albumImage" arcHeight="5.0" arcWidth="5.0" fill="#ffffff84" height="154.0" layoutX="17.0" layoutY="19.0" stroke="#7070706e" strokeType="INSIDE" width="160.0" />
-            <Label id="albumNameLabel" fx:id="albumLabel" layoutX="186.0" layoutY="19.0" prefHeight="16.0" prefWidth="132.0" text="Sample Name" />
-            <Label id="albumArtistName" fx:id="artistLabel" layoutX="210.0" layoutY="60.0" text="Sample Artist" />
-            <Label fx:id="genreLabel" layoutX="446.0" layoutY="100.0" text="Sample Genre" />
-            <Line layoutX="418.0" layoutY="45.0" startY="130.0" />
-            <Label fx:id="vynlLabel" layoutX="209.0" layoutY="100.0" text="Sample Vynl Number" />
-            <Label fx:id="labelLabel" layoutX="209.0" layoutY="139.0" text="Sample Label" />
-            <Label fx:id="dateLabel" layoutX="446.0" layoutY="60.0" text="Sample Date" />
-            <Label fx:id="priceLabel" layoutX="445.0" layoutY="147.0" text="Sample Price" />
+            <Label id="albumNameLabel" fx:id="albumLabel" alignment="TOP_LEFT" layoutX="192.0" layoutY="19.0" prefHeight="23.0" prefWidth="451.0" />
+            <Label id="albumArtistName" fx:id="artistLabel" layoutX="209.0" layoutY="68.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
+            <Label fx:id="genreLabel" layoutX="449.0" layoutY="110.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
+            <Line layoutX="418.0" layoutY="50.0" startY="128.0" />
+            <Label fx:id="vynlLabel" layoutX="209.0" layoutY="110.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
+            <Label fx:id="labelLabel" layoutX="209.0" layoutY="156.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
+            <Label fx:id="dateLabel" layoutX="449.0" layoutY="68.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
+            <Label fx:id="priceLabel" layoutX="449.0" layoutY="156.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
+            <Label id="smallHeader" layoutX="200.0" layoutY="53.0" prefHeight="16.0" prefWidth="160.0" text="album artist(s):" />
+            <Label id="smallHeader" layoutX="200.0" layoutY="96.0" prefHeight="16.0" prefWidth="160.0" text="vynl number:" />
+            <Label id="smallHeader" layoutX="200.0" layoutY="142.0" prefHeight="16.0" prefWidth="160.0" text="label:" />
+            <Label id="smallHeader" layoutX="440.0" layoutY="53.0" prefHeight="16.0" prefWidth="160.0" text="release date:" />
+            <Label id="smallHeader" layoutX="440.0" layoutY="96.0" prefHeight="16.0" prefWidth="160.0" text="genre(s):" />
+            <Label id="smallHeader" layoutX="440.0" layoutY="142.0" prefHeight="16.0" prefWidth="160.0" text="price:" />
          </children>
       </Pane>
    </children>

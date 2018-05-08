@@ -15,11 +15,13 @@
          <children>
             <Pane id="albumHeader" layoutY="448.0" prefHeight="53.0" prefWidth="984.0">
                <children>
-                  <TextField fx:id="selectionField" layoutX="209.0" layoutY="11.0" prefHeight="31.0" prefWidth="291.0" />
-                  <Button layoutX="512.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleRemove" text="Remove" />
+                  <TextField fx:id="selectionField" alignment="CENTER" layoutX="329.0" layoutY="11.0" prefHeight="31.0" prefWidth="202.0" promptText="id" />
+                  <Button layoutX="538.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleRemove" text="Remove" />
+                  <Button layoutX="769.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homescreen" />
+                  <Button layoutX="41.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Refresh Table" />
                </children>
             </Pane>
-            <TableView id="table" fx:id="table" layoutX="43.0" layoutY="27.0" prefHeight="392.0" prefWidth="899.0">
+            <TableView id="table" fx:id="table" layoutX="43.0" layoutY="27.0" onMouseClicked="#tableClick" prefHeight="392.0" prefWidth="899.0">
               <columns>
                 <TableColumn id="tableColumn" fx:id="idColumn" prefWidth="124.0" text="AlbumId" />
                 <TableColumn id="tableColumn" fx:id="nameColumn" prefWidth="263.0" text="AlbumName" />
@@ -33,8 +35,8 @@
             </TableView>
          </children>
       </Pane>
-      <Button layoutX="954.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return" />
       <Label id="title" layoutX="59.0" layoutY="20.0" text="Remove Albums" />
+      <Label layoutX="228.0" layoutY="23.0" text="// Double click or enter the album id of the album that should be removed" />
    </children>
    <stylesheets>
       <URL value="@../CSS/employeeAddAlbum.css" />

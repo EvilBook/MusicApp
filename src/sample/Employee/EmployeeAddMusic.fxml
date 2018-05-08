@@ -22,7 +22,7 @@
                         <Label layoutX="37.0" layoutY="236.0" text="Label:" />
                         <Label layoutX="39.0" layoutY="293.0" text="Price:" />
                         <Label layoutX="40.0" layoutY="353.0" text="Album Artists:" />
-                        <Label layoutX="248.0" layoutY="353.0" text="Genres:" />
+                        <Label layoutX="238.0" layoutY="353.0" text="Genres:" />
                         <Pane id="albumHeader" prefHeight="37.0" prefWidth="458.0">
                            <children>
                               <Label layoutX="14.0" layoutY="10.0" text="ALBUM:" />
@@ -34,11 +34,11 @@
                         <TextField fx:id="albumLabelField" alignment="CENTER" layoutX="186.0" layoutY="231.0" prefHeight="27.0" prefWidth="219.0" promptText="label" />
                         <TextField fx:id="albumPriceField" alignment="CENTER" layoutX="186.0" layoutY="288.0" prefHeight="27.0" prefWidth="219.0" promptText="euro" />
                         <TextField fx:id="albumArtistField1" alignment="CENTER" layoutX="40.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="name" />
-                        <TextField fx:id="albumArtistField2" layoutX="40.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
-                        <TextField fx:id="albumArtistField3" layoutX="40.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
-                        <TextField fx:id="albumGenreField1" alignment="CENTER" layoutX="248.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="genre" />
-                        <TextField fx:id="albumGenreField2" layoutX="248.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
-                        <TextField fx:id="albumGenreField3" layoutX="248.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
+                        <TextField fx:id="albumArtistField2" alignment="CENTER" layoutX="40.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
+                        <TextField fx:id="albumArtistField3" alignment="CENTER" layoutX="40.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
+                        <TextField fx:id="albumGenreField1" alignment="CENTER" layoutX="238.0" layoutY="380.0" prefHeight="27.0" prefWidth="183.0" promptText="genre" />
+                        <TextField fx:id="albumGenreField2" alignment="CENTER" layoutX="238.0" layoutY="419.0" prefHeight="27.0" prefWidth="183.0" />
+                        <TextField fx:id="albumGenreField3" alignment="CENTER" layoutX="238.0" layoutY="454.0" prefHeight="27.0" prefWidth="183.0" />
                      </children>
                   </Pane>
                   <Label id="title" layoutX="72.0" layoutY="-8.0" text="Add Music to the Database" />
@@ -59,30 +59,30 @@
                         <TextField fx:id="songNameField1" alignment="CENTER" layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="name" />
                         <TextField fx:id="songArtistField1" alignment="CENTER" layoutX="188.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" promptText="artist" />
                         <TextField fx:id="songPlaytimeField1" alignment="CENTER" layoutX="361.0" layoutY="100.0" prefHeight="27.0" prefWidth="82.0" promptText="00:00" />
-                        <TextField fx:id="songNameField2" layoutX="14.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songArtistField2" layoutX="188.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songPlaytimeField2" layoutX="361.0" layoutY="135.0" prefHeight="27.0" prefWidth="82.0" />
-                        <TextField fx:id="songNameField3" layoutX="14.0" layoutY="170.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songArtistField3" layoutX="188.0" layoutY="170.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songPlaytimeField3" layoutX="361.0" layoutY="170.0" prefHeight="27.0" prefWidth="82.0" />
-                        <TextField fx:id="songNameField4" layoutX="14.0" layoutY="205.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songArtistField4" layoutX="188.0" layoutY="205.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songPlaytimeField4" layoutX="361.0" layoutY="205.0" prefHeight="27.0" prefWidth="82.0" />
-                        <TextField fx:id="songNameField5" layoutX="14.0" layoutY="240.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songArtistField5" layoutX="188.0" layoutY="240.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songPlaytimeField5" layoutX="361.0" layoutY="240.0" prefHeight="27.0" prefWidth="82.0" />
-                        <TextField fx:id="songNameField6" layoutX="14.0" layoutY="275.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songArtistField6" layoutX="188.0" layoutY="275.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songPlaytimeField6" layoutX="361.0" layoutY="275.0" prefHeight="27.0" prefWidth="82.0" />
-                        <TextField fx:id="songNameField7" layoutX="14.0" layoutY="310.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songArtistField7" layoutX="188.0" layoutY="310.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songPlaytimeField7" layoutX="361.0" layoutY="310.0" prefHeight="27.0" prefWidth="82.0" />
-                        <TextField fx:id="songNameField8" layoutX="14.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songArtistField8" layoutX="188.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
-                        <TextField fx:id="songPlaytimeField8" layoutX="361.0" layoutY="345.0" prefHeight="27.0" prefWidth="82.0" />
-                        <Button fx:id="submitAlbumButton" layoutX="23.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSubmitAlbum" text="Submit Album" />
-                        <Button fx:id="returnButton" layoutX="153.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homepage" />
-                        <Button layoutX="325.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleClear" text="Clear all fields" />
+                        <TextField fx:id="songNameField2" alignment="CENTER" layoutX="14.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField2" alignment="CENTER" layoutX="188.0" layoutY="135.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField2" alignment="CENTER" layoutX="361.0" layoutY="135.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField3" alignment="CENTER" layoutX="14.0" layoutY="170.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField3" alignment="CENTER" layoutX="188.0" layoutY="170.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField3" alignment="CENTER" layoutX="361.0" layoutY="170.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField4" alignment="CENTER" layoutX="14.0" layoutY="205.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField4" alignment="CENTER" layoutX="188.0" layoutY="205.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField4" alignment="CENTER" layoutX="361.0" layoutY="205.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField5" alignment="CENTER" layoutX="14.0" layoutY="240.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField5" alignment="CENTER" layoutX="188.0" layoutY="240.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField5" alignment="CENTER" layoutX="361.0" layoutY="240.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField6" alignment="CENTER" layoutX="14.0" layoutY="275.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField6" alignment="CENTER" layoutX="188.0" layoutY="275.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField6" alignment="CENTER" layoutX="361.0" layoutY="275.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField7" alignment="CENTER" layoutX="14.0" layoutY="310.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField7" alignment="CENTER" layoutX="188.0" layoutY="310.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField7" alignment="CENTER" layoutX="361.0" layoutY="310.0" prefHeight="27.0" prefWidth="82.0" />
+                        <TextField fx:id="songNameField8" alignment="CENTER" layoutX="14.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songArtistField8" alignment="CENTER" layoutX="188.0" layoutY="345.0" prefHeight="27.0" prefWidth="165.0" />
+                        <TextField fx:id="songPlaytimeField8" alignment="CENTER" layoutX="361.0" layoutY="345.0" prefHeight="27.0" prefWidth="82.0" />
+                        <Button fx:id="submitAlbumButton" layoutX="155.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSubmitAlbum" text="Submit Album" />
+                        <Button fx:id="returnButton" layoutX="277.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homepage" />
+                        <Button layoutX="30.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleClear" text="Clear all fields" />
                      </children>
                   </Pane>
                </children>

@@ -14,16 +14,17 @@
          <children>
             <Pane id="albumHeader" layoutY="448.0" prefHeight="53.0" prefWidth="984.0">
                <children>
-                  <Button layoutX="45.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Load" />
+                  <Button layoutX="45.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Refresh Table" />
+                  <Button layoutX="767.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homescreen" />
                </children>
             </Pane>
             <TableView id="table" fx:id="table" layoutX="43.0" layoutY="27.0" onMouseClicked="#tableClick" prefHeight="392.0" prefWidth="899.0">
               <columns>
-                <TableColumn id="tableColumn" fx:id="idColumn" prefWidth="124.0" text="AlbumId" />
-                <TableColumn id="tableColumn" fx:id="nameColumn" prefWidth="263.0" text="AlbumName" />
-                  <TableColumn id="tableColumn" fx:id="dateColumn" prefWidth="162.0" text="ReleaseDate" />
-                  <TableColumn id="tableColumn" fx:id="priceColumn" prefWidth="128.0" text="Pice" />
-                  <TableColumn id="tableColumn" fx:id="labelColumn" minWidth="0.0" prefWidth="211.0" text="RecordLabel" />
+                <TableColumn id="tableColumn" fx:id="idColumn" minWidth="0.0" prefWidth="103.0" resizable="false" text="AlbumId" />
+                <TableColumn id="tableColumn" fx:id="nameColumn" minWidth="0.0" prefWidth="335.0" resizable="false" text="AlbumName" />
+                  <TableColumn id="tableColumn" fx:id="labelColumn" minWidth="0.0" prefWidth="217.0" resizable="false" text="RecordLabel" />
+                  <TableColumn id="tableColumn" fx:id="priceColumn" minWidth="0.0" prefWidth="105.0" resizable="false" text="Pice" />
+                  <TableColumn id="tableColumn" fx:id="dateColumn" minWidth="0.0" prefWidth="134.0" resizable="false" text="Date" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -31,7 +32,6 @@
             </TableView>
          </children>
       </Pane>
-      <Button layoutX="954.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return" />
       <Label id="title" layoutX="59.0" layoutY="20.0" text="View Albums" />
       <Label layoutX="198.0" layoutY="25.0" text="// Double click on an Album from the table to view more information" />
    </children>

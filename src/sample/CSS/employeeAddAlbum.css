@@ -49,6 +49,12 @@
 
 }
 
+
+#smallHeader{
+    -fx-font-size: 11px;
+
+}
+
 /* TABLE */
 #table {
     -fx-background-color: rgba(255, 255, 255, 0.1);
@@ -62,30 +68,28 @@
     -fx-border-width: 1px;
 
 }
-.column-overlay{
-    -fx-background-color: red;
-}
-.table-header{
-    -fx-background-color: blue;
-}
+
 
 /* BUTTONS */
 .button{
-    -fx-background-color: rgba(120, 120, 120, 0.4);
+    -fx-background-color: rgba(74, 212, 216, 0.45);
+
     -fx-border: none;
-    -fx-color: white;
+    -fx-color: rgb(171, 171, 171);
     -fx-text-align: center;
     -fx-text-decoration: none;
     -fx-display: inline-block;
-    -fx-border-width: 1px;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-border-color: #d82f8f;
-    -fx-text-fill: white;
+    -fx-border-width: 0px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: rgba(0,0,0,0.6);
+    -fx-text-fill: rgba(0,0,0,0.6);
 }
 
 .button:hover{
-    -fx-background-color: rgba(120, 120, 120, 0.2);
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-text-fill: rgba(255,255,255,0.9);
+
 }
 
 
@@ -101,14 +105,15 @@
 }
 .text-field:focused {
     -fx-background-color: none;
-    -fx-border-color: rgba(74, 212, 216, 0.5);
-    -fx-border-width: 1px;
+    -fx-border-color: rgba(74, 212, 216, 0.6);
+    -fx-border-width: 2px;
     -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
-    -fx-background-color: rgba(120, 120, 120, 0.1);
+    -fx-background-color: rgba(0, 0, 0, 0.35);
+    -fx-text-fill: rgba(255,255,255,0.9);
 
 }
 .text-input{
-    -fx-text-fill: black;
+    -fx-text-fill: rgba(0,0,0, 0.9);
 
 }
 
