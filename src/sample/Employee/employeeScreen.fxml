@@ -13,7 +13,7 @@
       <Label id="nameLabel" fx:id="nameLabel" layoutX="293.0" layoutY="26.0" prefHeight="50.0" prefWidth="208.0" stylesheets="@../CSS/employeeScreen.css" />
       <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="934.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Graphics/ic_face_3x.png" />
+            <Image url="@../User/Graphics/ic_face_3x.png" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="43.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="249.13671875">

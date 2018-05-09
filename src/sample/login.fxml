@@ -34,7 +34,7 @@
             <Button fx:id="createButton" layoutX="163.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
             <ImageView fitHeight="139.0" fitWidth="185.0" layoutX="69.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Graphics/logo.png" />
+                  <Image url="@User/Graphics/logo.png" />
                </image>
             </ImageView>
             <AnchorPane fx:id="logIn" layoutY="236.0" prefHeight="120.0" prefWidth="319.0">

@@ -71,7 +71,7 @@
     -fx-background-color:linear-gradient(#2f4858,#2f4858);
 }
 #one{
-    -fx-background-image: url(Graphics/background.png);
+    -fx-background-image: url(User/Graphics/background.png);
 
 }
 .scroll-pane > .viewport {
