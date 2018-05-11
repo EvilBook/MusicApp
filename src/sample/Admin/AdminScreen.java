@@ -20,7 +20,6 @@ public class AdminScreen implements Initializable {
     //Objects
     AdminStorage access = new AdminStorage();
     MainStorage ms = new MainStorage();
-    EmployeeStorage goTo = new EmployeeStorage();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

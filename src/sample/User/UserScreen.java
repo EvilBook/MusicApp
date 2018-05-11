@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainUserScreenController implements Initializable {
+public class UserScreen implements Initializable {
 
     //Variables
     @FXML Label name;

@@ -21,7 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class RemoveEmployeeController implements Initializable {
+public class RemoveEmployee implements Initializable {
 
     //Variables
     @FXML private TableView<Employee> employeeTable;

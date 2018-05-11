@@ -14,10 +14,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
+import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.DatabaseConnection.UpdateDatabase;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -48,16 +50,24 @@ public class LoginController implements Initializable{
     @FXML private Label confirmPasswordLabel;
     public String userEmail;
 
+    //Database
+    Connection connection = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+
+    //Patterns
     private static Pattern emailPat;
     private static Pattern passPat;
     private static Pattern namePat;
 
 
 
+
     //Objects
     ExceptionClass exceptions = new ExceptionClass();
     MainStorage access = new MainStorage();
-
+    RetrieveInfoFromDatabase info = new RetrieveInfoFromDatabase();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,9 +93,15 @@ public class LoginController implements Initializable{
         Pattern pattern = Pattern.compile("@masm");
         Matcher matcher = pattern.matcher(userNameTextField.getText());
 
+        String email = userNameTextField.getText();
+
+        info.authentication(email);
+
+
 
         if(userNameTextField.getText().equals("admin") && PasswordTextField.getText().equals("password")) {
             access.mainAdminScreen(event);                          //Goes to the Admin screen.
+
                } else {
 
                     if(!matcher.find()) {
@@ -104,6 +120,8 @@ public class LoginController implements Initializable{
                             }
                     }
         }
+
+
     }
 
 
@@ -264,4 +282,8 @@ public class LoginController implements Initializable{
     public void handleExitButton(ActionEvent event) {
         Platform.exit();
     }
+
+
+
+
 }

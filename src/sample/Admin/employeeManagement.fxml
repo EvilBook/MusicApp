@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.ViewEmployeeController">
+<AnchorPane prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.EmployeeManagement">
    <children>
       <Label layoutX="107.0" layoutY="79.0" prefHeight="227.0" prefWidth="378.0" text="List of employees:" />
       <Button layoutX="81.0" layoutY="471.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="78.0" prefWidth="131.0" text="Back" />
