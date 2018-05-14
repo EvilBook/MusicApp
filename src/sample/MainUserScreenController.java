@@ -502,7 +502,7 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        for (int i = 0; i < listOfFiles.length; i++) {
+         for (int i = 0; i < listOfFiles.length; i++) {
 
             if (listOfFiles[i].isFile()) {
 
