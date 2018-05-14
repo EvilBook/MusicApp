@@ -11,8 +11,8 @@ public class RemoveAlbumDatabase
 
     private Statement st;
     private Connection connection;
-    private String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/musicdb2";
-    private String username = "evilBook@music-app";
+    private String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/musicdb2";
+    private String username = "mass@mass-music";
     private String password = "Firmwar3";
     private String albumKey;
     private String songKey;
@@ -77,7 +77,7 @@ public class RemoveAlbumDatabase
         }
         catch (SQLException e)
         {
-
+            e.printStackTrace();
         }
 
 

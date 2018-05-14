@@ -102,7 +102,8 @@ public class EmployeeRemoveMusicController implements Initializable
     private void handleRemove() throws IOException
     {
         //Check if the number is given correctly
-        if(!selectionField.getText().isEmpty())
+        if(!selectionField.getText().isEmpty() && (selectionField.getText().matches("\\d{1}") ||
+                selectionField.getText().matches("\\d{2}")))
         {
             int id = Integer.parseInt(selectionField.getText());
             removeData(id);

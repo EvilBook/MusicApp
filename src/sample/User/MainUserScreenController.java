@@ -2,8 +2,13 @@ package sample.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.SwitchScene;
 
@@ -32,6 +37,18 @@ public class MainUserScreenController implements Initializable {
     @FXML
     public void handleLogOutButton(ActionEvent event) throws IOException {
         sw.logOut(event);
+    }
+
+    @FXML
+    public void handleViewProfile(ActionEvent event) throws Exception{
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UserProfile.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

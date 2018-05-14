@@ -52,7 +52,7 @@ public class EmployeeAddMusicController implements Initializable
     //Check if text fields are filled in correctly
     public void checkFormat()
     {
-        //Check if album textfields are filled in
+        //Check if album text fields are filled in
         if(!(albumNameField.getText().isEmpty())&& !(albumArtistField1.getText().isEmpty()) &&
                 !(albumGenreField1.getText().isEmpty()) &&
                 !(albumLabelField.getText().isEmpty()) &&!(albumVynlField.getText().isEmpty()) &&
@@ -64,7 +64,10 @@ public class EmployeeAddMusicController implements Initializable
             if((albumDateField.getText().matches("\\d{2}-\\d{2}-\\d{4}")) &&
                     (songPlaytimeField1.getText().matches("\\d{2}:\\d{2}:\\d{2}") ||
                             songPlaytimeField1.getText().matches("\\d{2}:\\d{2}")) &&
-                    (albumVynlField.getText().matches("\\d{2}")))
+                    (albumVynlField.getText().matches("\\d{2}")) &&
+                    (albumPriceField.getText().matches("\\d")||
+                    albumPriceField.getText().matches("\\d{2}") ||
+                    albumPriceField.getText().matches("\\d{3}")))
             {
 
                 //Ask for confirmation

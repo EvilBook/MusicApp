@@ -96,6 +96,10 @@ public class LoginController implements Initializable{
 
     }
 
+    public String getUserEmail(){
+        return userEmail;
+    }
+
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
 

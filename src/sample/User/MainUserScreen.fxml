@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/mainUserScreen.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User.MainUserScreenController">
+<AnchorPane prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/mainUserScreen.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User.MainUserScreenController">
    <children>
       <Label fx:id="name" layoutX="442.0" layoutY="25.0" prefHeight="26.0" prefWidth="56.0" textAlignment="CENTER">
          <font>
@@ -20,5 +20,6 @@
          </image>
       </ImageView>
       <Button id="logOutButton" layoutX="14.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="40.0" prefWidth="84.0" text="Log Out" />
+      <Button layoutX="335.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleViewProfile" text="View Profile" />
    </children>
 </AnchorPane>

@@ -14,8 +14,8 @@ public class DbconnectionMusic {
 
     public DbconnectionMusic() {
 
-        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/musicdb2";
-        String username = "evilBook@music-app";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/musicdb2";
+        String username = "mass@mass-music";
         String password = "Firmwar3";
 
         try {
