@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import sample.DatabaseConnection.AddAlbumToDatabase;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -16,13 +17,13 @@ public class AddMusic implements Initializable {
     @FXML private TextArea albumTextArea,songTextArea;
     @FXML private Button returnButton, submitAlbumButton;
     @FXML private TextField albumNameField, albumPriceField, albumDateField, albumLabelField, albumVynlField,
-                            albumGenreField1, albumGenreField2, albumGenreField3, albumArtistField1,
-                            albumArtistField2, albumArtistField3, songNameField1, songNameField2,
-                            songNameField3, songNameField4, songNameField5, songNameField6, songNameField7,
-                            songNameField8, songArtistField1, songArtistField2, songArtistField3, songArtistField4,
-                            songArtistField5, songArtistField6, songArtistField7, songArtistField8,
-                            songPlaytimeField1, songPlaytimeField2, songPlaytimeField3, songPlaytimeField4,
-                            songPlaytimeField5, songPlaytimeField6, songPlaytimeField7, songPlaytimeField8;
+            albumGenreField1, albumGenreField2, albumGenreField3, albumArtistField1,
+            albumArtistField2, albumArtistField3, songNameField1, songNameField2,
+            songNameField3, songNameField4, songNameField5, songNameField6, songNameField7,
+            songNameField8, songArtistField1, songArtistField2, songArtistField3, songArtistField4,
+            songArtistField5, songArtistField6, songArtistField7, songArtistField8,
+            songPlaytimeField1, songPlaytimeField2, songPlaytimeField3, songPlaytimeField4,
+            songPlaytimeField5, songPlaytimeField6, songPlaytimeField7, songPlaytimeField8;
 
     //Objects
     EmployeeStorage access = new EmployeeStorage();
@@ -77,7 +78,7 @@ public class AddMusic implements Initializable {
     }
 
     //Submit Album Button
-    public void handleSubmitAlbum(ActionEvent event) {
+    public void handleSubmitAlbum(ActionEvent event) throws SQLException {
         if(!(albumGenreField1.getText().isEmpty()) && !(albumArtistField1.getText().isEmpty()) &&
                 !(albumNameField.getText().isEmpty()) && !(albumDateField.getText().isEmpty()))
         {
@@ -92,7 +93,7 @@ public class AddMusic implements Initializable {
     }
 
     //Save the Album in the database
-    public void saveAlbum() {
+    public void saveAlbum() throws SQLException {
         //Contains: albumName, date, albumPrice, label, vinylNumber
         albumDatabase.addAlbum(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(), albumLabelField.getText(), albumVynlField.getText());
         //Contains: albumArtist

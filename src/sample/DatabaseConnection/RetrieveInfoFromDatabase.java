@@ -52,31 +52,34 @@ public class RetrieveInfoFromDatabase {
 
 
         try {
+
             String query = "SELECT Email FROM login WHERE Email = '" + email + "' ";
             st = connection.createStatement();
             rs = st.executeQuery(query);
             System.out.println(email + " rs thing");
 
-            while(rs.next()) {
 
-                if (email.equals(rs.getString(1))) {
+            if(rs.next()) {
+
+                if (email.equals(rs.getString("Email"))) {
                     System.out.println("Hallo Gavna");
-
+                    System.out.println("new thing " + rs.getString("Email"));
                 } else {
 
-                    System.out.println("else alert");
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Look, an Information Dialog");
-                    alert.setContentText("I have a great message for you!");
-                    alert.showAndWait();
+                    System.out.println("diff print stttmt");
+
                 }
+
+            } else {
+
+                System.out.println("email doesnt exist");
 
             }
 
         } catch(Exception e) {
             System.out.println(e);
-            System.out.println("No such mail");
+            System.out.println("generic excuse");
+
 
         }
     }

@@ -18,6 +18,7 @@ public class UserScreen implements Initializable {
 
     //Object
     MainStorage sw = new MainStorage();
+    RetrieveInfoFromDatabase newRetrieve = new RetrieveInfoFromDatabase();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -25,7 +26,6 @@ public class UserScreen implements Initializable {
     }
 
     public void getName(String userEmail) {
-        RetrieveInfoFromDatabase newRetrieve = new RetrieveInfoFromDatabase();
         name.setText(newRetrieve.getName(userEmail));
     }
 

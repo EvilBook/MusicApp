@@ -13,6 +13,7 @@ public class AddAlbumToDatabase {
     private String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/musicdb2";
     private String username = "mass@mass-music";
     private String password = "Firmwar3";
+
     private String albumKey;
     private String songKey;
 
@@ -68,15 +69,16 @@ public class AddAlbumToDatabase {
 
 
     //Contains: albumName, date, albumPrice, label, vynlNumber
-    public <T> void addAlbum(T albumName, T albumDate, T albumPrice, T label, T vynlNumber) {
+    public <T> void addAlbum(T albumName, T albumDate, T albumPrice, T label, T vynlNumber) throws SQLException {
 
+        connection = DriverManager.getConnection(url, username, password);
         getAlbumID();
         System.out.println("addalbum------");
 
 
         try {
             String query = "insert into album(albumName, date, price, label, vynlNumber) "+
-                           " VALUES ('"+albumName+"','"+albumDate+"','"+albumPrice+"','"+label+"','"+vynlNumber+"')";
+                    " VALUES ('"+albumName+"','"+albumDate+"','"+albumPrice+"','"+label+"','"+vynlNumber+"')";
 
             st = connection.createStatement();
             st.executeUpdate(query);
@@ -141,7 +143,7 @@ public class AddAlbumToDatabase {
 
         try {
             String query = "insert into song(songName, playtime, album_idAlbum) "+
-                           " VALUES ('"+songName+"','"+playTime+"','"+albumKey+"')";
+                    " VALUES ('"+songName+"','"+playTime+"','"+albumKey+"')";
 
             st = connection.createStatement();
             st.executeUpdate(query);
