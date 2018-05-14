@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EmployeeAddMusicController implements Initializable
+public class AddMusic implements Initializable
 {
     //Variables
     @FXML private TextArea albumTextArea,songTextArea;

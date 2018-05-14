@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeRemoveMusicController">
+<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.RemoveMusic">
    <children>
       <Pane id="albumBody" layoutX="41.0" layoutY="59.0" prefHeight="501.0" prefWidth="984.0">
          <children>

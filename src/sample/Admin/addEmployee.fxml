@@ -6,22 +6,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1066.22" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.AddEmployeeController">
+<AnchorPane prefHeight="600.0" prefWidth="1066.62" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.AddEmployee">
    <children>
       <Text layoutX="361.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new employee">
          <font>
             <Font name="Arial" size="37.0" />
          </font>
       </Text>
-      <Button layoutX="40.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="64.0" prefWidth="119.0" text="Back" />
       <Button layoutX="910.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="64.0" prefWidth="119.0" text="Add" />
-      <TextField layoutX="100.0" layoutY="139.0" prefHeight="41.0" prefWidth="159.0" promptText="First Name" />
-      <TextField layoutX="424.0" layoutY="203.0" prefHeight="41.0" prefWidth="159.0" promptText="Phone Number" />
-      <TextField layoutX="424.0" layoutY="139.0" prefHeight="41.0" prefWidth="159.0" promptText="Email" />
-      <TextField layoutX="100.0" layoutY="265.0" prefHeight="41.0" prefWidth="159.0" promptText="Date of Birth" />
-      <TextField layoutX="424.0" layoutY="331.0" prefHeight="41.0" prefWidth="159.0" promptText="Salary" />
-      <TextField layoutX="100.0" layoutY="203.0" prefHeight="41.0" prefWidth="159.0" promptText="Last Name" />
-      <TextField layoutX="100.0" layoutY="331.0" prefHeight="41.0" prefWidth="159.0" promptText="Social Number" />
-      <TextField layoutX="424.0" layoutY="265.0" prefHeight="41.0" prefWidth="159.0" promptText="Address" />
+      <TextField fx:id="firstTextField" layoutX="100.0" layoutY="203.0" prefHeight="41.0" prefWidth="159.0" promptText="*First Name" />
+      <TextField fx:id="lastTextField" layoutX="100.0" layoutY="265.0" prefHeight="41.0" prefWidth="159.0" promptText="*Last Name" />
+      <TextField fx:id="emailTextField" layoutX="100.0" layoutY="331.0" prefHeight="41.0" prefWidth="159.0" promptText="*Email" />
+      <TextField fx:id="passwordTextField" layoutX="100.0" layoutY="391.0" prefHeight="41.0" prefWidth="159.0" promptText="*Password" />
+      <TextField fx:id="birthTextField" layoutX="424.0" layoutY="265.0" prefHeight="41.0" prefWidth="159.0" promptText="Date of Birth" />
+      <TextField fx:id="addressTextField" layoutX="424.0" layoutY="331.0" prefHeight="41.0" prefWidth="159.0" promptText="Address" />
+      <TextField fx:id="phoneTextField" layoutX="424.0" layoutY="391.0" prefHeight="41.0" prefWidth="159.0" promptText="Phone Number" />
+      <Button layoutX="116.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="53.0" prefWidth="96.0" text="Back" />
    </children>
 </AnchorPane>

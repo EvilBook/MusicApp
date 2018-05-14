@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="sceneBody" prefHeight="500.0" prefWidth="698.0" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeViewMusicPopUpController">
+<AnchorPane id="sceneBody" prefHeight="500.0" prefWidth="698.0" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.ViewMusicPopup">
    <children>
       <Pane id="albumBody" layoutX="14.0" layoutY="14.0" prefHeight="473.0" prefWidth="670.0">
          <children>

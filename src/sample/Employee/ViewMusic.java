@@ -3,7 +3,6 @@ package sample.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,9 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.DbconnectionMusic;
-import sample.DatabaseConnection.RemoveAlbumDatabase;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -25,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class EmployeeViewMusicController implements Initializable
+public class ViewMusic implements Initializable
 {
     //Variables
     @FXML private TextField selectionField;
@@ -105,9 +102,9 @@ public class EmployeeViewMusicController implements Initializable
 
             //When button is clicked pop up the second stage
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("EmployeeViewMusicPopUp.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("viewMusicPopup.fxml"));
             stage.setTitle("Album Information");
-            EmployeeViewMusicPopUpController popC = new EmployeeViewMusicPopUpController();
+            ViewMusicPopup popC = new ViewMusicPopup();
             stage.setScene(new Scene(root, 698, 500));
             stage.show();
         }

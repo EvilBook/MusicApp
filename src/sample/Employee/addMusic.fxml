@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeAddMusicController">
+<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.AddMusic">
    <children>
       <Pane id="sceneBodyMiddle" layoutX="18.0" layoutY="22.0" prefHeight="561.0" prefWidth="1030.0">
          <children>

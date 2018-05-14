@@ -23,7 +23,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class EmployeeViewMusicPopUpController implements Initializable
+public class ViewMusicPopup implements Initializable
 {
     //Variables
     @FXML private TableColumn<Song, String> songidColumn, songnameColumn, songtimeColumn, songartistColumn;
