@@ -6,14 +6,6 @@ import javafx.animation.*;
 
 import javafx.application.Platform;
 
-import javafx.beans.InvalidationListener;
-
-import javafx.beans.Observable;
-
-import javafx.beans.value.ChangeListener;
-
-import javafx.beans.value.ObservableValue;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,6 +48,9 @@ import javafx.stage.Stage;
 
 import javafx.util.Duration;
 
+
+
+import org.controlsfx.control.textfield.TextFields;
 import sample.DatabaseConnection.DbconnectionMusic;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.Employee.AlbumNameViewClass;
@@ -268,12 +263,53 @@ public class MainUserScreenController implements Initializable {
 
 
 
+   DbconnectionMusic dc2 = new DbconnectionMusic();
 
 
 
     @Override
 
     public void initialize(URL location, ResourceBundle resources) {
+
+         Connection connection = dc2.connect();
+
+
+
+        try{
+            String sql = "select *from album where albumName like '"+'%'+searchTextfield.getText()+'%'+"' ";
+
+            PreparedStatement pst = connection.prepareStatement(sql);
+
+            ResultSet result = pst.executeQuery();
+
+
+
+            while (result.next()) {
+                //data1.add(new AlbumNameViewClass(result.getString(2)));
+                TextFields.bindAutoCompletion(searchTextfield,result.getString(2));
+
+
+                System.out.println(result.getString(2));
+
+
+
+
+
+            }
+
+
+
+        }
+
+        catch(Exception e){
+
+            e.printStackTrace();
+
+        }
+
+
+
+
 
         MainMenu();
 
@@ -334,6 +370,8 @@ public class MainUserScreenController implements Initializable {
             imageView2.setVisible(false);
 
             imageView2.setId("informationPane");
+
+
 
 
 
@@ -419,25 +457,9 @@ public class MainUserScreenController implements Initializable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+
 
 
 

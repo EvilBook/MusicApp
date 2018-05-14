@@ -162,7 +162,7 @@ public class LoginController implements Initializable{
 
     public void handleLoginButton(ActionEvent event) throws IOException {
 
-        Pattern pattern = Pattern.compile("@masm");
+        Pattern pattern = Pattern.compile("@mass");
 
         Matcher matcher = pattern.matcher(userNameTextField.getText());
 
