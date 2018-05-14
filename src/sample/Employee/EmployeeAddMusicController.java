@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.AddAlbumToDatabase;
+import sample.DatabaseConnection.DbconnectionMusic;
 import sample.ExceptionClass;
 
 import java.io.IOException;
@@ -31,36 +32,68 @@ public class EmployeeAddMusicController implements Initializable {
     @FXML private TextField albumVynlField;
     @FXML private TextArea albumTextArea;
     @FXML private TextArea songTextArea;
+    @FXML
+    private TextField songNameField2;
 
     @FXML
-    private Label AlbumNameLabelErrorMessage;
+    private TextField songArtistField2;
 
     @FXML
-    private Label ReleaseDateErrorMessage;
+    private TextField songPlaytimeField2;
 
     @FXML
-    private Label VynlNumberErrorMessage;
+    private TextField songNameField3;
 
     @FXML
-    private Label LabelNameErrorMessage;
+    private TextField songArtistField3;
 
     @FXML
-    private Label PriceErrorMessage;
+    private TextField songPlaytimeField3;
 
     @FXML
-    private Label AlbumArtistErrorMessage;
+    private TextField songNameField4;
 
     @FXML
-    private Label GenreErrorMessage;
+    private TextField songArtistField4;
 
     @FXML
-    private Label SongNameErrorMessage;
+    private TextField songPlaytimeField4;
 
     @FXML
-    private Label ArtistNameErrorMessage;
+    private TextField songNameField5;
 
     @FXML
-    private Label PlayTimeErrorMessage;
+    private TextField songArtistField5;
+
+    @FXML
+    private TextField songPlaytimeField5;
+
+    @FXML
+    private TextField songNameField6;
+
+    @FXML
+    private TextField songArtistField6;
+
+    @FXML
+    private TextField songPlaytimeField6;
+
+    @FXML
+    private TextField songNameField7;
+
+    @FXML
+    private TextField songArtistField7;
+
+    @FXML
+    private TextField songPlaytimeField7;
+
+    @FXML
+    private TextField songNameField8;
+
+    @FXML
+    private TextField songArtistField8;
+
+    @FXML
+    private TextField songPlaytimeField8;
 
 
 

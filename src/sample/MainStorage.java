@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.Employee.Employee;
+import sample.Employee.EmployeeAddMusicController;
+import sample.Employee.EmployeeDataStorage;
+import sample.Employee.MainEmployeeScreenController;
 import sample.User.MainUserScreenController;
 
 import java.io.IOException;
@@ -36,8 +39,9 @@ public class MainStorage {
         Parent root;
         root = loader.load();
 
-        Employee emp = loader.getController();
-        emp.getEmail(userEmail);
+      MainEmployeeScreenController emp = loader.getController();
+      emp.getName(userEmail);
+
 
         Scene scene = new Scene(root,1066.62, 600);
         stage.setScene(scene);
@@ -49,7 +53,7 @@ public class MainStorage {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("User/MainUserScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("User//MainUserScreen.fxml"));
         Parent root;
         root = loader.load();
 

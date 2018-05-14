@@ -13,7 +13,7 @@ public class AddAlbumToDatabase {
     //Variables
     private Statement st;
     private Connection connection;
-    private String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/musicdb2";
+    private String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/musicdb2";
     private String username = "evilBook@music-app";
     private String password = "Firmwar3";
     private String albumKey;

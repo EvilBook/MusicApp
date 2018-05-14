@@ -14,6 +14,9 @@ import javafx.beans.value.ChangeListener;
 
 import javafx.beans.value.ObservableValue;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
@@ -30,6 +33,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import javafx.scene.control.*;
 
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.*;
 
 import javafx.scene.image.Image;
@@ -52,14 +56,19 @@ import javafx.stage.Stage;
 
 import javafx.util.Duration;
 
+import sample.DatabaseConnection.DbconnectionMusic;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
-
+import sample.Employee.AlbumNameViewClass;
 
 
 import java.io.File;
 
+import java.io.IOException;
 import java.net.URL;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import java.util.ResourceBundle;
@@ -67,6 +76,10 @@ import java.util.ResourceBundle;
 
 
 public class MainUserScreenController implements Initializable {
+
+
+    @FXML
+    private TextField searchTextfield;
 
 
 
@@ -82,6 +95,8 @@ public class MainUserScreenController implements Initializable {
 
     HBox horizontalMenu;
 
+    private DbconnectionMusic dc;
+
 
 
     @FXML
@@ -93,6 +108,8 @@ public class MainUserScreenController implements Initializable {
     @FXML
 
     Button moveRight;
+
+    private ObservableList<AlbumNameViewClass> data1;
 
 
 
@@ -2861,6 +2878,40 @@ public class MainUserScreenController implements Initializable {
 
 
         return pane;
+
+
+
+
+
+    }
+
+
+
+    @FXML
+    public void SearchAlbumButton(ActionEvent event)throws IOException {
+        Connection connection = dc.connect();
+        data1 = FXCollections.observableArrayList();
+
+
+        try{
+
+            String sql = "select *from album where albumName like '"+'%'+searchTextfield.getText()+'%'+"' ";
+            PreparedStatement pst = connection.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
+
+            while (result.next()) {
+                data1.add(new AlbumNameViewClass(result.getString(2)));
+
+
+                System.out.println(result.getString(2));
+
+
+            }
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
 
 
 
