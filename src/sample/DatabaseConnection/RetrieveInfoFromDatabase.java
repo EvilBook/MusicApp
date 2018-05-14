@@ -50,14 +50,10 @@ public class RetrieveInfoFromDatabase {
 
     public void authentication(String email) {
 
-
         try {
-
             String query = "SELECT Email FROM login WHERE Email = '" + email + "' ";
             st = connection.createStatement();
             rs = st.executeQuery(query);
-            System.out.println(email + " rs thing");
-
 
             if(rs.next()) {
 
@@ -65,9 +61,7 @@ public class RetrieveInfoFromDatabase {
                     System.out.println("Hallo Gavna");
                     System.out.println("new thing " + rs.getString("Email"));
                 } else {
-
                     System.out.println("diff print stttmt");
-
                 }
 
             } else {
@@ -75,6 +69,8 @@ public class RetrieveInfoFromDatabase {
                 System.out.println("email doesnt exist");
 
             }
+
+
 
         } catch(Exception e) {
             System.out.println(e);

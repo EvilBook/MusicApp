@@ -7,12 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.MainStorage;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,18 +21,18 @@ public class EmployeeScreen implements Initializable {
 
     //Variables
     @FXML Label nameLabel;
-    @FXML Button addButton;
-    @FXML Button removeButton;
 
     //Objects
-    EmployeeStorage access = new EmployeeStorage();
-    MainStorage proceed = new MainStorage();
-
+    MainStorage sw = new MainStorage();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
 
+    @FXML
+    public void handleLogOutButton (ActionEvent event) throws IOException {
+        sw.logOut(event);
     }
 
     public void getName(String userEmail) {
@@ -41,16 +40,40 @@ public class EmployeeScreen implements Initializable {
         nameLabel.setText(newRetrieve.getName(userEmail));
     }
 
-    public void handleAddButton(ActionEvent event) throws IOException {
-        access.employeeAddMusic(event, addButton);
-    }
-
-    public void handleDeleteButton(ActionEvent event) throws IOException {
-        access.employeeRemoveMusic(event, removeButton);
+    @FXML
+    private void handleSwitchScenesAdd(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("addMusic.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    public void handleLogOutButton (ActionEvent event) throws IOException {
-        proceed.logOut(event);
+    private void handleSwitchScenesRemove(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("removeMusic.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
+    @FXML
+    private void handleSwitchScenesView(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("viewMusic.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

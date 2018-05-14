@@ -10,9 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DatabaseConnection.RemoveEmployeeDatabase;
-import sample.DatabaseConnection.PersonDBConnection;
+import sample.DatabaseConnection.ThisIsForConnecting;
 import sample.Employee.Employee;
-import sample.MainStorage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +36,7 @@ public class RemoveEmployee implements Initializable {
 
     //Objects
     AdminStorage access = new AdminStorage();
-    PersonDBConnection dbc = new PersonDBConnection();
+    ThisIsForConnecting dbc = new ThisIsForConnecting();
     Connection connection = dbc.connection;
     RemoveEmployeeDatabase red = new RemoveEmployeeDatabase();
 

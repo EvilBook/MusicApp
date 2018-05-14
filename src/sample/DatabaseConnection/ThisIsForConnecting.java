@@ -1,19 +1,16 @@
 package sample.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class MusicDBConnection {
+public class ThisIsForConnecting {
 
     //Variables
     Statement st;
     public Connection connection;
 
-    public MusicDBConnection() {
+    public ThisIsForConnecting() {
 
-        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/musicdb2";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
         String username = "mass@mass-music";
         String password = "Firmwar3";
 
@@ -24,7 +21,7 @@ public class MusicDBConnection {
             new UpdateDatabase().connection=connection;
 
             System.out.println("Connection Established");
-
+            
         } catch (SQLException e) {
             throw new IllegalStateException("Connection Failed", e);
         }
@@ -32,3 +29,5 @@ public class MusicDBConnection {
     }
 
 }
+
+
