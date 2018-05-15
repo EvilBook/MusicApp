@@ -40,8 +40,7 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: black;
-    -fx-opacity: 0.6;
+    -fx-text-fill: #ffffff;
 }
 .root {
     -fx-background-color:linear-gradient(#ffffff,#ffffff);
@@ -163,4 +162,36 @@
 
 
 }
+
+
+.date-picker{
+
+
+    -fx-background-color: null;
+
+}
+
+
+.date-picker > .date-picker-popup{
+
+
+    -fx-background-color: null;
+
+}
+
+
+.date-picker > .text-field{
+
+    -fx-background-color: null;
+
+
+    -fx-border-width: 0px 0px 1px 0px;
+
+
+
+}
+
+
+
+
 

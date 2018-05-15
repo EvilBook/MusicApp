@@ -21,6 +21,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         primaryStage.setTitle("Vinyl Store");
         Scene scene=new Scene(root);

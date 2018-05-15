@@ -128,7 +128,7 @@ public class LoginController implements Initializable{
                         Parent root;
                         root = loader.load();
                         MainUserScreenController one = loader.getController();
-                        one.getName(userEmail);
+                        one.setUserEmail(userEmail);
                         one.SetStage(stage);
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
@@ -151,7 +151,9 @@ public class LoginController implements Initializable{
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
 
+
         UpdateDatabase updateDatabase=new UpdateDatabase();
+
         if(updateDatabase.CheckLogIn(userNameTextField.getText(),PasswordTextField.getText())){
             userEmail=userNameTextField.getText();
             Node node = (Node)event.getSource();
@@ -161,7 +163,7 @@ public class LoginController implements Initializable{
             Parent root;
             root = loader.load();
             MainUserScreenController one = loader.getController();
-            one.getName(userEmail);
+            one.setUserEmail(userEmail);
             one.SetStage(stage);
             Scene scene = new Scene(root);
             stage.setScene(scene);

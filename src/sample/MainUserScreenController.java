@@ -2,17 +2,11 @@ package sample;
 
 import javafx.animation.*;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;
@@ -25,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sample.DatabaseConnection.ReadAlbumInfo;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 
 import java.io.File;
@@ -54,15 +49,27 @@ public class MainUserScreenController implements Initializable {
     AnchorPane base;
     @FXML
     AnchorPane base1;
+    @FXML
+    StackPane profilePane;
 
     Stage stage;
     private MusicPlayer musicPlayer=MusicPlayer.getInstance();
     private boolean musicState;
+    public String userEmail;
+    public ArrayList<String> arrayList;
 
     public void SetStage(Stage stage){
         this.stage=stage;
 
     }
+
+
+    public void setUserEmail(String userEmail){
+        this.userEmail=userEmail;
+        System.out.println(userEmail+"watafak "+this.userEmail);
+        getName();
+    }
+
 
 
     ArrayList<String> names=new ArrayList<>();
@@ -106,6 +113,22 @@ public class MainUserScreenController implements Initializable {
     StackPane stackPane1=new StackPane();
 
 
+    DiscoverMenu discoverMenu= new DiscoverMenu();
+
+
+    ShoppingCartMenu shoppingCartMenu = new ShoppingCartMenu();
+
+
+    ProfileMenu profileMenu=new ProfileMenu();
+
+
+
+    ReadAlbumInfo readAlbumInfo;
+
+
+
+
+
 
 
 
@@ -135,11 +158,17 @@ public class MainUserScreenController implements Initializable {
         horizontalMenu.setSpacing(14);
         horizontalMenu.setMinWidth(400*names.size());
         horizontalMenu.setAlignment(Pos.CENTER_LEFT);
-        for(int i=0;i<names.size();i++) {
+        for(int i=0;i<readAlbumInfo.data.size();i++) {
             StackPane stackPane=new StackPane();
+            StackPane stackPane11=new StackPane();
             ImageView imageView=new ImageView();
             AnchorPane pane=new AnchorPane();
-            Image image=new Image(getClass().getResource("Graphics/Records/"+names.get(i)).toString());
+            Album album=readAlbumInfo.data.get(i);
+            Image image=new Image(getClass().getResource("Graphics/Records/"+album.getAlbumName()+".jpg").toString());
+
+
+            album.setImage(image);
+
 
             imageView.setImage(image);
             imageView.setId("cover");
@@ -163,12 +192,54 @@ public class MainUserScreenController implements Initializable {
 
 
             VBox albumInfo=new VBox();
-            pane.setStyle("-fx-background-color: #ffffff");
-            stackPane.getChildren().addAll(imageView,imageView2,CreateLabels(albumInfo,imageView2,imageView));
-            stackPane.setStyle("-fx-background-color: #ffffff");
+            VBox albumInfo1=new VBox();
+
+
+            albumInfo1.setAlignment(Pos.BASELINE_CENTER);
+
+
+
+            stackPane11.getChildren().addAll(albumInfo1, stackPane);
+
+
+            pane.setStyle("-fx-background-color: null;");
+
+            Label name=new Label(album.getAlbumName());
+
+
+            Label artist=new Label(album.getLabel());
+
+
+            albumInfo1.getChildren().addAll(name, artist);
+
+
+
+            stackPane.getChildren().addAll(imageView,imageView2,CreateLabels(albumInfo,imageView2,imageView, i, readAlbumInfo.data.get(i)));
             stackPane.setMaxWidth(250);
             stackPane.setMaxHeight(250);
-            horizontalMenu.getChildren().add(stackPane);
+
+
+            albumInfo1.setMaxSize(254, 300);
+
+
+            albumInfo1.setPrefWidth(254);
+
+
+
+
+            name.setTranslateY(0);
+
+
+            artist.setTranslateY(albumInfo1.getMaxHeight()-48);
+
+
+
+            albumInfo1.setStyle("-fx-background-color: rgba(0,0,0,0.42); -fx-background-radius: 20px;");
+
+
+
+
+            horizontalMenu.getChildren().add(stackPane11);
 
             stackPane.setOnMouseEntered(event -> {
                 AnimationOne(stackPane);
@@ -212,9 +283,41 @@ public class MainUserScreenController implements Initializable {
     }
 
     public void MainMenu() {
+
+
+        readAlbumInfo= new ReadAlbumInfo();
+        //readAlbumInfo.GetSpecificData("sonicX");
+        readAlbumInfo.GetData();
+
         AnchorPane mainMenu=new AnchorPane();
         mainMenu.setPrefSize(base.getPrefWidth(), base.getPrefHeight());
         mainMenu.setStyle("-fx-background: null");
+
+
+        HBox h1=new HBox();
+
+
+        h1.setMinWidth(400);
+        h1.setMaxWidth(400);
+
+
+        h1.setAlignment(Pos.CENTER);
+
+
+
+
+        base1.getChildren().add(h1);
+
+
+        h1.setTranslateX(base1.getPrefWidth()-h1.getMinWidth());
+
+
+
+
+
+
+
+
 
 
         StackPane rootPane=new StackPane();
@@ -235,197 +338,6 @@ public class MainUserScreenController implements Initializable {
         HBox h=new HBox();
 
 
-        ImageView baseImageView=new ImageView();
-
-
-        baseImageView.setFitWidth(80);
-
-
-        baseImageView.setPreserveRatio(true);
-
-        DropShadow dropShadow=new DropShadow();
-
-
-        dropShadow.setColor(new Color(1,1,1,1));
-
-
-        ColorAdjust colorAdjust=new ColorAdjust();
-
-
-        colorAdjust.setBrightness(1);
-
-
-        dropShadow.setRadius(40);
-
-
-
-
-        dropShadow.setInput(colorAdjust);
-
-
-        ColorAdjust colorAdjust1=new ColorAdjust();
-
-
-        colorAdjust1.setBrightness(-0.39);
-
-
-        ArrayList<ImageView> icons=new ArrayList<>();
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ImageView imageView=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\search.png"));
-        ImageView imageView1=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_explore_white_48pt_3x.png"));
-        ImageView imageView2=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_face_white_48pt_3x.png"));
-        ImageView imageView3=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_favorite_border_white_48pt_3x.png"));
-
-
-        Label label=new Label("Search");
-        Label label1=new Label("Discover");
-        Label label2=new Label("Profile");
-        Label label3=new Label("Saved");
-
-
-        label.setStyle("-fx-text-fill: #ffffff;");
-        label1.setStyle("-fx-text-fill: #ffffff;");
-        label2.setStyle("-fx-text-fill: #ffffff;");
-        label3.setStyle("-fx-text-fill: #ffffff;");
-
-
-
-
-        imageView.setFitWidth(baseImageView.getFitWidth());
-        imageView1.setFitWidth(baseImageView.getFitWidth());
-        imageView2.setFitWidth(baseImageView.getFitWidth());
-        imageView3.setFitWidth(baseImageView.getFitWidth());
-
-
-        imageView.setPreserveRatio(true);
-        imageView1.setPreserveRatio(true);
-        imageView2.setPreserveRatio(true);
-        imageView3.setPreserveRatio(true);
-
-
-        VBox hBox=new VBox();
-        VBox hBox1=new VBox();
-        VBox hBox2=new VBox();
-        VBox hBox3=new VBox();
-
-
-        hBox.setAlignment(Pos.CENTER);
-        hBox1.setAlignment(Pos.CENTER);
-        hBox2.setAlignment(Pos.CENTER);
-        hBox3.setAlignment(Pos.CENTER);
-
-
-
-        hBox.getChildren().addAll(imageView, label);
-        hBox1.getChildren().addAll(imageView1, label1);
-        hBox2.getChildren().addAll(imageView2, label2);
-        hBox3.getChildren().addAll(imageView3, label3);
-
-
-
-
-        icons.add(imageView);
-        icons.add(imageView1);
-        icons.add(imageView2);
-        icons.add(imageView3);
-
-
-
-
-
-
-
-        imageView.setFitWidth(140);
-
-        imageView1.setEffect(colorAdjust1);
-        imageView2.setEffect(colorAdjust1);
-        imageView3.setEffect(colorAdjust1);
-
-
-
-        h.setMinWidth(mainMenu.getPrefWidth());
-
-
-        v.setMinWidth(mainMenu.getPrefWidth());
-
-
-        v.setMinHeight(mainMenu.getPrefHeight());
-
-
-        TextField textField=new TextField("Search");
-
-
-        textField.setMaxWidth(400);
-
-
-        textField.setTranslateY(40);
-
-
-        for(ImageView i : icons){
-
-
-
-            i.setOnMouseEntered(event -> {
-                if(i.getId()!="2") {
-                    i.setFitWidth(120);
-                    i.setEffect(dropShadow);
-                }
-            });
-
-
-            i.setOnMouseExited(event -> {
-                if(i.getId()!="2") {
-                    i.setFitWidth(80);
-                    i.setEffect(colorAdjust1);
-                }
-            });
-
-
-            i.setOnMouseClicked(event -> {
-                i.setFitWidth(140);
-                i.setEffect(null);
-
-
-                i.setId("2");
-
-
-
-                for(ImageView ii : icons){
-                    if(ii!=i){
-                        ii.setEffect(colorAdjust1);
-                        ii.setFitWidth(80);
-                        ii.setId("1");
-                    }
-                }
-
-            });
-
-
-
-        }
-
-
-        h.getChildren().addAll(hBox, hBox1, hBox2, hBox3);
-
-
-
-
-
-
-
-
 
 
 
@@ -437,9 +349,6 @@ public class MainUserScreenController implements Initializable {
 
 
         v.getChildren().addAll(h);
-
-
-        v.getChildren().addAll(textField);
 
 
 
@@ -461,12 +370,42 @@ public class MainUserScreenController implements Initializable {
 
 
 
+
        //base1.getChildren().add(rootPane);
 
 
         AnchorPane ap1=new AnchorPane();
 
 
+        base1.getChildren().add(discoverMenu.createDiscover(base));
+
+
+
+
+
+        base1.getChildren().add(shoppingCartMenu.createShoppingCart(base, base1));
+
+
+
+
+        base1.getChildren().add(profileMenu.createProfile(base));
+
+
+        profileMenu.pane1=base1;
+
+
+
+
+
+        mainMenuIcons(h1);
+
+
+
+
+
+
+
+
 
 
 
@@ -474,21 +413,23 @@ public class MainUserScreenController implements Initializable {
 
     }
 
-    public void getName(String userEmail) {
+    public void getName() {
+        System.out.println(userEmail+" "+"da fuk");
         RetrieveInfoFromDatabase newRetrieve=new RetrieveInfoFromDatabase();
-        name.setText(newRetrieve.getName(userEmail));
+        arrayList=new ArrayList<>(newRetrieve.getName((userEmail)));
+        if(arrayList.size()>0) {
+            name.setText(arrayList.get(0));
+        }else{
+        }
     }
     public ArrayList<String> ReadNames() {
         File folder = new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\Records");
         File[] listOfFiles = folder.listFiles();
-        System.out.println(folder.listFiles());
 
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                System.out.println("File " + listOfFiles[i].getName());
                 names.add(listOfFiles[i].getName());
             } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
             }
         }
         return names;
@@ -497,14 +438,11 @@ public class MainUserScreenController implements Initializable {
     public ArrayList<String> ReadNamesMusic() {
         File folder = new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music");
         File[] listOfFiles = folder.listFiles();
-        System.out.println(folder.listFiles());
 
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                System.out.println("File " + listOfFiles[i].getName());
                 nameMusic.add(listOfFiles[i].getName());
             } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
             }
         }
         return nameMusic;
@@ -557,23 +495,18 @@ public class MainUserScreenController implements Initializable {
             }
         }
     }
-    public VBox SetText(VBox h,Image image){
+    public VBox SetText(VBox h,Image image,Integer ii, Album album){
         ArrayList<Label> n=new ArrayList<>();
-        for(Node l : h.getChildren()){
-            if(l instanceof Label) {
-                n.add((Label) l);
-            }
 
-        }
-        for(int i=0;i<n.size();i++){
-            n.get(i).setText(s[i]);
-        }
+
+
+
         HBox m=new HBox();
         Button newButton=new Button();
         newButton.setText("More");
         newButton.setAlignment(Pos.BOTTOM_CENTER);
         newButton.setOnMouseClicked(event -> {
-            CreateMore(image);
+            CreateMore(readAlbumInfo.data.get(ii));
         });
         newButton.opacityProperty().bind(h.opacityProperty());
         newButton.visibleProperty().bind(h.visibleProperty());
@@ -583,6 +516,10 @@ public class MainUserScreenController implements Initializable {
         newButton1.opacityProperty().bind(h.opacityProperty());
         newButton1.visibleProperty().bind(h.visibleProperty());
         newButton1.setOnMouseClicked(event -> {
+
+
+            shoppingCartMenu.albums.add(readAlbumInfo.data.get(ii));
+
             String toastMsg = "added to basket";
             int toastMsgTime = 1500;
             int fadeInTime = 500;
@@ -594,7 +531,7 @@ public class MainUserScreenController implements Initializable {
         h.getChildren().add(m);
         return h;
     }
-    public VBox CreateLabels(VBox h,ImageView iv,ImageView cover){
+    public VBox CreateLabels(VBox h,ImageView iv,ImageView cover,Integer ii,Album album){
         ImageView imageView=new ImageView();
         Image image1=new Image(getClass().getResource("Graphics/ic_album_3x.png").toString());
 
@@ -611,22 +548,34 @@ public class MainUserScreenController implements Initializable {
         imageView.setSmooth(true);
         imageView.setCache(true);
         h.getChildren().add(imageView);
-        for(String i : s){
-            Label newLabel=new Label();
-            newLabel.setText(i);
-            newLabel.setStyle("-fx-text-fill: #ffffff");
-            newLabel.opacityProperty().bind(h.opacityProperty());
-            newLabel.visibleProperty().bind(h.visibleProperty());
-            newLabel.setAlignment(Pos.CENTER);
-            h.getChildren().add(newLabel);
-        }
+
+
+        Label name=new Label(album.getAlbumName());
+
+
+
+        Label artist=new Label("by "+album.getLabel());
+
+
+        Label plates=new Label("No. Disks: "+album.getAlbumId());
+
+
+        Label date=new Label("date: "+album.getDate());
+
+
+        Label price=new Label("Price: "+album.getPrice());
+
+
+        h.getChildren().addAll(name, artist, date, plates, price);
+
+
         h.setAlignment(Pos.CENTER);
         h.setOpacity(0);
         h.opacityProperty().bind(iv.opacityProperty());
         h.visibleProperty().bind(iv.visibleProperty());
-        return SetText(h,cover.getImage());
+        return SetText(h,cover.getImage(),ii,readAlbumInfo.data.get(ii));
     }
-    public void CreateMore(Image image){
+    public void CreateMore(Album album){
 
 
 
@@ -638,7 +587,6 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        System.out.println("Doesnt Work");
         moreAp=new AnchorPane();
         VBox v=new VBox();
         HBox h=new HBox();
@@ -662,7 +610,7 @@ public class MainUserScreenController implements Initializable {
         StackPane stackPane=new StackPane();
 
 
-        iv.setImage(image);
+        iv.setImage(album.getImage());
         iv.setId("cover");
         iv.setFitWidth(250);
         iv.setPreserveRatio(true);
@@ -694,7 +642,13 @@ public class MainUserScreenController implements Initializable {
         v.minHeightProperty().bind(moreAp.minHeightProperty());
         v.minWidthProperty().bind(moreAp.minWidthProperty());
 
-        close.setAlignment(Pos.TOP_RIGHT);
+
+        Pane pane= showCloseButton();
+
+
+
+
+
         close.setStyle("-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #ff1919; -fx-border-radius: 8px; -fx-border-color: #ff1919; -fx-border-width:2px;");
         close.setText("X");
         close.setOnMouseEntered(event -> {
@@ -705,14 +659,22 @@ public class MainUserScreenController implements Initializable {
             close.setStyle("-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #ff1919; -fx-border-radius: 8px; -fx-border-color: #ff1919; -fx-border-width:2px;");
 
         });
-        close.setOnMouseClicked(event -> {
-            showMoreAnimationTwo(moreAp);
-            showSongsAnimationTwo(musicAp);
-            musicPlayer.slider.setValue(sliderPlayer.getValue());
-            showPlayer();
-        });
 
-        h1.getChildren().addAll(stackPane,close);
+
+        h1.setMinWidth(moreAp.getWidth());
+
+
+
+
+        h1.getChildren().addAll(stackPane, pane);
+
+        pane.setTranslateX(80+24);
+        pane.setTranslateY(8);
+
+
+
+
+
         h1.minWidthProperty().bind(v.minWidthProperty());
 
 
@@ -720,18 +682,6 @@ public class MainUserScreenController implements Initializable {
 
         VBox v3=new VBox();
 
-
-        for(String i : sFull){
-            Label newLabel=new Label();
-            newLabel.setStyle("-fx-text-fill: #ffffff");
-            newLabel.setText(i);
-            newLabel.opacityProperty().bind(h.opacityProperty());
-            newLabel.visibleProperty().bind(h.visibleProperty());
-            newLabel.setAlignment(Pos.CENTER);
-            v3.getChildren().add(newLabel);
-            v3.setAlignment(Pos.BOTTOM_CENTER);
-            moreInfoArray.add(newLabel);
-        }
         VBox v2=new VBox();
 
 
@@ -820,17 +770,18 @@ public class MainUserScreenController implements Initializable {
 
         base1.getChildren().add(rootPane);
 
-        System.out.println("still dont");
         ap.setMinHeight(600);
         ap.setMinWidth(390);
 
         ap.setTranslateX(-400);
-        System.out.println(ap.getChildren().size());
         for(Node n : ap.getChildren()){
             n.setOpacity(100);
             n.setStyle("-fx-background-color: rgba(0,0,0,0.16)");
-            System.out.println(n.getOpacity()+"WHAT");
         }
+
+
+
+
 
         showMoreAnimationOne(ap);
     }
@@ -859,7 +810,7 @@ public class MainUserScreenController implements Initializable {
     public void showMoreAnimationTwo(AnchorPane ap){
         Timeline time=new Timeline();
         KeyValue kv = new KeyValue(ap.translateXProperty(), -400, Interpolator.EASE_BOTH);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.31), kv);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.49), kv);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t->{
         });
@@ -908,11 +859,6 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        apMusic.setOnMouseClicked(event -> {
-            System.out.println("BITCH");
-        });
-
-
 
 
 
@@ -923,6 +869,10 @@ public class MainUserScreenController implements Initializable {
     }
 
     public void CreateSongs(AnchorPane ap,VBox vOne, ScrollPane scrollPane){
+
+
+        System.out.println("WORK");
+
 
 
         VBox v = new VBox();
@@ -1063,13 +1013,7 @@ public class MainUserScreenController implements Initializable {
                         //primaryStage.setScene(scene2);
                     });
                     currentAnimation.play();
-                    System.out.println(mediaPlayer.getStatus());
-                    System.out.println(currentAnimation.getStatus());
-                    System.out.println(slider.getValue());
-                    System.out.println(musicPlayer.playlist.get(play).getTotalDuration().toSeconds());
                 });
-
-                System.out.println(slider.maxProperty());
 
 
             slider.valueProperty().addListener(observable -> {
@@ -1198,6 +1142,13 @@ public class MainUserScreenController implements Initializable {
         HBox h=new HBox();
         VBox v=new VBox();
 
+
+
+
+
+
+
+
         if(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getStatus()!= MediaPlayer.Status.STOPPED) {
 
 
@@ -1213,7 +1164,6 @@ public class MainUserScreenController implements Initializable {
             ProgressBar progressBar=new ProgressBar(0);
             progressBar.setMinWidth(600);
             StackPane stackPane=new StackPane();
-            System.out.println(slider.getValue());
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -1691,6 +1641,502 @@ public class MainUserScreenController implements Initializable {
 
 
     }
+
+
+    public Pane showCloseButton(){
+
+
+        Pane pane=new Pane();
+
+
+        pane.setId("1");
+
+
+
+        pane.setMaxSize(28,28);
+        pane.setMinSize(28,28);
+
+
+
+        Line line=new Line();
+        line.setStartX(0);
+        line.setStartY(0);
+        line.setEndX(0);
+        line.setEndY(0);
+
+
+        Line line1=new Line();
+        line1.setStartX(pane.getMaxWidth());
+        line1.setStartY(pane.getMaxHeight());
+        line1.setEndX(pane.getMaxWidth());
+        line1.setEndY(pane.getMaxHeight());
+
+
+        Arc arc=new Arc();
+
+
+
+        arc.setStrokeWidth(4);
+
+
+        arc.setCenterX(pane.getMaxWidth()/2);
+        arc.setCenterY(pane.getMaxHeight()/2);
+        arc.setRadiusX(pane.getMaxWidth());
+        arc.setRadiusY(pane.getMaxHeight());
+
+
+        arc.setStartAngle(0);
+
+
+        arc.setLength(0);
+
+
+
+
+
+
+
+        arc.setType(ArcType.OPEN);
+
+
+        Timeline time = new Timeline();
+        KeyValue kv = new KeyValue(line.startXProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv1 = new KeyValue(line1.startXProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv2 = new KeyValue(line.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+        KeyValue kv3 = new KeyValue(line1.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+        KeyValue kv4 = new KeyValue(line.startYProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv5 = new KeyValue(line1.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+        KeyValue kv6 = new KeyValue(line.endYProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv7 = new KeyValue(line1.endYProperty(),  pane.getMaxHeight(), Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.49), kv, kv1, kv2, kv3, kv4, kv5, kv6, kv7);
+        time.getKeyFrames().add(kf);
+        time.setOnFinished(t -> {
+        });
+        time.play();
+        pane.setId("2");
+
+
+        time.setOnFinished(event1 -> {
+
+
+                    Timeline time1 = new Timeline();
+                    KeyValue kv11 = new KeyValue(line.startXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                    KeyValue kv111 = new KeyValue(line1.startXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                    KeyValue kv211 = new KeyValue(line.endXProperty(), 0, Interpolator.EASE_BOTH);
+                    KeyValue kv31 = new KeyValue(line1.endXProperty(), 0, Interpolator.EASE_BOTH);
+                    KeyValue kv41 = new KeyValue(line.startYProperty(), 0, Interpolator.EASE_BOTH);
+                    KeyValue kv51 = new KeyValue(line1.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                    KeyValue kv61 = new KeyValue(line.endYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                    KeyValue kv71 = new KeyValue(line1.endYProperty(), 0, Interpolator.EASE_BOTH);
+                    KeyFrame kf1 = new KeyFrame(Duration.seconds(0.49), kv11, kv111, kv211, kv31, kv41, kv51, kv61, kv71);
+                    time1.getKeyFrames().add(kf1);
+                    time1.setOnFinished(t -> {
+                    });
+                    time1.play();
+
+
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        pane.setOnMouseClicked(event -> {
+
+
+                Timeline time11 = new Timeline();
+                KeyValue kv1111 = new KeyValue(line.startXProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv11111 = new KeyValue(line1.startXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                KeyValue kv21 = new KeyValue(line.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                KeyValue kv311 = new KeyValue(line1.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+                KeyValue kv411 = new KeyValue(line.startYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv511 = new KeyValue(line1.startYProperty(), 0, Interpolator.EASE_BOTH);
+                KeyValue kv611 = new KeyValue(line.endYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv711 = new KeyValue(line1.endYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+                KeyValue kv8 = new KeyValue(arc.lengthProperty(), 0, Interpolator.EASE_BOTH);
+                KeyFrame kf11 = new KeyFrame(Duration.seconds(0.49), kv1111, kv11111, kv21, kv311, kv411, kv511, kv611, kv711, kv8);
+                time11.getKeyFrames().add(kf11);
+                time11.setOnFinished(t -> {
+                });
+                time11.play();
+
+
+                pane.setId("1");
+
+
+                showMoreAnimationTwo(moreAp);
+                showSongsAnimationTwo(musicAp);
+                musicPlayer.slider.setValue(sliderPlayer.getValue());
+                showPlayer();
+
+
+        });
+
+
+        line.setFill(new Color(0.8,0.1,0.1,1));
+        line1.setFill(line.getFill());
+        line.setStroke(line.getFill());
+        line1.setStroke(line.getFill());
+        line.setStrokeWidth(4);
+        line1.setStrokeWidth(4);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        arc.setFill(new Color(0,0,0,0));
+        arc.setStroke(line.getFill());
+
+
+        arc.setOnMouseEntered(event -> {
+
+
+            arc.setFill(new Color(1,0.4,0.4,0.3));
+
+
+        });
+
+
+        arc.setOnMouseExited(event -> {
+
+
+            arc.setFill(new Color(1,0.4,0.4,0));
+
+
+        });
+
+
+        pane.setOnMouseEntered(event -> {
+            DropShadow dropShadow=new DropShadow();
+
+
+            dropShadow.setColor(new Color(1,1,1,1));
+
+
+            line.setEffect(dropShadow);
+            line1.setEffect(dropShadow);
+
+
+        });
+
+
+        pane.setOnMouseExited(event -> {
+
+
+
+            line.setEffect(null);
+            line1.setEffect(null);
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        pane.getChildren().addAll(line, line1, arc);
+
+
+        pane.setStyle("-fx-background-color: null;");
+
+
+        return pane;
+
+
+    }
+
+
+    public void mainMenuIcons(Pane pane){
+
+
+        ImageView baseImageView=new ImageView();
+
+
+        baseImageView.setFitWidth(pane.getMinWidth()*1/8);
+
+
+        baseImageView.setPreserveRatio(true);
+
+        DropShadow dropShadow=new DropShadow();
+
+
+        dropShadow.setColor(new Color(1,1,1,1));
+
+
+        ColorAdjust colorAdjust=new ColorAdjust();
+
+
+        colorAdjust.setBrightness(1);
+
+
+        dropShadow.setRadius(40);
+
+
+
+
+        dropShadow.setInput(colorAdjust);
+
+
+        ColorAdjust colorAdjust1=new ColorAdjust();
+
+
+        colorAdjust1.setBrightness(-0.39);
+
+
+        ArrayList<ImageView> icons=new ArrayList<>();
+
+
+        Rectangle rect = new Rectangle(0, 0, 100, 100);
+        Tooltip t = new Tooltip("Search");
+        Tooltip t1 = new Tooltip("Discover");
+        Tooltip t2 = new Tooltip("Profile");
+        Tooltip t3 = new Tooltip("Saved");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ImageView imageView=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\search.png"));
+        ImageView imageView1=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_explore_white_48pt_3x.png"));
+        ImageView imageView2=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_face_white_48pt_3x.png"));
+        ImageView imageView3=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_favorite_border_white_48pt_3x.png"));
+
+
+        Label label=new Label("Search");
+        Label label1=new Label("Discover");
+        Label label2=new Label("Profile");
+        Label label3=new Label("Saved");
+
+
+        label.setStyle("-fx-text-fill: #ffffff;");
+        label1.setStyle("-fx-text-fill: #ffffff;");
+        label2.setStyle("-fx-text-fill: #ffffff;");
+        label3.setStyle("-fx-text-fill: #ffffff;");
+
+
+        label.setMaxSize(pane.getMinWidth()*1/8, pane.getMinHeight()*1/8);
+        label1.setMaxSize(pane.getMinWidth()*1/8, pane.getMinHeight()*1/8);
+        label2.setMaxSize(pane.getMinWidth()*1/8, pane.getMinHeight()*1/8);
+        label3.setMaxSize(pane.getMinWidth()*1/8, pane.getMinHeight()*1/8);
+
+
+
+
+        imageView.setFitWidth(baseImageView.getFitWidth());
+        imageView1.setFitWidth(baseImageView.getFitWidth());
+        imageView2.setFitWidth(baseImageView.getFitWidth());
+        imageView3.setFitWidth(baseImageView.getFitWidth());
+
+
+        imageView.setPreserveRatio(true);
+        imageView1.setPreserveRatio(true);
+        imageView2.setPreserveRatio(true);
+        imageView3.setPreserveRatio(true);
+
+
+        VBox hBox=new VBox();
+        VBox hBox1=new VBox();
+        VBox hBox2=new VBox();
+        VBox hBox3=new VBox();
+
+
+        hBox.setAlignment(Pos.CENTER);
+        hBox1.setAlignment(Pos.CENTER);
+        hBox2.setAlignment(Pos.CENTER);
+        hBox3.setAlignment(Pos.CENTER);
+
+
+
+        hBox.getChildren().addAll(imageView);
+        hBox1.getChildren().addAll(imageView1);
+        hBox2.getChildren().addAll(imageView2);
+        hBox3.getChildren().addAll(imageView3);
+
+
+
+
+        icons.add(imageView);
+        icons.add(imageView1);
+        icons.add(imageView2);
+        icons.add(imageView3);
+
+
+        imageView.setEffect(colorAdjust1);
+        imageView1.setEffect(colorAdjust1);
+        imageView2.setEffect(colorAdjust1);
+        imageView3.setEffect(colorAdjust1);
+
+
+        VBox[] v1=new VBox[]{hBox, hBox1, hBox2, hBox3};
+
+
+        hBox.setOnMouseClicked(event -> {
+            shoppingCartMenu.showShoppingCartMenu();
+
+
+            shoppingCartMenu.addData();
+        });
+
+        hBox1.setOnMouseClicked(event -> {
+            profileMenu.showProfileMenu();
+
+
+            profileMenu.addData(arrayList);
+        });
+
+
+        hBox2.setOnMouseClicked(event -> {
+            shoppingCartMenu.showShoppingCartMenu();
+
+
+            shoppingCartMenu.addData();
+        });
+
+
+        hBox3.setOnMouseClicked(event -> {
+            shoppingCartMenu.showShoppingCartMenu();
+
+
+            shoppingCartMenu.addData();
+        });
+
+
+
+
+
+
+
+
+
+        for(VBox i : v1){
+
+
+
+            /*i.setOnMouseEntered(event -> {
+                if(i.getId()!="2") {
+                    i.setMinSize(pane.getMinWidth()*1/7, pane.getMinWidth()*1/7);
+                    i.setEffect(dropShadow);
+                }
+            });
+
+
+            i.setOnMouseExited(event -> {
+                if(i.getId()!="2") {
+                    i.setMinSize(pane.getMinWidth()*1/8, pane.getMinWidth()*1/8);
+                    i.setEffect(colorAdjust1);
+                }
+            });
+
+
+            i.setOnMouseClicked(event -> {
+                i.setMinSize(pane.getMinWidth()*1/6, pane.getMinWidth()*1/6);
+                System.out.println(i.getChildren().size());
+
+
+                i.setId("2");
+
+
+
+                for(VBox ii : v1){
+                    if(ii!=i){
+                        ii.setEffect(colorAdjust1);
+                        i.setMinSize(pane.getMinWidth()*1/8, pane.getMinWidth()*1/8);
+                        ii.setId("1");
+
+
+                    }
+                }
+
+            });*/
+
+
+
+        }
+
+
+
+        pane.getChildren().addAll(hBox, hBox1, hBox2, hBox3);
+
+
+        pane.setPadding(new Insets(14,14,8,14));
+
+
+        ((HBox)pane).setSpacing(4);
+
+
+
+
+        hBox.setStyle("-fx-background-color: #ffffff");
+
+
+
+        Tooltip.install(hBox,t);
+        Tooltip.install(hBox1,t1);
+        Tooltip.install(hBox2,t2);
+        Tooltip.install(hBox3,t3);
+
+
+        pane.toFront();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 

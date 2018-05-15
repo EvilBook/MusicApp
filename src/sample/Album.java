@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.image.Image;
+
 public class Album {
 
 
@@ -10,6 +12,7 @@ public class Album {
     private String price;
     private String label;
 
+    private Image image;
 
     public Album(String albumId, String albumName, String date, String price, String label) {
         AlbumId = albumId;
@@ -38,4 +41,16 @@ public class Album {
     public String getLabel() {
         return label;
     }
+
+
+    public Image getImage() {
+        return image;
+    }
+
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+
 }

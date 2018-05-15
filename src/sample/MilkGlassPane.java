@@ -5,6 +5,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
 
@@ -14,8 +15,8 @@ public class MilkGlassPane extends Region {
     private final Pane container;
 
     // blur (milk glass effect)
-    private final BoxBlur blur;
-    private final double initialBlur = 14;
+    private final GaussianBlur blur;
+    private final double initialBlur = 18;
 
     // background image
     private WritableImage image;
@@ -25,7 +26,7 @@ public class MilkGlassPane extends Region {
 
         // milk glass effect:
         // set the blur and color adjust effects
-        blur = new BoxBlur(initialBlur, initialBlur, 3);
+        blur = new GaussianBlur(24);
         setEffect(blur);
         //blur.setInput(new ColorAdjust(0, 0, 0.1, 0.0));
 
@@ -76,8 +77,9 @@ public class MilkGlassPane extends Region {
         }
 
         // x, y location of this pane
-        double x = getLayoutX();
-        double y = getLayoutY();
+        double x = this.localToScene(this.getBoundsInLocal()).getMinX();
+        double y = this.localToScene(this.getBoundsInLocal()).getMinY()+20;
+
 
         // create the snapshot parameters (defines viewport)
         SnapshotParameters sp = new SnapshotParameters();
