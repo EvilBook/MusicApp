@@ -165,22 +165,13 @@ public class ForgottenPasswordController implements Initializable {
 
         props.put("mail.smtp.auth", "true");
 
-
-
-
-
         Session session = Session.getDefaultInstance(props);
 
         MimeMessage message = new MimeMessage(session);
 
-
-
         PersonDBConnection personDBConnection = new PersonDBConnection();
 
         Statement statement = null;
-
-
-
 
 
         try {
