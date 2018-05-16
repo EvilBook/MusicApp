@@ -77,7 +77,7 @@ public class AddMusic implements Initializable
     }
 
 
-    public void savePDF(String albumName, String date,  String albumPrice,  String label, String vynl)
+    public void savePDF(String albumName, String date, String albumPrice, String label, String vynl)
     {
         Document doc = new Document();
 
@@ -100,6 +100,7 @@ public class AddMusic implements Initializable
         {
             e.printStackTrace();
         }
+
     }
 
 
