@@ -57,6 +57,7 @@ public class MainUserScreenController implements Initializable {
     private boolean musicState;
     public String userEmail;
     public ArrayList<String> arrayList;
+    private Label count;
 
     public void SetStage(Stage stage){
         this.stage=stage;
@@ -116,7 +117,7 @@ public class MainUserScreenController implements Initializable {
     DiscoverMenu discoverMenu= new DiscoverMenu();
 
 
-    ShoppingCartMenu shoppingCartMenu = new ShoppingCartMenu();
+    ShoppingCartMenu shoppingCartMenu = new ShoppingCartMenu(count);
 
 
     ProfileMenu profileMenu=new ProfileMenu();
@@ -421,7 +422,96 @@ public class MainUserScreenController implements Initializable {
         RetrieveInfoFromDatabase newRetrieve=new RetrieveInfoFromDatabase();
         arrayList=new ArrayList<>(newRetrieve.getName((userEmail)));
         if(arrayList.size()>0) {
-            name.setText(arrayList.get(0));
+            name.setText(arrayList.get(0).substring(0,1).toUpperCase()+""+(arrayList.get(1).substring(0,1).toUpperCase()));
+            name.setOpacity(0);
+            Circle circle=new Circle();
+            circle.setFill(new Color(Math.random(), Math.random(), Math.random(), 1));
+
+
+            circle.setRadius(24);
+
+
+            DropShadow newDropShadow=new DropShadow();
+
+
+            newDropShadow.setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
+
+
+            newDropShadow.setRadius(14);
+
+
+            InnerShadow innerShadow=new InnerShadow();
+
+
+            innerShadow.setRadius(9);
+
+
+            innerShadow.setChoke(0.3);
+
+
+
+
+
+
+
+
+            circle.setEffect(innerShadow);
+
+
+
+
+            Label newLabel1=new Label();
+
+
+            newLabel1.setText(name.getText());
+
+
+            StackPane newStackPane1=new StackPane(circle, newLabel1);
+
+
+            newStackPane1.setOnMouseEntered(event -> {
+                DropShadow newDropShadow11=new DropShadow();
+
+
+                newDropShadow11.setColor(new Color(1,1,1,1));
+
+
+                newDropShadow11.setRadius(20);
+
+
+
+                newStackPane1.setEffect(newDropShadow11);
+
+
+            });
+
+
+            newStackPane1.setOnMouseExited(event -> {
+                newStackPane1.setEffect(null);
+            });
+
+
+            newStackPane1.setOnMouseClicked(event -> {
+                profileMenu.showProfileMenu();
+
+
+                profileMenu.addData(arrayList);
+            });
+
+
+
+
+
+            newStackPane1.setTranslateY(14);
+            newStackPane1.setTranslateX(base.getPrefWidth()-80);
+
+
+
+            base.getChildren().add(newStackPane1);
+
+
+
+
         }else{
         }
     }
@@ -519,6 +609,15 @@ public class MainUserScreenController implements Initializable {
         newButton1.opacityProperty().bind(h.opacityProperty());
         newButton1.visibleProperty().bind(h.visibleProperty());
         newButton1.setOnMouseClicked(event -> {
+
+
+            Integer count1=Integer.parseInt(count.getText());
+
+
+
+
+            count.setText(String.valueOf(count1+1));
+
 
 
             shoppingCartMenu.albums.add(readAlbumInfo.data.get(ii));
@@ -1938,9 +2037,9 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        ImageView imageView=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\search.png"));
-        ImageView imageView1=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_explore_white_48pt_3x.png"));
-        ImageView imageView2=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_face_white_48pt_3x.png"));
+        ImageView imageView=new ImageView();
+        ImageView imageView1=new ImageView();
+        ImageView imageView2=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\cart.png"));
         ImageView imageView3=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_favorite_border_white_48pt_3x.png"));
 
 
@@ -2020,10 +2119,6 @@ public class MainUserScreenController implements Initializable {
         });
 
         hBox1.setOnMouseClicked(event -> {
-            profileMenu.showProfileMenu();
-
-
-            profileMenu.addData(arrayList);
         });
 
 
@@ -2108,8 +2203,52 @@ public class MainUserScreenController implements Initializable {
         }
 
 
+        StackPane stackPane11=new StackPane();
 
-        pane.getChildren().addAll(hBox, hBox1, hBox2, hBox3);
+
+        stackPane11.getChildren().add(hBox2);
+
+
+
+
+        Circle circle=new Circle();
+
+
+        circle.setRadius(9);
+
+
+        circle.setFill(new Color(0.98,0.4,0.4,1));
+
+
+        circle.setTranslateY(24);
+
+
+        circle.setTranslateX(18);
+
+
+
+
+        count=new Label("0");
+
+
+
+        count.setTranslateY(24);
+
+
+        count.setTranslateX(18);
+
+
+
+        stackPane11.getChildren().addAll(circle, count);
+
+
+
+
+
+
+
+
+        pane.getChildren().addAll(hBox, hBox1, stackPane11, hBox3);
 
 
         ((HBox)pane).setSpacing(4);

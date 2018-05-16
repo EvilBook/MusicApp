@@ -33,12 +33,23 @@ import java.util.ArrayList;
 public class CheckoutMenu {
 
 
+    private final double total;
+    private final ShoppingCartMenu aClass;
     Pane base;
 
 
     StackPane stackPane;
 
+    public CheckoutMenu(double total, ShoppingCartMenu aClass) {
 
+
+        this.total=total;
+
+
+        this.aClass=aClass;
+
+
+    }
 
 
     public StackPane createCheckout(Pane pane){
@@ -531,7 +542,7 @@ public class CheckoutMenu {
 
 
 
-        v.getChildren().addAll(button);
+        v.getChildren().addAll(new Label(String.valueOf(this.total)), button);
 
 
         v.setAlignment(Pos.CENTER);
@@ -539,6 +550,10 @@ public class CheckoutMenu {
 
 
         button.setOnMouseClicked(event -> {
+
+
+            aClass.albums.clear();
+
 
 
             Timeline timeline=new Timeline();

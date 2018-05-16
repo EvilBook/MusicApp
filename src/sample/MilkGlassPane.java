@@ -77,8 +77,8 @@ public class MilkGlassPane extends Region {
         }
 
         // x, y location of this pane
-        double x = this.localToScene(this.getBoundsInLocal()).getMinX();
-        double y = this.localToScene(this.getBoundsInLocal()).getMinY()+20;
+        double x = this.localToScene(this.getBoundsInLocal()).getMinX()+18;
+        double y = this.localToScene(this.getBoundsInLocal()).getMinY()+26;
 
 
         // create the snapshot parameters (defines viewport)

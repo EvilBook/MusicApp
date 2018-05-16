@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class ShoppingCartMenu {
 
 
+    private final Label count;
     Pane base;
 
 
@@ -50,6 +51,13 @@ public class ShoppingCartMenu {
     Pane pane1;
     private double total=0;
     private Label price=new Label();
+
+    public ShoppingCartMenu(Label count) {
+
+
+        this.count=count;
+
+    }
 
 
     public StackPane createShoppingCart(Pane pane, Pane pane1){
@@ -102,6 +110,49 @@ public class ShoppingCartMenu {
         pane12.setTranslateY(-68);
 
 
+        stackPane.getChildren().add(v);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return stackPane;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+    public void showShoppingCartMenu(){
+
+
+        v1.getChildren().clear();
+
+
 
         if(albums.size()>0) {
 
@@ -124,7 +175,7 @@ public class ShoppingCartMenu {
                 hideShoppingCartMenu();
 
 
-                CheckoutMenu checkoutMenu = new CheckoutMenu();
+                CheckoutMenu checkoutMenu = new CheckoutMenu(total, this);
 
 
                 pane1.getChildren().add(checkoutMenu.createCheckout(pane));
@@ -188,47 +239,8 @@ public class ShoppingCartMenu {
         }
 
 
-
-
-
-
-
-        stackPane.getChildren().add(v);
-
-
         scrollPane.setContent(v1);
 
-
-
-
-
-
-
-
-
-
-
-
-        return stackPane;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-    public void showShoppingCartMenu(){
 
 
         for(Album a:albums){
@@ -346,17 +358,43 @@ public class ShoppingCartMenu {
         Button newButton=new Button("X");
 
 
-        newButton.setTranslateX(140);
+        newButton.setTranslateX(111);
 
 
 
         newButton.setOnMouseClicked(event -> {
-            v1.getChildren().remove(h);
+
+
+            Timeline timeline=new Timeline();
+
+            KeyValue kv=new KeyValue(h.opacityProperty(), 0, Interpolator.EASE_BOTH);
+
+
+            KeyValue kv1=new KeyValue(h.translateXProperty(), -200, Interpolator.EASE_BOTH);
+
+
+            KeyFrame kf=new KeyFrame(Duration.seconds(0.4), kv, kv1);
+
+
+            timeline.getKeyFrames().addAll(kf);
+
+
+            timeline.play();
+
+
+            timeline.setOnFinished(event1 -> {
+
+
+                v1.getChildren().remove(h);
+
+
+            });
+
         });
 
 
 
-        h.setMinWidth(348);
+        h.setMinWidth(330);
 
 
         h.getChildren().addAll(imageView, v, newButton);
