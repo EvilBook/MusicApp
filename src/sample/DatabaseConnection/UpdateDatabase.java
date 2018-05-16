@@ -41,7 +41,7 @@ public class UpdateDatabase {
         try {
             ResultSet rs = st.executeQuery("select login.email, login.password from login");
             while (rs.next()) {
-                System.out.println("email: " + rs.getString(1) + " password: " + rs.getString(2));
+                //System.out.println("email: " + rs.getString(1) + " password: " + rs.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();
