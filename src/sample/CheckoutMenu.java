@@ -64,7 +64,7 @@ public class CheckoutMenu {
         stackPane.setTranslateX(base.getPrefWidth()*1/6);
 
 
-        base.setStyle("-fx-background-color: rgba(0,0,0,0.65); -fx-border-width: 2px 0px 0px 0px; -fx-border-color: #ffffff; -fx-background-radius: 40px; -fx-border-radius: 40px;");
+        base.setStyle("-fx-background-color: rgba(0,0,0,0.59); -fx-border-width: 2px 0px 0px 0px; -fx-border-color: #ffffff; -fx-background-radius: 40px; -fx-border-radius: 40px;");
 
 
         milkGlassPane.setStyle("-fx-background-radius: 40px;");
@@ -189,7 +189,7 @@ public class CheckoutMenu {
         pane11.setTranslateX(280);
 
 
-        pane11.setTranslateY(-40);
+        pane11.setTranslateY(-24);
 
 
         profile.setTranslateY(-40);
@@ -220,6 +220,10 @@ public class CheckoutMenu {
 
 
         Button button=new Button("Pay");
+
+
+        button.setStyle("-fx-background-color: #f7d086; -fx-font-size: 14px; -fx-border-color: #ffc8a2;");
+
 
 
 
@@ -414,8 +418,8 @@ public class CheckoutMenu {
         address2.setStyle("-fx-text-fill: #afafaf; -fx-border-width: 0px 0px 0px 0px; -fx-border-color: #afafaf; -fx-font-size: 11px;");
 
 
-        Label city = new Label("Address:");
-        TextField city1 = new TextField("Address");
+        Label city = new Label("City:");
+        TextField city1 = new TextField("City");
 
 
         city1.setMaxWidth(80);
@@ -428,8 +432,8 @@ public class CheckoutMenu {
         city.setStyle("-fx-text-fill: #afafaf; -fx-border-width: 0px 0px 0px 0px; -fx-border-color: #afafaf; -fx-font-size: 11px;");
 
 
-        Label province = new Label("Address:");
-        TextField province1 = new TextField("Address");
+        Label province = new Label("Province:");
+        TextField province1 = new TextField("Province");
 
 
         province1.setMaxWidth(80);
@@ -443,8 +447,8 @@ public class CheckoutMenu {
 
 
 
-        Label country = new Label("Address:");
-        TextField country1 = new TextField("Address");
+        Label country = new Label("Country:");
+        TextField country1 = new TextField("Country");
 
 
         country1.setMaxWidth(80);
@@ -457,8 +461,8 @@ public class CheckoutMenu {
         country.setStyle("-fx-text-fill: #afafaf; -fx-border-width: 0px 0px 0px 0px; -fx-border-color: #afafaf; -fx-font-size: 11px;");
 
 
-        Label code = new Label("Address:");
-        TextField code1 = new TextField("Address");
+        Label code = new Label("Post Code:");
+        TextField code1 = new TextField("Code");
 
 
         code1.setMaxWidth(80);
@@ -475,7 +479,14 @@ public class CheckoutMenu {
         HBox h5=new HBox(new VBox(city, city1), new VBox(province, province1));
 
 
+        h5.setSpacing(14);
+
+
+
         HBox h6=new HBox(new VBox(country, country1), new VBox(code, code1));
+
+
+        h6.setSpacing(14);
 
 
         v3.getChildren().addAll(address, address1, address2, address21, h5, h6);
@@ -527,6 +538,89 @@ public class CheckoutMenu {
 
 
 
+        button.setOnMouseClicked(event -> {
+
+
+            Timeline timeline=new Timeline();
+
+
+            KeyValue keyValue=new KeyValue(v.opacityProperty(), 0, Interpolator.EASE_BOTH);
+
+
+            KeyFrame keyFrame=new KeyFrame(Duration.seconds(0.2), keyValue);
+
+
+            timeline.getKeyFrames().addAll(keyFrame);
+
+
+            timeline.play();
+
+
+            timeline.setOnFinished(event1 -> {
+                v.setDisable(true);
+
+
+                Pane pane12=showSongsAnimationButton();
+
+
+
+
+
+                Label label11=new Label("Thank you for your purchase!");
+
+
+                label11.setStyle("-fx-font-size: 28px;");
+
+
+                Pane pane111=showCloseButton();
+
+
+
+                VBox vBox=new VBox(pane111, pane12, label11);
+
+
+                vBox.setMinSize(base.getPrefWidth(), base.getPrefHeight());
+
+
+
+                vBox.setAlignment(Pos.CENTER);
+
+
+                label11.setTranslateY(80);
+
+
+
+                pane111.setTranslateX(359);
+
+
+                pane111.setTranslateY(-111);
+
+
+
+
+
+
+
+
+
+
+
+
+                base.getChildren().addAll(vBox);
+
+
+            });
+
+
+
+
+
+
+        });
+
+
+
+
 
 
 
@@ -555,9 +649,9 @@ public class CheckoutMenu {
 
         Line line=new Line();
         line.setStartX(0);
-        line.setStartY(0);
+        line.setStartY(pane.getMaxHeight());
         line.setEndX(0);
-        line.setEndY(0);
+        line.setEndY(pane.getMaxHeight());
 
 
         Line line1=new Line();
@@ -596,13 +690,13 @@ public class CheckoutMenu {
 
         Timeline time = new Timeline();
         KeyValue kv = new KeyValue(line.startXProperty(), 0, Interpolator.EASE_BOTH);
-        KeyValue kv1 = new KeyValue(line1.startXProperty(), 0, Interpolator.EASE_BOTH);
-        KeyValue kv2 = new KeyValue(line.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+        KeyValue kv1 = new KeyValue(line1.startXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+        KeyValue kv2 = new KeyValue(line.endXProperty(), 0, Interpolator.EASE_BOTH);
         KeyValue kv3 = new KeyValue(line1.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
-        KeyValue kv4 = new KeyValue(line.startYProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv4 = new KeyValue(line.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
         KeyValue kv5 = new KeyValue(line1.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
         KeyValue kv6 = new KeyValue(line.endYProperty(), 0, Interpolator.EASE_BOTH);
-        KeyValue kv7 = new KeyValue(line1.endYProperty(),  pane.getMaxHeight(), Interpolator.EASE_BOTH);
+        KeyValue kv7 = new KeyValue(line1.endYProperty(),  0, Interpolator.EASE_BOTH);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.49), kv, kv1, kv2, kv3, kv4, kv5, kv6, kv7);
         time.getKeyFrames().add(kf);
         time.setOnFinished(t -> {
@@ -769,6 +863,182 @@ public class CheckoutMenu {
 
 
     }
+
+
+    public Pane showSongsAnimationButton(){
+
+
+        Pane pane=new Pane();
+
+
+        pane.setId("2");
+
+
+
+        pane.setMaxSize(80,80);
+        pane.setMinSize(80,80);
+
+
+
+        Line line=new Line();
+        line.setStartX(0-15);
+        line.setStartY(0);
+        line.setEndX(pane.getMaxWidth()/2);
+        line.setEndY(pane.getMaxHeight());
+
+
+        Line line1=new Line();
+        line1.setStartX(pane.getMaxWidth()+15);
+        line1.setStartY(0);
+        line1.setEndX(pane.getMaxWidth()/2);
+        line1.setEndY(pane.getMaxHeight());
+
+
+        Arc arc=new Arc();
+
+
+
+        arc.setStrokeWidth(8);
+
+
+        arc.setCenterX(pane.getMaxWidth()/2);
+        arc.setCenterY(pane.getMaxHeight()/2);
+        arc.setRadiusX(pane.getMaxWidth());
+        arc.setRadiusY(pane.getMaxHeight());
+
+
+        arc.setStartAngle(0);
+
+
+        arc.setLength(0);
+
+
+
+
+
+
+
+        arc.setType(ArcType.OPEN);
+
+
+
+
+
+
+
+        Timeline time = new Timeline();
+        KeyValue kv = new KeyValue(line.startXProperty(), pane.getMaxWidth()/2, Interpolator.EASE_BOTH);
+        KeyValue kv1 = new KeyValue(line1.startXProperty(), pane.getMaxWidth()/2, Interpolator.EASE_BOTH);
+        KeyValue kv2 = new KeyValue(line.endXProperty(), pane.getMaxWidth(), Interpolator.EASE_BOTH);
+        KeyValue kv3 = new KeyValue(line1.endXProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv4 = new KeyValue(line.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+        KeyValue kv5 = new KeyValue(line1.startYProperty(), pane.getMaxHeight(), Interpolator.EASE_BOTH);
+        KeyValue kv6 = new KeyValue(line.endYProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv7 = new KeyValue(line1.endYProperty(), pane.getMaxHeight()/2, Interpolator.EASE_BOTH);
+        KeyValue kv8 = new KeyValue(arc.lengthProperty(), 360, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.7), kv, kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8);
+        time.getKeyFrames().add(kf);
+        time.setOnFinished(t -> {
+        });
+        time.play();
+
+
+        line.setFill(new Color(0.6,0.8,0.6,1));
+        line1.setFill(line.getFill());
+        line.setStroke(line.getFill());
+        line1.setStroke(line.getFill());
+        line.setStrokeWidth(8);
+        line1.setStrokeWidth(8);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        arc.setFill(new Color(0,0,0,0));
+        arc.setStroke(line.getFill());
+
+
+        arc.setOnMouseEntered(event -> {
+
+
+            arc.setFill(new Color(0.6,0.8,0.6,0.3));
+
+
+        });
+
+
+        arc.setOnMouseExited(event -> {
+
+
+            arc.setFill(new Color(1,0.4,0.4,0));
+
+
+        });
+
+
+        pane.setOnMouseEntered(event -> {
+            DropShadow dropShadow=new DropShadow();
+
+
+            dropShadow.setColor(new Color(1,1,1,1));
+
+
+            line.setEffect(dropShadow);
+            line1.setEffect(dropShadow);
+
+
+        });
+
+
+        pane.setOnMouseExited(event -> {
+
+
+
+            line.setEffect(null);
+            line1.setEffect(null);
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        pane.getChildren().addAll(line, line1, arc);
+
+
+        pane.setStyle("-fx-background-color: null;");
+
+
+        return pane;
+
+
+    }
+
 
 
 

@@ -297,10 +297,6 @@ public class MainUserScreenController implements Initializable {
         HBox h1=new HBox();
 
 
-        h1.setMinWidth(400);
-        h1.setMaxWidth(400);
-
-
         h1.setAlignment(Pos.CENTER);
 
 
@@ -309,7 +305,13 @@ public class MainUserScreenController implements Initializable {
         base1.getChildren().add(h1);
 
 
-        h1.setTranslateX(base1.getPrefWidth()-h1.getMinWidth());
+        h1.setMinSize(200,40+14);
+        h1.setMaxSize(200,40+14);
+
+
+
+        h1.setTranslateX(base1.getPrefWidth()-h1.getMinWidth()*1.59);
+        h1.setTranslateY(14);
 
 
 
@@ -392,6 +394,7 @@ public class MainUserScreenController implements Initializable {
 
 
         profileMenu.pane1=base1;
+
 
 
 
@@ -776,7 +779,7 @@ public class MainUserScreenController implements Initializable {
         ap.setTranslateX(-400);
         for(Node n : ap.getChildren()){
             n.setOpacity(100);
-            n.setStyle("-fx-background-color: rgba(0,0,0,0.16)");
+            n.setStyle("-fx-background-color: rgba(0,0,0,0.59)");
         }
 
 
@@ -1885,9 +1888,6 @@ public class MainUserScreenController implements Initializable {
         ImageView baseImageView=new ImageView();
 
 
-        baseImageView.setFitWidth(pane.getMinWidth()*1/8);
-
-
         baseImageView.setPreserveRatio(true);
 
         DropShadow dropShadow=new DropShadow();
@@ -2053,6 +2053,18 @@ public class MainUserScreenController implements Initializable {
         for(VBox i : v1){
 
 
+            i.setMaxSize(40+14, 40+14);
+
+
+            ImageView imageView11=(ImageView)i.getChildren().get(0);
+
+
+            imageView11.setFitWidth(40+14);
+
+
+
+
+
 
             /*i.setOnMouseEntered(event -> {
                 if(i.getId()!="2") {
@@ -2100,15 +2112,12 @@ public class MainUserScreenController implements Initializable {
         pane.getChildren().addAll(hBox, hBox1, hBox2, hBox3);
 
 
-        pane.setPadding(new Insets(14,14,8,14));
-
-
         ((HBox)pane).setSpacing(4);
 
 
 
 
-        hBox.setStyle("-fx-background-color: #ffffff");
+
 
 
 
@@ -2119,6 +2128,7 @@ public class MainUserScreenController implements Initializable {
 
 
         pane.toFront();
+
 
 
 

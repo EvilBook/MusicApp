@@ -10,5 +10,6 @@
     <orderEntry type="library" name="jfoenix" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.28-bin" level="project" />
     <orderEntry type="library" name="slf4j-api-1.7.12" level="project" />
+    <orderEntry type="library" name="maxiPago" level="project" />
   </component>
 </module>

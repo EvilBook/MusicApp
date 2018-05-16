@@ -103,7 +103,7 @@ public class UpdateDatabase {
         }catch(Exception e){
 
         }
-        return true;
+        return false;
     }
     public <T> void AddUserCreationData(T t) {
         String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
