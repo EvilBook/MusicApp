@@ -2,10 +2,16 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import sample.DatabaseConnection.PersonDBConnection;
 import sample.Employee.Album;
+import sample.Employee.ViewMusicPopup;
 
 
 import javax.mail.Message;
@@ -24,7 +30,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
 
-public class ForgottenPasswordController implements Initializable {
+public class ForgottenPasswordController implements Initializable
+{
 
     @FXML
     private Label ConfirmationMessage;
@@ -45,23 +52,24 @@ public class ForgottenPasswordController implements Initializable {
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
 
 
     }
 
 
     @FXML
-    private void handleSendPasswordButton(ActionEvent event) throws IOException {
-
+    private void handleSendPasswordButton(ActionEvent event) throws IOException
+    {
         email = EmailTextfield.getText();
-
 
         sendFromGMail(USER_NAME,PASSWORD,subject);
     }
 
 
-    public String generateRandom(){
+    public String generateRandom()
+    {
         Random r = new Random();
 
         final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -69,8 +77,8 @@ public class ForgottenPasswordController implements Initializable {
         String str = "";
 
 
-        for(int i=0; i < 8; i++){
-
+        for(int i=0; i < 8; i++)
+        {
             Character ch = alphabet.charAt(r.nextInt(N));
             str = str + ch;
         }
@@ -80,8 +88,8 @@ public class ForgottenPasswordController implements Initializable {
 
 
 
-    private  void sendFromGMail(String from, String pass, String subject) {
-
+    private  void sendFromGMail(String from, String pass, String subject)
+    {
         String to [] = {email};
 
         Properties props = System.getProperties();
@@ -103,7 +111,8 @@ public class ForgottenPasswordController implements Initializable {
        Statement statement = null;
 
 
-        try {
+        try
+        {
             String sql = "select password from login where Email = '"+ email +"';";
 
             statement = personDBConnection.connection.createStatement();
@@ -113,8 +122,8 @@ public class ForgottenPasswordController implements Initializable {
 
 
             //Checks if there is a result
-            if(resultSet.next()) {
-
+            if(resultSet.next())
+            {
                 passwd = resultSet.getString(1);
                 System.out.println(resultSet.getString(1));
 
@@ -123,11 +132,13 @@ public class ForgottenPasswordController implements Initializable {
                 InternetAddress[] toAddress = new InternetAddress[to.length];
 
                 // To get the array of addresses
-                for (int i = 0; i < to.length; i++) {
+                for (int i = 0; i < to.length; i++)
+                {
                     toAddress[i] = new InternetAddress(to[i]);
                 }
 
-                for (int i = 0; i < toAddress.length; i++) {
+                for (int i = 0; i < toAddress.length; i++)
+                {
                     message.addRecipient(Message.RecipientType.TO, toAddress[i]);
                 }
 
@@ -153,19 +164,36 @@ public class ForgottenPasswordController implements Initializable {
                 ConfirmationMessage.setText("Email with Your Password is sent to " + email);
                 EmailTextfield.clear();
             }
-            else{
+            else
+            {
                 ConfirmationMessage.setText("The Email '" + email +"' Is Not Registered.");
             }
         }
-        catch (AddressException ae) {
+        catch (AddressException ae)
+        {
             ae.printStackTrace();
         }
-        catch (MessagingException me) {
+        catch (MessagingException me)
+        {
             me.printStackTrace();
         }
-        catch (SQLException e){
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleSwitchScenes(ActionEvent event) throws Exception {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root,1066.62, 600);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

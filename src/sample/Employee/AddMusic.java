@@ -58,7 +58,8 @@ public class AddMusic implements Initializable
         checkFormat();
     }
 
-    public String generateRandom(){
+    public String generateRandom()
+    {
         Random r = new Random();
 
         final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -66,8 +67,8 @@ public class AddMusic implements Initializable
         String str = "";
 
 
-        for(int i=0; i < 16; i++){
-
+        for(int i=0; i < 16; i++)
+        {
             Character ch = alphabet.charAt(r.nextInt(N));
             str = str + ch;
         }
@@ -86,9 +87,9 @@ public class AddMusic implements Initializable
             String file = generateRandom();
             PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/sample/Pdf/" + file));
             doc.open();
-            doc.addTitle("ALBUM ADDED TO DATABSE");
-            doc.add(new Paragraph("Album Name: " + albumName + "\n Price: " + albumPrice + "\n Label: " + label +
-                    "\nVinyl: " + vynl));
+            doc.addTitle(albumName);
+            doc.add(new Paragraph("------ALBUM ADDED TO DATABASE------\n\n" +
+                    "Album Name: " + albumName + "\nPrice: " + albumPrice + "\nLabel: " + label + "\nVinyl Number: " + vynl));
             doc.close();
             writer.close();
         }
@@ -247,7 +248,8 @@ public class AddMusic implements Initializable
 
         //Reset the text fields and show message
         resetTextFields();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Album added to the database!", ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Album added to the database! " +
+                "A PDF File is created with the album information", ButtonType.OK);
         alert.setHeaderText("COMPLETE");
         alert.showAndWait();
     }
