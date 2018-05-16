@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import java.sql.*;
 
@@ -51,7 +52,7 @@ public class RetrieveInfoFromDatabase {
         return name;
     }
 
-    public void authentication(String email, String pass, PasswordField passwordTextField) {
+    public void authentication(String email, String pass, PasswordField passwordTextField, TextField usernameTextField) {
 
         try {
             String equery = "SELECT Email FROM login WHERE Email = '" + email + "' ";
@@ -75,6 +76,17 @@ public class RetrieveInfoFromDatabase {
             } else {
 
                 System.out.println("Email doesn't exist");
+                usernameTextField.setStyle("-fx-background-color: rgba(255,21,33,0.67); -fx-border-color: #ff1038;");
+
+                Timeline timeline = new Timeline();
+                KeyValue keyValue = new KeyValue(usernameTextField.translateXProperty(), usernameTextField.getTranslateX() + 5, Interpolator.EASE_BOTH);
+                KeyValue keyValue1 = new KeyValue(usernameTextField.translateXProperty(), usernameTextField.getTranslateX() - 5, Interpolator.EASE_BOTH);
+                KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.1), keyValue, keyValue1);
+
+                timeline.getKeyFrames().addAll(keyFrame);
+                timeline.setCycleCount(15);
+                timeline.play();
+                timeline.setOnFinished(event -> { usernameTextField.setStyle(""); usernameTextField.setTranslateX(0); });
 
             }
 

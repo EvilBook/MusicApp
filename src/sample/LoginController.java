@@ -108,7 +108,7 @@ public class LoginController implements Initializable{
         String pass = PasswordTextField.getText();
 
         //check login
-        info.authentication(email, pass, PasswordTextField);
+        info.authentication(email, pass, PasswordTextField, userNameTextField);
 
 
 
