@@ -158,7 +158,16 @@ public class ForgottenPasswordController implements Initializable {
         }
     }
 
+    @FXML
+    private void handleReturnButton(ActionEvent event) throws IOException{
+
+        SwitchScene back = new SwitchScene();
+        back.logOut(event);
+
+    }
+
 
 
 
 }
+
