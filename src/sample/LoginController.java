@@ -86,39 +86,58 @@ public class LoginController implements Initializable{
         loop.fitWidthProperty().bind(base.maxWidthProperty());
         loop.fitHeightProperty().bind(base.maxHeightProperty());
         loop.setMediaPlayer(mediaPlayer);
+
+
+        confirmPasswordField.textProperty().addListener((observable, oldValue, newValue)->{
+
+            System.out.println(newValue);
+            System.out.println(confirmPasswordField.getText());
+
+
+        });
+
+
     }
 
     @FXML
     public void handleLoginButton(ActionEvent event) throws IOException {
-        Pattern pattern = Pattern.compile("@masm");
+        Pattern pattern = Pattern.compile("@mass");
         Matcher matcher = pattern.matcher(userNameTextField.getText());
 
         String email = userNameTextField.getText();
+        String pass = PasswordTextField.getText();
 
-        info.authentication(email);
+        //check login
+        info.authentication(email, pass, PasswordTextField);
+
 
 
 
         if(userNameTextField.getText().equals("admin") && PasswordTextField.getText().equals("password")) {
             access.mainAdminScreen(event);                          //Goes to the Admin screen.
 
-               } else {
+        } else {
+            System.out.println("first check");
+            if(!matcher.find()) {
+                UpdateDatabase updateDatabase = new UpdateDatabase();
+                System.out.println("second check");
+                if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
 
-                    if(!matcher.find()) {
-                        UpdateDatabase updateDatabase = new UpdateDatabase();
+                    userEmail = userNameTextField.getText();
+                    access.mainUserScreen(event, userEmail);            //Goes to the User screen.
+                    System.out.println("third check");
+                }
 
-                        if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
-                            userEmail = userNameTextField.getText();
-                            access.mainUserScreen(event, userEmail);            //Goes to the User screen.
-                               }
-                    } else {
-                            UpdateDatabase updateDatabase = new UpdateDatabase();
+                } else {
+                System.out.println("fourth check");
+                    UpdateDatabase updateDatabase = new UpdateDatabase();
 
-                            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
-                                userEmail = userNameTextField.getText();
-                                access.employeeScreen(event, userEmail);       //Goes to the Employee Screen
-                            }
-                    }
+                    if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+                        System.out.println("5th check");
+                    userEmail = userNameTextField.getText();
+                    access.employeeScreen(event, userEmail);       //Goes to the Employee Screen
+                         }
+                }
         }
 
 
@@ -179,11 +198,19 @@ public class LoginController implements Initializable{
     }
 
     @FXML public void handleSubmitButton(ActionEvent event) throws InterruptedException {
+        firstNameLabel.setOpacity(0f);
+        lastNameLabel.setOpacity(0f);
+        emailLabel.setOpacity(0f);
+        passwordLabel.setOpacity(0f);
+        confirmEmailLabel.setOpacity(0f);
+        confirmPasswordLabel.setOpacity(0f);
+
+
         emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         passPat = Pattern.compile("[a-z0-9_-]{3,15}");
         namePat = Pattern.compile("[a-zA-Z\\s]+");
 
-        //Here it's gonna check for empty fields before all
+        /*//Here it's gonna check for empty fields before all
         if(firstNameTextField.getText().isEmpty()) {
             firstNameLabel.setText("First name required");
             firstNameLabel.setOpacity(1);
@@ -207,7 +234,6 @@ public class LoginController implements Initializable{
             passwordLabel.setText("Password required");
             passwordLabel.setOpacity(1);
             wait();
-
         }
 
         //Here it's gonna check for the rest of exceptions
@@ -252,9 +278,142 @@ public class LoginController implements Initializable{
                 confirmEmailLabel.setText("Emails don't match");
                 confirmEmailLabel.setOpacity(1);
                 wait();
-            }
-            else {
+            }*/
 
+
+            //else {
+        boolean a = false;
+        boolean b = false;
+        boolean c = false;
+        boolean d = false;
+        boolean e = false;
+        boolean f = false;
+        boolean g = false;
+        boolean h = false;
+
+
+        //First Name
+        if(!firstNameTextField.getText().isEmpty()) {
+
+            if(!namePat.matcher(firstNameTextField.getText()).matches()) {
+                firstNameLabel.setText("First Name contains digits");
+                firstNameLabel.setOpacity(1);
+            } else {
+                firstNameLabel.setOpacity(0);
+                a = true;
+            }
+
+        } else {
+            firstNameLabel.setText("First Name Required");
+            firstNameLabel.setOpacity(1);
+        }
+
+        //Last Name
+        if(!lastNameTextField.getText().isEmpty()) {
+
+            if(!namePat.matcher(lastNameTextField.getText()).matches()) {
+                lastNameLabel.setText("Last Name Contains Digits");
+                lastNameLabel.setOpacity(1);
+            } else {
+                lastNameLabel.setOpacity(0);
+                b = true;
+            }
+
+        } else {
+            lastNameLabel.setText("Last Name Required");
+            lastNameLabel.setOpacity(1);
+        }
+
+        //Email
+        if(!emailTextField.getText().isEmpty()) {
+
+            if(!emailPat.matcher(emailTextField.getText()).matches()) {
+                emailLabel.setText("Wrong Email Format");
+                emailLabel.setOpacity(1);
+            } else {
+                emailLabel.setOpacity(0);
+                c = true;
+            }
+
+        } else {
+            emailLabel.setText("Email Required");
+            emailLabel.setOpacity(1);
+        }
+
+        //Confirm Email
+        if(!confirmEmailTextField.getText().isEmpty()) {
+
+            d = true;
+
+        } else {
+
+                confirmEmailLabel.setText("Confirmed Email Required");
+                confirmEmailLabel.setOpacity(1);
+
+        }
+
+        //Password
+        /*if(!passwordPasswordField.getText().isEmpty()) {
+
+            if(!passPat.matcher(passwordPasswordField.getText()).matches()) {
+                passwordLabel.setText("Wrong Password Format");
+                passwordLabel.setOpacity(1);
+            } else {
+                passwordLabel.setOpacity(0);
+                e = true;
+            }
+
+        } else {
+
+            passwordLabel.setText("Password Required");
+            passwordLabel.setOpacity(1);
+        }*/
+
+        //Confirm Password
+        if(!confirmPasswordField.getText().isEmpty() && !passwordPasswordField.getText().isEmpty()) {
+
+            if(!passwordPasswordField.getText().equals(confirmPasswordField.getText())) {
+                passwordLabel.setText("Passwords Don't Match");
+                passwordLabel.setOpacity(1);
+                confirmPasswordLabel.setText("Passwords Don't Match");
+                confirmPasswordLabel.setOpacity(1);
+            } else {
+
+                passwordLabel.setOpacity(0);
+                confirmPasswordLabel.setOpacity(0);
+                h = true;
+            }
+
+        } else {
+            if(passwordPasswordField.getText().isEmpty()) {
+                confirmPasswordLabel.setText("Password Required");
+                confirmPasswordLabel.setOpacity(1);
+            }
+            if(confirmPasswordField.getText().isEmpty()) {
+                confirmPasswordLabel.setText("Confirmed Password Required");
+                confirmPasswordLabel.setOpacity(1);
+            }
+
+        }
+
+        //Email Matching
+        if(!emailTextField.getText().equals(confirmEmailTextField.getText())) {
+            emailLabel.setText("Emails Don't Match");
+            emailLabel.setOpacity(1);
+            confirmEmailLabel.setText("Emails Don't Match");
+            confirmEmailLabel.setOpacity(1);
+        } else {
+            emailLabel.setOpacity(0);
+            confirmEmailLabel.setOpacity(0);
+            g = true;
+        }
+
+        //Password Matching
+
+
+
+
+            if(a && b && c && d && e && f && g && h) {
                 UpdateDatabase database = new UpdateDatabase();
                 database.UpdateTableForUserCreation(emailTextField.getText(), passwordPasswordField.getText());
 
@@ -273,9 +432,9 @@ public class LoginController implements Initializable{
                 confirmPasswordField.clear();
 
                 ReturnAnimation();
-
             }
-        }
+            //}
+        //}
     }
 
     @FXML

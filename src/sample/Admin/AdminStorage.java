@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+
 public class AdminStorage {
 
 
@@ -24,18 +25,6 @@ public class AdminStorage {
         stage.show();
         System.out.println("it works");
     }
-
-    /*public void mainAdminScene(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminScreen.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }*/
 
     public void manageStore(ActionEvent event) throws IOException {
         Node node = (Node)event.getSource();
@@ -84,7 +73,5 @@ public class AdminStorage {
         stage.setScene(scene);
         stage.show();
     }
-
-
 
 }

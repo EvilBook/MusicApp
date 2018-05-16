@@ -10,9 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.DatabaseConnection.RemoveEmployeeDatabase;
-import sample.DatabaseConnection.ThisIsForConnecting;
+import sample.DatabaseConnection.PersonDBConnection;
 import sample.Employee.Employee;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -20,7 +19,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+
 public class RemoveEmployee implements Initializable {
+
 
     //Variables
     @FXML private TableView<Employee> employeeTable;
@@ -33,10 +34,9 @@ public class RemoveEmployee implements Initializable {
     @FXML private TextField removeTextField;
     private ObservableList<Employee> employeeList;
 
-
     //Objects
     AdminStorage access = new AdminStorage();
-    ThisIsForConnecting dbc = new ThisIsForConnecting();
+    PersonDBConnection dbc = new PersonDBConnection();
     Connection connection = dbc.connection;
     RemoveEmployeeDatabase red = new RemoveEmployeeDatabase();
 
@@ -50,14 +50,14 @@ public class RemoveEmployee implements Initializable {
         employeeList = FXCollections.observableArrayList();
 
         try {
-            ResultSet rs = connection.createStatement().executeQuery("SELECT  * FROM person");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM person");
             while (rs.next()){
+
                 employeeList.add(new Employee(rs.getString(1), rs.getString(2),
                                               rs.getString(3), rs.getString(4),
                                               rs.getString(5), rs.getString(6)));
 
                 // set cell value factory to tableView
-
                 firstColumn.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
                 lastColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
                 birthColumn.setCellValueFactory(new PropertyValueFactory<>("birth"));

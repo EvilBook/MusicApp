@@ -51,6 +51,25 @@ public class UpdateDatabase {
 
     public <T, A> boolean CheckLogIn(T t, A a) {
 
+        /*String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+        String username = "mass@mass-music";
+        String password = "Firmwar3";
+
+
+        try {
+            connection = DriverManager.getConnection(url, username, password);
+            st = connection.createStatement();
+
+            System.out.println("Login Connection Established");
+
+            new UpdateDatabase().connection = connection;
+
+        } catch (SQLException e) {
+            throw new IllegalStateException("Login Connection failed", e);
+
+        }
+
+        return false;*/
         String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
         String username = "mass@mass-music";
         String password = "Firmwar3";
@@ -59,31 +78,49 @@ public class UpdateDatabase {
         try {
             connection = DriverManager.getConnection(url, username, password);
             st = connection.createStatement();
-            System.out.println("Login Connection Established");
+            System.out.println("Works");
             new UpdateDatabase().connection=connection;
         } catch (SQLException e) {
-            throw new IllegalStateException("Login Connection failed", e);
 
         }
 
 
+
+
+
+        String selectSQL = "SELECT USER_ID, USERNAME FROM DBUSER WHERE USER_ID = " + t;
         try {
-            ResultSet rs = st.executeQuery("select email, password from login where email= '" + t.toString()+"'");
+            ResultSet rs = st.executeQuery("select email,password from login where email= '" + t.toString()+"'");
             while (rs.next()) {
                 String userMail = rs.getString(1);
                 String userPassword = rs.getString(2);
                 if (userMail.equals(t) && userPassword.equals(a)) {
-                    System.out.println("Login Successful");
+                    System.out.println("Works BIIIIIIIIIIIITCH");
                     return true;
                 } else {
-                    System.out.println("Incorrect Password");
+                    System.out.println("Illiterate fuck");
+                    System.out.println(t+""+a);
+                    System.out.println(userMail+""+userPassword);
                     return false;
                 }
             }
 
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+     /*   try {
+            ResultSet rs = st.executeQuery("select employees.firstName,employees.lastName,offices.city from employees,offices where offices.officeCode like '%1%'");
+            while (rs.next()) {
+                System.out.println("FirstName: " + rs.getString(1) + " LastName: " + rs.getString(2) + " City Name: " + rs.getString(3));
+            }*/
+
+
+       /* } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+        }catch(Exception e){
+
         }
         return false;
     }
@@ -117,6 +154,7 @@ public class UpdateDatabase {
             System.out.println(" u dumb");
             e.printStackTrace();
         }
+
         System.out.println("UPDATE COMPLETE\n");
 
     }

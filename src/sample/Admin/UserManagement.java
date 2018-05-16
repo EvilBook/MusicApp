@@ -4,15 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import sample.MainStorage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class UserManagement implements Initializable {
 
+
     //Objects
-    AdminStorage access = new AdminStorage();
     MainStorage backTo = new MainStorage();
 
     @Override
@@ -22,7 +22,6 @@ public class UserManagement implements Initializable {
 
     @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
-        //access.mainAdminScene(event);
         backTo.mainAdminScreen(event);
     }
 

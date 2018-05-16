@@ -40,7 +40,7 @@
             </ImageView>
             <AnchorPane fx:id="logIn" layoutY="236.0" prefHeight="120.0" prefWidth="319.0">
                <children>
-                  <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="19.0" prefHeight="25.0" prefWidth="267.0" promptText="User name">
+                  <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="19.0" prefHeight="32.0" prefWidth="267.0" promptText="User name">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -48,7 +48,7 @@
                         <Glow />
                      </effect>
                   </TextField>
-                  <PasswordField fx:id="PasswordTextField" layoutX="26.0" layoutY="71.0" prefHeight="25.0" prefWidth="267.0" promptText="Password">
+                  <PasswordField fx:id="PasswordTextField" layoutX="26.0" layoutY="71.0" prefHeight="32.0" prefWidth="267.0" promptText="Password">
                      <font>
                         <Font size="14.0" />
                      </font>

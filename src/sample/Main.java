@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.DatabaseConnection.ThisIsForConnecting;
+import sample.DatabaseConnection.PersonDBConnection;
 
 public class Main extends Application {
 
@@ -16,7 +16,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root,1066.62, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
-        ThisIsForConnecting connect = new ThisIsForConnecting();
+        PersonDBConnection connect = new PersonDBConnection();
     }
 
     public static void main(String[] args) {

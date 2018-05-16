@@ -5,14 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import sample.DatabaseConnection.AddEmployeeToDatabase;
-import sample.MainStorage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+
 public class AddEmployee implements Initializable {
+
 
     //Variables
     @FXML private TextField firstTextField;
@@ -29,6 +30,7 @@ public class AddEmployee implements Initializable {
 
     //Objects
     AdminStorage access = new AdminStorage();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,7 +89,7 @@ public class AddEmployee implements Initializable {
             }
 
             else {
-                System.out.println("else works");
+
                 AddEmployeeToDatabase empDatabase = new AddEmployeeToDatabase();
 
                 ArrayList<String> empInfo = new ArrayList<String>();
