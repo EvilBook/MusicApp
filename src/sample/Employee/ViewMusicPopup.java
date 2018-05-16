@@ -1,26 +1,17 @@
 package sample.Employee;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import sample.DatabaseConnection.DbconnectionMusic;
+import sample.DatabaseConnection.MusicDBConnection;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class ViewMusicPopup implements Initializable
@@ -30,7 +21,7 @@ public class ViewMusicPopup implements Initializable
     @FXML private Label albumLabel, artistLabel, genreLabel, vynlLabel, labelLabel, priceLabel, dateLabel;
     @FXML private TableView<Song> table;
     private int idAlbum;
-    DbconnectionMusic dbc = new DbconnectionMusic();
+    MusicDBConnection dbc = new MusicDBConnection();
     private ObservableList<Song> data;
 
 

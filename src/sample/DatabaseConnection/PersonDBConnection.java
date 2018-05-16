@@ -1,20 +1,16 @@
 package sample.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-//Class to connect to the musicdb2
-public class DbconnectionMusic {
+public class PersonDBConnection {
 
     //Variables
     Statement st;
     public Connection connection;
 
-    public DbconnectionMusic() {
+    public PersonDBConnection() {
 
-        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/musicdb2";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
         String username = "mass@mass-music";
         String password = "Firmwar3";
 

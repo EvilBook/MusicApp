@@ -13,10 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import sample.DatabaseConnection.DbconnectionMusic;
+import sample.DatabaseConnection.MusicDBConnection;
 import sample.DatabaseConnection.RemoveAlbumDatabase;
-import sample.DatabaseConnection.ThisIsForConnecting;
-import sample.DatabaseConnection.UpdateDatabase;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,10 +25,11 @@ public class RemoveMusic implements Initializable
 {
     //Variables
     @FXML private TextField selectionField;
+    @FXML private Button returnButton;
     @FXML private TableColumn<Album, String> idColumn,nameColumn,dateColumn,priceColumn,labelColumn;
     @FXML private TableView<Album> table;
 
-    DbconnectionMusic dbc = new DbconnectionMusic();
+    MusicDBConnection dbc = new MusicDBConnection();
     private ObservableList<Album> data;
 
 
@@ -137,13 +136,7 @@ public class RemoveMusic implements Initializable
     @FXML
     private void handleSwitchScenes(ActionEvent event) throws IOException
     {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeScreen.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        stage.close();
     }
 }

@@ -15,7 +15,7 @@
             <Pane id="albumHeader" layoutY="448.0" prefHeight="53.0" prefWidth="984.0">
                <children>
                   <Button layoutX="45.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Refresh Table" />
-                  <Button layoutX="767.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homescreen" />
+                  <Button fx:id="returnButton" layoutX="767.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homescreen" />
                </children>
             </Pane>
             <TableView id="table" fx:id="table" layoutX="43.0" layoutY="27.0" onMouseClicked="#tableClick" prefHeight="392.0" prefWidth="899.0">
