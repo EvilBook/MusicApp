@@ -16,8 +16,12 @@ import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.layout.*;
@@ -28,6 +32,7 @@ import javafx.scene.media.MediaPlayer;
 
 import javafx.scene.media.MediaView;
 
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
@@ -218,7 +223,7 @@ public class LoginController implements Initializable {
 
                     userEmail = userNameTextField.getText();
 
-                    access.mainUserScreen(event, userEmail);            //Goes to the User screen.
+                    access.mainUserScreen(event, userEmail);    //Goes to the User screen.
 
                 }
 
@@ -524,6 +529,30 @@ public class LoginController implements Initializable {
     public void handleExitButton(ActionEvent event) {
 
         Platform.exit();
+
+    }
+
+    @FXML
+    private void handleForgottenPasswordButton(ActionEvent event) throws IOException{
+
+        Node node = (Node)event.getSource();
+
+        Stage stage = (Stage)node.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgottenPassword.fxml"));
+
+        Parent root;
+
+        root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+
+        stage.show();
+
+
+
 
     }
 }
