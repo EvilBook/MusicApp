@@ -30,6 +30,28 @@ public class RetrieveInfoFromDatabase {
         }
     }
 
+
+    //Search for the email in the ddatabase and check if it exists
+    public Boolean searchEmailExist(String email)
+    {
+        String query = "SELECT Email FROM login WHERE Email = '"+ email + "';";
+        try
+        {
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next())
+            {
+                return true;
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public String getName(String user_email) {
         String name = null;
 
