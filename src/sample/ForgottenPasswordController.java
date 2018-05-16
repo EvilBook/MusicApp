@@ -1,7 +1,6 @@
 package sample;
 
 
-
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -11,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import sample.DatabaseConnection.PersonDBConnection;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -28,13 +28,9 @@ import java.util.ResourceBundle;
 public class ForgottenPasswordController implements Initializable {
 
 
-
     @FXML
 
     private Label ConfirmationMessage;
-
-
-
 
 
     @FXML
@@ -42,27 +38,18 @@ public class ForgottenPasswordController implements Initializable {
     private TextField EmailTextfield;        // receipients email
 
 
-
     private String USER_NAME = "evenmoremasm";  // GMail user name (just the part before "@gmail.com")
 
     private String PASSWORD = "moremasm1!"; // GMail password
 
 
-
     private String email = "";
-
 
 
     String subject = "Password Recovery";
 
 
-
     ResultSet resultSet;
-
-
-
-
-
 
 
     @Override
@@ -70,13 +57,7 @@ public class ForgottenPasswordController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-
-
-
     }
-
-
-
 
 
     @FXML
@@ -84,25 +65,17 @@ public class ForgottenPasswordController implements Initializable {
     private void handleSendPasswordButton(ActionEvent event) throws IOException {
 
 
-
         email = EmailTextfield.getText();
 
 
-
-
-
-        sendFromGMail(USER_NAME,PASSWORD,subject);
+        sendFromGMail(USER_NAME, PASSWORD, subject);
 
     }
 
 
-
-
-
-    public String generateRandom(){
+    public String generateRandom() {
 
         Random r = new Random();
-
 
 
         final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -112,11 +85,7 @@ public class ForgottenPasswordController implements Initializable {
         String str = "";
 
 
-
-
-
-        for(int i=0; i < 8; i++){
-
+        for (int i = 0; i < 8; i++) {
 
 
             Character ch = alphabet.charAt(r.nextInt(N));
@@ -126,23 +95,15 @@ public class ForgottenPasswordController implements Initializable {
         }
 
 
-
         return str;
 
     }
 
 
+    private void sendFromGMail(String from, String pass, String subject) {
 
 
-
-
-
-    private  void sendFromGMail(String from, String pass, String subject) {
-
-
-
-        String to [] = {email};
-
+        String to[] = {email};
 
 
         Properties props = System.getProperties();
@@ -150,9 +111,7 @@ public class ForgottenPasswordController implements Initializable {
         String host = "smtp.gmail.com";
 
 
-
         props.put("mail.smtp.starttls.enable", "true");
-
 
 
         props.put("mail.smtp.ssl.trust", host);
@@ -176,8 +135,7 @@ public class ForgottenPasswordController implements Initializable {
 
         try {
 
-            String sql = "select password from login where Email = '"+ email +"';";
-
+            String sql = "select password from login where Email = '" + email + "';";
 
 
             statement = personDBConnection.connection.createStatement();
@@ -185,17 +143,12 @@ public class ForgottenPasswordController implements Initializable {
             resultSet = statement.executeQuery(sql);
 
 
-
             String passwd = null;
-
-
-
 
 
             //Checks if there is a result
 
-            if(resultSet.next()) {
-
+            if (resultSet.next()) {
 
 
                 passwd = resultSet.getString(1);
@@ -203,13 +156,9 @@ public class ForgottenPasswordController implements Initializable {
                 System.out.println(resultSet.getString(1));
 
 
-
-
-
                 message.setFrom(new InternetAddress(from));
 
                 InternetAddress[] toAddress = new InternetAddress[to.length];
-
 
 
                 // To get the array of addresses
@@ -221,7 +170,6 @@ public class ForgottenPasswordController implements Initializable {
                 }
 
 
-
                 for (int i = 0; i < toAddress.length; i++) {
 
                     message.addRecipient(Message.RecipientType.TO, toAddress[i]);
@@ -229,35 +177,18 @@ public class ForgottenPasswordController implements Initializable {
                 }
 
 
-
                 //Change password to generated one
 
                 String generatePw = generateRandom();
 
-                String sql2 = "UPDATE login SET password = '"+ generatePw + "' WHERE Email = '"+ email +"';";
+                String sql2 = "UPDATE login SET password = '" + generatePw + "' WHERE Email = '" + email + "';";
 
                 statement.executeUpdate(sql2);
-
-
-
                 System.out.println("GenPw:" + generatePw + " Email: " + email);
-
-
-
-
-
                 message.setSubject(subject);
 
-                message.setText(generatePw);
-
-
-
-
-
+                message.setText("Your new password is " + generatePw + " Login to change it Immediately");
                 Transport transport = session.getTransport("smtp");
-
-
-
 
 
                 transport.connect(host, from, pass);
@@ -272,29 +203,21 @@ public class ForgottenPasswordController implements Initializable {
 
                 EmailTextfield.clear();
 
-            }
+            } else {
 
-            else{
-
-                ConfirmationMessage.setText("The Email '" + email +"' Is Not Registered.");
+                ConfirmationMessage.setText("The Email '" + email + "' Is Not Registered.");
 
             }
 
-        }
-
-        catch (AddressException ae) {
+        } catch (AddressException ae) {
 
             ae.printStackTrace();
 
-        }
-
-        catch (MessagingException me) {
+        } catch (MessagingException me) {
 
             me.printStackTrace();
 
-        }
-
-        catch (SQLException e){
+        } catch (SQLException e) {
 
             e.printStackTrace();
 
@@ -303,13 +226,12 @@ public class ForgottenPasswordController implements Initializable {
     }
 
     @FXML
-    private void HandleReturnButton(ActionEvent event) throws IOException{
+    private void HandleReturnButton(ActionEvent event) throws IOException {
 
         SwitchScene RetURNbutton = new SwitchScene();
         RetURNbutton.logOut(event);
 
     }
-
 
 
 }

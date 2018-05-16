@@ -1,7 +1,6 @@
 package sample;
 
 
-
 import javafx.animation.Interpolator;
 
 import javafx.animation.KeyFrame;
@@ -45,7 +44,6 @@ import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.DatabaseConnection.UpdateDatabase;
 
 
-
 import java.io.IOException;
 
 import java.net.URL;
@@ -61,55 +59,72 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
-public class LoginController implements Initializable{
-
+public class LoginController implements Initializable {
 
 
     //Variables
 
-    @FXML private TextField userNameTextField;
+    @FXML
+    private TextField userNameTextField;
 
-    @FXML private PasswordField PasswordTextField;
+    @FXML
+    private PasswordField PasswordTextField;
 
-    @FXML private AnchorPane base;
+    @FXML
+    private AnchorPane base;
 
-    @FXML private MediaView loop;
+    @FXML
+    private MediaView loop;
 
-    @FXML private AnchorPane signUp;
+    @FXML
+    private AnchorPane signUp;
 
-    @FXML private AnchorPane signUp2;
+    @FXML
+    private AnchorPane signUp2;
 
-    @FXML private ScrollPane scrollPane;
+    @FXML
+    private ScrollPane scrollPane;
 
-    @FXML private AnchorPane logInPane;
+    @FXML
+    private AnchorPane logInPane;
 
-    @FXML private TextField firstNameTextField;
+    @FXML
+    private TextField firstNameTextField;
 
-    @FXML private TextField lastNameTextField;
+    @FXML
+    private TextField lastNameTextField;
 
-    @FXML private TextField emailTextField;
+    @FXML
+    private TextField emailTextField;
 
-    @FXML private TextField confirmEmailTextField;
+    @FXML
+    private TextField confirmEmailTextField;
 
-    @FXML private PasswordField passwordPasswordField;
+    @FXML
+    private PasswordField passwordPasswordField;
 
-    @FXML private PasswordField confirmPasswordField;
+    @FXML
+    private PasswordField confirmPasswordField;
 
-    @FXML private Label firstNameLabel;
+    @FXML
+    private Label firstNameLabel;
 
-    @FXML private Label lastNameLabel;
+    @FXML
+    private Label lastNameLabel;
 
-    @FXML private Label emailLabel;
+    @FXML
+    private Label emailLabel;
 
-    @FXML private Label passwordLabel;
+    @FXML
+    private Label passwordLabel;
 
-    @FXML private Label confirmEmailLabel;
+    @FXML
+    private Label confirmEmailLabel;
 
-    @FXML private Label confirmPasswordLabel;
+    @FXML
+    private Label confirmPasswordLabel;
 
     public String userEmail;
-
 
 
     //Database
@@ -121,9 +136,6 @@ public class LoginController implements Initializable{
     ResultSet rs = null;
 
 
-
-
-
     //Patterns
 
     private static Pattern emailPat;
@@ -131,13 +143,6 @@ public class LoginController implements Initializable{
     private static Pattern passPat;
 
     private static Pattern namePat;
-
-
-
-
-
-
-
 
 
     //Objects
@@ -149,21 +154,17 @@ public class LoginController implements Initializable{
     RetrieveInfoFromDatabase info = new RetrieveInfoFromDatabase();
 
 
-
     @Override
 
     public void initialize(URL location, ResourceBundle resources) {
 
 
-
         base.setBackground(Background.EMPTY);
-
 
 
         signUp.setTranslateY(base.getMaxHeight() * 2);
 
         signUp.setOpacity(0);
-
 
 
         Media m = new Media(getClass().getResource("Graphics/loop.mp4").toString());
@@ -185,11 +186,7 @@ public class LoginController implements Initializable{
         loop.setMediaPlayer(mediaPlayer);
 
 
-
-
-
-        confirmPasswordField.textProperty().addListener((observable, oldValue, newValue)->{
-
+        confirmPasswordField.textProperty().addListener((observable, oldValue, newValue) -> {
 
 
             System.out.println(newValue);
@@ -197,17 +194,10 @@ public class LoginController implements Initializable{
             System.out.println(confirmPasswordField.getText());
 
 
-
-
-
         });
 
 
-
-
-
     }
-
 
 
     @FXML
@@ -219,11 +209,9 @@ public class LoginController implements Initializable{
         Matcher matcher = pattern.matcher(userNameTextField.getText());
 
 
-
         String email = userNameTextField.getText();
 
         String pass = PasswordTextField.getText();
-
 
 
         //check login
@@ -231,23 +219,14 @@ public class LoginController implements Initializable{
         info.authentication(email, pass, PasswordTextField);
 
 
-
-
-
-
-
-
-
-        if(userNameTextField.getText().equals("admin")){
-
+        if (userNameTextField.getText().equals("admin")) {
 
 
             UpdateDatabase updateDatabase = new UpdateDatabase();
 
             System.out.println("second check");
 
-            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
-
+            if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
 
 
                 access.mainAdminScreen(event);
@@ -255,19 +234,17 @@ public class LoginController implements Initializable{
             }
 
 
-
         } else {
 
             System.out.println("first check");
 
-            if(!matcher.find()) {
+            if (!matcher.find()) {
 
                 UpdateDatabase updateDatabase = new UpdateDatabase();
 
                 System.out.println("second check");
 
-                if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
-
+                if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
 
 
                     userEmail = userNameTextField.getText();
@@ -279,7 +256,6 @@ public class LoginController implements Initializable{
                 }
 
 
-
             } else {
 
                 System.out.println("fourth check");
@@ -287,8 +263,7 @@ public class LoginController implements Initializable{
                 UpdateDatabase updateDatabase = new UpdateDatabase();
 
 
-
-                if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+                if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
 
                     System.out.println("5th check");
 
@@ -303,13 +278,7 @@ public class LoginController implements Initializable{
         }
 
 
-
-
-
     }
-
-
-
 
 
     @FXML
@@ -317,13 +286,11 @@ public class LoginController implements Initializable{
     public void handleSignUpButton(ActionEvent event) {
 
 
-
         signUp.setBackground(Background.EMPTY);
 
         signUp2.setBackground(Background.EMPTY);
 
         scrollPane.setBackground(Background.EMPTY);
-
 
 
         Timeline time = new Timeline();
@@ -337,7 +304,6 @@ public class LoginController implements Initializable{
         time.play();
 
 
-
         Timeline time2 = new Timeline();
 
         KeyValue kv2 = new KeyValue(signUp.opacityProperty(), 1, Interpolator.EASE_BOTH);
@@ -349,17 +315,15 @@ public class LoginController implements Initializable{
         time2.play();
 
 
+        Timeline time3 = new Timeline();
 
-        Timeline time3=new Timeline();
-
-        KeyValue kv3 = new KeyValue(logInPane.translateYProperty(), base.getMaxHeight()*2, Interpolator.EASE_BOTH);
+        KeyValue kv3 = new KeyValue(logInPane.translateYProperty(), base.getMaxHeight() * 2, Interpolator.EASE_BOTH);
 
         KeyFrame kf3 = new KeyFrame(Duration.seconds(1), kv3);
 
         time3.getKeyFrames().add(kf3);
 
         time3.play();
-
 
 
         signUp.setTranslateY(signUp.getTranslateY() + 1);
@@ -377,9 +341,7 @@ public class LoginController implements Initializable{
         confirmPasswordLabel.setOpacity(0f);
 
 
-
     }
-
 
 
     public void handleBackButton(ActionEvent event) {
@@ -389,19 +351,17 @@ public class LoginController implements Initializable{
     }
 
 
-
     private void ReturnAnimation() {
 
         Timeline time = new Timeline();
 
-        KeyValue kv = new KeyValue(signUp.translateYProperty(), base.getMaxHeight()*2, Interpolator.EASE_BOTH);
+        KeyValue kv = new KeyValue(signUp.translateYProperty(), base.getMaxHeight() * 2, Interpolator.EASE_BOTH);
 
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
 
         time.getKeyFrames().add(kf);
 
         time.play();
-
 
 
         Timeline time3 = new Timeline();
@@ -417,8 +377,8 @@ public class LoginController implements Initializable{
     }
 
 
-
-    @FXML public void handleSubmitButton(ActionEvent event) throws InterruptedException {
+    @FXML
+    public void handleSubmitButton(ActionEvent event) throws InterruptedException {
 
         firstNameLabel.setOpacity(0f);
 
@@ -431,9 +391,6 @@ public class LoginController implements Initializable{
         confirmEmailLabel.setOpacity(0f);
 
         confirmPasswordLabel.setOpacity(0f);
-
-
-
 
 
         emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -583,9 +540,6 @@ public class LoginController implements Initializable{
             }*/
 
 
-
-
-
         //else {
 
         boolean a = false;
@@ -605,16 +559,12 @@ public class LoginController implements Initializable{
         boolean h = false;
 
 
-
-
-
         //First Name
 
-        if(!firstNameTextField.getText().isEmpty()) {
+        if (!firstNameTextField.getText().isEmpty()) {
 
 
-
-            if(!namePat.matcher(firstNameTextField.getText()).matches()) {
+            if (!namePat.matcher(firstNameTextField.getText()).matches()) {
 
                 firstNameLabel.setText("First Name contains digits");
 
@@ -629,7 +579,6 @@ public class LoginController implements Initializable{
             }
 
 
-
         } else {
 
             firstNameLabel.setText("First Name Required");
@@ -639,14 +588,12 @@ public class LoginController implements Initializable{
         }
 
 
-
         //Last Name
 
-        if(!lastNameTextField.getText().isEmpty()) {
+        if (!lastNameTextField.getText().isEmpty()) {
 
 
-
-            if(!namePat.matcher(lastNameTextField.getText()).matches()) {
+            if (!namePat.matcher(lastNameTextField.getText()).matches()) {
 
                 lastNameLabel.setText("Last Name Contains Digits");
 
@@ -661,7 +608,6 @@ public class LoginController implements Initializable{
             }
 
 
-
         } else {
 
             lastNameLabel.setText("Last Name Required");
@@ -671,14 +617,12 @@ public class LoginController implements Initializable{
         }
 
 
-
         //Email
 
-        if(!emailTextField.getText().isEmpty()) {
+        if (!emailTextField.getText().isEmpty()) {
 
 
-
-            if(!emailPat.matcher(emailTextField.getText()).matches()) {
+            if (!emailPat.matcher(emailTextField.getText()).matches()) {
 
                 emailLabel.setText("Wrong Email Format");
 
@@ -693,7 +637,6 @@ public class LoginController implements Initializable{
             }
 
 
-
         } else {
 
             emailLabel.setText("Email Required");
@@ -703,19 +646,15 @@ public class LoginController implements Initializable{
         }
 
 
-
         //Confirm Email
 
-        if(!confirmEmailTextField.getText().isEmpty()) {
-
+        if (!confirmEmailTextField.getText().isEmpty()) {
 
 
             d = true;
 
 
-
         } else {
-
 
 
             confirmEmailLabel.setText("Confirmed Email Required");
@@ -723,9 +662,7 @@ public class LoginController implements Initializable{
             confirmEmailLabel.setOpacity(1);
 
 
-
         }
-
 
 
         //Password
@@ -761,14 +698,12 @@ public class LoginController implements Initializable{
         }*/
 
 
-
         //Confirm Password
 
-        if(!confirmPasswordField.getText().isEmpty() && !passwordPasswordField.getText().isEmpty()) {
+        if (!confirmPasswordField.getText().isEmpty() && !passwordPasswordField.getText().isEmpty()) {
 
 
-
-            if(!passwordPasswordField.getText().equals(confirmPasswordField.getText())) {
+            if (!passwordPasswordField.getText().equals(confirmPasswordField.getText())) {
 
                 passwordLabel.setText("Passwords Don't Match");
 
@@ -781,7 +716,6 @@ public class LoginController implements Initializable{
             } else {
 
 
-
                 passwordLabel.setOpacity(0);
 
                 confirmPasswordLabel.setOpacity(0);
@@ -791,10 +725,9 @@ public class LoginController implements Initializable{
             }
 
 
-
         } else {
 
-            if(passwordPasswordField.getText().isEmpty()) {
+            if (passwordPasswordField.getText().isEmpty()) {
 
                 confirmPasswordLabel.setText("Password Required");
 
@@ -802,7 +735,7 @@ public class LoginController implements Initializable{
 
             }
 
-            if(confirmPasswordField.getText().isEmpty()) {
+            if (confirmPasswordField.getText().isEmpty()) {
 
                 confirmPasswordLabel.setText("Confirmed Password Required");
 
@@ -811,14 +744,12 @@ public class LoginController implements Initializable{
             }
 
 
-
         }
-
 
 
         //Email Matching
 
-        if(!emailTextField.getText().equals(confirmEmailTextField.getText())) {
+        if (!emailTextField.getText().equals(confirmEmailTextField.getText())) {
 
             emailLabel.setText("Emails Don't Match");
 
@@ -839,23 +770,14 @@ public class LoginController implements Initializable{
         }
 
 
-
         //Password Matching
 
 
-
-
-
-
-
-
-
-        if(a && b && c && d && e && f && g && h) {
+        if (a && b && c && d && e && f && g && h) {
 
             UpdateDatabase database = new UpdateDatabase();
 
             database.UpdateTableForUserCreation(emailTextField.getText(), passwordPasswordField.getText());
-
 
 
             ArrayList<String> userInfo = new ArrayList<String>();
@@ -867,7 +789,6 @@ public class LoginController implements Initializable{
             userInfo.add(emailTextField.getText());
 
             database.AddUserCreationData(userInfo);
-
 
 
             //Clear the fields after the signing up
@@ -885,7 +806,6 @@ public class LoginController implements Initializable{
             confirmPasswordField.clear();
 
 
-
             ReturnAnimation();
 
         }
@@ -897,7 +817,6 @@ public class LoginController implements Initializable{
     }
 
 
-
     @FXML
 
     public void handleExitButton(ActionEvent event) {
@@ -907,63 +826,36 @@ public class LoginController implements Initializable{
     }
 
 
-
-
-
-
-
-
-
-
-
     @FXML
 
-    private void handleForgottenPasswordButton(ActionEvent event) throws IOException{
+    private void handleForgottenPasswordButton(ActionEvent event) throws IOException {
 
 
-
-        Node node = (Node)event.getSource();
-
+        Node node = (Node) event.getSource();
 
 
-        Stage stage = (Stage)node.getScene().getWindow();
-
+        Stage stage = (Stage) node.getScene().getWindow();
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgottenPassword.fxml"));
 
 
-
         Parent root;
-
 
 
         root = loader.load();
 
 
-
         Scene scene = new Scene(root);
-
 
 
         stage.setScene(scene);
 
 
-
         stage.show();
 
 
-
-
-
-
-
-
-
     }
-
-
-
 
 
 }

@@ -1,7 +1,6 @@
 package sample.DatabaseConnection;
 
 
-
 import javafx.animation.Interpolator;
 
 import javafx.animation.KeyFrame;
@@ -17,9 +16,7 @@ import javafx.util.Duration;
 import java.sql.*;
 
 
-
 public class RetrieveInfoFromDatabase {
-
 
 
     //Variables
@@ -31,7 +28,6 @@ public class RetrieveInfoFromDatabase {
     ResultSet rs;
 
 
-
     public RetrieveInfoFromDatabase() {
 
         String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
@@ -39,7 +35,6 @@ public class RetrieveInfoFromDatabase {
         String username = "mass@mass-music";
 
         String password = "Firmwar3";
-
 
 
         try {
@@ -61,11 +56,9 @@ public class RetrieveInfoFromDatabase {
     }
 
 
-
     public String getName(String user_email) {
 
         String name = null;
-
 
 
         try {
@@ -80,22 +73,19 @@ public class RetrieveInfoFromDatabase {
 
                     "                            LIKE '" + user_email + "'");
 
-            while(rs.next()) {
+            while (rs.next()) {
 
                 name = rs.getString(1);
-
 
 
             }
 
 
-
-        } catch(SQLException e) {
+        } catch (SQLException e) {
 
             e.printStackTrace();
 
         }
-
 
 
         return name;
@@ -103,9 +93,7 @@ public class RetrieveInfoFromDatabase {
     }
 
 
-
     public void authentication(String email, String pass, PasswordField passwordTextField) {
-
 
 
         try {
@@ -119,55 +107,40 @@ public class RetrieveInfoFromDatabase {
             rs = st.executeQuery(equery);
 
 
-
-
-
-            if(rs.next()) {
-
+            if (rs.next()) {
 
 
                 if (email.equals(rs.getString("Email"))) {
 
 
-
                     System.out.println("Logging in");
-
 
 
                 } else {
 
 
-
                     System.out.println("Weird error");
-
 
 
                 }
 
 
-
             } else {
-
 
 
                 System.out.println("Email doesn't exist");
 
 
-
             }
-
 
 
             rs = st.executeQuery(pquery);
 
 
-
-            if(rs.next()) {
-
+            if (rs.next()) {
 
 
                 System.out.println("correct password");
-
 
 
             } else {
@@ -175,19 +148,16 @@ public class RetrieveInfoFromDatabase {
                 System.out.println("Incorrect password");
 
 
-
                 passwordTextField.setStyle("-fx-background-color: rgba(255,21,33,0.67); -fx-border-color: #ff1038;");
-
 
 
                 Timeline timeline = new Timeline();
 
-                KeyValue keyValue = new KeyValue(passwordTextField.translateXProperty(), passwordTextField.getTranslateX()+5, Interpolator.EASE_BOTH);
+                KeyValue keyValue = new KeyValue(passwordTextField.translateXProperty(), passwordTextField.getTranslateX() + 5, Interpolator.EASE_BOTH);
 
-                KeyValue keyValue1 = new KeyValue(passwordTextField.translateXProperty(), passwordTextField.getTranslateX()-5, Interpolator.EASE_BOTH);
+                KeyValue keyValue1 = new KeyValue(passwordTextField.translateXProperty(), passwordTextField.getTranslateX() - 5, Interpolator.EASE_BOTH);
 
                 KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.1), keyValue, keyValue1);
-
 
 
                 timeline.getKeyFrames().addAll(keyFrame);
@@ -196,13 +166,15 @@ public class RetrieveInfoFromDatabase {
 
                 timeline.play();
 
-                timeline.setOnFinished(event -> { passwordTextField.setStyle(""); passwordTextField.setTranslateX(0); });
+                timeline.setOnFinished(event -> {
+                    passwordTextField.setStyle("");
+                    passwordTextField.setTranslateX(0);
+                });
 
             }
 
 
-
-        } catch(Exception e) {
+        } catch (Exception e) {
 
             System.out.println(e);
 
