@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="body" prefHeight="600.0" prefWidth="1066.62" stylesheets="@../CSS/adminScreen.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.MusicManagement">
+   <children>
+      <Button fx:id="addMusicButton" layoutX="239.0" layoutY="300.0" mnemonicParsing="false" onAction="#addMusic" prefHeight="97.0" prefWidth="164.0" text="Add Music" />
+      <Button fx:id="removeMusicButton" layoutX="657.0" layoutY="300.0" mnemonicParsing="false" onAction="#removeMusic" prefHeight="97.0" prefWidth="164.0" text="Remove Music" />
+      <Button fx:id="returnButton" layoutX="89.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="79.0" prefWidth="120.0" text="Return" />
+      <Label id="title" layoutX="504.0" layoutY="70.0" text="Music Management" />
+      <Button fx:id="viewMusicButton" layoutX="451.0" layoutY="300.0" mnemonicParsing="false" onAction="#viewMusic" prefHeight="97.0" prefWidth="164.0" text="View Music" />
+   </children>
+</AnchorPane>
