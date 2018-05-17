@@ -2,7 +2,7 @@ package sample;
 
 import javafx.scene.image.Image;
 
-public class Album {
+public class Album implements Comparable<Album> {
 
 
 
@@ -53,4 +53,8 @@ public class Album {
     }
 
 
+    @Override
+    public int compareTo(Album o) {
+        return Integer.compare((int) Double.parseDouble(getPrice()), (int) Double.parseDouble(o.getPrice()));
+    }
 }

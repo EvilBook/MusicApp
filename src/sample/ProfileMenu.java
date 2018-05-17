@@ -8,11 +8,13 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 
@@ -148,16 +150,38 @@ public class ProfileMenu {
 
 
 
-        Label profile=mainUserScreenController.newLabel1;
+        Label profile=new Label(mainUserScreenController.newLabel1.getText());
 
 
-        profile.setStyle("-fx-font-size: 40px;");
+        profile.setStyle("-fx-font-size: 26px;");
 
 
-        circle=mainUserScreenController.circle;
+        circle.setFill(mainUserScreenController.circle.getFill());
+
+
+        InnerShadow innerShadow=new InnerShadow();
+
+
+        innerShadow.setRadius(24);
+
+
+        innerShadow.setChoke(0.34);
+
+
+
+        circle.setEffect(innerShadow);
+
+
+        circle.setRadius(38);
+
+
 
 
         StackPane stackPane11=new StackPane(circle, profile);
+
+
+        stackPane11.setTranslateY(18);
+
 
 
 
@@ -167,6 +191,13 @@ public class ProfileMenu {
 
 
         Pane pane12=showCloseButton();
+
+
+
+
+
+
+
 
 
 

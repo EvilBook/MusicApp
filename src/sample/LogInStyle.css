@@ -158,7 +158,7 @@
 }
 .progress-bar > .bar{
     -fx-background-insets: 0 -4 0 0;
-    -fx-padding: 0.23em;
+    -fx-padding: 0.14em;
 
 
 }
@@ -190,6 +190,58 @@
 
 
 }
+
+
+.combo-box{
+
+    -fx-background-color: rgba(0, 0, 0, 0);
+
+    -fx-border-width: 0px 0px 1px 0px;
+
+
+    -fx-border-color: #ffffff;
+
+
+
+
+
+}
+
+
+.combo-box .cell:selected {
+    -fx-text-fill: #ffffff;
+}
+
+
+.combo-box:hover{
+
+    -fx-text-fill: #232323;
+
+}
+
+
+
+.combo-box-popup .list-view{
+
+
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+
+
+
+}
+
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-background-color: rgba(0, 0, 0, 0.69);
+    -fx-text-fill: #ffffff;
+
+}
+
+
+
+
+
+
 
 
 
