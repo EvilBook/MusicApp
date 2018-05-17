@@ -30,6 +30,7 @@ public class ProfileMenu {
     StackPane stackPane;
     private Pane pane;
     public Pane pane1;
+    private ProfileMenuEdit profileMenuEdit;
 
 
     public StackPane createProfile(Pane pane){
@@ -246,9 +247,13 @@ public class ProfileMenu {
 
 
         button.setOnMouseClicked(event -> {
-            ProfileMenuEdit profileMenuEdit=new ProfileMenuEdit();
-            pane1.getChildren().add(profileMenuEdit.createProfile(pane));
+            profileMenuEdit=new ProfileMenuEdit();
+            pane1.getChildren().add(profileMenuEdit.createProfile(pane, base));
             profileMenuEdit.addData(arrayList);
+
+
+            profileMenuEdit.showProfileMenu();
+
 
         });
 
@@ -399,6 +404,17 @@ public class ProfileMenu {
 
 
             hideProfileMenu();
+
+
+            if(profileMenuEdit!=null) {
+
+
+                profileMenuEdit.hideProfileMenu();
+
+
+            }
+
+
 
 
         });

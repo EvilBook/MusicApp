@@ -14,8 +14,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import sample.DatabaseConnection.UpdateDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProfileMenuEdit {
 
@@ -27,7 +29,11 @@ public class ProfileMenuEdit {
     private Pane pane;
 
 
-    public StackPane createProfile(Pane pane){
+    HashMap<String, String> newInfo=new HashMap<>();
+
+
+
+    public StackPane createProfile(Pane pane, Pane base){
 
 
         this.pane=pane;
@@ -38,23 +44,34 @@ public class ProfileMenuEdit {
 
 
 
-        base=new Pane();
+        this.base =new Pane();
 
 
-        base.setPrefSize(pane.getPrefWidth()*1/3, pane.getPrefHeight());
+        this.base.setPrefSize(pane.getPrefWidth()*1/3, pane.getPrefHeight());
 
 
-        milkGlassPane.translateYProperty().bind(base.translateYProperty());
-        milkGlassPane.translateXProperty().bind(base.translateXProperty());
+
+        milkGlassPane.translateYProperty().bind(this.base.translateYProperty());
+        milkGlassPane.translateXProperty().bind(this.base.translateXProperty());
 
 
-        stackPane=new StackPane(milkGlassPane, base);
+        stackPane=new StackPane(milkGlassPane, this.base);
 
 
-        stackPane.setTranslateX(pane.getPrefWidth()-base.getPrefWidth());
+        stackPane.setTranslateY(pane.getPrefHeight()+ this.base.getPrefWidth());
 
 
-        System.out.println(stackPane.getTranslateX());
+        stackPane.setTranslateX(pane.getPrefWidth()- this.base.getPrefWidth());
+
+
+
+        stackPane.setOpacity(0);
+
+
+        stackPane.setMaxHeight(400);
+
+
+
 
 
 
@@ -87,10 +104,11 @@ public class ProfileMenuEdit {
         Timeline timeline=new Timeline();
 
 
-        KeyValue kv= new KeyValue(stackPane.translateXProperty(), pane.getPrefWidth()-base.getWidth());
+        KeyValue kv= new KeyValue(stackPane.translateYProperty(), 0+140);
+        KeyValue kv1= new KeyValue(stackPane.opacityProperty(), 1);
 
 
-        KeyFrame kf=new KeyFrame(Duration.seconds(0.4), kv);
+        KeyFrame kf=new KeyFrame(Duration.seconds(0.38), kv, kv1);
 
 
         timeline.getKeyFrames().addAll(kf);
@@ -112,10 +130,11 @@ public class ProfileMenuEdit {
         Timeline timeline=new Timeline();
 
 
-        KeyValue kv= new KeyValue(stackPane.translateXProperty(), pane.getPrefWidth()+base.getMinWidth());
+        KeyValue kv= new KeyValue(stackPane.translateYProperty(), pane.getPrefHeight());
+        KeyValue kv1= new KeyValue(stackPane.opacityProperty(), 0);
 
 
-        KeyFrame kf=new KeyFrame(Duration.seconds(0.8), kv);
+        KeyFrame kf=new KeyFrame(Duration.seconds(0.19), kv, kv1);
 
 
         timeline.getKeyFrames().addAll(kf);
@@ -135,10 +154,10 @@ public class ProfileMenuEdit {
 
 
 
-        Label profile=new Label("Profile");
+        Label profile=new Label("Edit");
 
 
-        profile.setStyle("-fx-font-size: 40px;");
+        profile.setStyle("-fx-font-size: 28px;");
 
 
 
@@ -155,7 +174,8 @@ public class ProfileMenuEdit {
             labe11.setStyle("-fx-background-color: null; -fx-border-width: 0px 0px 1px 0px;");
 
 
-            labe11.setMaxWidth(300);
+            labe11.setMaxWidth(140);
+
 
 
 
@@ -165,21 +185,34 @@ public class ProfileMenuEdit {
             if(i==0) {
                 label.setText("First Name:");
                 labe11.setText(arrayList.get(i));
+
+
+                newInfo.put(label.getText(), labe11.getText());
+
             }else if(i==1) {
                 label.setText("Last Name:");
                 labe11.setText(arrayList.get(i));
+
+                newInfo.put(label.getText(), labe11.getText());
             }else if(i==2) {
                 label.setText("Birthday (for some reason):");
                 labe11.setText(arrayList.get(i));
+
+                newInfo.put(label.getText(), labe11.getText());
             }else if(i==3) {
                 label.setText("Phone Number:");
                 labe11.setText(arrayList.get(i));
+
+                newInfo.put(label.getText(), labe11.getText());
+
             }else if(i==4) {
                 label.setText("Address:");
                 labe11.setText(arrayList.get(i));
+
+
+                newInfo.put(label.getText(), labe11.getText());
+
             }else if(i==5) {
-                label.setText("email:");
-                labe11.setText(arrayList.get(i));
             }
 
             label.setStyle("-fx-text-fill: #afafaf; -fx-border-width: 0px 0px 0px 0px; -fx-border-color: #afafaf; -fx-font-size: 11px;");
@@ -187,6 +220,12 @@ public class ProfileMenuEdit {
 
 
             v.getChildren().add(v1);
+
+
+            labe11.textProperty().addListener((observable, oldValue, newValue) -> {
+                newInfo.replace(label.getText(), newValue);
+            });
+
 
 
 
@@ -229,10 +268,23 @@ public class ProfileMenuEdit {
 
         v.setSpacing(14);
 
-        v.setPadding(new Insets(pane.getPrefHeight()*1/5,0,0,0));
+        v.setPadding(new Insets(0,0,0,40));
 
 
         Button button=new Button("Save");
+
+
+        button.setOnMouseClicked(event -> {
+
+
+            UpdateDatabase updateDatabase=new UpdateDatabase();
+
+
+            updateDatabase.ModifyUserData(newInfo, arrayList.get(5));
+
+
+        });
+
 
 
 
