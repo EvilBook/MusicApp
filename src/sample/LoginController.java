@@ -262,6 +262,9 @@ public class LoginController implements Initializable {
 
                 UpdateDatabase updateDatabase = new UpdateDatabase();
 
+                SwitchScene sw = new SwitchScene();
+                sw.empScreen(event);
+
 
                 if (updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
 
@@ -269,7 +272,13 @@ public class LoginController implements Initializable {
 
                     userEmail = userNameTextField.getText();
 
-                    access.employeeScreen(event, userEmail);       //Goes to the Employee Screen
+
+                    access.employeeScreen(event, userEmail);//Goes to the Employee Screen
+
+
+                }
+                else {
+
 
                 }
 

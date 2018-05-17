@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.62" style="-fx-background-color: gray;" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.MusicManagement">
-
-    <children>
-
-        <Button fx:id="addMusicButton" layoutX="288.0" layoutY="214.0" mnemonicParsing="false" onAction="#addMusic" prefHeight="97.0" prefWidth="164.0" text="Add Music" />
-
-        <Button fx:id="removeMusicButton" layoutX="555.0" layoutY="214.0" mnemonicParsing="false" onAction="#removeMusic" prefHeight="97.0" prefWidth="164.0" text="Remove Music" />
-
-        <Button fx:id="returnButton" layoutX="391.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="97.0" prefWidth="164.0" text="Return" />
-
-    </children>
-
+<AnchorPane id="body" prefHeight="600.0" prefWidth="1066.62" stylesheets="@../CSS/adminScreen.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.EmployeeManagement">
+   <children>
+      <Button layoutX="81.0" layoutY="471.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="78.0" prefWidth="131.0" text="Back" />
+      <Button layoutX="257.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="78.0" prefWidth="131.0" text="Add Employees" />
+      <Button layoutX="542.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="78.0" prefWidth="131.0" text="Delete Employees" />
+      <Label id="title" layoutX="398.0" layoutY="107.0" stylesheets="@../CSS/adminScreen.css" text="Employee Management" />
+   </children>
 </AnchorPane>

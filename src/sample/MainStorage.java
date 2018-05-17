@@ -6,11 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.Employee.Employee;
-import sample.Employee.EmployeeAddMusicController;
-import sample.Employee.EmployeeDataStorage;
-import sample.Employee.MainEmployeeScreenController;
-import sample.User.MainUserScreenController;
+import sample.Employee.EmployeeScreen;
+
 
 import java.io.IOException;
 
@@ -39,9 +36,8 @@ public class MainStorage {
         Parent root;
         root = loader.load();
 
-      MainEmployeeScreenController emp = loader.getController();
-      emp.getName(userEmail);
-
+        EmployeeScreen emp = loader.getController();
+        emp.getName(userEmail);
 
         Scene scene = new Scene(root,1066.62, 600);
         stage.setScene(scene);
@@ -53,19 +49,19 @@ public class MainStorage {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("User//MainUserScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("User/userScreen.fxml"));
         Parent root;
         root = loader.load();
 
-       /* UserScreen one = loader.getController();
-        one.getName(userEmail);*/
+        MainUserScreenController one = loader.getController();
+        one.getName(userEmail);
 
         Scene scene = new Scene(root,1066.62, 600);
         stage.setScene(scene);
         stage.show();
     }
 
-    //Login screen
+    //LoginController screen
     public void logOut(ActionEvent event) throws IOException {
         Node node = (Node)event.getSource();
         Stage stage = (Stage)node.getScene().getWindow();

@@ -6,29 +6,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="sceneBody" prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/employeeAddAlbum.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.AdminScreen">
+<AnchorPane id="body" prefHeight="600.0" prefWidth="1066.62" stylesheets="@../CSS/adminScreen.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.AdminScreen">
    <children>
-      <Text layoutX="390.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Behold the Admin ">
+      <Text id="title" layoutX="390.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Behold the Admin ">
          <font>
             <Font name="Arial" size="35.0" />
          </font>
       </Text>
-      <Button id="logOutButton" layoutX="29.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="51.0" prefWidth="100.0" text="Log Out" />
-      <Button id="employeeButton" layoutX="106.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleStoreButton" prefHeight="73.0" prefWidth="202.0" text="Store Management">
+      <Button id="logOutButton" fx:id="logOutButton" layoutX="29.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="51.0" prefWidth="100.0" text="Log Out" />
+      <Button id="employeeButton" layoutX="105.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleEmployeeButton" prefHeight="73.0" prefWidth="202.0" text="Employee Management">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button id="userButton" layoutX="740.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleUserButton" prefHeight="73.0" prefWidth="202.0" text="User Management">
+      <Button id="userButton" layoutX="752.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleUserButton" prefHeight="73.0" prefWidth="202.0" text="User Management">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button id="storeButton" layoutX="432.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleEmployeeButton" prefHeight="73.0" prefWidth="202.0" text="Employee Management">
+      <Button id="storeButton" layoutX="432.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleStoreButton" prefHeight="73.0" prefWidth="202.0" text="Store Management">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="109.0" layoutY="125.0" prefHeight="175.0" prefWidth="836.0" stylesheets="@../CSS/employeeAddAlbum.css" text="Albums sold today:" />
+      <Label layoutX="921.0" layoutY="36.0" prefHeight="51.0" prefWidth="131.0" />
    </children>
 </AnchorPane>

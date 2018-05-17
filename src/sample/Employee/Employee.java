@@ -40,7 +40,7 @@ public class Employee {
         return address;
     }
 
-    public String getEmail(String userEmail) {
+    public String getEmail() {
         return email;
     }
 }

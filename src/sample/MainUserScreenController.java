@@ -53,7 +53,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.textfield.TextFields;
 import sample.DatabaseConnection.DbconnectionMusic;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
-import sample.Employee.AlbumNameViewClass;
+
 
 
 import java.io.File;
@@ -104,7 +104,7 @@ public class MainUserScreenController implements Initializable {
 
     Button moveRight;
 
-    private ObservableList<AlbumNameViewClass> data1;
+
 
 
 
@@ -2909,37 +2909,7 @@ public class MainUserScreenController implements Initializable {
 
 
 
-    @FXML
-    public void SearchAlbumButton(ActionEvent event)throws IOException {
-        Connection connection = dc.connect();
-        data1 = FXCollections.observableArrayList();
 
-
-        try{
-
-            String sql = "select *from album where albumName like '"+'%'+searchTextfield.getText()+'%'+"' ";
-            PreparedStatement pst = connection.prepareStatement(sql);
-            ResultSet result = pst.executeQuery();
-
-            while (result.next()) {
-                data1.add(new AlbumNameViewClass(result.getString(2)));
-
-
-                System.out.println(result.getString(2));
-
-
-            }
-
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-
-
-
-
-    }
 
 
 

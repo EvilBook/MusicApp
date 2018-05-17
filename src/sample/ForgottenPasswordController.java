@@ -179,6 +179,9 @@ public class ForgottenPasswordController implements Initializable {
 
                 //Change password to generated one
 
+
+
+
                 String generatePw = generateRandom();
 
                 String sql2 = "UPDATE login SET password = '" + generatePw + "' WHERE Email = '" + email + "';";
