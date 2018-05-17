@@ -8,6 +8,14 @@
     -fx-text-fill: black;
 }
 
+#wrongLabel{
+    -fx-border-color: red;
+    -fx-text-fill: red;
+    -fx-background-color: black;
+    -fx-alignment: center;
+
+}
+
 .button{
     -fx-background-color: rgba(255,255,255,0.6);
     -fx-text-fill: black;

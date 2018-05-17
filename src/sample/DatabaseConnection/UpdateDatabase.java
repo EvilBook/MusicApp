@@ -109,8 +109,8 @@ public class UpdateDatabase {
 
 
     public <T> void AddUserCreationData(T t) {
-        String url = "jdbc:mysql://music-app.mysql.database.azure.com:3306/persondb";
-        String username = "evilBook@music-app";
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+        String username = "mass@mass-music";
         String password = "Firmwar3";
         ArrayList<String> userData= (ArrayList<String>) t;
 
@@ -118,30 +118,29 @@ public class UpdateDatabase {
         try {
             connection = DriverManager.getConnection(url, username, password);
             st = connection.createStatement();
-            System.out.println("Works");
-            new UpdateDatabase().connection=connection;
+            System.out.println("Add User Connection Established");
+            new UpdateDatabase().connection = connection;
         } catch (SQLException e) {
-            throw new IllegalStateException("Connection failed", e);
+            throw new IllegalStateException("Add User Connection failed", e);
         }
 
 
         try {
-            String FirstName=userData.get(0);
-            String LastName=userData.get(1);
-            String UserEmial=userData.get(2);
-            String three="insert into person(FirstName, LastName, Login_Email) "+" VALUES ('"+FirstName+"','"+LastName+"','"+UserEmial+"')";
-            st=connection.createStatement();
+            String firstName = userData.get(0);
+            String lastName = userData.get(1);
+            String userEmail = userData.get(2);
+            String three = "INSERT INTO person(FirstName, LastName, Login_Email)" +
+                    "VALUES " + "('" + firstName + "','" + lastName + "','" + userEmail +"')";
             st.executeUpdate(three);
+
         } catch (SQLException e) {
+            System.out.println(" u dumb");
             e.printStackTrace();
         }
+
         System.out.println("UPDATE COMPLETE\n");
 
-
-
     }
-
-
 
 
 }

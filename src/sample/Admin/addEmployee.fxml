@@ -17,7 +17,7 @@
       <Button layoutX="910.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="64.0" prefWidth="119.0" text="Add" />
       <TextField fx:id="firstTextField" alignment="CENTER" layoutX="193.0" layoutY="177.0" prefHeight="41.0" prefWidth="184.0" promptText="xxxxx" />
       <TextField fx:id="lastTextField" alignment="CENTER" layoutX="193.0" layoutY="245.0" prefHeight="41.0" prefWidth="184.0" promptText="xxxxx" />
-      <TextField fx:id="emailTextField" alignment="CENTER" layoutX="193.0" layoutY="321.0" prefHeight="41.0" prefWidth="184.0" promptText="sample@mail.com" />
+      <TextField fx:id="emailTextField" alignment="CENTER" layoutX="193.0" layoutY="321.0" prefHeight="41.0" prefWidth="184.0" promptText="sample@mass.com" />
       <TextField fx:id="passwordTextField" alignment="CENTER" layoutX="193.0" layoutY="391.0" prefHeight="41.0" prefWidth="184.0" promptText="*****" />
       <TextField fx:id="birthTextField" alignment="CENTER" layoutX="565.0" layoutY="177.0" prefHeight="41.0" prefWidth="184.0" promptText="mm-dd-yyyy" />
       <TextField fx:id="addressTextField" alignment="CENTER" layoutX="565.0" layoutY="245.0" prefHeight="41.0" prefWidth="184.0" promptText="xxxxx" />
@@ -30,5 +30,13 @@
       <Label layoutX="465.0" layoutY="189.0" text="Date of Birth:" />
       <Label layoutX="492.0" layoutY="257.0" text="Address:" />
       <Label layoutX="451.0" layoutY="333.0" text="Phone Number:" />
+      <Label id="wrongLabel" fx:id="firstLabel" layoutX="195.0" layoutY="218.0" prefHeight="17.0" prefWidth="184.0" />
+      <Label id="wrongLabel" fx:id="lastLabel" layoutX="193.0" layoutY="286.0" prefHeight="17.0" prefWidth="184.0" />
+      <Label id="wrongLabel" fx:id="emailLabel" layoutX="193.0" layoutY="362.0" prefHeight="17.0" prefWidth="184.0" />
+      <Label id="wrongLabel" fx:id="passLabel" layoutX="193.0" layoutY="432.0" prefHeight="17.0" prefWidth="184.0" />
+      <Label id="wrongLabel" fx:id="dateLabel" layoutX="565.0" layoutY="218.0" prefHeight="17.0" prefWidth="184.0" />
+      <Label id="wrongLabel" fx:id="phoneLabel" layoutX="565.0" layoutY="362.0" prefHeight="17.0" prefWidth="184.0" />
+      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="289.0" layoutY="96.0" prefHeight="17.0" prefWidth="353.0" />
+      <Label id="wrongLabel" fx:id="addressLabel" layoutX="565.0" layoutY="286.0" prefHeight="17.0" prefWidth="184.0" />
    </children>
 </AnchorPane>

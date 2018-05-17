@@ -25,6 +25,7 @@
                   <TableColumn id="column" fx:id="emailColumn" prefWidth="297.5" text="Email " />
               </columns>
             </TableView>
+            <Label fx:id="infoLabel" layoutX="278.0" layoutY="371.0" prefHeight="17.0" prefWidth="383.0" />
          </children>
       </Pane>
       <Button layoutX="128.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="34.0" prefWidth="116.0" text="return" />

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,6 +36,8 @@ public class RemoveUser implements Initializable {
     @FXML private TableColumn <Employee, String> emailColumn;
     @FXML private TextField removeTextField;
     private ObservableList<Employee> employeeList;
+    @FXML private Label infoLabel;
+
 
 
     //Objects
@@ -67,6 +70,8 @@ public class RemoveUser implements Initializable {
     }
 
     public void handleLoadButton() {
+        infoLabel.setText("");
+
         employeeList = FXCollections.observableArrayList();
 
         try {
@@ -95,7 +100,9 @@ public class RemoveUser implements Initializable {
             String email = removeTextField.getText();
             removeData(email);
             handleLoadButton();
-
+            removeTextField.setText("");
+        }else{
+            infoLabel.setText("Please fill in the text field below");
         }
     }
 

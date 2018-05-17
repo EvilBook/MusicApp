@@ -65,6 +65,7 @@ public class LoginController implements Initializable{
     private static Pattern emailPat;
     private static Pattern passPat;
     private static Pattern namePat;
+    private static Pattern emailPat2;
 
 
 
@@ -218,6 +219,8 @@ public class LoginController implements Initializable{
 
 
         emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        emailPat2 = Pattern.compile("^[A-Z0-9._%+-]+@mass.com", Pattern.CASE_INSENSITIVE);
+
         passPat = Pattern.compile("[a-z0-9_-]{3,15}");
         namePat = Pattern.compile("[a-zA-Z\\s]+");
 
@@ -263,11 +266,13 @@ public class LoginController implements Initializable{
         }
 
         //Email
+
+        //&& !(emailPat2.matcher(emailTextField.getText()).matches())
+
         if(!emailTextField.getText().isEmpty() && !confirmEmailTextField.getText().isEmpty()) {
-            if(emailPat.matcher(emailTextField.getText()).matches()) {
-
+            if(emailPat.matcher(emailTextField.getText()).matches() && !(emailPat2.matcher(emailTextField.getText()).matches()))
+            {
                 emailLabel.setOpacity(0);
-
 
                 if(!emailTextField.getText().equals(confirmEmailTextField.getText())) {
                     emailLabel.setText("Emails Don't Match");

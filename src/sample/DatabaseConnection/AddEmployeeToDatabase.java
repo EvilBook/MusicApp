@@ -1,5 +1,7 @@
 package sample.DatabaseConnection;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import sample.MainStorage;
 
 import java.sql.*;
@@ -70,6 +72,13 @@ public class AddEmployeeToDatabase {
                     "','" + address + "','" + userEmail +"')";
             st.executeUpdate(three);
             st.executeUpdate(four);
+
+
+            //Message for complete
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added the employee to the database.", ButtonType.OK);
+            alert.setHeaderText("REMOVAL COMPLETE");
+            alert.showAndWait();
+
         } catch (SQLException e) {
             System.out.println(" u dumb");
             e.printStackTrace();
