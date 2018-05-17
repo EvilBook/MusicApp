@@ -161,7 +161,7 @@ public class UpdateDatabase {
 
 
         try {
-            String three="insert into person(FirstName, LastName, DoB, PhoneNumber, Address) "+" VALUES ('"+((HashMap<String, String>) t).get("First Name:")+"','"+((HashMap<String, String>) t).get("Last Name:")+"','"+((HashMap<String, String>) t).get("Birthday (for some reason):")+"','"+((HashMap<String, String>) t).get("Phone Number:")+"','"+((HashMap<String, String>) t).get("Address:")+"') WHERE Login_Email LIKE 'email'";
+            String three="UPDATE person SET FirstName='"+((HashMap<String, String>) t).get("First Name:")+"',LastName='"+((HashMap<String, String>) t).get("Last Name:")+"',DoB='"+((HashMap<String, String>) t).get("Birthday (for some reason):")+"',PhoneNumber='"+((HashMap<String, String>) t).get("Phone Number:")+"',Address='"+((HashMap<String, String>) t).get("Address:")+"' WHERE Login_Email='"+email+"'";
             st=connection.createStatement();
             st.executeUpdate(three);
         } catch (SQLException e) {

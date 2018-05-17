@@ -22,6 +22,7 @@ import java.util.HashMap;
 public class ProfileMenuEdit {
 
 
+    private final ProfileMenu profileMenu;
     Pane base;
 
 
@@ -31,6 +32,12 @@ public class ProfileMenuEdit {
 
     HashMap<String, String> newInfo=new HashMap<>();
 
+    public ProfileMenuEdit(ProfileMenu profileMenu) {
+
+
+        this.profileMenu=profileMenu;
+
+    }
 
 
     public StackPane createProfile(Pane pane, Pane base){
@@ -165,7 +172,7 @@ public class ProfileMenuEdit {
 
 
 
-        for(int i=0; i<arrayList.size(); i++){
+        for(int i=0; i<arrayList.size()-1; i++){
 
             Label label = new Label("First Name:");
             TextField labe11 = new TextField();
@@ -283,12 +290,29 @@ public class ProfileMenuEdit {
             updateDatabase.ModifyUserData(newInfo, arrayList.get(5));
 
 
+            hideProfileMenu();
+
+
+            profileMenu.updateData();
+
+
+
+
         });
 
 
 
 
         Button button1=new Button("Cancel");
+
+
+        button1.setOnMouseClicked(event -> {
+
+
+            hideProfileMenu();
+
+        });
+
 
 
         v.getChildren().addAll(button, button1);

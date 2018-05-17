@@ -58,6 +58,8 @@ public class MainUserScreenController implements Initializable {
     public String userEmail;
     public ArrayList<String> arrayList;
     private Label count;
+    public Circle circle;
+    public Label newLabel1;
 
     public void SetStage(Stage stage){
         this.stage=stage;
@@ -120,7 +122,7 @@ public class MainUserScreenController implements Initializable {
     ShoppingCartMenu shoppingCartMenu = new ShoppingCartMenu(count);
 
 
-    ProfileMenu profileMenu=new ProfileMenu();
+    ProfileMenu profileMenu=new ProfileMenu(this);
 
 
 
@@ -424,7 +426,7 @@ public class MainUserScreenController implements Initializable {
         if(arrayList.size()>0) {
             name.setText(arrayList.get(0).substring(0,1).toUpperCase()+""+(arrayList.get(1).substring(0,1).toUpperCase()));
             name.setOpacity(0);
-            Circle circle=new Circle();
+            circle=new Circle();
             circle.setFill(new Color(Math.random(), Math.random(), Math.random(), 1));
 
 
@@ -460,7 +462,7 @@ public class MainUserScreenController implements Initializable {
 
 
 
-            Label newLabel1=new Label();
+            newLabel1=new Label();
 
 
             newLabel1.setText(name.getText());

@@ -12,10 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Arc;
-import javafx.scene.shape.ArcType;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.*;
 import javafx.util.Duration;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 
@@ -24,6 +21,7 @@ import java.util.ArrayList;
 public class ProfileMenu {
 
 
+    private final MainUserScreenController mainUserScreenController;
     Pane base;
 
 
@@ -31,6 +29,21 @@ public class ProfileMenu {
     private Pane pane;
     public Pane pane1;
     private ProfileMenuEdit profileMenuEdit;
+    private ArrayList<Label> labels=new ArrayList<>();
+    private String email;
+
+
+    Circle circle=new Circle();
+
+
+    Label name=new Label();
+
+    public ProfileMenu(MainUserScreenController mainUserScreenController) {
+
+
+        this.mainUserScreenController=mainUserScreenController;
+
+    }
 
 
     public StackPane createProfile(Pane pane){
@@ -135,14 +148,22 @@ public class ProfileMenu {
 
 
 
-        Label profile=new Label("Profile");
+        Label profile=mainUserScreenController.newLabel1;
 
 
         profile.setStyle("-fx-font-size: 40px;");
 
 
+        circle=mainUserScreenController.circle;
 
-        VBox v= new VBox(profile);
+
+        StackPane stackPane11=new StackPane(circle, profile);
+
+
+
+
+
+        VBox v= new VBox(stackPane11);
 
 
         Pane pane12=showCloseButton();
@@ -170,6 +191,10 @@ public class ProfileMenu {
             Label labe11 = new Label("Tit");
 
 
+            labels.add(labe11);
+
+
+
 
 
 
@@ -191,6 +216,11 @@ public class ProfileMenu {
             }else if(i==5) {
                 label.setText("email:");
                 labe11.setText(arrayList.get(i));
+
+
+                email=arrayList.get(i);
+
+
             }
 
             label.setStyle("-fx-text-fill: #afafaf; -fx-border-width: 0px 0px 0px 0px; -fx-border-color: #afafaf; -fx-font-size: 11px;");
@@ -247,7 +277,7 @@ public class ProfileMenu {
 
 
         button.setOnMouseClicked(event -> {
-            profileMenuEdit=new ProfileMenuEdit();
+            profileMenuEdit=new ProfileMenuEdit(this);
             pane1.getChildren().add(profileMenuEdit.createProfile(pane, base));
             profileMenuEdit.addData(arrayList);
 
@@ -517,7 +547,17 @@ public class ProfileMenu {
     }
 
 
+    public void updateData() {
 
 
+        RetrieveInfoFromDatabase newRetrieve=new RetrieveInfoFromDatabase();
+        ArrayList<String> arrayList1=new ArrayList<>(newRetrieve.getName((email)));
 
+
+        for(int i=0;i<labels.size();i++){
+            labels.get(i).setText(arrayList1.get(i));
+        }
+
+
+    }
 }
