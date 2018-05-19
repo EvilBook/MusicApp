@@ -11,15 +11,21 @@ public class Album implements Comparable<Album> {
     private String date;
     private String price;
     private String label;
+    public String artist;
 
     private Image image;
 
-    public Album(String albumId, String albumName, String date, String price, String label) {
+    public Album(String albumId, String albumName, String date, String price, String label, String artist) {
         AlbumId = albumId;
         AlbumName = albumName;
         this.date = date;
         this.price = price;
         this.label = label;
+
+
+
+        this.artist=artist;
+
     }
 
     public String getAlbumId() {

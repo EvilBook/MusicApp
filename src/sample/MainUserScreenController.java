@@ -21,11 +21,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.controlsfx.control.textfield.TextFields;
+import sample.DatabaseConnection.DbconnectionMusic;
 import sample.DatabaseConnection.ReadAlbumInfo;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
@@ -60,10 +64,14 @@ public class MainUserScreenController implements Initializable {
     private boolean musicState;
     public String userEmail;
     public ArrayList<String> arrayList;
-    private Label count;
+    public Label count;
     public Circle circle;
     public Label newLabel1;
     private ArrayList<Album> albums;
+
+
+    ArrayList<String> albumNames=new ArrayList<>();
+
 
     public void SetStage(Stage stage){
         this.stage=stage;
@@ -73,7 +81,6 @@ public class MainUserScreenController implements Initializable {
 
     public void setUserEmail(String userEmail){
         this.userEmail=userEmail;
-        System.out.println(userEmail+"watafak "+this.userEmail);
         getName();
     }
 
@@ -123,7 +130,7 @@ public class MainUserScreenController implements Initializable {
     DiscoverMenu discoverMenu= new DiscoverMenu();
 
 
-    ShoppingCartMenu shoppingCartMenu = new ShoppingCartMenu(count);
+    ShoppingCartMenu shoppingCartMenu = new ShoppingCartMenu(this);
 
 
     ProfileMenu profileMenu=new ProfileMenu(this);
@@ -131,6 +138,11 @@ public class MainUserScreenController implements Initializable {
 
 
     ReadAlbumInfo readAlbumInfo;
+
+
+    final static Image image12=new Image(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\cover.png").toString());
+
+
 
 
 
@@ -160,7 +172,14 @@ public class MainUserScreenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         MainMenu();
         ReadNames();
-        ReadNamesMusic();
+
+
+
+
+
+
+        SearchBar();
+
 
 
         ObservableList<String> options =
@@ -184,29 +203,34 @@ public class MainUserScreenController implements Initializable {
         comboBox.setValue("Trending");
 
 
-        comboBox.setOnMouseClicked(event -> {
+        comboBox.valueProperty().addListener(observable -> {
 
 
-            Collections.sort(albums);
-
-
-            horizontalMenu.getChildren().clear();
-
-
-            sortPrice();
+            if(comboBox.getValue()=="A-Z"){
+                readAlbumInfo.sortAlphabetically(" asc");
 
 
 
+                sortPrice(readAlbumInfo.data);
+            }else if(comboBox.getValue()=="Z-A"){
+                readAlbumInfo.sortAlphabetically(" desc");
 
 
-            for(Album a: albums){
+
+                sortPrice(readAlbumInfo.data);
+            }else if(comboBox.getValue()=="Price: Low to High"){
+                readAlbumInfo.SortByPrice(" asc");
 
 
-                System.out.println(a.getPrice());
+
+                sortPrice(readAlbumInfo.data);
+            }else if(comboBox.getValue()=="Price: High to Low"){
+                readAlbumInfo.SortByPrice(" desc");
 
 
+
+                sortPrice(readAlbumInfo.data);
             }
-
 
         });
 
@@ -219,6 +243,7 @@ public class MainUserScreenController implements Initializable {
         horizontalMenu.setSpacing(14);
         horizontalMenu.setMinWidth(400*names.size());
         horizontalMenu.setAlignment(Pos.CENTER_LEFT);
+
 
 
         albums=new ArrayList<Album>();
@@ -270,13 +295,10 @@ public class MainUserScreenController implements Initializable {
 
             stackPane11.getChildren().addAll(albumInfo1, stackPane);
 
-
-            pane.setStyle("-fx-background-color: null;");
-
-            Label name=new Label(album.getAlbumName());
+            Label name=new Label(album.getAlbumName().replace("_"," "));
 
 
-            Label artist=new Label(album.getLabel());
+            Label artist=new Label(album.artist);
 
 
             albumInfo1.getChildren().addAll(name, artist);
@@ -310,12 +332,42 @@ public class MainUserScreenController implements Initializable {
 
             horizontalMenu.getChildren().add(stackPane11);
 
+
+            Image image11=new Image(getClass().getResource("Graphics/view.png").toString());
+
+
+            ImageView imageView1=new ImageView(image11);
+
+
+
+
+
+            imageView1.setPreserveRatio(false);
+
+
+            imageView1.setFitHeight(1);
+
+
+            stackPane.getChildren().addAll(imageView1);
+
+
+            imageView1.setVisible(false);
+
+
+            int finalI = i;
+            imageView1.setOnMouseClicked(event -> {
+                CreateMore(readAlbumInfo.data.get(finalI));
+            });
+
+
+
+
             stackPane.setOnMouseEntered(event -> {
-                AnimationOne(stackPane);
+                AnimationOne(stackPane, imageView1);
 
             });
             stackPane.setOnMouseExited(event -> {
-                AnimationTwo(stackPane);
+                AnimationTwo(stackPane, imageView1);
 
             });
         }
@@ -352,6 +404,7 @@ public class MainUserScreenController implements Initializable {
     }
 
     public void MainMenu() {
+
 
 
         readAlbumInfo= new ReadAlbumInfo();
@@ -486,7 +539,6 @@ public class MainUserScreenController implements Initializable {
     }
 
     public void getName() {
-        System.out.println(userEmail+" "+"da fuk");
         RetrieveInfoFromDatabase newRetrieve=new RetrieveInfoFromDatabase();
         arrayList=new ArrayList<>(newRetrieve.getName((userEmail)));
         if(arrayList.size()>0) {
@@ -597,20 +649,28 @@ public class MainUserScreenController implements Initializable {
         return names;
 
     }
-    public ArrayList<String> ReadNamesMusic() {
+    public ArrayList<String> ReadNamesMusic(Album album11) {
         File folder = new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music");
         File[] listOfFiles = folder.listFiles();
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                nameMusic.add(listOfFiles[i].getName());
-            } else if (listOfFiles[i].isDirectory()) {
-            }
+
+        ArrayList<String> songs=new ArrayList<>(readAlbumInfo.GetSongs(album11.getAlbumId()));
+
+
+        for (int i = 0; i < songs.size(); i++) {
+            nameMusic.add(songs.get(i));
         }
         return nameMusic;
 
     }
-    public void AnimationOne(StackPane s){
+    public void AnimationOne(StackPane s, ImageView imageView1){
+
+
+        imageView1.setVisible(true);
+
+
+
+
 
         ArrayList<Node> q=new ArrayList<>();
         for(Node i : s.getChildren()){
@@ -635,10 +695,25 @@ public class MainUserScreenController implements Initializable {
                     time1.setOnFinished(t->{
                     });
                     time1.play();
+
                 }
+
+
+            time.setOnFinished(event -> {
+
+
+                Timeline timeline=new Timeline();
+                KeyValue kv11=new KeyValue(imageView1.fitHeightProperty(), 90, Interpolator.EASE_BOTH);
+                KeyFrame kf11=new KeyFrame(Duration.seconds(0.24), kv11);
+                timeline.getKeyFrames().addAll(kf11);
+                timeline.play();
+
+            });
+
         }
     }
-    public void AnimationTwo(StackPane s){
+    public void AnimationTwo(StackPane s, ImageView imageView1){
+
         ArrayList<Node> q=new ArrayList<>();
         for(Node i : s.getChildren()){
             q.add(i);
@@ -652,9 +727,30 @@ public class MainUserScreenController implements Initializable {
             time.setOnFinished(t->{
             });
             time.play();
+
             if(newOne.getId()=="informationPane"){
                 newOne.setVisible(false);
             }
+
+
+            time.setOnFinished(event -> {
+
+
+                Timeline timeline=new Timeline();
+                KeyValue kv11=new KeyValue(imageView1.fitHeightProperty(), 1, Interpolator.EASE_BOTH);
+                KeyFrame kf11=new KeyFrame(Duration.seconds(0.17), kv11);
+                timeline.getKeyFrames().addAll(kf11);
+                timeline.play();
+
+
+                timeline.setOnFinished(event1 -> {
+                    imageView1.setVisible(false);
+                });
+
+
+            });
+
+
         }
     }
     public VBox SetText(VBox h,Image image,Integer ii, Album album){
@@ -692,61 +788,98 @@ public class MainUserScreenController implements Initializable {
             shoppingCartMenu.albums.add(readAlbumInfo.data.get(ii));
 
             String toastMsg = "added to basket";
-            int toastMsgTime = 1500;
+            int toastMsgTime = 300;
             int fadeInTime = 500;
             int fadeOutTime= 500;
             Toast.makeText(this.stage, toastMsg, toastMsgTime, fadeInTime, fadeOutTime);
         });
-        m.getChildren().addAll(newButton,newButton1);
-        m.setAlignment(Pos.CENTER);
-        h.getChildren().add(m);
         return h;
     }
     public VBox CreateLabels(VBox h,ImageView iv,ImageView cover,Integer ii,Album album){
         ImageView imageView=new ImageView();
-        Image image1=new Image(getClass().getResource("Graphics/ic_album_3x.png").toString());
+        Image image1=new Image(getClass().getResource("Graphics/addToCart.png").toString());
 
         imageView.setImage(image1);
         imageView.setFitWidth(80);
-        ColorAdjust colorAdjust=new ColorAdjust();
-        colorAdjust.setBrightness(100);
-        DropShadow dropShadow=new DropShadow();
-        dropShadow.setColor(new Color(1,1,1,1));
-        dropShadow.setRadius(0);
-        colorAdjust.setInput(dropShadow);
-        imageView.setEffect(colorAdjust);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
-        h.getChildren().add(imageView);
 
 
-        Label name=new Label(album.getAlbumName());
+        Label name=new Label("title: ");
+        name.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label name1=new Label(album.getAlbumName().replace("_", " "));
 
 
 
-        Label artist=new Label("by "+album.getLabel());
+        Label artist=new Label("by: ");
+        artist.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label artist1=new Label(album.artist);
 
 
-        Label plates=new Label("No. Disks: "+album.getAlbumId());
+        Label plates=new Label("no. disks: ");
+        plates.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label plates1=new Label(album.getAlbumId());
 
 
-        Label date=new Label("date: "+album.getDate());
+        Label date=new Label("date: ");
+        date.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label date1=new Label(album.getDate());
 
 
-        Label price=new Label("Price: "+album.getPrice());
+        Label price=new Label("price: ");
+        price.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label price1=new Label(album.getPrice());
 
 
-        h.getChildren().addAll(name, artist, date, plates, price);
+        VBox v=new VBox(new HBox(name, name1), new HBox(artist, artist1), new HBox(date, date1), new HBox(plates, plates1), new HBox(price, price1));
+
+
+        v.setSpacing(0);
+
+
+        v.setTranslateY(-78);
+
+
+
+
+
+        h.getChildren().addAll(v);
+
+
+
+        v.setOnMouseClicked(event -> {
+        });
+
+
+
+
+
+
+
+
+        h.getChildren().add(createShoppingCartButton(imageView, readAlbumInfo.data.get(ii)));
+
 
 
         h.setAlignment(Pos.CENTER);
         h.setOpacity(0);
         h.opacityProperty().bind(iv.opacityProperty());
         h.visibleProperty().bind(iv.visibleProperty());
+
+
+
+
+
+
         return SetText(h,cover.getImage(),ii,readAlbumInfo.data.get(ii));
     }
+
     public void CreateMore(Album album){
+
+
+        ReadNamesMusic(album);
+
 
 
 
@@ -968,7 +1101,7 @@ public class MainUserScreenController implements Initializable {
 
 
         Timeline time1=new Timeline();
-        KeyValue kv1 = new KeyValue(plate.translateXProperty(), 150, Interpolator.EASE_BOTH);
+        KeyValue kv1 = new KeyValue(plate.translateXProperty(), 180, Interpolator.EASE_BOTH);
         KeyValue kv2 = new KeyValue(plate.rotateProperty(), 300, Interpolator.EASE_BOTH);
         KeyFrame kf1 = new KeyFrame(Duration.seconds(0.2), kv1,kv2);
         time1.getKeyFrames().add(kf1);
@@ -1040,9 +1173,6 @@ public class MainUserScreenController implements Initializable {
     }
 
     public void CreateSongs(AnchorPane ap,VBox vOne, ScrollPane scrollPane){
-
-
-        System.out.println("WORK");
 
 
 
@@ -1131,7 +1261,7 @@ public class MainUserScreenController implements Initializable {
                 label.setStyle("-fx-text-fill: #ffffff");
 
 
-                Media media = new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music\\"+(nameMusic.get(i)).toString()).toURI().toString());
+                Media media = new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music\\"+(nameMusic.get(i)).toString()).toURI().toString()+".mp3");
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
                 MediaView mediaView = new MediaView(mediaPlayer);
                 mediaPlayerMusic=mediaPlayer;
@@ -1410,20 +1540,6 @@ public class MainUserScreenController implements Initializable {
 
 
 
-            StackPane rootPane=new StackPane();
-
-
-            MilkGlassPane milkGlassPane=new MilkGlassPane(base);
-            milkGlassPane.setStyle("-fx-border-radius: 90px; -fx-background-radius: 90px");
-
-
-            milkGlassPane.translateXProperty().bind(ap.translateXProperty());
-            milkGlassPane.translateYProperty().bind(ap.translateYProperty());
-
-            milkGlassPane.minWidthProperty().bind(ap.minWidthProperty());
-            milkGlassPane.minHeightProperty().bind(ap.minHeightProperty());
-
-
             ap.setMinWidth(800);
 
 
@@ -1433,14 +1549,18 @@ public class MainUserScreenController implements Initializable {
             ap.setTranslateX(120);
 
 
-            rootPane.getChildren().addAll(milkGlassPane, ap);
+            ap.setEffect(new DropShadow());
 
 
 
 
 
 
-            base1.getChildren().add(rootPane);
+
+
+
+
+            base1.getChildren().add(ap);
 
 
         }
@@ -2355,92 +2475,525 @@ public class MainUserScreenController implements Initializable {
     }
 
 
-    public void sortPrice() {
+    public void sortPrice(ObservableList<Album> data) {
 
 
-        for (Album a : albums) {
+            horizontalMenu.getChildren().clear();
 
 
-            StackPane stackPane = new StackPane();
-            StackPane stackPane11 = new StackPane();
-            ImageView imageView = new ImageView();
-            AnchorPane pane = new AnchorPane();
-
-            imageView.setImage(a.getImage());
-            imageView.setId("cover");
-            imageView.setFitWidth(250);
-            imageView.setPreserveRatio(true);
-            imageView.setSmooth(true);
-            imageView.setCache(true);
-            DropShadow dropShadow = new DropShadow();
-            dropShadow.radiusProperty().setValue(15);
-            imageView.setEffect(dropShadow);
-
-            ImageView imageView2 = new ImageView();
-            Image image1 = new Image(getClass().getResource("Graphics/tinyBlackSquare.png").toString());
-            imageView2.setImage(image1);
-            imageView2.setFitWidth(250);
-            imageView2.setPreserveRatio(true);
-            imageView2.setVisible(false);
-            imageView2.setId("informationPane");
 
 
-            VBox albumInfo = new VBox();
-            VBox albumInfo1 = new VBox();
+            for(int i=0; i<data.size(); i++) {
 
 
-            albumInfo1.setAlignment(Pos.BASELINE_CENTER);
+
+                Image image=new Image(getClass().getResource("Graphics/Records/"+data.get(i).getAlbumName()+".jpg").toString());
 
 
-            stackPane11.getChildren().addAll(albumInfo1, stackPane);
+
+                StackPane stackPane = new StackPane();
+                StackPane stackPane11 = new StackPane();
+                ImageView imageView = new ImageView(image);
+                AnchorPane pane = new AnchorPane();
+
+                imageView.setImage(image);
+                imageView.setId("cover");
+                imageView.setFitWidth(250);
+                imageView.setPreserveRatio(true);
+                imageView.setSmooth(true);
+                imageView.setCache(true);
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.radiusProperty().setValue(15);
+                imageView.setEffect(dropShadow);
+
+                ImageView imageView2 = new ImageView();
+                Image image1 = new Image(getClass().getResource("Graphics/tinyBlackSquare.png").toString());
+                imageView2.setImage(image1);
+                imageView2.setFitWidth(250);
+                imageView2.setPreserveRatio(true);
+                imageView2.setVisible(false);
+                imageView2.setId("informationPane");
 
 
-            pane.setStyle("-fx-background-color: null;");
-
-            Label name = new Label(a.getAlbumName());
-
-
-            Label artist = new Label(a.getLabel());
+                VBox albumInfo = new VBox();
+                VBox albumInfo1 = new VBox();
 
 
-            albumInfo1.getChildren().addAll(name, artist);
+                albumInfo1.setAlignment(Pos.BASELINE_CENTER);
 
 
-            stackPane.getChildren().addAll(imageView, imageView2, CreateLabels(albumInfo, imageView2, imageView, albums.indexOf(a), readAlbumInfo.data.get(albums.indexOf(a))));
-            stackPane.setMaxWidth(250);
-            stackPane.setMaxHeight(250);
+                stackPane11.getChildren().addAll(albumInfo1, stackPane);
 
 
-            albumInfo1.setMaxSize(254, 300);
+                pane.setStyle("-fx-background-color: null;");
+
+                Label name = new Label(data.get(i).getAlbumName().replace("_", " "));
 
 
-            albumInfo1.setPrefWidth(254);
+                Label artist = new Label(data.get(i).artist);
 
 
-            name.setTranslateY(0);
+                albumInfo1.getChildren().addAll(name, artist);
 
 
-            artist.setTranslateY(albumInfo1.getMaxHeight() - 48);
+                stackPane.getChildren().addAll(imageView, imageView2, CreateLabels(albumInfo, imageView2, imageView, i, data.get(i)));
+                stackPane.setMaxWidth(250);
+                stackPane.setMaxHeight(250);
 
 
-            albumInfo1.setStyle("-fx-background-color: rgba(0,0,0,0.42); -fx-background-radius: 20px;");
+                albumInfo1.setMaxSize(254, 300);
 
 
-            horizontalMenu.getChildren().add(stackPane11);
+                albumInfo1.setPrefWidth(254);
 
-            stackPane.setOnMouseEntered(event -> {
-                AnimationOne(stackPane);
 
-            });
-            stackPane.setOnMouseExited(event -> {
-                AnimationTwo(stackPane);
+                name.setTranslateY(0);
 
-            });
+
+                artist.setTranslateY(albumInfo1.getMaxHeight() - 48);
+
+
+                albumInfo1.setStyle("-fx-background-color: rgba(0,0,0,0.42); -fx-background-radius: 20px;");
+
+
+                Image image11=new Image(getClass().getResource("Graphics/view.png").toString());
+
+
+                ImageView imageView1=new ImageView(image11);
+
+
+
+
+
+                imageView1.setPreserveRatio(false);
+
+
+                imageView1.setFitHeight(1);
+
+
+                stackPane.getChildren().addAll(imageView1);
+
+
+                imageView1.setVisible(false);
+
+
+                int finalI = i;
+                imageView1.setOnMouseClicked(event -> {
+                    CreateMore(readAlbumInfo.data.get(finalI));
+                });
+
+
+
+                stackPane.setOnMouseEntered(event -> {
+                    AnimationOne(stackPane, imageView1);
+
+                });
+                stackPane.setOnMouseExited(event -> {
+                    AnimationTwo(stackPane, imageView1);
+
+                });
+
+
+
+                horizontalMenu.getChildren().add(stackPane11);
+
+
+
+
+            }
+
+
 
         }
 
 
+    private Node createShoppingCartButton(ImageView imageView, Album album) {
+
+
+        StackPane stackPane=new StackPane();
+
+
+        stackPane.setStyle("-fx-background-color: null;");
+
+
+
+        stackPane.setMinSize(140,80);
+        stackPane.setMaxSize(140,80);
+
+
+
+        ImageView iv=imageView;
+
+
+        iv.setFitWidth(24);
+
+
+
+        Label label=new Label("Add to cart");
+
+
+        HBox h=new HBox(iv, label);
+
+
+        h.setSpacing(4);
+
+
+
+        h.setTranslateX(18);
+
+
+        h.setTranslateY(30);
+
+
+
+
+
+        Line line=new Line();
+
+
+        line.setStartX(0);
+        line.setStartY(0);
+
+
+        line.setEndX(stackPane.getMinWidth());
+        line.setEndY(0);
+
+
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line.setStrokeWidth(40);
+
+
+        line.setStroke(new Color(0.4,0.2,0.8,0.8));
+
+
+        Line line1=new Line();
+
+
+        line1.setStartX(0);
+        line1.setStartY(0);
+
+
+        line1.setEndX(0);
+        line1.setEndY(0);
+
+
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line1.setStrokeWidth(40);
+
+
+        line1.setStroke(new Color(1,0.8,0.4,1));
+
+
+        line1.setOpacity(0);
+
+
+
+        stackPane.setOnMouseClicked(event -> {
+
+
+            Timeline timeline=new Timeline();
+
+
+            KeyValue kv=new KeyValue(line1.endXProperty(), stackPane.getMinWidth(), Interpolator.EASE_BOTH);
+
+
+            KeyValue kv1=new KeyValue(line1.opacityProperty(), 1, Interpolator.EASE_IN);
+
+
+            KeyFrame kf=new KeyFrame(Duration.seconds(0.3), kv);
+
+
+            KeyFrame kf1=new KeyFrame(Duration.seconds(0.12), kv1);
+
+
+            timeline.getKeyFrames().addAll(kf, kf1);
+
+
+            timeline.play();
+
+
+            label.setText("Added to cart");
+
+
+            Integer count1=Integer.parseInt(count.getText());
+
+
+
+
+            count.setText(String.valueOf(count1+1));
+
+
+
+            shoppingCartMenu.albums.add(album);
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+        stackPane.getChildren().addAll(line, line1, h);
+
+
+        stackPane.setTranslateY(80);
+
+
+
+        return stackPane;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+    public void SearchBar(){
+        DbconnectionMusic dbconnectionMusic=new DbconnectionMusic();
+
+
+        dbconnectionMusic.connect();
+
+
+
+        String string=new String();
+
+
+        string="select * from album";
+
+
+        ResultSet resultSet= null;
+        ResultSet resultSet1= null;
+
+
+        search.textProperty().addListener(observable -> {
+            searhBarResults();
+        });
+
+
+        try {
+            resultSet = dbconnectionMusic.connect().createStatement().executeQuery(string);
+            search.textProperty().addListener(observable -> {
+
+            });
+            resultSet1 = dbconnectionMusic.connect().createStatement().executeQuery("select * from album where albumName like '%"+search.getText()+"%'");
+
+            while(resultSet.next()){
+                albumNames.add(new String(resultSet.getString(2)));
+                TextFields.bindAutoCompletion(search, albumNames);
+            }
+
+
+            while(resultSet1.next()){
+            }
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+
+    public void searhBarResults() {
+
+
+        horizontalMenu.getChildren().clear();
+
+
+        ReadAlbumInfo readAlbumInfo1=new ReadAlbumInfo();
+
+
+        DbconnectionMusic dbconnectionMusic=new DbconnectionMusic();
+
+
+        dbconnectionMusic.connect();
+
+        ResultSet resultSet= null;
+        ResultSet resultSet1= null;
+
+
+        ArrayList<String> searchBarResults=new ArrayList<>();
+
+
+
+        try {
+            resultSet1 = dbconnectionMusic.connect().createStatement().executeQuery("select * from album where albumName like '%"+search.getText()+"%'");
+
+
+            while(resultSet1.next()){
+                searchBarResults.add(resultSet1.getString(2));
+            }
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+        for(int i=0; i<searchBarResults.size(); i++) {
+
+
+
+
+            readAlbumInfo1 = new ReadAlbumInfo();
+            //readAlbumInfo.GetSpecificData("sonicX");
+            readAlbumInfo1.GetSpecificData(searchBarResults.get(i));
+
+
+            Image image=new Image(getClass().getResource("Graphics/Records/"+searchBarResults.get(i)+".jpg").toString());
+
+
+
+                StackPane stackPane = new StackPane();
+                StackPane stackPane11 = new StackPane();
+                ImageView imageView = new ImageView(image);
+                AnchorPane pane = new AnchorPane();
+
+                imageView.setImage(image);
+                imageView.setId("cover");
+                imageView.setFitWidth(250);
+                imageView.setPreserveRatio(true);
+                imageView.setSmooth(true);
+                imageView.setCache(true);
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.radiusProperty().setValue(15);
+                imageView.setEffect(dropShadow);
+
+                ImageView imageView2 = new ImageView();
+                Image image1 = new Image(getClass().getResource("Graphics/tinyBlackSquare.png").toString());
+                imageView2.setImage(image1);
+                imageView2.setFitWidth(250);
+                imageView2.setPreserveRatio(true);
+                imageView2.setVisible(false);
+                imageView2.setId("informationPane");
+
+
+                VBox albumInfo = new VBox();
+                VBox albumInfo1 = new VBox();
+
+
+                albumInfo1.setAlignment(Pos.BASELINE_CENTER);
+
+
+                stackPane11.getChildren().addAll(albumInfo1, stackPane);
+
+
+                pane.setStyle("-fx-background-color: null;");
+
+                Label name = new Label(readAlbumInfo1.data1.getAlbumName().replace("_", " "));
+
+
+                Label artist = new Label(readAlbumInfo1.data1.artist);
+
+
+                albumInfo1.getChildren().addAll(name, artist);
+
+
+                stackPane.getChildren().addAll(imageView, imageView2, CreateLabels(albumInfo, imageView2, imageView, i, readAlbumInfo1.data1));
+                stackPane.setMaxWidth(250);
+                stackPane.setMaxHeight(250);
+
+
+                albumInfo1.setMaxSize(254, 300);
+
+
+                albumInfo1.setPrefWidth(254);
+
+
+                name.setTranslateY(0);
+
+
+                artist.setTranslateY(albumInfo1.getMaxHeight() - 48);
+
+
+                albumInfo1.setStyle("-fx-background-color: rgba(0,0,0,0.42); -fx-background-radius: 20px;");
+
+
+            Image image11=new Image(getClass().getResource("Graphics/view.png").toString());
+
+
+            ImageView imageView1=new ImageView(image11);
+
+
+
+
+
+            imageView1.setPreserveRatio(false);
+
+
+            imageView1.setFitHeight(1);
+
+
+            stackPane.getChildren().addAll(imageView1);
+
+
+            imageView1.setVisible(false);
+
+
+            int finalI = i;
+            imageView1.setOnMouseClicked(event -> {
+                CreateMore(readAlbumInfo.data.get(finalI));
+            });
+
+
+
+            stackPane.setOnMouseEntered(event -> {
+                AnimationOne(stackPane, imageView1);
+
+            });
+            stackPane.setOnMouseExited(event -> {
+                AnimationTwo(stackPane, imageView1);
+
+            });
+
+
+
+                horizontalMenu.getChildren().add(stackPane11);
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+
 
 
 

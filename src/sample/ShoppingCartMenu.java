@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class ShoppingCartMenu {
 
 
-    private final Label count;
+    private final MainUserScreenController count;
     Pane base;
 
 
@@ -52,7 +52,7 @@ public class ShoppingCartMenu {
     private double total=0;
     private Label price=new Label();
 
-    public ShoppingCartMenu(Label count) {
+    public ShoppingCartMenu(MainUserScreenController count) {
 
 
         this.count=count;
@@ -249,7 +249,7 @@ public class ShoppingCartMenu {
         }
 
 
-        price.setText("Total: "+total+"$");
+        price.setText(total+"$");
 
 
 
@@ -348,7 +348,9 @@ public class ShoppingCartMenu {
         Label artist=new Label("by: "+albums.get(i).getAlbumName());
 
 
-        Label price=new Label("Price: "+albums.get(i).getPrice()+"$");
+        Label price=new Label("price: ");
+        price.setStyle("-fx-text-fill: #a6a6a6; -fx-font-size: 14px;");
+        Label price1=new Label(albums.get(i).getPrice()+"$");
 
 
         price.setTranslateX(180);
@@ -388,6 +390,15 @@ public class ShoppingCartMenu {
                 v1.getChildren().remove(h);
 
 
+                Integer count1=Integer.parseInt(count.count.getText());
+
+
+
+
+                count.count.setText(String.valueOf(count1-1));
+
+
+
             });
 
         });
@@ -400,7 +411,7 @@ public class ShoppingCartMenu {
         h.getChildren().addAll(imageView, v, newButton);
 
 
-        v.getChildren().addAll(name, artist, price);
+        v.getChildren().addAll(name, artist, new HBox(price, price1));
 
 
         v1.getChildren().add(h);

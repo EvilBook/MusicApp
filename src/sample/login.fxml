@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -13,12 +12,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="base" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<AnchorPane fx:id="base" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@CSS/login.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
       <ImageView fx:id="one" fitHeight="450.0" fitWidth="450.0" layoutX="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <effect>
@@ -30,93 +28,81 @@
             <ColorAdjust saturation="-1.0" />
          </effect>
       </MediaView>
+      <Button layoutX="1000.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleExitButton" text="Exit" />
       <AnchorPane fx:id="logInPane" layoutX="400.0" layoutY="14.0" translateX="-30.0">
          <children>
+            <Button fx:id="forgotPassword" layoutX="78.0" layoutY="418.0" mnemonicParsing="false" onAction="#handleForgottenPasswordButton" prefHeight="32.0" prefWidth="165.0" text="Forgot Password" />
             <Button fx:id="LoginButton" layoutX="30.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="25.0" prefWidth="120" text="Log in" textAlignment="CENTER" />
-            <Button fx:id="createButton" layoutX="163.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
+            <Button layoutX="163.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="25.0" prefWidth="120" text="Sign Up" textAlignment="CENTER" />
             <ImageView fitHeight="139.0" fitWidth="185.0" layoutX="69.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Graphics/logo.png" />
                </image>
             </ImageView>
-            <StackPane layoutY="236.0" translateX="-19.0">
+            <AnchorPane fx:id="logIn" layoutY="236.0" prefHeight="120.0" prefWidth="319.0">
                <children>
-                  <AnchorPane fx:id="logIn" prefHeight="120.0" prefWidth="319.0">
-                     <children>
-                        <TextField fx:id="userNameTextField" layoutX="54.0" layoutY="19.0" prefHeight="32.0" prefWidth="239.0" promptText="User name">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </TextField>
-                        <PasswordField fx:id="PasswordTextField" layoutX="53.0" layoutY="71.0" prefHeight="32.0" prefWidth="240.0" promptText="Password">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </PasswordField>
-                     </children>
-                  </AnchorPane>
-                  <ImageView fx:id="loginIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-125.0" translateY="-25.0">
-                     <image>
-                        <Image url="@Graphics/ic_account_circle_3x.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="loginIcon1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-125.0" translateY="27.0">
-                     <image>
-                        <Image url="@Graphics/ic_vpn_key_3x.png" />
-                     </image>
-                  </ImageView>
+                  <TextField fx:id="userNameTextField" alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="19.0" prefHeight="32.0" prefWidth="267.0" promptText="User name">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </TextField>
+                  <PasswordField fx:id="PasswordTextField" layoutX="26.0" layoutY="71.0" prefHeight="32.0" prefWidth="267.0" promptText="Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
                </children>
-            </StackPane>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="signUp" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" opacity="0.0" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
+      <AnchorPane fx:id="signUp" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" opacity="0.0" prefHeight="600.0" prefWidth="1066.62" stylesheets="@CSS/login.css">
          <children>
-            <ScrollPane fx:id="scrollPane" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css">
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="1066.62" stylesheets="@CSS/login.css" vbarPolicy="NEVER">
                <content>
-                  <AnchorPane fx:id="signUp2" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@LogInStyle.css" translateX="-50.0">
+                  <AnchorPane fx:id="signUp2" maxHeight="600.0" maxWidth="1066.62" minHeight="600.0" minWidth="1066.62" prefHeight="600.0" prefWidth="1066.62" stylesheets="@CSS/login.css">
                      <children>
-                        <TextField fx:id="firstNameTextField" layoutX="498.0" layoutY="117.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
-                        <TextField fx:id="lastNameTextField" layoutX="499.0" layoutY="195.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
-                        <TextField fx:id="emailTextField" layoutX="500.0" layoutY="344.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
-                        <TextField fx:id="confirmEmailTextField" layoutX="500.0" layoutY="270.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
-                        <PasswordField fx:id="passwordPasswordField" layoutX="499.0" layoutY="495.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
-                        <PasswordField fx:id="confirmPasswordField" layoutX="500.0" layoutY="421.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
-                        <Text fill="WHITE" layoutX="389.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
+                        <TextField fx:id="firstNameTextField" layoutX="229.0" layoutY="114.0" prefHeight="40.0" prefWidth="160.0" promptText="First Name" />
+                        <TextField fx:id="lastNameTextField" layoutX="681.0" layoutY="124.0" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" />
+                        <TextField fx:id="emailTextField" layoutX="230.0" layoutY="233.0" prefHeight="40.0" prefWidth="160.0" promptText="Email" />
+                        <TextField fx:id="confirmEmailTextField" layoutX="682.0" layoutY="233.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Email" />
+                        <PasswordField fx:id="passwordPasswordField" layoutX="230.0" layoutY="332.0" prefHeight="40.0" prefWidth="160.0" promptText="Password" />
+                        <PasswordField fx:id="confirmPasswordField" layoutX="682.0" layoutY="332.0" prefHeight="40.0" prefWidth="160.0" promptText="Confirm Password" />
+                        <Text fill="WHITE" layoutX="344.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new account" textAlignment="JUSTIFY">
                            <font>
                               <Font size="40.0" />
                            </font>
                         </Text>
-                        <Button layoutX="528.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="40.0" prefWidth="105.0" text="Submit" />
-                        <Button layoutX="932.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;Back" />
-                        <Label fx:id="firstNameError" alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="157.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                        <Button layoutX="481.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="40.0" prefWidth="105.0" text="Submit" />
+                        <Button layoutX="481.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="45.0" prefWidth="105.0" text="&lt;&lt;Back" />
+                        <Label fx:id="firstNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="272.0" layoutY="157.0" minWidth="155.0" opacity="0.0" text="fill" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
                            <font>
                               <Font size="8.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lastNameError" alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="235.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                        <Label fx:id="lastNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="724.0" layoutY="167.0" minWidth="155.0" opacity="0.0" text="fill" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
                            <font>
                               <Font size="8.0" />
                            </font>
                         </Label>
-                        <Label fx:id="confirmEmailError" alignment="CENTER" contentDisplay="CENTER" layoutX="543.0" layoutY="310.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                        <Label fx:id="confirmEmailLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="724.0" layoutY="276.0" minWidth="155.0" opacity="0.0" text="fill" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
                            <font>
                               <Font size="8.0" />
                            </font>
                         </Label>
-                        <Label fx:id="emailError" alignment="CENTER" contentDisplay="CENTER" layoutX="543.0" layoutY="384.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                        <Label fx:id="emailLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="272.0" layoutY="276.0" minWidth="155.0" opacity="0.0" text="fill" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
                            <font>
                               <Font size="8.0" />
                            </font>
                         </Label>
-                        <Label fx:id="confirmPasswordError" alignment="CENTER" contentDisplay="CENTER" layoutX="543.0" layoutY="461.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                        <Label fx:id="confirmPasswordLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="725.0" layoutY="375.0" minWidth="155.0" opacity="0.0" text="fill" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
                            <font>
                               <Font size="8.0" />
                            </font>
                         </Label>
-                        <Label fx:id="passwordError" alignment="CENTER" contentDisplay="CENTER" layoutX="541.0" layoutY="535.0" minWidth="155.0" opacity="0.0" text="Some error" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
+                        <Label fx:id="passwordLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="272.0" layoutY="375.0" minWidth="155.0" opacity="0.0" text="fill" textAlignment="CENTER" textFill="#f83030" translateX="-40.0" translateY="-3.0">
                            <font>
                               <Font size="8.0" />
                            </font>
