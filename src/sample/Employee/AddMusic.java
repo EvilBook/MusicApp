@@ -1,5 +1,9 @@
 package sample.Employee;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +16,16 @@ import javafx.stage.Stage;
 import sample.DatabaseConnection.AddAlbumToDatabase;
 
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class AddMusic implements Initializable
@@ -38,7 +49,6 @@ public class AddMusic implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
     }
 
     //Handle Submit Album Button
@@ -46,6 +56,52 @@ public class AddMusic implements Initializable
     private void handleSubmitAlbum()
     {
         checkFormat();
+    }
+
+    public String generateRandom()
+    {
+        Random r = new Random();
+
+        final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        final int N = alphabet.length();
+        String str = "";
+
+
+        for(int i=0; i < 16; i++)
+        {
+            Character ch = alphabet.charAt(r.nextInt(N));
+            str = str + ch;
+        }
+
+        str = str + ".pdf";
+        return str;
+    }
+
+
+    public void savePDF(String albumName, String date, String albumPrice, String label, String vynl)
+    {
+        Document doc = new Document();
+
+        try
+        {
+            String file = generateRandom();
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/sample/Pdf/" + file));
+            doc.open();
+            doc.addTitle(albumName);
+            doc.add(new Paragraph("------ALBUM ADDED TO DATABASE------\n\n" +
+                    "Album Name: " + albumName + "\nPrice: " + albumPrice + "\nLabel: " + label + "\nVinyl Number: " + vynl));
+            doc.close();
+            writer.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (DocumentException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -64,7 +120,8 @@ public class AddMusic implements Initializable
             if((albumDateField.getText().matches("\\d{2}-\\d{2}-\\d{4}")) &&
                     (songPlaytimeField1.getText().matches("\\d{2}:\\d{2}:\\d{2}") ||
                             songPlaytimeField1.getText().matches("\\d{2}:\\d{2}")) &&
-                    (albumVynlField.getText().matches("\\d{2}")) &&
+                    (albumVynlField.getText().matches("\\d{1}") ||
+                    albumVynlField.getText().matches("\\d{2}")) &&
                     (albumPriceField.getText().matches("\\d")||
                     albumPriceField.getText().matches("\\d{2}") ||
                     albumPriceField.getText().matches("\\d{3}")))
@@ -106,9 +163,14 @@ public class AddMusic implements Initializable
         albumDatabase.addAlbum(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(),
                 albumLabelField.getText(), albumVynlField.getText());
 
+        //Save Data in PDF file
+        savePDF(albumNameField.getText(), albumDateField.getText(), albumPriceField.getText(),
+                albumLabelField.getText(), albumVynlField.getText());
+
 
         //Contains: albumArtist
         albumDatabase.addAlbumArtist(albumArtistField1.getText());
+
 
         if(!albumArtistField2.getText().isEmpty()){
             albumDatabase.addAlbumArtist(albumArtistField2.getText());
@@ -135,8 +197,8 @@ public class AddMusic implements Initializable
         albumDatabase.addSong(songNameField1.getText(), songPlaytimeField1.getText());
         albumDatabase.addSongArtist(songArtistField1.getText());
 
-        if(!songNameField2.getText().isEmpty() && !songArtistField2.getText().isEmpty() && !songArtistField2.getText().isEmpty() &&
-                !songPlaytimeField2.getText().isEmpty() && songPlaytimeField2.getText().matches("\\d{2}:\\d{2}"))
+        if(!(songNameField2.getText().isEmpty()) && !(songArtistField2.getText().isEmpty()) && !(songArtistField2.getText().isEmpty()) &&
+                !(songPlaytimeField2.getText().isEmpty()) && (songPlaytimeField2.getText().matches("\\d{2}:\\d{2}")))
         {
             albumDatabase.addSong(songNameField2.getText(), songPlaytimeField2.getText());
             albumDatabase.addSongArtist(songArtistField2.getText());
@@ -187,7 +249,8 @@ public class AddMusic implements Initializable
 
         //Reset the text fields and show message
         resetTextFields();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Album added to the database!", ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Album added to the database! " +
+                "A PDF File is created with the album information", ButtonType.OK);
         alert.setHeaderText("COMPLETE");
         alert.showAndWait();
     }
@@ -215,17 +278,11 @@ public class AddMusic implements Initializable
         songPlaytimeField5.setText(""); songPlaytimeField6.setText(""); songPlaytimeField7.setText(""); songPlaytimeField8.setText("");
     }
 
-    //Switch Scenes
+    //Close Scenes
     @FXML
     private void handleSwitchScenes(ActionEvent event) throws IOException
     {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeScreen.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        stage.close();
     }
 }

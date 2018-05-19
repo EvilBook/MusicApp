@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.MusicDBConnection;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -21,22 +22,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ViewMusic implements Initializable {
-
-
+public class ViewMusic implements Initializable
+{
     //Variables
     @FXML private TextField selectionField;
+    @FXML private Button returnButton;
     @FXML private TableColumn<Album, String> idColumn, nameColumn, dateColumn, priceColumn, labelColumn;
     @FXML private TableView<Album> table;
-    private ObservableList<Album> data;
 
-    //Object
     MusicDBConnection dbc = new MusicDBConnection();
-    EmployeeStorage access = new EmployeeStorage();
+    private ObservableList<Album> data;
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         try {
             handleLoadButton();
         }
@@ -115,13 +115,7 @@ public class ViewMusic implements Initializable {
     @FXML
     private void handleSwitchScenes(ActionEvent event) throws IOException
     {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeScreen.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        stage.close();
     }
 }

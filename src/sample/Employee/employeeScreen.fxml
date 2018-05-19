@@ -8,23 +8,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="employeeBackground" prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/employeeScreen.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeScreen">
+<AnchorPane id="body" prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/adminScreen.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeScreen">
    <children>
-      <Label id="nameLabel" fx:id="nameLabel" layoutX="293.0" layoutY="26.0" prefHeight="50.0" prefWidth="208.0" stylesheets="@../CSS/employeeScreen.css" />
-      <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="516.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <Label id="nameLabel" fx:id="nameLabel" layoutX="83.0" layoutY="29.0" prefHeight="20.0" prefWidth="213.0" stylesheets="@../CSS/employeeScreen.css" />
+      <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Graphics/ic_face_3x.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="43.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are here it means you are an Employee, my condolances." wrappingWidth="249.13671875">
+      <Text fill="WHITE" layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are here it means you are an Employee, my condolances." wrappingWidth="249.13671875">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Button id="myPageButton" layoutX="502.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="My page" />
-      <Button id="logOutButton" layoutX="43.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="41.0" prefWidth="88.0" text="Log Out" />
-      <Button id="addButton" layoutX="43.0" layoutY="158.0" mnemonicParsing="false" onAction="#handleSwitchScenesAdd" prefHeight="127.0" prefWidth="127.0" text="Add" />
-      <Button id="deleteButton" layoutX="209.0" layoutY="158.0" mnemonicParsing="false" onAction="#handleSwitchScenesRemove" prefHeight="127.0" prefWidth="127.0" text="Delete" />
-      <Button id="viewButton" layoutX="375.0" layoutY="158.0" mnemonicParsing="false" onAction="#handleSwitchScenesView" prefHeight="127.0" prefWidth="127.0" text="View" />
+      <Button id="logOutButton" layoutX="43.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="41.0" prefWidth="88.0" text="Log Out" />
+      <Button id="addButton" fx:id="addButton" layoutX="280.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesAdd" prefHeight="127.0" prefWidth="136.0" text="Add Album" />
+      <Button id="deleteButton" layoutX="679.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesRemove" prefHeight="127.0" prefWidth="136.0" text="Delete Album" />
+      <Button id="viewButton" layoutX="483.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesView" prefHeight="127.0" prefWidth="136.0" text="View Album" />
+      <Label id="title" layoutX="436.0" layoutY="26.0" text="Employee Screen" />
    </children>
 </AnchorPane>

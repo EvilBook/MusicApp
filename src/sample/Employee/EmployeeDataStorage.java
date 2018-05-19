@@ -7,7 +7,6 @@ public class EmployeeDataStorage {
     int message;
 
     public static EmployeeDataStorage getInstance(){
-
         return ourInstance;
     }
 
@@ -16,12 +15,10 @@ public class EmployeeDataStorage {
     }
 
     public Integer getMessage (){
-
         return message;
     }
 
     public void setMessage(int message){
-
         this.message = message;
     }
 }

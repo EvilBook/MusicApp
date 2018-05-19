@@ -14,8 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import sample.DatabaseConnection.PersonDBConnection;
 import sample.DatabaseConnection.RemoveEmployeeDatabase;
-import sample.Employee.Album;
 import sample.Employee.Employee;
+import sample.MainStorage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +24,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class RemoveEmployee implements Initializable {
+public class RemoveUser implements Initializable {
 
     //Variables
     @FXML private TableView<Employee> employeeTable;
@@ -35,12 +35,13 @@ public class RemoveEmployee implements Initializable {
     @FXML private TableColumn <Employee, String> addressColumn;
     @FXML private TableColumn <Employee, String> emailColumn;
     @FXML private TextField removeTextField;
-    @FXML private Label infoLabel;
     private ObservableList<Employee> employeeList;
+    @FXML private Label infoLabel;
+
 
 
     //Objects
-    AdminStorage access = new AdminStorage();
+    MainStorage access = new MainStorage();
     PersonDBConnection dbc = new PersonDBConnection();
     Connection connection = dbc.connection;
     RemoveEmployeeDatabase red = new RemoveEmployeeDatabase();
@@ -48,6 +49,7 @@ public class RemoveEmployee implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Platform.runLater(() -> {
             handleLoadButton();
         });
@@ -73,14 +75,13 @@ public class RemoveEmployee implements Initializable {
         employeeList = FXCollections.observableArrayList();
 
         try {
-            ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM person WHERE login_email LIKE '%@mass.com'");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM person WHERE login_email NOT LIKE '%@mass.com'");
             while (rs.next()){
                 employeeList.add(new Employee(rs.getString(1), rs.getString(2),
                                               rs.getString(3), rs.getString(4),
                                               rs.getString(5), rs.getString(6)));
 
                 // set cell value factory to tableView
-
                 firstColumn.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
                 lastColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
                 emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -93,13 +94,11 @@ public class RemoveEmployee implements Initializable {
         }
     }
 
-    public void handleRemoveButton(ActionEvent event)
-    {
+    public void handleRemoveButton(ActionEvent event) {
         if(!removeTextField.getText().isEmpty())
         {
             String email = removeTextField.getText();
             removeData(email);
-
             handleLoadButton();
             removeTextField.setText("");
         }else{
@@ -113,7 +112,7 @@ public class RemoveEmployee implements Initializable {
     }
 
     public void handleReturnButton(ActionEvent event) throws IOException {
-        access.viewEmployeeScene(event);
+        access.mainAdminScreen(event);
     }
 
 }

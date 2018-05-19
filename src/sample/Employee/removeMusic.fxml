@@ -17,7 +17,7 @@
                <children>
                   <TextField fx:id="selectionField" alignment="CENTER" layoutX="329.0" layoutY="11.0" prefHeight="31.0" prefWidth="202.0" promptText="id" />
                   <Button layoutX="538.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleRemove" text="Remove" />
-                  <Button layoutX="769.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homescreen" />
+                  <Button fx:id="returnButton" layoutX="769.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleSwitchScenes" text="Return to Homescreen" />
                   <Button layoutX="41.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Refresh Table" />
                </children>
             </Pane>

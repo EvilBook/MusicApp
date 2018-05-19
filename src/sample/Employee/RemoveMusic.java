@@ -25,6 +25,7 @@ public class RemoveMusic implements Initializable
 {
     //Variables
     @FXML private TextField selectionField;
+    @FXML private Button returnButton;
     @FXML private TableColumn<Album, String> idColumn,nameColumn,dateColumn,priceColumn,labelColumn;
     @FXML private TableView<Album> table;
 
@@ -135,13 +136,7 @@ public class RemoveMusic implements Initializable
     @FXML
     private void handleSwitchScenes(ActionEvent event) throws IOException
     {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeScreen.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        stage.close();
     }
 }

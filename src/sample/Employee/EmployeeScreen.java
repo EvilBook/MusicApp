@@ -7,11 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.MainStorage;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,18 +22,21 @@ public class EmployeeScreen implements Initializable {
 
     //Variables
     @FXML Label nameLabel;
+    @FXML Button addButton;
 
     //Objects
-    MainStorage sw = new MainStorage();
+    MainStorage perform = new MainStorage();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        DropShadow ds = new DropShadow();
+//        addButton.setEffect(ds);
     }
 
     @FXML
     public void handleLogOutButton (ActionEvent event) throws IOException {
-        sw.logOut(event);
+        perform.logOut(event);
     }
 
     public void getName(String userEmail) {
@@ -66,14 +70,22 @@ public class EmployeeScreen implements Initializable {
 
     @FXML
     private void handleSwitchScenesView(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("viewMusic.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+//        Node node = (Node)event.getSource();
+//        Stage stage = (Stage)node.getScene().getWindow();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("viewMusic.fxml"));
+//        Parent root;
+//        root = loader.load();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("viewMusic.fxml"));
+        stage.setTitle("Album Information");
+        ViewMusicPopup popC = new ViewMusicPopup();
+        stage.setScene(new Scene(root, 698, 500));
         stage.show();
     }
+
 
 }

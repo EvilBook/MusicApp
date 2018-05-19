@@ -7,12 +7,17 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.DatabaseConnection.UpdateDatabase;
@@ -60,6 +65,7 @@ public class LoginController implements Initializable{
     private static Pattern emailPat;
     private static Pattern passPat;
     private static Pattern namePat;
+    private static Pattern emailPat2;
 
 
 
@@ -113,8 +119,14 @@ public class LoginController implements Initializable{
 
 
 
-        if(userNameTextField.getText().equals("admin") && PasswordTextField.getText().equals("password")) {
-            access.mainAdminScreen(event);                          //Goes to the Admin screen.
+        if(userNameTextField.getText().equals("admin")){
+
+            UpdateDatabase updateDatabase = new UpdateDatabase();
+            System.out.println("second check");
+            if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+
+                access.mainAdminScreen(event);
+            }
 
         } else {
             System.out.println("first check");
@@ -128,16 +140,17 @@ public class LoginController implements Initializable{
                     System.out.println("third check");
                 }
 
-                } else {
+            } else {
                 System.out.println("fourth check");
-                    UpdateDatabase updateDatabase = new UpdateDatabase();
+                UpdateDatabase updateDatabase = new UpdateDatabase();
 
-                    if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
-                        System.out.println("5th check");
+                if(updateDatabase.CheckLogIn(userNameTextField.getText(), PasswordTextField.getText())) {
+                    System.out.println("5th check");
                     userEmail = userNameTextField.getText();
                     access.employeeScreen(event, userEmail);       //Goes to the Employee Screen
-                         }
+                    System.out.println("going to emp");
                 }
+            }
         }
 
 
@@ -207,6 +220,8 @@ public class LoginController implements Initializable{
 
 
         emailPat = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        emailPat2 = Pattern.compile("^[A-Z0-9._%+-]+@mass.com", Pattern.CASE_INSENSITIVE);
+
         passPat = Pattern.compile("[a-z0-9_-]{3,15}");
         namePat = Pattern.compile("[a-zA-Z\\s]+");
 
@@ -252,11 +267,13 @@ public class LoginController implements Initializable{
         }
 
         //Email
+
+        //&& !(emailPat2.matcher(emailTextField.getText()).matches())
+
         if(!emailTextField.getText().isEmpty() && !confirmEmailTextField.getText().isEmpty()) {
-            if(emailPat.matcher(emailTextField.getText()).matches()) {
-
+            if(emailPat.matcher(emailTextField.getText()).matches() && !(emailPat2.matcher(emailTextField.getText()).matches()))
+            {
                 emailLabel.setOpacity(0);
-
 
                 if(!emailTextField.getText().equals(confirmEmailTextField.getText())) {
                     emailLabel.setText("Emails Don't Match");
@@ -265,10 +282,20 @@ public class LoginController implements Initializable{
                     confirmEmailLabel.setOpacity(1);
                 } else {
 
-                    emailLabel.setOpacity(0);
-                    confirmEmailLabel.setOpacity(0);
-                    c = true;
-                    System.out.println("this is " + c);
+                    UpdateDatabase update = new UpdateDatabase();
+                    RetrieveInfoFromDatabase inf = new RetrieveInfoFromDatabase();
+                    Boolean result = inf.searchEmailExist(emailTextField.getText());
+
+                    if(result == false) {
+                        emailLabel.setOpacity(0);
+                        confirmEmailLabel.setOpacity(0);
+                        c = true;
+                        System.out.println("this is " + c);
+                    }
+                    if(result == true){
+                        emailLabel.setText("Existing Email");
+                        emailLabel.setOpacity(1);
+                    }
                 }
             } else {
                 emailLabel.setText("Wrong Email Format");
@@ -331,28 +358,26 @@ public class LoginController implements Initializable{
         }
 
 
-            if(a && b && c && d) {
-                UpdateDatabase database = new UpdateDatabase();
-                database.UpdateTableForUserCreation(emailTextField.getText(), passwordPasswordField.getText());
+        if(a && b && c && d) {
+            UpdateDatabase database = new UpdateDatabase();
+            database.UpdateTableForUserCreation(emailTextField.getText(), passwordPasswordField.getText());
 
-                ArrayList<String> userInfo = new ArrayList<String>();
-                userInfo.add(firstNameTextField.getText());
-                userInfo.add(lastNameTextField.getText());
-                userInfo.add(emailTextField.getText());
-                database.AddUserCreationData(userInfo);
+            ArrayList<String> userInfo = new ArrayList<String>();
+            userInfo.add(firstNameTextField.getText());
+            userInfo.add(lastNameTextField.getText());
+            userInfo.add(emailTextField.getText());
+            database.AddUserCreationData(userInfo);
 
-                //Clear the fields after the signing up
-                firstNameTextField.clear();
-                lastNameTextField.clear();
-                emailTextField.clear();
-                confirmEmailTextField.clear();
-                passwordPasswordField.clear();
-                confirmPasswordField.clear();
+            //Clear the fields after the signing up
+            firstNameTextField.clear();
+            lastNameTextField.clear();
+            emailTextField.clear();
+            confirmEmailTextField.clear();
+            passwordPasswordField.clear();
+            confirmPasswordField.clear();
 
-                ReturnAnimation();
-            }
-            //}
-        //}
+            ReturnAnimation();
+        }
     }
 
     @FXML
@@ -360,7 +385,9 @@ public class LoginController implements Initializable{
         Platform.exit();
     }
 
-
-
+    @FXML
+    private void handleForgottenPasswordButton(ActionEvent event) throws IOException{
+        access.forgotPassword(event);
+    }
 
 }

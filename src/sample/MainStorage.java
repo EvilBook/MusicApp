@@ -74,4 +74,16 @@ public class MainStorage {
         stage.show();
     }
 
+    //Forgotten Password Screen
+    public void forgotPassword(ActionEvent event) throws IOException {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgottenPassword.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
