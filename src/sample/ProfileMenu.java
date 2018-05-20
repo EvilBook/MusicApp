@@ -4,20 +4,28 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileMenu {
@@ -175,9 +183,55 @@ public class ProfileMenu {
         circle.setRadius(38);
 
 
+        Label newLabel=new Label("Log out");
 
 
-        StackPane stackPane11=new StackPane(circle, profile);
+        newLabel.setUnderline(true);
+
+
+        newLabel.setOnMouseEntered(event -> {
+            newLabel.setStyle("-fx-text-fill: #ffe6e9;");
+        });
+
+        newLabel.setOnMouseExited(event -> {
+            newLabel.setStyle("-fx-text-fill: #ff5464;");
+        });
+
+        newLabel.setOnMouseClicked(event -> {
+
+            try {
+
+                Stage stage = (Stage) newLabel.getScene().getWindow();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+                Parent root;
+                root = loader.load();
+                Scene scene = new Scene(root, 1066.62, 600);
+                stage.setScene(scene);
+                stage.show();
+            }catch (IOException e){
+                
+            }
+        });
+
+
+
+
+
+
+
+        newLabel.setStyle("-fx-text-fill: #ff5464;");
+
+
+        newLabel.setTranslateY(48);
+
+
+
+
+
+
+
+        StackPane stackPane11=new StackPane(circle, profile, newLabel);
 
 
         stackPane11.setTranslateY(18);
@@ -304,6 +358,130 @@ public class ProfileMenu {
         v.setPadding(new Insets(pane.getPrefHeight()*1/5,0,0,0));
 
 
+        StackPane stackPane=new StackPane();
+
+
+        stackPane.setStyle("-fx-background-color: null;");
+
+
+
+        stackPane.setMinSize(140,80);
+        stackPane.setMaxSize(140,80);
+
+
+
+        Label label12=new Label("edit");
+
+
+
+
+
+        Line line=new Line();
+
+
+        line.setStartX(0);
+        line.setStartY(0);
+
+
+        line.setEndX(stackPane.getMinWidth());
+        line.setEndY(0);
+
+
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line.setStrokeWidth(29);
+
+
+        line.setStroke(new Color(0.4,0.7,0.94,0.8));
+
+
+        Line line1=new Line();
+
+
+        line1.setStartX(0);
+        line1.setStartY(0);
+
+
+        line1.setEndX(0);
+        line1.setEndY(0);
+
+
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line1.setStrokeWidth(29);
+
+
+        line1.setStroke(new Color(1,0.4,0.8,1));
+
+
+        line1.setOpacity(0);
+
+
+
+        stackPane.setOnMouseClicked(event -> {
+
+
+            Timeline timeline=new Timeline();
+
+
+            KeyValue kv=new KeyValue(line1.endXProperty(), stackPane.getMinWidth(), Interpolator.EASE_BOTH);
+
+
+            KeyValue kv1=new KeyValue(line1.opacityProperty(), 1, Interpolator.EASE_IN);
+
+
+            KeyValue kv2=new KeyValue(line1.opacityProperty(), 0, Interpolator.EASE_BOTH);
+
+
+
+            KeyFrame kf=new KeyFrame(Duration.seconds(0.26), kv);
+
+
+            KeyFrame kf1=new KeyFrame(Duration.seconds(0.14), kv1);
+
+
+            KeyFrame kf2=new KeyFrame(Duration.seconds(3), kv2);
+
+
+
+            timeline.getKeyFrames().addAll(kf, kf1, kf2);
+
+
+            timeline.play();
+
+
+                profileMenuEdit=new ProfileMenuEdit(this);
+                pane1.getChildren().add(profileMenuEdit.createProfile(pane, base));
+                profileMenuEdit.addData(arrayList);
+
+
+                profileMenuEdit.showProfileMenu();
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+        stackPane.getChildren().addAll(line, line1, label12);
+
+
+        stackPane.setTranslateX(98);
+
+
+
+
         Button button=new Button("Edit");
 
 
@@ -321,7 +499,7 @@ public class ProfileMenu {
 
 
 
-        v.getChildren().add(button);
+        v.getChildren().add(stackPane);
 
 
 

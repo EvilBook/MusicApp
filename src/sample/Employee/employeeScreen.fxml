@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="body" prefHeight="600.0" prefWidth="1066.22" stylesheets="@../CSS/adminScreen.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee.EmployeeScreen">
+   <children>
+      <Label id="nameLabel" fx:id="nameLabel" layoutX="83.0" layoutY="29.0" prefHeight="20.0" prefWidth="213.0" stylesheets="@../CSS/employeeScreen.css" />
+      <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/ic_face_3x.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are here it means you are an Employee, my condolances." wrappingWidth="249.13671875">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button id="logOutButton" layoutX="43.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="41.0" prefWidth="88.0" text="Log Out" />
+      <Button id="addButton" fx:id="addButton" layoutX="280.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesAdd" prefHeight="127.0" prefWidth="136.0" text="Add Employees" />
+      <Button id="deleteButton" layoutX="679.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesRemove" prefHeight="127.0" prefWidth="136.0" text="Delete Employees" />
+      <Button id="viewButton" layoutX="483.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesView" prefHeight="127.0" prefWidth="136.0" text="View Employees" />
+      <Label id="title" layoutX="436.0" layoutY="26.0" text="Employee Management" />
+   </children>
+</AnchorPane>

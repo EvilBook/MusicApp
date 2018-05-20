@@ -258,6 +258,7 @@ public class MainUserScreenController implements Initializable {
 
             albums.add(album);
 
+
             Image image=new Image(getClass().getResource("Graphics/Records/"+album.getAlbumName()+".jpg").toString());
 
 
@@ -391,6 +392,221 @@ public class MainUserScreenController implements Initializable {
             });
             time.play();
         });
+
+
+        StackPane tutorial=new StackPane();
+
+
+        ImageView tutorialImage=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\tutorial.png");
+
+
+        tutorialImage.setFitWidth(1066.62);
+
+
+        tutorialImage.setPreserveRatio(true);
+
+
+        StackPane stackPane=new StackPane();
+
+
+        stackPane.setStyle("-fx-background-color: null;");
+
+
+
+        stackPane.setMinSize(140,80);
+        stackPane.setMaxSize(140,80);
+
+
+
+        Label label=new Label("Got it!");
+
+
+        HBox h=new HBox(label);
+
+
+        h.setSpacing(4);
+
+
+
+        h.setTranslateX(48);
+
+
+        h.setTranslateY(30);
+
+
+
+
+
+        Line line=new Line();
+
+
+        line.setStartX(0);
+        line.setStartY(0);
+
+
+        line.setEndX(stackPane.getMinWidth());
+        line.setEndY(0);
+
+
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line.setStrokeWidth(40);
+
+
+        line.setStroke(new Color(1,0.2,0.8,1));
+
+
+        DropShadow dropshadow=new DropShadow();
+
+
+        dropshadow.setColor(new Color(1,0.5,0.8,1));
+
+
+        dropshadow.setRadius(80);
+
+
+        line.setEffect(dropshadow);
+
+
+
+
+        Timeline timeline1=new Timeline();
+
+
+        KeyValue kv12=new KeyValue(dropshadow.colorProperty(), new Color(0.4,1,0.4,1), Interpolator.EASE_BOTH);
+
+
+        //KeyValue kv13=new KeyValue(dropshadow.colorProperty(), new Color(Math.random(),Math.random(),Math.random(),1), Interpolator.EASE_BOTH);
+
+
+
+        KeyFrame kf12=new KeyFrame(Duration.seconds(1), kv12);
+
+
+        timeline1.getKeyFrames().add(kf12);
+
+
+        timeline1.setCycleCount(Animation.INDEFINITE);
+
+
+        timeline1.setAutoReverse(true);
+
+
+
+        timeline1.play();
+
+
+
+
+
+
+
+
+
+
+
+        Line line1=new Line();
+
+
+        line1.setStartX(0);
+        line1.setStartY(0);
+
+
+        line1.setEndX(0);
+        line1.setEndY(0);
+
+
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line1.setStrokeWidth(40);
+
+
+        line1.setStroke(new Color(0.4,0.8,0.4,1));
+
+
+        line1.setOpacity(0);
+
+
+
+        stackPane.setOnMouseClicked(event -> {
+
+
+            Timeline timeline=new Timeline();
+
+
+            KeyValue kv=new KeyValue(line1.endXProperty(), stackPane.getMinWidth(), Interpolator.EASE_BOTH);
+
+
+            KeyValue kv1=new KeyValue(line1.opacityProperty(), 1, Interpolator.EASE_IN);
+
+
+            KeyValue kv2=new KeyValue(tutorial.opacityProperty(), 0, Interpolator.EASE_BOTH);
+
+
+
+            KeyFrame kf=new KeyFrame(Duration.seconds(0.3), kv);
+
+
+            KeyFrame kf1=new KeyFrame(Duration.seconds(0.12), kv1);
+
+
+            KeyFrame kf2=new KeyFrame(Duration.seconds(0.8), kv2);
+
+
+
+            timeline.getKeyFrames().addAll(kf, kf1, kf2);
+
+
+            timeline.play();
+
+
+
+            timeline.setOnFinished(event1 -> {
+
+                tutorial.setVisible(false);
+
+
+                tutorial.toBack();
+
+
+            });
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+        stackPane.getChildren().addAll(line, line1, h);
+
+
+        stackPane.setTranslateY(240);
+        stackPane.setTranslateX(-30);
+
+
+
+        tutorial.getChildren().addAll(tutorialImage, stackPane);
+
+
+
+        base1.getChildren().add(tutorial);
+
+
+
+
+
+
 
 
 
@@ -1389,6 +1605,7 @@ public class MainUserScreenController implements Initializable {
         scrollPane.setContent(vOne);
         scrollPane.setStyle("-fx-background-color: null; -fx-border-width: 2px 0px 0px 0px; -fx-border-color: #ffffff;");
         scrollPane.setMaxSize(389,368);
+        scrollPane.setMinSize(389,368);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setFitToWidth(true);
         DropShadow dropShadow=new DropShadow();
@@ -1438,132 +1655,120 @@ public class MainUserScreenController implements Initializable {
     }
 
 
+    AnchorPane playerAp;
+    
+
+
     public void showPlayer(){
-        AnchorPane ap=new AnchorPane();
-        HBox h=new HBox();
-        VBox v=new VBox();
 
 
+        if(playerAp==null) {
 
 
+            playerAp = new AnchorPane();
 
+            HBox h = new HBox();
+            VBox v = new VBox();
 
 
+            if (musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getStatus() != MediaPlayer.Status.STOPPED) {
 
-        if(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getStatus()!= MediaPlayer.Status.STOPPED) {
 
+                Label lTwo = new Label();
+                lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime(), musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration()));
 
-            Label lTwo=new Label();
-            lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime(),musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration()));
 
+                Slider slider = new Slider();
+                slider.setMinSize(600, 20);
+                slider.setValue((musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime().divide(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration().divide(100))).toMillis());
+                ProgressBar progressBar = new ProgressBar(0);
+                progressBar.setMinWidth(600);
+                StackPane stackPane = new StackPane();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Timeline currentAnimation = new Timeline();
+                        KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
+                        KeyFrame kf1 = new KeyFrame(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration(), kv1);
+                        currentAnimation.getKeyFrames().add(kf1);
+                        currentAnimation.setOnFinished(t -> {
+                            // remove pane and restore scene 1
+                            //root1.getChildren().setAll(rectangle1);
+                            // set scene 2
+                            //primaryStage.setScene(scene2);
+                        });
+                        currentAnimation.play();
 
+                    }
+                });
 
+                slider.valueProperty().addListener(observable -> {
+                    lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime(), musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration()));
+                    if (slider.isValueChanging()) {
+                        musicPlayer.playlist.get(musicPlayer.currentlyPlaying).seek(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration().multiply(slider.getValue() / 100));
 
-            Slider slider = new Slider();
-            slider.setMinSize(600, 20);
-            slider.setValue((musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime().divide(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration().divide(100))).toMillis());
-            ProgressBar progressBar=new ProgressBar(0);
-            progressBar.setMinWidth(600);
-            StackPane stackPane=new StackPane();
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Timeline currentAnimation = new Timeline();
-                    KeyValue kv1 = new KeyValue(slider.valueProperty(), 100, Interpolator.EASE_BOTH);
-                    KeyFrame kf1 = new KeyFrame(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getTotalDuration(), kv1);
-                    currentAnimation.getKeyFrames().add(kf1);
-                    currentAnimation.setOnFinished(t -> {
-                        // remove pane and restore scene 1
-                        //root1.getChildren().setAll(rectangle1);
-                        // set scene 2
-                        //primaryStage.setScene(scene2);
-                    });
-                    currentAnimation.play();
+                    }
+                    musicPlayer.slider.setValue(slider.getValue());
+                    progressBar.setProgress(slider.getValue() * 0.01);
+                });
 
-                }
-            });
 
-            slider.valueProperty().addListener(observable -> {
-                lTwo.setText(musicPlayer.formatTime(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getCurrentTime(),musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration()));
-                if(slider.isValueChanging()){
-                    musicPlayer.playlist.get(musicPlayer.currentlyPlaying).seek(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getMedia().getDuration().multiply(slider.getValue()/100));
+                stackPane.getChildren().addAll(progressBar, slider);
 
-                }
-                musicPlayer.slider.setValue(slider.getValue());
-                progressBar.setProgress(slider.getValue()*0.01);
-            });
 
+                Label label = new Label();
+                label.setText(musicPlayer.getTitle());
+                v.getChildren().addAll(label, stackPane);
 
-            stackPane.getChildren().addAll(progressBar, slider);
 
+                h.setMinWidth(800);
 
 
-            Label label = new Label();
-            label.setText(musicPlayer.getTitle());
-            v.getChildren().addAll(label, stackPane);
+                Pane pane = musicPlayer.currentlyPlaying;
 
 
-            h.setMinWidth(800);
+                pane.setTranslateY(-8);
 
 
+                h.getChildren().addAll(pane, v, lTwo);
 
-            Pane pane=musicPlayer.currentlyPlaying;
 
+                v.setAlignment(Pos.CENTER);
 
-            pane.setTranslateY(-8);
+                lTwo.setAlignment(Pos.CENTER_RIGHT);
 
 
+                h.setAlignment(Pos.BOTTOM_CENTER);
 
-            h.getChildren().addAll(pane, v, lTwo);
 
+                playerAp.getChildren().add(h);
 
-            v.setAlignment(Pos.CENTER);
 
-            lTwo.setAlignment(Pos.CENTER_RIGHT);
+                playerAp.setStyle("-fx-background-color: rgba(0,0,0,0.2); -fx-border-radius: 90px; -fx-background-radius: 90px");
+                h.setStyle("-fx-border-radius: 90px; -fx-background-radius: 90px");
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.radiusProperty().setValue(15);
+                playerAp.setEffect(dropShadow);
 
 
-            h.setAlignment(Pos.BOTTOM_CENTER);
+                playerAp.setMinWidth(800);
 
 
+                playerAp.setTranslateY(555);
+                playerAp.setTranslateX(120);
 
 
+                playerAp.setEffect(new DropShadow());
 
-            ap.getChildren().add(h);
 
+                base1.getChildren().add(playerAp);
 
-            ap.setStyle("-fx-background-color: rgba(0,0,0,0.2); -fx-border-radius: 90px; -fx-background-radius: 90px");
-            h.setStyle("-fx-border-radius: 90px; -fx-background-radius: 90px");
-            DropShadow dropShadow = new DropShadow();
-            dropShadow.radiusProperty().setValue(15);
-            ap.setEffect(dropShadow);
 
-
-
-
-            ap.setMinWidth(800);
-
-
-
-
-            ap.setTranslateY(555);
-            ap.setTranslateX(120);
-
-
-            ap.setEffect(new DropShadow());
-
-
-
-
-
-
-
-
-
-
-            base1.getChildren().add(ap);
+            }
 
 
         }
+
 
 
 

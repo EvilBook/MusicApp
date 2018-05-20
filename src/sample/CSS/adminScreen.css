@@ -1,0 +1,62 @@
+#body{
+    -fx-background-color: linear-gradient(to bottom left,rgba(78, 205, 196, 0.29), rgba(216, 47, 143, 0.41));
+
+}
+
+#title{
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+}
+
+#wrongLabel{
+    -fx-border-color: red;
+    -fx-text-fill: red;
+    -fx-background-color: black;
+    -fx-alignment: center;
+
+}
+
+.button{
+    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-text-fill: black;
+}
+
+.button:hover{
+    -fx-background-color: rgba(255,255,255,0.9);
+}
+
+.text-field {
+    -fx-background-color: none;
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(120, 120, 120, 0.6);
+    -fx-prompt-text-fill: rgba(120, 120, 120, 0.94);
+    -fx-stroke-width:0px 0px 1px 0px;
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+
+}
+
+.text-field:focused {
+    -fx-background-color: none;
+    -fx-border-color: rgba(74, 212, 216, 0.6);
+    -fx-border-width: 2px;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
+    -fx-background-color: rgba(0, 0, 0, 0.35);
+    -fx-text-fill: rgba(255,255,255,0.9);
+
+}
+
+.text-input{
+    -fx-text-fill: rgba(0,0,0, 0.9);
+
+}
+
+.table-view{
+    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-text-fill: gray;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}
+
+.label{
+    -fx-text-fill: rgba(0,0,0,0.9);
+}

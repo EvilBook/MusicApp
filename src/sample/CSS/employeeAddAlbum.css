@@ -1,0 +1,119 @@
+/* SCENE BODY */
+#sceneBody{
+    -fx-background-color: linear-gradient(to bottom left,rgba(78, 205, 196, 0.29), rgba(216, 47, 143, 0.41));
+
+}
+
+#sceneBodyMiddle{
+    -fx-border-width: 0px;
+    -fx-border-color: white;
+
+}
+
+#title{
+    -fx-font-family: sans-serif;
+    -fx-font-size: 20px;
+}
+
+#albumNameLabel{
+    -fx-font-family: sans-serif;
+    -fx-font-size: 20px;
+}
+#albumArtistLabel{
+    -fx-font-family: sans-serif;
+    -fx-font-size: 20px;
+}
+
+
+/* BODYS */
+#albumBody, #songBody{
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+    -fx-background-color: rgba(250, 250, 250, 0.5);
+    -fx-background-radius: 10px;
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+
+
+
+}
+
+/* HEADERS */
+#songHeader, #albumHeader{
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-border-width: 2PX;
+    -fx-border-color: white;
+    -fx-font-family: Georgia;
+    -fx-font-size: 15px;
+
+}
+
+
+#smallHeader{
+    -fx-font-size: 11px;
+
+}
+
+/* TABLE */
+#table {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(255, 255, 255, 1);
+
+}
+#tableColumn {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-border-color: rgba(255, 255, 255, 1);
+    -fx-border-width: 1px;
+
+}
+
+
+/* BUTTONS */
+.button{
+    -fx-background-color: rgba(74, 212, 216, 0.45);
+
+    -fx-border: none;
+    -fx-color: rgb(171, 171, 171);
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-border-width: 0px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: rgba(0,0,0,0.6);
+    -fx-text-fill: rgba(0,0,0,0.6);
+}
+
+.button:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-text-fill: rgba(255,255,255,0.9);
+
+}
+
+
+/* TEXT FIELDS*/
+.text-field {
+    -fx-background-color: none;
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(120, 120, 120, 0.6);
+    -fx-prompt-text-fill: rgba(120, 120, 120, 0.94);
+    -fx-stroke-width:0px 0px 1px 0px;
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+
+}
+.text-field:focused {
+    -fx-background-color: none;
+    -fx-border-color: rgba(74, 212, 216, 0.6);
+    -fx-border-width: 2px;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.94);
+    -fx-background-color: rgba(0, 0, 0, 0.35);
+    -fx-text-fill: rgba(255,255,255,0.9);
+
+}
+.text-input{
+    -fx-text-fill: rgba(0,0,0, 0.9);
+
+}
+

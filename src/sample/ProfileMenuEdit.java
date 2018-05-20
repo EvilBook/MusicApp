@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -13,6 +14,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeLineCap;
 import javafx.util.Duration;
 import sample.DatabaseConnection.UpdateDatabase;
 
@@ -111,7 +115,7 @@ public class ProfileMenuEdit {
         Timeline timeline=new Timeline();
 
 
-        KeyValue kv= new KeyValue(stackPane.translateYProperty(), 0+140);
+        KeyValue kv= new KeyValue(stackPane.translateYProperty(), 0+192);
         KeyValue kv1= new KeyValue(stackPane.opacityProperty(), 1);
 
 
@@ -141,7 +145,7 @@ public class ProfileMenuEdit {
         KeyValue kv1= new KeyValue(stackPane.opacityProperty(), 0);
 
 
-        KeyFrame kf=new KeyFrame(Duration.seconds(0.19), kv, kv1);
+        KeyFrame kf=new KeyFrame(Duration.seconds(0.48), kv, kv1);
 
 
         timeline.getKeyFrames().addAll(kf);
@@ -278,6 +282,152 @@ public class ProfileMenuEdit {
         v.setPadding(new Insets(0,0,0,40));
 
 
+        StackPane stackPane=new StackPane();
+
+
+        stackPane.setStyle("-fx-background-color: null;");
+
+
+
+        stackPane.setMinSize(140,80);
+        stackPane.setMaxSize(140,80);
+
+
+
+        Label label123=new Label("Save");
+
+
+
+
+
+        Line line=new Line();
+
+
+        line.setStartX(0);
+        line.setStartY(0);
+
+
+        line.setEndX(stackPane.getMinWidth());
+        line.setEndY(0);
+
+
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line.setStrokeWidth(29);
+
+
+        line.setStroke(new Color(0.9,0.4,0.49,0.8));
+
+
+        Line line1=new Line();
+
+
+        line1.setStartX(0);
+        line1.setStartY(0);
+
+
+        line1.setEndX(0);
+        line1.setEndY(0);
+
+
+        line1.setStrokeLineCap(StrokeLineCap.ROUND);
+
+
+        line1.setStrokeWidth(29);
+
+
+        line1.setStroke(new Color(0.7,0.9,1,1));
+
+
+        line1.setOpacity(0);
+
+
+
+        stackPane.setOnMouseClicked(event -> {
+
+
+            label123.setText("Saving...");
+
+
+
+            UpdateDatabase updateDatabase=new UpdateDatabase();
+
+
+            updateDatabase.ModifyUserData(newInfo, arrayList.get(5));
+
+
+            profileMenu.updateData();
+
+
+
+            Timeline timeline=new Timeline();
+
+
+            KeyValue kv=new KeyValue(line1.endXProperty(), stackPane.getMinWidth(), Interpolator.EASE_BOTH);
+
+
+            KeyValue kv1=new KeyValue(line1.opacityProperty(), 1, Interpolator.EASE_IN);
+
+
+            KeyValue kv2=new KeyValue(line1.opacityProperty(), 0, Interpolator.EASE_BOTH);
+
+
+
+            KeyFrame kf=new KeyFrame(Duration.seconds(1), kv);
+
+
+            KeyFrame kf1=new KeyFrame(Duration.seconds(0.14), kv1);
+
+
+
+            timeline.getKeyFrames().addAll(kf, kf1);
+
+
+            timeline.play();
+
+
+
+
+
+            timeline.setOnFinished(event1 -> {
+
+
+                line1.setStroke(new Color(0.6,1,0.6,1));
+
+
+
+                label123.setText("Saved");
+
+
+
+                hideProfileMenu();
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+        stackPane.getChildren().addAll(line, line1, label123);
+
+
+        stackPane.setTranslateX(70);
+
+
+
         Button button=new Button("Save");
 
 
@@ -315,7 +465,7 @@ public class ProfileMenuEdit {
 
 
 
-        v.getChildren().addAll(button, button1);
+        v.getChildren().addAll(stackPane);
 
 
 
