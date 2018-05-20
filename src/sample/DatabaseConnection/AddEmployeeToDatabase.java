@@ -76,7 +76,7 @@ public class AddEmployeeToDatabase {
 
             //Message for complete
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added the employee to the database.", ButtonType.OK);
-            alert.setHeaderText("REMOVAL COMPLETE");
+            alert.setHeaderText("SUCCESSFULLY ADDED");
             alert.showAndWait();
 
         } catch (SQLException e) {

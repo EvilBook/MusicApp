@@ -113,7 +113,7 @@ public class RemoveEmployee implements Initializable {
     }
 
     public void handleReturnButton(ActionEvent event) throws IOException {
-        access.viewEmployeeScene(event);
+        access.viewAdminScreen(event);
     }
 
 }

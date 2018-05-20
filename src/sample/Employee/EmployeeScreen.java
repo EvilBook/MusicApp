@@ -22,10 +22,12 @@ public class EmployeeScreen implements Initializable {
 
     //Variables
     @FXML Label nameLabel;
-    @FXML Button addButton;
+    @FXML Button addButton, viewButton, deleteButton;
 
     //Objects
     SwitchScene sw = new SwitchScene();
+    EmployeeStorage goTo = new EmployeeStorage();
+
 
 
     @Override
@@ -44,47 +46,21 @@ public class EmployeeScreen implements Initializable {
         nameLabel.setText(newRetrieve.getName(userEmail));
     }
 
+
     @FXML
     private void handleSwitchScenesAdd(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("addMusic.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        goTo.employeeAddMusic(event, addButton);
+
     }
 
     @FXML
     private void handleSwitchScenesRemove(ActionEvent event) throws IOException {
-        Node node = (Node)event.getSource();
-        Stage stage = (Stage)node.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("removeMusic.fxml"));
-        Parent root;
-        root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        goTo.employeeRemoveMusic(event, deleteButton);
     }
 
     @FXML
     private void handleSwitchScenesView(ActionEvent event) throws IOException {
-//        Node node = (Node)event.getSource();
-//        Stage stage = (Stage)node.getScene().getWindow();
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("viewMusic.fxml"));
-//        Parent root;
-//        root = loader.load();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("viewMusic.fxml"));
-        stage.setTitle("Album Information");
-        ViewMusicPopup popC = new ViewMusicPopup();
-        stage.setScene(new Scene(root, 698, 500));
-        stage.show();
+        goTo.employeeViewMusic(event, viewButton);
     }
 
 

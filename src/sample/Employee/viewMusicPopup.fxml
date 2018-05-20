@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
@@ -20,7 +22,7 @@
                   <TableColumn id="tableColumn" fx:id="songtimeColumn" prefWidth="71.0" text="Time" />
               </columns>
             </TableView>
-            <Rectangle fx:id="albumImage" arcHeight="5.0" arcWidth="5.0" fill="#ffffff84" height="154.0" layoutX="17.0" layoutY="19.0" stroke="#7070706e" strokeType="INSIDE" width="160.0" />
+            <Rectangle fx:id="albumImage" arcHeight="5.0" arcWidth="5.0" fill="#ffffff84" height="165.0" layoutX="17.0" layoutY="22.0" stroke="#7070706e" strokeType="INSIDE" width="165.0" />
             <Label id="albumNameLabel" fx:id="albumLabel" alignment="TOP_LEFT" layoutX="192.0" layoutY="19.0" prefHeight="23.0" prefWidth="451.0" />
             <Label id="albumArtistName" fx:id="artistLabel" layoutX="209.0" layoutY="68.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
             <Label fx:id="genreLabel" layoutX="449.0" layoutY="110.0" prefHeight="16.0" prefWidth="193.0" textFill="#00000099" />
@@ -35,6 +37,11 @@
             <Label id="smallHeader" layoutX="440.0" layoutY="53.0" prefHeight="16.0" prefWidth="160.0" text="release date:" />
             <Label id="smallHeader" layoutX="440.0" layoutY="96.0" prefHeight="16.0" prefWidth="160.0" text="genre(s):" />
             <Label id="smallHeader" layoutX="440.0" layoutY="142.0" prefHeight="16.0" prefWidth="160.0" text="price:" />
+            <ImageView fitHeight="165.0" fitWidth="165.0" layoutX="17.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Graphics/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

@@ -195,7 +195,7 @@ public class AddEmployee implements Initializable {
 
     @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
-        access.viewEmployeeScene(event);
+        access.viewAdminScreen(event);
     }
 
 }
