@@ -2,6 +2,8 @@ package sample;
 
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+
 public class Album implements Comparable<Album> {
 
 
@@ -14,6 +16,10 @@ public class Album implements Comparable<Album> {
     public String artist;
 
     private Image image;
+
+
+    public ArrayList<String> playlist=new ArrayList<>();
+
 
     public Album(String albumId, String albumName, String date, String price, String label, String artist) {
         AlbumId = albumId;

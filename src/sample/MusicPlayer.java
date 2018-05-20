@@ -162,4 +162,21 @@ public class MusicPlayer {
         return "Song Name";
 
     }
+
+
+    public void clearPlaylist(){
+
+
+        System.out.println(playlist.size());
+
+
+        playlist.clear();
+
+
+        System.out.println(playlist.size());
+
+
+
+    }
+
 }

@@ -873,6 +873,10 @@ public class MainUserScreenController implements Initializable {
         ArrayList<String> songs=new ArrayList<>(readAlbumInfo.GetSongs(album11.getAlbumId()));
 
 
+        nameMusic.clear();
+
+
+
         for (int i = 0; i < songs.size(); i++) {
             nameMusic.add(songs.get(i));
         }
@@ -1250,7 +1254,7 @@ public class MainUserScreenController implements Initializable {
 
 
         ShowMore(moreAp);
-        ShowMusic();
+        ShowMusic(album);
 
 
     }
@@ -1352,9 +1356,10 @@ public class MainUserScreenController implements Initializable {
 
 
     }
-    public void ShowMusic(){
+    public void ShowMusic(Album album){
         AnchorPane apMusic=new AnchorPane();
         VBox v=new VBox();
+
 
 
         apMusic.setTranslateX(0);
@@ -1383,12 +1388,19 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        CreateSongs(apMusic,v,scrollPane);
+
+        CreateSongs(apMusic,v,scrollPane,album);
 
 
     }
 
-    public void CreateSongs(AnchorPane ap,VBox vOne, ScrollPane scrollPane){
+    public void CreateSongs(AnchorPane ap,VBox vOne, ScrollPane scrollPane, Album album){
+
+
+        musicPlayer.clearPlaylist();
+
+
+
 
 
 
@@ -1471,13 +1483,20 @@ public class MainUserScreenController implements Initializable {
 
 
                 Label label = new Label();
+                Label label12 = new Label();
 
 
-                label.setText(nameMusic.get(i));
+                label.setText(nameMusic.get(i).replace("_", " "));
+                label12.setText(" - "+album.getAlbumName().replace("_", " "));
                 label.setStyle("-fx-text-fill: #ffffff");
+                label12.setStyle("-fx-text-fill: #a1a1a1; -fx-font-size: 14px");
 
 
                 Media media = new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music\\"+(nameMusic.get(i)).toString()).toURI().toString()+".mp3");
+
+
+                album.playlist.add((nameMusic.get(i)).toString());
+
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
                 MediaView mediaView = new MediaView(mediaPlayer);
                 mediaPlayerMusic=mediaPlayer;
@@ -1586,7 +1605,7 @@ public class MainUserScreenController implements Initializable {
 
 
 
-                vOne.getChildren().addAll(label, mediaView, h4);
+                vOne.getChildren().addAll(new HBox(label, label12), mediaView, h4);
 
             vOne.setPadding(new Insets(0,0,0,8));
 
