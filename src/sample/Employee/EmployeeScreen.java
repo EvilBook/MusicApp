@@ -41,7 +41,7 @@ public class EmployeeScreen implements Initializable {
 
     public void getName(String userEmail) {
         RetrieveInfoFromDatabase newRetrieve = new RetrieveInfoFromDatabase();
-        nameLabel.setText(newRetrieve.getName(userEmail));
+        nameLabel.setText(String.valueOf(newRetrieve.getName(userEmail)));
     }
 
     @FXML

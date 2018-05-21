@@ -22,7 +22,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class RemoveMusic implements Initializable
+public class  RemoveMusic implements Initializable
 {
     //Variables
     @FXML private TextField selectionField;

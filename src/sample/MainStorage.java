@@ -49,12 +49,12 @@ public class MainStorage {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("User/userScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainUserScreen.fxml"));
         Parent root;
         root = loader.load();
 
         MainUserScreenController one = loader.getController();
-        one.getName(userEmail);
+        one.setUserEmail(userEmail);
 
         Scene scene = new Scene(root,1066.62, 600);
         stage.setScene(scene);

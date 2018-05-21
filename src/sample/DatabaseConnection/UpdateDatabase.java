@@ -2,6 +2,7 @@ package sample.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UpdateDatabase {
 
@@ -125,6 +126,40 @@ public class UpdateDatabase {
             String LastName=userData.get(1);
             String UserEmial=userData.get(2);
             String three="insert into person(FirstName, LastName, Login_Email) "+" VALUES ('"+FirstName+"','"+LastName+"','"+UserEmial+"')";
+            st=connection.createStatement();
+            st.executeUpdate(three);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("UPDATE COMPLETE\n");
+
+
+
+    }
+
+
+    public <T> void ModifyUserData(T t, String email) {
+        String url = "jdbc:mysql://mass-music.mysql.database.azure.com:3306/persondb";
+        String username = "mass@mass-music";
+        String password = "Firmwar3";
+
+
+        System.out.println(((HashMap<String, String>) t).entrySet());
+
+
+
+        try {
+            connection = DriverManager.getConnection(url, username, password);
+            st = connection.createStatement();
+            System.out.println("Works");
+            new UpdateDatabase().connection=connection;
+        } catch (SQLException e) {
+
+        }
+
+
+        try {
+            String three="UPDATE person SET FirstName='"+((HashMap<String, String>) t).get("First Name:")+"',LastName='"+((HashMap<String, String>) t).get("Last Name:")+"',DoB='"+((HashMap<String, String>) t).get("Birthday (for some reason):")+"',PhoneNumber='"+((HashMap<String, String>) t).get("Phone Number:")+"',Address='"+((HashMap<String, String>) t).get("Address:")+"' WHERE Login_Email='"+email+"'";
             st=connection.createStatement();
             st.executeUpdate(three);
         } catch (SQLException e) {

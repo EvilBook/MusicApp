@@ -20,10 +20,12 @@ public class Album {
 
     //Getters
     public String getAlbumId() {
+
         return AlbumId;
     }
 
     public String getAlbumName() {
+
         return AlbumName;
     }
 

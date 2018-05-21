@@ -13,5 +13,10 @@
     <orderEntry type="library" name="jfoenix-8.0.1" level="project" />
     <orderEntry type="library" name="controlsfx-9.0.0" level="project" />
     <orderEntry type="library" name="activation-1.1.1" level="project" />
+    <orderEntry type="library" name="activation-1.1.11" level="project" />
+    <orderEntry type="library" name="controlsfx-9.0.01" level="project" />
+    <orderEntry type="library" name="credit-card-validator-0.0.31" level="project" />
+    <orderEntry type="library" name="mail-1.5.0-b011" level="project" />
+    <orderEntry type="library" name="itext7-pdfa-7.0.21" level="project" />
   </component>
 </module>

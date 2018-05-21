@@ -92,7 +92,9 @@ public class AddMusic implements Initializable
             if((albumDateField.getText().matches("\\d{2}-\\d{2}-\\d{4}")) &&
                     (songPlaytimeField1.getText().matches("\\d{2}:\\d{2}:\\d{2}") ||
                             songPlaytimeField1.getText().matches("\\d{2}:\\d{2}")) &&
-                    (albumVynlField.getText().matches("\\d{2}")) &&
+                    (albumVynlField.getText().matches("\\d{2}")) ||
+                    (albumVynlField.getText().matches("\\d{1}"))&&
+
                     (albumPriceField.getText().matches("\\d")||
                     albumPriceField.getText().matches("\\d{2}") ||
                     albumPriceField.getText().matches("\\d{3}")))

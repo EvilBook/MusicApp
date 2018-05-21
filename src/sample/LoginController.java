@@ -216,7 +216,7 @@ public class LoginController implements Initializable {
 
         //check login
 
-        info.authentication(email, pass, PasswordTextField);
+        info.authentication(email,pass,passwordPasswordField, userNameTextField);
 
 
         if (userNameTextField.getText().equals("admin")) {
