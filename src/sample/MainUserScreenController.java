@@ -143,10 +143,6 @@ public class MainUserScreenController implements Initializable {
     ReadAlbumInfo readAlbumInfo;
 
 
-    final static Image image12=new Image(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\cover.png").toString());
-
-
-
 
 
 
@@ -1549,7 +1545,7 @@ public class MainUserScreenController implements Initializable {
                 label12.setStyle("-fx-text-fill: #a1a1a1; -fx-font-size: 14px");
 
 
-                Media media = new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music\\"+(nameMusic.get(i)).toString()).toURI().toString()+".mp3");
+                Media media = new Media(new File("src/sample/Music/"+(nameMusic.get(i)).toString()).toURI().toString()+".mp3");
 
 
                 album.playlist.add((nameMusic.get(i)).toString());
@@ -1809,8 +1805,8 @@ public class MainUserScreenController implements Initializable {
 
 
 
-                ImageView iv1=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\next.png");
-                ImageView iv2=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\previous.png");
+                ImageView iv1=new ImageView("sample/Graphics/next.png");
+                ImageView iv2=new ImageView("sample/Graphics/previous.png");
 
 
                 iv1.setFitWidth(30);
@@ -2558,8 +2554,8 @@ public class MainUserScreenController implements Initializable {
 
         ImageView imageView=new ImageView();
         ImageView imageView1=new ImageView();
-        ImageView imageView2=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\cart.png"));
-        ImageView imageView3=new ImageView(("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\ic_favorite_border_white_48pt_3x.png"));
+        ImageView imageView2=new ImageView(("sample/Graphics/cart.png"));
+        ImageView imageView3=new ImageView(("sample/Graphics/ic_favorite_border_white_48pt_3x.png"));
 
 
         Label label=new Label("Search");
@@ -3332,7 +3328,7 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        ImageView iv1=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\volume.png");
+        ImageView iv1=new ImageView("sample/Graphics/volume.png");
 
 
         iv1.setFitWidth(30);
