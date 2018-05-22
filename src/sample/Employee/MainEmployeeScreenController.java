@@ -38,7 +38,7 @@ public class MainEmployeeScreenController implements Initializable {
 
     public void getName(String userEmail) {
         RetrieveInfoFromDatabase newRetrieve = new RetrieveInfoFromDatabase();
-        nameLabel.setText(newRetrieve.getName(userEmail));
+        nameLabel.setText(newRetrieve.getName1(userEmail));
     }
 
 
