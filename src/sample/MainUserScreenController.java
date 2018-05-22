@@ -400,7 +400,7 @@ public class MainUserScreenController implements Initializable {
         StackPane tutorial=new StackPane();
 
 
-        ImageView tutorialImage=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\tutorial.png");
+        ImageView tutorialImage=new ImageView("sample/Graphics/tutorial.png");
 
 
         tutorialImage.setFitWidth(1066.62);
@@ -856,7 +856,7 @@ public class MainUserScreenController implements Initializable {
         }
     }
     public ArrayList<String> ReadNames() {
-        File folder = new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\Records");
+        File folder = new File("src/sample/Graphics/Records/");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -869,7 +869,7 @@ public class MainUserScreenController implements Initializable {
 
     }
     public ArrayList<String> ReadNamesMusic(Album album11) {
-        File folder = new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Music");
+        File folder = new File("src/sample/Music/");
         File[] listOfFiles = folder.listFiles();
 
 
@@ -1283,7 +1283,7 @@ public class MainUserScreenController implements Initializable {
 
 
 
-        Media media=new Media(new File("C:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\musicOne.mp3").toURI().toString());
+        Media media=new Media(new File("src/sample/musicOne.mp3").toURI().toString());
         MediaPlayer mediaPlayer=new MediaPlayer(media);
         MediaView mediaView=new MediaView(mediaPlayer);
 
