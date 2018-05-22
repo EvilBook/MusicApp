@@ -21,8 +21,10 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
+import javafx.stage.DirectoryChooser;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -427,6 +429,21 @@ public class ShoppingCartMenu {
 
 
         DropShadow dropShadow=new DropShadow();
+
+        DirectoryChooser c=new DirectoryChooser();
+
+
+        File f=c.showDialog(v1.getScene().getWindow());
+
+
+        c.showDialog(v1.getScene().getWindow()).getPath();
+
+
+
+
+
+
+
 
 
         h.setEffect(dropShadow);

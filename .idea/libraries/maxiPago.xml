@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="maxiPago">
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/../maxiPago.jar" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

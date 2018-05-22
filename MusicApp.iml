@@ -7,14 +7,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jfoenix" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.28-bin" level="project" />
-    <orderEntry type="library" name="slf4j-api-1.7.12" level="project" />
-    <orderEntry type="library" name="maxiPago" level="project" />
-    <orderEntry type="library" name="controlsfx-9.0.0" level="project" />
     <orderEntry type="library" name="activation-1.1.1" level="project" />
+    <orderEntry type="library" name="controlsfx-9.0.0" level="project" />
+    <orderEntry type="library" name="credit-card-validator-0.0.6" level="project" />
     <orderEntry type="library" name="itextpdf-5.5.13" level="project" />
     <orderEntry type="library" name="javax.servlet-api-3.1.0" level="project" />
     <orderEntry type="library" name="mail-1.5.0-b01" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.28-bin" level="project" />
+    <orderEntry type="library" name="slf4j-api-1.7.12" level="project" />
   </component>
 </module>
