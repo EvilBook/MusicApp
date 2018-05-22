@@ -6,6 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Employee.ViewMusicPopup;
+
 import java.io.IOException;
 
 public class AdminStorage {
@@ -17,6 +19,20 @@ public class AdminStorage {
         Stage stage = (Stage)node.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeManagement.fxml"));
+        Parent root;
+        root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("it works");
+    }
+
+    public void viewAdminScreen(ActionEvent event) throws IOException {
+        System.out.println(event);
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminScreen.fxml"));
         Parent root;
         root = loader.load();
         Scene scene = new Scene(root);
@@ -48,6 +64,9 @@ public class AdminStorage {
         stage.setScene(scene);
         stage.show();
     }
+
+
+
 
     public void viewUserScene(ActionEvent event) throws IOException {
         Node node = (Node)event.getSource();
@@ -82,6 +101,33 @@ public class AdminStorage {
         root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.show();
+    }
+
+    public void addMusic(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../Employee/addMusic.fxml"));
+        stage.setTitle("Album Information");
+        ViewMusicPopup popC = new ViewMusicPopup();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void viewMusic(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../Employee/viewMusic.fxml"));
+        stage.setTitle("Album Information");
+        ViewMusicPopup popC = new ViewMusicPopup();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void deleteMusic(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../Employee/removeMusic.fxml"));
+        stage.setTitle("Album Information");
+        ViewMusicPopup popC = new ViewMusicPopup();
+        stage.setScene(new Scene(root));
         stage.show();
     }
 

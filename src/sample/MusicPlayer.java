@@ -12,9 +12,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class MusicPlayer {
     private static MusicPlayer musicPlayer = new MusicPlayer();
@@ -47,7 +45,7 @@ public class MusicPlayer {
     Slider slider;
 
 
-    HashMap<Pane, MediaPlayer> playlist =new HashMap<Pane, MediaPlayer>();
+    HashMap<Pane, MediaPlayer> playlist =new HashMap<>();
 
 
 
@@ -178,5 +176,29 @@ public class MusicPlayer {
 
 
     }
+
+
+
+    public void next1(){
+
+
+        System.out.println(playlist.get(currentlyPlaying).getMedia().getSource());
+
+
+
+
+
+    }
+
+    public void previous1(){
+
+
+
+
+
+    }
+
+
+
 
 }

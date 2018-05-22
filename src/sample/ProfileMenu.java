@@ -69,6 +69,10 @@ public class ProfileMenu {
         base=new Pane();
 
 
+        base.setStyle("-fx-background-color: rgba(0,0,0,0.25);");
+
+
+
         base.setPrefSize(pane.getPrefWidth()*1/3, pane.getPrefHeight());
 
 
@@ -350,7 +354,7 @@ public class ProfileMenu {
         stackPane.getChildren().add(v);
 
 
-        stackPane.setStyle("-fx-background-color: rgba(0,0,0,0.35);");
+        stackPane.setStyle("-fx-background-color: rgba(0,0,0,0.68);");
 
 
         v.setSpacing(14);

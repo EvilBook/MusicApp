@@ -42,6 +42,7 @@ public class RemoveUser implements Initializable {
 
     //Objects
     MainStorage access = new MainStorage();
+    AdminStorage am = new AdminStorage();
     PersonDBConnection dbc = new PersonDBConnection();
     Connection connection = dbc.connection;
     RemoveEmployeeDatabase red = new RemoveEmployeeDatabase();
@@ -112,7 +113,7 @@ public class RemoveUser implements Initializable {
     }
 
     public void handleReturnButton(ActionEvent event) throws IOException {
-        access.mainAdminScreen(event);
+        am.viewAdminScreen(event);
     }
 
 }

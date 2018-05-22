@@ -3,6 +3,14 @@
     <output-path>$PROJECT_DIR$/out/artifacts/MusicApp_jar</output-path>
     <root id="archive" name="MusicApp.jar">
       <element id="module-output" name="MusicApp" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jar_files/slf4j-api-1.7.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jar_files/credit-card-validator-0.0.6.jar" path-in-jar="/" />
+      <element id="library" level="project" name="maxiPago" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../controlsfx-9.0.0/controlsfx-9.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/sample/Jars/activation-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/sample/Jars/javax.servlet-api-3.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/sample/Jars/mail-1.5.0-b01.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/sample/Jars/itextpdf-5.5.13.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../mysql-connector-java-5.1.28/mysql-connector-java-5.1.28/mysql-connector-java-5.1.28-bin.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../jfoenix.jar" path-in-jar="/" />
     </root>

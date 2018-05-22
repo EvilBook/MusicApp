@@ -22,9 +22,9 @@
          </font>
       </Text>
       <Button id="logOutButton" layoutX="43.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="41.0" prefWidth="88.0" text="Log Out" />
-      <Button id="addButton" fx:id="addButton" layoutX="280.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesAdd" prefHeight="127.0" prefWidth="136.0" text="Add Employees" />
-      <Button id="deleteButton" layoutX="679.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesRemove" prefHeight="127.0" prefWidth="136.0" text="Delete Employees" />
-      <Button id="viewButton" layoutX="483.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesView" prefHeight="127.0" prefWidth="136.0" text="View Employees" />
+      <Button id="addButton" fx:id="addButton" layoutX="280.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesAdd" prefHeight="127.0" prefWidth="136.0" text="Add Music" />
+      <Button id="deleteButton" fx:id="deleteButton" layoutX="679.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesRemove" prefHeight="127.0" prefWidth="136.0" text="Delete Music" />
+      <Button id="viewButton" fx:id="viewButton" layoutX="483.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleSwitchScenesView" prefHeight="127.0" prefWidth="136.0" text="View Music" />
       <Label id="title" layoutX="436.0" layoutY="26.0" text="Employee Management" />
    </children>
 </AnchorPane>

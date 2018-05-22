@@ -23,6 +23,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.util.Duration;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ShoppingCartMenu {
@@ -242,14 +243,18 @@ public class ShoppingCartMenu {
         scrollPane.setContent(v1);
 
 
+        DecimalFormat df=new DecimalFormat(".##");
+
+
+
 
         for(Album a:albums){
             total+=Double.parseDouble(a.getPrice());
-            System.out.println(a.getPrice()+" "+Double.parseDouble(a.getPrice())+" "+total);
+            System.out.println(a.getPrice()+" "+df.format(Double.parseDouble(a.getPrice()))+" "+total);
         }
 
 
-        price.setText(total+"$");
+        price.setText(df.format(total)+"$");
 
 
 

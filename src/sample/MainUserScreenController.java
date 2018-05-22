@@ -2,6 +2,8 @@ package sample;
 
 import javafx.animation.*;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -71,6 +73,7 @@ public class MainUserScreenController implements Initializable {
 
 
     ArrayList<String> albumNames=new ArrayList<>();
+    private Slider volumeSlider;
 
 
     public void SetStage(Stage stage){
@@ -1049,7 +1052,7 @@ public class MainUserScreenController implements Initializable {
 
         Label price=new Label("price: ");
         price.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
-        Label price1=new Label(album.getPrice());
+        Label price1=new Label(album.getPrice()+"$");
 
 
         VBox v=new VBox(new HBox(name, name1), new HBox(artist, artist1), new HBox(date, date1), new HBox(plates, plates1), new HBox(price, price1));
@@ -1154,6 +1157,56 @@ public class MainUserScreenController implements Initializable {
 
 
         stackPane.getChildren().addAll(imageView3,iv);
+
+
+
+
+        Label name=new Label("title: ");
+        name.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label name1=new Label(album.getAlbumName().replace("_", " "));
+
+
+
+        Label artist=new Label("by: ");
+        artist.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label artist1=new Label(album.artist);
+
+
+        Label plates=new Label("no. disks: ");
+        plates.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label plates1=new Label(album.getAlbumId());
+
+
+        Label date=new Label("date: ");
+        date.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label date1=new Label(album.getDate());
+
+
+        Label price=new Label("price: ");
+        price.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label price1=new Label(album.getPrice()+"$");
+
+
+        Label albumLabel=new Label("Label: ");
+        albumLabel.setStyle("-fx-text-fill: #b3b3b3; -fx-font-size: 14px");
+        Label albumLabel1=new Label(album.getLabel());
+
+
+
+        VBox v1=new VBox(new HBox(name, name1), new HBox(artist, artist1), new HBox(date, date1), new HBox(plates, plates1), new HBox(price, price1), new HBox(albumLabel, albumLabel1));
+
+
+        v1.setSpacing(1);
+
+
+        v1.setTranslateY(259);
+
+
+
+
+
+        stackPane.getChildren().addAll(v1);
+
 
 
 
@@ -1400,6 +1453,10 @@ public class MainUserScreenController implements Initializable {
         musicPlayer.clearPlaylist();
 
 
+        updateValues(vOne);
+
+
+
 
 
 
@@ -1584,6 +1641,8 @@ public class MainUserScreenController implements Initializable {
             HBox h4 = new HBox();
 
 
+
+
             stackPane.getChildren().addAll(progressBar, slider);
 
 
@@ -1749,7 +1808,50 @@ public class MainUserScreenController implements Initializable {
                 pane.setTranslateY(-8);
 
 
-                h.getChildren().addAll(pane, v, lTwo);
+
+                ImageView iv1=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\next.png");
+                ImageView iv2=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\previous.png");
+
+
+                iv1.setFitWidth(30);
+                iv1.setPreserveRatio(true);
+                iv2.setFitWidth(30);
+                iv2.setPreserveRatio(true);
+
+
+                Button button=new Button("X");
+
+
+                button.setOnMouseClicked(event -> {
+                    Timeline timeline=new Timeline();
+
+
+                    KeyValue kv=new KeyValue(playerAp.translateYProperty(), -120, Interpolator.EASE_BOTH);
+
+
+                    KeyFrame kf=new KeyFrame(Duration.seconds(0.4), kv);
+
+
+                    timeline.getKeyFrames().add(kf);
+
+
+                    timeline.play();
+
+
+
+
+                });
+
+
+                button.setStyle("-fx-background-color: null; -fx-text-fill: #ff1f28;");
+
+
+
+
+
+
+
+                h.getChildren().addAll(iv2, pane, iv1, v, lTwo, button);
 
 
                 v.setAlignment(Pos.CENTER);
@@ -1862,6 +1964,10 @@ public class MainUserScreenController implements Initializable {
                 });
                 time.play();
                 pane.setId("2");
+
+
+                addVolume();
+
             }else{
 
 
@@ -3214,6 +3320,72 @@ public class MainUserScreenController implements Initializable {
 
 
     }
+
+
+    protected void updateValues(VBox v) {
+
+
+        ProgressBar progressBar=new ProgressBar(0);
+        progressBar.setMinWidth(58);
+        progressBar.setMaxWidth(58);
+
+
+
+
+        ImageView iv1=new ImageView("File:\\Users\\NoFox\\Downloads\\MusicApp\\src\\sample\\Graphics\\volume.png");
+
+
+        iv1.setFitWidth(30);
+
+
+        iv1.setPreserveRatio(true);
+
+
+
+
+
+
+
+
+
+        volumeSlider = new Slider();
+        volumeSlider.setPrefWidth(70);
+        volumeSlider.setMaxWidth(Region.USE_PREF_SIZE);
+        volumeSlider.setMinWidth(70);
+
+
+        StackPane stackPane=new StackPane(progressBar, volumeSlider);
+
+
+
+        v.getChildren().add(new HBox(iv1, stackPane));
+
+
+    }
+
+
+    public void addVolume(){
+        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+            public void invalidated(Observable ov) {
+                if (volumeSlider.isValueChanging()) {
+                    musicPlayer.playlist.get(musicPlayer.currentlyPlaying).setVolume(volumeSlider.getValue() / 100.0);
+                }
+            }
+        });
+
+
+        Slider finalVolumeSlider = volumeSlider;
+        Platform.runLater(new Runnable() {
+            public void run() {
+                if (!finalVolumeSlider.isValueChanging()) {
+                    finalVolumeSlider.setValue((int)Math.round(musicPlayer.playlist.get(musicPlayer.currentlyPlaying).getVolume()
+                            * 100));
+                }
+            }
+        });
+    }
+
+
 
 
 

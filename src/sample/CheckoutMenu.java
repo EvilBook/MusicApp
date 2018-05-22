@@ -200,10 +200,10 @@ public class CheckoutMenu {
         pane11.setTranslateX(280);
 
 
-        pane11.setTranslateY(-24);
+        pane11.setTranslateY(-14);
 
 
-        profile.setTranslateY(-40);
+        profile.setTranslateY(-18);
 
 
 
@@ -542,7 +542,7 @@ public class CheckoutMenu {
 
 
 
-        v.getChildren().addAll(new Label(String.valueOf(this.total)), button);
+        v.getChildren().addAll(new Label("Total: "+String.valueOf(this.total)+"$"), button);
 
 
         v.setAlignment(Pos.CENTER);

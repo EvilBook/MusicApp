@@ -4,7 +4,10 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,9 +20,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DatabaseConnection.UpdateDatabase;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -465,7 +470,44 @@ public class ProfileMenuEdit {
 
 
 
-        v.getChildren().addAll(stackPane);
+
+        Label newLabel=new Label("Cancel");
+
+
+        newLabel.setUnderline(true);
+
+
+        newLabel.setOnMouseEntered(event -> {
+            newLabel.setStyle("-fx-text-fill: #ff5464;");
+        });
+
+        newLabel.setOnMouseExited(event -> {
+            newLabel.setStyle("-fx-text-fill: #fff6fc;");
+        });
+
+        newLabel.setOnMouseClicked(event -> {
+
+
+            hideProfileMenu();
+
+        });
+
+
+
+
+        v.getChildren().addAll(stackPane, newLabel);
+
+
+        stackPane.setTranslateY(-24);
+
+
+
+        newLabel.setTranslateY(-44);
+
+
+        newLabel.setTranslateX(120);
+
+
 
 
 

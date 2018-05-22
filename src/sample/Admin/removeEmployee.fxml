@@ -10,25 +10,26 @@
 
 <AnchorPane id="body" prefHeight="600.0" prefWidth="1066.62" stylesheets="@../CSS/adminScreen.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.RemoveEmployee">
    <children>
-      <Pane layoutX="60.0" layoutY="48.0" prefHeight="475.0" prefWidth="947.0">
+      <Pane id="middleBody" layoutX="84.0" layoutY="72.0" prefHeight="437.0" prefWidth="898.0">
          <children>
-            <Pane layoutX="35.0" layoutY="388.0" prefHeight="76.0" prefWidth="868.0">
+            <Pane id="bottomBody" layoutY="371.0" prefHeight="66.0" prefWidth="898.0">
                <children>
-                  <TextField fx:id="removeTextField" layoutX="289.0" layoutY="16.0" prefHeight="34.0" prefWidth="223.0" />
-                  <Button fx:id="removeButton" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleRemoveButton" prefHeight="37.0" prefWidth="66.0" text="remove" />
+                  <TextField fx:id="removeTextField" layoutX="302.0" layoutY="17.0" prefHeight="34.0" prefWidth="223.0" />
+                  <Button fx:id="removeButton" layoutX="537.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleRemoveButton" prefHeight="37.0" prefWidth="76.0" text="remove" />
                </children>
             </Pane>
-            <TableView id="table" fx:id="employeeTable" layoutX="120.0" layoutY="52.0" onMouseClicked="#tableClick" prefHeight="301.0" prefWidth="699.0">
+            <TableView id="table" fx:id="employeeTable" layoutX="26.0" layoutY="39.0" onMouseClicked="#tableClick" prefHeight="312.0" prefWidth="847.0">
               <columns>
-                <TableColumn id="column" fx:id="firstColumn" prefWidth="184.0" text="First Name" />
-                <TableColumn id="column" fx:id="lastColumn" prefWidth="211.0" text="Last Name" />
-                  <TableColumn id="column" fx:id="emailColumn" prefWidth="297.5" text="Email " />
+                <TableColumn id="column" fx:id="firstColumn" prefWidth="240.0" text="First Name" />
+                <TableColumn id="column" fx:id="lastColumn" prefWidth="260.0" text="Last Name" />
+                  <TableColumn id="column" fx:id="emailColumn" prefWidth="336.5" text="Email " />
               </columns>
             </TableView>
-            <Label fx:id="infoLabel" layoutX="278.0" layoutY="371.0" prefHeight="17.0" prefWidth="383.0" />
+            <Label fx:id="infoLabel" layoutX="258.0" layoutY="14.0" prefHeight="20.0" prefWidth="383.0" />
          </children>
       </Pane>
-      <Button layoutX="128.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="34.0" prefWidth="116.0" text="return" />
-      <Label id="title" layoutX="473.0" layoutY="40.0" stylesheets="@../CSS/adminScreen.css" text="Remove Employees" />
+      <Button layoutX="84.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="51.0" prefWidth="100.0" text="return" />
+      <Label id="title" layoutX="84.0" layoutY="25.0" stylesheets="@../CSS/adminScreen.css" text="Remove Employees" />
+      <Label layoutX="303.0" layoutY="30.0" text="// Fill in or double click on the email of the employee to be removed" />
    </children>
 </AnchorPane>
