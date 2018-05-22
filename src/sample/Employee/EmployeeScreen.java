@@ -9,7 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.RetrieveInfoFromDatabase;
 import sample.SwitchScene;
@@ -23,6 +25,7 @@ public class EmployeeScreen implements Initializable {
     //Variables
     @FXML Label nameLabel;
     @FXML Button addButton, viewButton, deleteButton;
+    @FXML ImageView img;
 
     //Objects
     SwitchScene sw = new SwitchScene();
@@ -32,8 +35,10 @@ public class EmployeeScreen implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        DropShadow ds = new DropShadow();
-//        addButton.setEffect(ds);
+        DropShadow ds = new DropShadow();
+        addButton.setEffect(ds);
+        viewButton.setEffect(ds);
+        deleteButton.setEffect(ds);
     }
 
     @FXML
@@ -61,6 +66,21 @@ public class EmployeeScreen implements Initializable {
     @FXML
     private void handleSwitchScenesView(ActionEvent event) throws IOException {
         goTo.employeeViewMusic(event, viewButton);
+    }
+
+
+    @FXML
+    private void blur(){
+        BoxBlur bx = new BoxBlur();
+        bx.setHeight(6);
+        bx.setWidth(6);
+        img.setEffect(bx);
+    }
+
+    @FXML
+    private void focus(){
+        img.setEffect(null);
+
     }
 
 

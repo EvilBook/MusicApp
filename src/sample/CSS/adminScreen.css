@@ -109,6 +109,24 @@
 
 }
 
+#empButton{
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-text-fill: rgba(255,255,255,0.9);
+    -fx-border: none;
+    -fx-color: rgb(171, 171, 171);
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-border-width: 0px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: rgba(0,0,0,0.6);
+}
+
+#empButton:hover{
+    -fx-background-color: rgba(64, 166, 170, 0.7);
+
+}
 
 .text-field {
     -fx-background-color: none;

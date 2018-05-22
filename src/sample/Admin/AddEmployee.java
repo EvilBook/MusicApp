@@ -48,6 +48,8 @@ public class AddEmployee implements Initializable {
 
     }
 
+
+    //Check for correct values and add
     @FXML
     public void handleAddButton(ActionEvent event) throws InterruptedException
     {
@@ -193,6 +195,7 @@ public class AddEmployee implements Initializable {
     }
 
 
+    //Switch scenes
     @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
         access.viewAdminScreen(event);

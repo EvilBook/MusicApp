@@ -48,7 +48,6 @@ public class AdminScreen implements Initializable {
     @FXML
     private void focusUser(){
         userImg.setEffect(null);
-
     }
     @FXML
     private void focusMusic(){

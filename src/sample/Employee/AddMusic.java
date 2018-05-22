@@ -5,6 +5,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sample.DatabaseConnection.AddAlbumToDatabase;
 
@@ -19,10 +22,8 @@ import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.text.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.Random;
@@ -44,20 +45,24 @@ public class AddMusic implements Initializable
             songArtistField6, songArtistField7, songArtistField8;
     @FXML private TextField songPlaytimeField1, songPlaytimeField2, songPlaytimeField3, songPlaytimeField4,
             songPlaytimeField5, songPlaytimeField6, songPlaytimeField7, songPlaytimeField8;
+    private Event event;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+
     }
 
     //Handle Submit Album Button
     @FXML
-    private void handleSubmitAlbum()
+    private void handleSubmitAlbum(Event event)
     {
+        this.event = event;
         checkFormat();
     }
 
+    //Generate file name
     public String generateRandom()
     {
         Random r = new Random();
@@ -78,28 +83,45 @@ public class AddMusic implements Initializable
     }
 
 
+    //Save the album info in a pdf file
     public void savePDF(String albumName, String date, String albumPrice, String label, String vynl)
     {
         Document doc = new Document();
 
         try
         {
-            String file = generateRandom();
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/sample/Pdf/" + file));
+            FileChooser fileChooser1 = new FileChooser();
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(fileChooser1.showSaveDialog(submitAlbumButton.getScene().getWindow()) + "1.pdf"));
             doc.open();
+
+            Image image1 = Image.getInstance("src/sample/Graphics/logo.png");
+            doc.add(image1);
+
             doc.addTitle(albumName);
             doc.add(new Paragraph("------ALBUM ADDED TO DATABASE------\n\n" +
                     "Album Name: " + albumName + "\nPrice: " + albumPrice + "\nLabel: " + label + "\nVinyl Number: " + vynl));
             doc.close();
             writer.close();
+
+
         }
         catch (FileNotFoundException e)
         {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Pdf file not found", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
         }
         catch (DocumentException e)
         {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong trying to add data to the Pdf file", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
+        } catch (MalformedURLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong trying to save the Pdf file", ButtonType.OK);
+            alert.setHeaderText("ERROR");
+            alert.showAndWait();
         }
 
     }
@@ -250,7 +272,7 @@ public class AddMusic implements Initializable
         //Reset the text fields and show message
         resetTextFields();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Album added to the database! " +
-                "A PDF File is created with the album information", ButtonType.OK);
+                "", ButtonType.OK);
         alert.setHeaderText("COMPLETE");
         alert.showAndWait();
     }
