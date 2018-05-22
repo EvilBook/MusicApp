@@ -11,9 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.DatabaseConnection.ThisIsForConnecting;
 
-import javax.swing.text.html.CSS;
-
-public class Main extends Application {
+public class  Main extends Application {
 
     @FXML private Button loginButton;
 
@@ -40,8 +38,7 @@ public class Main extends Application {
         scene.setFill(Color.TRANSPARENT);
         primaryStage.show();
         ThisIsForConnecting connect =new ThisIsForConnecting();
-
-
+        
     }
 
 
