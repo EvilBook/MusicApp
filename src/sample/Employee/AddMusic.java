@@ -101,6 +101,7 @@ public class AddMusic implements Initializable
             doc.add(new Paragraph("------ALBUM ADDED TO DATABASE------\n\n" +
                     "Album Name: " + albumName + "\nPrice: " + albumPrice + "\nLabel: " + label + "\nVinyl Number: " + vynl));
             doc.close();
+            
             writer.close();
 
 
