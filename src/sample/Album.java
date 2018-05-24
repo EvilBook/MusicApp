@@ -14,7 +14,6 @@ public class Album implements Comparable<Album> {
     private String price;
     private String label;
     public String artist;
-
     private Image image;
 
 
